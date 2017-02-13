@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.u2u.ibms.common.mapper.AssetTypeMapper">
+
+	<resultMap id="assetType" type="com.u2u.ibms.common.beans.AssetType" extends="baseBean">
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="brandId" jdbcType="INTEGER" column="brand_id" />
+		<result property="brand" jdbcType="VARCHAR" column="brand" />
+		<result property="model" jdbcType="VARCHAR" column="model" />
+		<result property="machinePower" jdbcType="VARCHAR" column="machine_power" />
+		<result property="moveMethod" jdbcType="VARCHAR" column="move_method" />
+		<result property="finishSize" jdbcType="VARCHAR" column="finish_size" />
+		<result property="mainShaftSpeed" jdbcType="VARCHAR" column="main_shaft_speed" />
+		<result property="cutterCount" jdbcType="VARCHAR" column="cutter_count" />
+		<result property="controlMethod" jdbcType="VARCHAR" column="control_method" />
+		<result property="controlSystem" jdbcType="VARCHAR" column="control_system" />
+		<result property="layout" jdbcType="VARCHAR" column="layout" />
+		<result property="driving" jdbcType="VARCHAR" column="driving" />
+		<result property="picture" jdbcType="VARCHAR" column="picture" />
+		<result property="deposit" jdbcType="FLOAT" column="deposit" />
+		<result property="amount" jdbcType="FLOAT" column="amount" />
+		<result property="insuranceAmount" jdbcType="FLOAT" column="insurance_amount" />
+	</resultMap>
+
+	<sql id="BASE_ASSET_TYPE_SQL">
+		brand_id,
+		brand,
+		model,
+		machine_power,
+		move_method,
+		finish_size,
+		main_shaft_speed,
+		cutter_count,
+		control_method,
+		control_system,
+		layout,
+		driving,
+		picture,
+		deposit,
+		amount,		
+		insurance_amount,
+		<include refid="BASE_BEAN_SQL" />
+	</sql>
+
+	<select id="getAll" resultMap="assetType">
+		SELECT
+			ID,
+			<include refid="BASE_ASSET_TYPE_SQL" />
+		FROM
+			T_ASSET_TYPE
+		<where>
+			<if test="brandId!=null">
+				AND BRAND_ID = #{brandId}
+			</if>
+			<if test="model!=null">
+				and model LIKE CONCAT('%',#{model},'%')
+			</if>
+			<if test="starProduct!=null">
+				and star_product = #{starProduct}
+			</if>
+		</where>
+		ORDER BY CREATE_DATE DESC
+	</select>
+	
+	<select id="getByIds" resultMap="assetType">
+		SELECT
+			ID,
+			<include refid="BASE_ASSET_TYPE_SQL" />
+		FROM
+			T_ASSET_TYPE
+		<where>
+			<if test="ids!=null">
+				and id in
+				<foreach item="item" collection="ids" separator="," open="(" close=")" >  
+		      		#{item}
+				</foreach>
+			</if>
+		</where>
+	</select>
+	
+	<select id="getById" resultMap="assetType">
+		SELECT
+			ID,
+			<include refid="BASE_ASSET_TYPE_SQL" />
+		FROM
+			T_ASSET_TYPE
+		WHERE
+			ID = #{id}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO T_ASSET_TYPE
+		(
+			<include refid="BASE_ASSET_TYPE_SQL" />
+		)
+		VALUES
+		(
+			#{brandId},
+			#{brand},
+			#{model},
+			#{machinePower},
+			#{moveMethod},
+			#{finishSize},
+			#{mainShaftSpeed},
+			#{cutterCount},
+			#{controlMethod},
+			#{controlSystem},
+			#{layout},
+			#{driving},
+			#{picture},
+			#{deposit},
+			#{amount},		
+			#{insuranceAmount},
+			#{createDate},
+			#{operateDate}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE T_ASSET_TYPE
+		SET
+			brand_id = #{brandId},
+			brand = #{brand},
+			model = #{model},
+			machine_power = #{machinePower},
+			move_method = #{moveMethod},
+			finish_size = #{finishSize},
+			main_shaft_speed = #{mainShaftSpeed},
+			cutter_count = #{cutterCount},
+			control_method = #{controlMethod},
+			control_system = #{controlSystem},
+			layout = #{layout},
+			driving = #{driving},
+			picture = #{picture},
+			deposit = #{deposit},
+			amount = #{amount},
+			create_date = #{createDate},
+			operate_date = #{operateDate},
+			insurance_amount = #{insuranceAmount}
+		where
+			id = #{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM T_ASSET_TYPE
+		WHERE ID = #{id}
+	</delete>
+	
+</mapper>

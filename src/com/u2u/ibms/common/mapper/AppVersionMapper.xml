@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.u2u.ibms.common.mapper.AppVersionMapper">
+
+	<resultMap id="appVersion" type="com.u2u.ibms.common.beans.AppVersion" extends="baseBean">
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="version" jdbcType="VARCHAR" column="version" />
+		<result property="enforce" jdbcType="TINYINT" column="enforce" />
+	</resultMap>
+
+	<sql id="BASE_APP_VERSION_SQL">
+		version,
+		enforce,
+		<include refid="BASE_BEAN_SQL" />
+	</sql>
+	
+	<select id="getAll" resultMap="appVersion">
+		SELECT
+		    ID,
+			<include refid="BASE_APP_VERSION_SQL" />
+		FROM t_app_version
+		<where>
+			<if test="version!=null">
+				and version = #{version}
+			</if>
+		</where>
+		ORDER BY CREATE_DATE DESC
+	</select>
+
+	<select id="getById" resultMap="appVersion">
+		SELECT
+			ID,
+			<include refid="BASE_APP_VERSION_SQL" />
+		FROM
+			t_app_version
+		WHERE
+			ID = #{id}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO t_app_version(
+		<include refid="BASE_APP_VERSION_SQL"/>
+		) values(
+			#{version},
+			#{enforce},
+			#{createDate},
+			#{operateDate}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE t_app_version
+		SET
+			version = #{version},
+			enforce = #{enforce},
+			create_date = #{createDate},
+			operate_date = #{operateDate}
+		where
+			id = #{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM t_app_version
+		WHERE ID = #{id}
+	</delete>
+
+	<select id="checkVersion" resultMap="appVersion">
+		SELECT
+			ID,
+			<include refid="BASE_APP_VERSION_SQL" />
+		FROM
+			t_app_version 
+		ORDER BY CREATE_DATE DESC LIMIT 0,1
+	</select>
+	
+	
+</mapper>

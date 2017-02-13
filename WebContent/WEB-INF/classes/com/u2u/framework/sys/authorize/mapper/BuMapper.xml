@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.u2u.framework.sys.authorize.mapper.BuMapper">
+	
+	<resultMap id="bu"
+		type="com.u2u.framework.sys.authorize.beans.Bu" extends="baseBean">
+		<id property="id" jdbcType="INTEGER" column="ID" />
+		<result property="name" jdbcType="VARCHAR" column="name" />
+	</resultMap>
+
+	<sql id="BASE_BU_SQL">
+		NAME,
+		<include refid="BASE_BEAN_SQL"/>
+	</sql>
+	
+	<select id="getAll" resultMap="bu">
+		SELECT 
+			ID,
+			<include refid="BASE_BU_SQL"/>
+		FROM SYS_BU
+		<where>
+			<if test="name!=null">
+				AND name like CONCAT('%',#{name},'%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="getById" resultMap="bu">
+		SELECT 
+			ID,
+			<include refid="BASE_BU_SQL"/>
+		FROM SYS_BU
+		WHERE ID = #{id}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO SYS_BU
+		(
+			<include refid="BASE_BU_SQL" />
+		)
+		VALUES
+		(
+			#{name},
+			#{createDate},
+			#{operateDate}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE SYS_BU
+		SET
+			NAME = #{name},
+			CREATE_DATE = #{createDate},
+			OPERATE_DATE = #{operateDate}
+		WHERE 
+			ID = #{id}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM SYS_BU
+		WHERE ID = #{id}
+	</delete>
+</mapper>

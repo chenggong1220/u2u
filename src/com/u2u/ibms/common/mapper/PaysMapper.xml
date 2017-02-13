@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.u2u.ibms.common.mapper.PaysMapper">
+
+	<resultMap id="pays" type="com.u2u.ibms.common.beans.Pays" extends="baseBean">
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="payId" jdbcType="VARCHAR" column="pay_id" />
+		<result property="paySource" jdbcType="INTEGER" column="pay_source" />
+		<result property="type" jdbcType="INTEGER" column="type" />
+		<result property="orderId" jdbcType="INTEGER" column="order_id" />
+		<result property="billCheckId" jdbcType="INTEGER" column="bill_check_id" />
+		<result property="userId" jdbcType="INTEGER" column="user_id" />
+		<result property="amount" jdbcType="FLOAT" column="amount" />
+	</resultMap>
+
+	<sql id="BASE_PAYS_SQL">
+		pay_id,
+		pay_source,
+		type,
+		order_id,
+		bill_check_id,
+		user_id,
+		amount,
+		<include refid="BASE_BEAN_SQL" />
+	</sql>
+	
+	<select id="getAll" resultMap="pays">
+		SELECT
+		    ID,
+			<include refid="BASE_PAYS_SQL" />
+		FROM T_PAYS
+		<where>
+			<if test="name!=null">
+				and NAME LIKE CONCAT('%',#{name},'%')
+			</if>
+			<if test="startDate!=null">
+				and operate_date &gt;= #{startDate}
+			</if>
+			<if test="endDate!=null">
+				and operate_date &lt;= #{endDate}
+			</if>
+		</where>
+		ORDER BY CREATE_DATE DESC
+	</select>
+	
+	<select id="getAllWithUser" resultMap="pays">
+		SELECT
+		    ID,
+			<include refid="BASE_PAYS_SQL" />
+		FROM T_PAYS
+		<where>
+			<if test="userId!=null">
+				and user_id = #{userId}
+			</if>
+			<if test="startDate!=null">
+				and operate_date &gt;= #{startDate}
+			</if>
+			<if test="endDate!=null">
+				and operate_date &lt;= #{endDate}
+			</if>
+		</where>
+		ORDER BY CREATE_DATE DESC
+	</select>
+	<select id="getById" resultMap="pays">
+		SELECT
+			ID,
+			<include refid="BASE_PAYS_SQL" />
+		FROM
+			T_PAYS
+		WHERE
+			ID = #{id}
+	</select>
+	
+	<select id="getByOrderId" resultMap="pays">
+		SELECT
+			ID,
+			<include refid="BASE_PAYS_SQL" />
+		FROM
+			T_PAYS
+		WHERE
+			order_id = #{orderId}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO T_PAYS
+		(
+			<include refid="BASE_PAYS_SQL" />
+		)
+		VALUES
+		(
+			#{payId},
+			#{paySource},
+			#{type},
+			#{orderId},
+			#{billCheckId},
+			#{userId},
+			#{amount},
+			#{createDate},
+			#{operateDate}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE T_PAYS
+		SET
+			pay_id = #{payId},
+			pay_source = #{paySource},
+			type = #{type},
+			order_id = #{orderId},
+			bill_check_id = #{billCheckId},
+			user_id = #{userId},
+			amount = #{amount},
+			create_date = #{createDate},
+			operate_date = #{operateDate}
+		where
+			id = #{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM T_PAYS
+		WHERE ID = #{id}
+	</delete>
+
+</mapper>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.u2u.ibms.common.mapper.MailHistoryMapper">
+
+	<resultMap id="mailHistory" type="com.u2u.ibms.common.beans.MailHistory" extends="baseBean">
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="operatorId" jdbcType="INTEGER" column="operator_id" />
+		<result property="contractId" jdbcType="INTEGER" column="contract_id" />
+		<result property="title" jdbcType="VARCHAR" column="title" />
+		<result property="sendTo" jdbcType="VARCHAR" column="send_to" />
+		<result property="contractFile" jdbcType="VARCHAR" column="contract_file" />
+		<result property="attach" jdbcType="VARCHAR" column="attach" />
+	</resultMap>
+
+	<sql id="BASE_MAIL_HISTORY_SQL">
+		OPERATOR_ID,
+		CONTRACT_ID,
+		TITLE,
+		SEND_TO,
+		CONTRACT_FILE,
+		ATTACH,
+		<include refid="BASE_BEAN_SQL" />
+	</sql>
+	
+	<select id="getAll" resultMap="mailHistory">
+		SELECT
+		    ID,
+			<include refid="BASE_MAIL_HISTORY_SQL" />
+		FROM T_MAIL_HISTORY
+		<where>
+			<if test="operatorId!=null">
+				and operator_id LIKE CONCAT('%',#{operatorId},'%')
+			</if>
+		</where>
+		ORDER BY CREATE_DATE DESC
+	</select>
+
+	<select id="getByContractId" resultMap="mailHistory">
+		SELECT
+			ID,
+			<include refid="BASE_MAIL_HISTORY_SQL" />
+		FROM
+			T_MAIL_HISTORY
+		WHERE
+			contract_id = #{contractId}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO T_MAIL_HISTORY
+		(
+			<include refid="BASE_MAIL_HISTORY_SQL" />
+		)
+		VALUES
+		(
+			#{operatorId},
+			#{contractId},
+			#{title},
+			#{sendTo},
+			#{contractFile},
+			#{attach},
+			#{createDate},
+			#{operateDate}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE T_MAIL_HISTORY
+		SET
+			OPERATOR_ID = #{operatorId},
+			CONTRACT_ID = #{contractId},
+			TITLE = #{title},
+			SEND_TO = #{sendTo},
+			CONTRACT_FILE = #{contractFile},
+			ATTACH = #{attach},
+			create_date = #{createDate},
+			operate_date = #{operateDate}
+		where
+			id = #{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM T_MAIL_HISTORY
+		WHERE ID = #{id}
+	</delete>
+
+</mapper>

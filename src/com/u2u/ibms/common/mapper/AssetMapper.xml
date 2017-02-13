@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.u2u.ibms.common.mapper.AssetMapper">
+
+	<resultMap id="asset" type="com.u2u.ibms.common.beans.Asset" extends="baseBean">
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="assetTypeId" jdbcType="INTEGER" column="asset_type_id" />
+		<result property="code" jdbcType="VARCHAR" column="code" />
+		<result property="shopId" jdbcType="INTEGER" column="shop_id" />
+		<result property="provinceId" jdbcType="VARCHAR" column="province_id" />
+		<result property="cityId" jdbcType="VARCHAR" column="city_id" />
+		<result property="useTime" jdbcType="VARCHAR" column="use_time" />
+		<result property="rent" jdbcType="INTEGER" column="rent" />
+		<result property="location" jdbcType="VARCHAR" column="location" />
+		
+		<result property="softDog" jdbcType="VARCHAR" column="soft_dog" />
+		<result property="insurance" jdbcType="VARCHAR" column="insurance" />
+		<result property="insuranceId" jdbcType="VARCHAR" column="insurance_id" />
+		<result property="insuranceAmount" jdbcType="VARCHAR" column="insurance_amount" />
+		<result property="insuranceStart" jdbcType="DATE" column="insurance_start" />
+		<result property="insuranceEnd" jdbcType="DATE" column="insurance_end" />
+	</resultMap>
+
+	<sql id="BASE_ASSET_SQL">
+		asset_type_id,
+		code,
+		shop_id,
+		province_id,
+		city_id,
+		use_time,
+		rent,
+		location,
+		soft_dog,
+		insurance,
+		insurance_id,
+		insurance_amount,
+		insurance_start,
+		insurance_end,
+		<include refid="BASE_BEAN_SQL" />
+	</sql>
+
+	<select id="getAll" resultMap="asset">
+		SELECT
+			ID,
+			<include refid="BASE_ASSET_SQL" />
+		FROM
+			T_ASSET
+		<where>
+			<if test="assetTypeIds!=null">
+				AND asset_type_id in 
+				<foreach item="item" collection="assetTypeIds" separator="," open="(" close=")" >  
+		      		#{item}  
+				</foreach>
+			</if>
+			<if test="rent!=null">
+				AND rent = #{rent}
+			</if>
+			<if test="provinceId!=null">
+				AND province_id = #{provinceId}
+			</if>
+			<if test="cityId!=null">
+				AND city_id = #{cityId}
+			</if>
+		</where>
+		ORDER BY CREATE_DATE DESC
+	</select>
+	
+	<select id="getByAssetId" resultMap="asset">
+		SELECT
+			ID,
+			<include refid="BASE_ASSET_SQL" />
+		FROM
+			T_ASSET
+		WHERE
+			code = #{assetId}
+	</select>
+	
+	<select id="getById" resultMap="asset">
+		SELECT
+			ID,
+			<include refid="BASE_ASSET_SQL" />
+		FROM
+			T_ASSET
+		WHERE
+			ID = #{id}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO T_ASSET
+		(
+			<include refid="BASE_ASSET_SQL" />
+		)
+		VALUES
+		(
+			#{assetTypeId},
+			#{code},
+			#{shopId},
+			#{provinceId},
+			#{cityId},
+			#{useTime},
+			#{rent},
+			#{location},
+			#{softDog},
+			#{insurance},
+			#{insuranceId},
+			#{insuranceAmount},
+			#{insuranceStart},
+			#{insuranceEnd},
+			#{createDate},
+			#{operateDate}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE T_ASSET
+		SET
+			asset_type_id = #{assetTypeId},
+			code = #{code},
+			shop_id = #{shopId},
+			province_id = #{provinceId},
+			city_id = #{cityId},
+			use_time = #{useTime},
+			rent = #{rent},
+			location = #{location},
+			soft_dog = #{softDog},
+			insurance = #{insurance},
+			insurance_id = #{insuranceId},
+			insurance_amount = #{insuranceAmount},
+			insurance_start = #{insuranceStart},
+			insurance_end = #{insuranceEnd},
+			create_date = #{createDate},
+			operate_date = #{operateDate}
+		where
+			id = #{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM T_ASSET
+		WHERE ID = #{id}
+	</delete>
+	
+</mapper>

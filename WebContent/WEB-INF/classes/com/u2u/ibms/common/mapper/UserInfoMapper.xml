@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.u2u.ibms.common.mapper.UserInfoMapper">
+
+	<resultMap id="userInfo" type="com.u2u.ibms.common.beans.UserInfo" extends="baseBean">
+		<result property="id" jdbcType="INTEGER" column="id" />
+
+		<result property="username" jdbcType="VARCHAR" column="username" />
+		<result property="password" jdbcType="VARCHAR" column="password" />
+		<result property="nickname" jdbcType="VARCHAR" column="nickname" />
+		<result property="email" jdbcType="VARCHAR" column="email" />
+		<result property="mobile" jdbcType="VARCHAR" column="mobile" />
+		<result property="provinceId" jdbcType="INTEGER" column="province_id" />
+		<result property="cityId" jdbcType="INTEGER" column="city_id" />
+		<result property="headImg" jdbcType="VARCHAR" column="head_img" />
+		<result property="industry" jdbcType="VARCHAR" column="industry" />
+		<result property="userType" jdbcType="INTEGER" column="user_type" />
+		<result property="level" jdbcType="INTEGER" column="level" />
+		<result property="realnameVerify" jdbcType="INTEGER" column="realname_verify" />
+		<result property="realname" jdbcType="VARCHAR" column="realname" />
+		<result property="identify" jdbcType="VARCHAR" column="identify" />
+		<result property="identifyFrontImg" jdbcType="VARCHAR" column="identify_front_img" />
+		<result property="identifyBackendImg" jdbcType="VARCHAR" column="identify_backend_img" />
+		<result property="certificationPicture" jdbcType="VARCHAR" column="certification_picture" />
+		<result property="status" jdbcType="TINYINT" column="status" />
+		<result property="memberAmount" jdbcType="FLOAT" column="member_amount" />
+		<result property="hasMemberAmount" jdbcType="TINYINT" column="has_member_amount" />
+		<result property="payMemberAmount" jdbcType="FLOAT" column="pay_member_amount" />
+		<result property="hasDeposited" jdbcType="TINYINT" column="has_deposited" />
+		<result property="deposit" jdbcType="FLOAT" column="deposit" />
+		<result property="payDeposit" jdbcType="FLOAT" column="pay_deposit" />
+		<result property="amount" jdbcType="FLOAT" column="amount" />
+		<result property="pushMessage" jdbcType="TINYINT" column="push_message" />
+		
+	</resultMap>
+
+	<sql id="BASE_USER_INFO_SQL">
+		USERNAME,
+		PASSWORD,
+		NICKNAME,
+		EMAIL,
+		MOBILE,
+		PROVINCE_ID,
+		CITY_ID,
+		HEAD_IMG,
+		INDUSTRY,
+		USER_TYPE,
+		LEVEL,
+		REALNAME_VERIFY,
+		REALNAME,
+		IDENTIFY,
+		IDENTIFY_FRONT_IMG,
+		IDENTIFY_BACKEND_IMG,
+		CERTIFICATION_PICTURE,
+		STATUS,
+		MEMBER_AMOUNT,
+		HAS_MEMBER_AMOUNT,
+		PAY_MEMBER_AMOUNT,
+		HAS_DEPOSITED,
+		DEPOSIT,
+		PAY_DEPOSIT,
+		AMOUNT,
+		PUSH_MESSAGE,
+		<include refid="BASE_BEAN_SQL" />
+	</sql>
+
+	<select id="getUserInfos" resultMap="userInfo">
+		SELECT
+			ID,
+			<include refid="BASE_USER_INFO_SQL" />
+		FROM
+			T_USER_INFO
+		<where>
+			<if test="username!=null">
+				AND USERNAME LIKE CONCAT('%',#{username},'%')
+			</if>
+			<if test="mobile!=null">
+				AND mobile LIKE CONCAT('%',#{mobile},'%')
+			</if>
+			<if test="userType!=null">
+				AND USER_TYPE = #{userType}
+			</if>
+			<if test="provinceId!=null">
+				AND province_id = #{provinceId}
+			</if>
+			<if test="cityId!=null">
+				AND city_id = #{cityId}
+			</if>
+		</where>
+		ORDER BY CREATE_DATE DESC
+	</select>
+	
+	<select id="getUserByUserName" resultMap="userInfo">
+		SELECT
+			ID,
+			<include refid="BASE_USER_INFO_SQL" />
+		FROM
+			T_USER_INFO
+		WHERE USERNAME = #{username}
+	</select>
+	
+	<select id="getUserInfoByMobile" resultMap="userInfo">
+		SELECT
+			ID,
+			<include refid="BASE_USER_INFO_SQL" />
+		FROM
+			T_USER_INFO
+		WHERE MOBILE = #{value}
+	</select>
+	
+	<update id="modifyLoginPwd">
+		UPDATE T_USER_INFO SET PASSWORD = #{newPassword} WHERE USERNAME =#{username}
+	</update>
+	
+	<select id="checkPwd" resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			T_USER_INFO
+		WHERE USERNAME = #{username} AND PASSWORD = #{oldPassword}
+	</select>
+
+	<select id="getById" resultMap="userInfo">
+		SELECT
+			ID,
+			<include refid="BASE_USER_INFO_SQL" />
+		FROM
+			T_USER_INFO
+		WHERE
+			ID = #{id}
+	</select>
+
+	<insert id="insert">
+		INSERT INTO T_USER_INFO
+		(
+			<include refid="BASE_USER_INFO_SQL" />
+		)
+		VALUES
+		(
+			#{username},
+			#{password},
+			#{nickname},
+			#{email},
+			#{mobile},
+			#{provinceId},
+			#{cityId},
+			#{headImg},
+			#{industry},
+			#{userType},
+			#{level},
+			#{realnameVerify},
+			#{realname},
+			#{identify},
+			#{identifyFrontImg},
+			#{identifyBackendImg},
+			#{certificationPicture},
+			#{status},
+			#{memberAmount},
+			#{hasMemberAmount},
+			#{payMemberAmount},
+			#{hasDeposited},
+			#{deposit},
+			#{payDeposit},
+			#{amount},
+			#{pushMessage},
+			#{createDate},
+			#{operateDate}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE T_USER_INFO
+		SET
+			username = #{username},
+			password = #{password},
+			nickname = #{nickname},
+			email = #{email},
+			mobile = #{mobile},
+			province_id = #{provinceId},
+			city_id = #{cityId},
+			head_img = #{headImg},
+			industry = #{industry},
+			user_type = #{userType},
+			level = #{level},
+			realname_verify = #{realnameVerify},
+			realname = #{realname},
+			identify = #{identify},
+			identify_front_img = #{identifyFrontImg},
+			identify_backend_img = #{identifyBackendImg},
+			certification_picture = #{certificationPicture},
+			status = #{status},
+			MEMBER_AMOUNT = #{memberAmount},
+			HAS_MEMBER_AMOUNT = #{hasMemberAmount},
+			PAY_MEMBER_AMOUNT = #{payMemberAmount},
+			HAS_DEPOSITED = #{hasDeposited},
+			DEPOSIT = #{deposit},
+			PAY_DEPOSIT = #{payDeposit},
+			AMOUNT = #{amount},
+			PUSH_MESSAGE = #{pushMessage},
+			create_date = #{createDate},
+			operate_date = #{operateDate}
+		where
+			id = #{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM T_USER_INFO
+		WHERE ID = #{id}
+	</delete>
+	
+	
+	<update id="resetLoginPwd">
+		UPDATE T_USER_INFO SET PASSWORD = #{password} WHERE USERNAME = #{username} AND MOBILE = #{mobile}
+	</update>
+	
+	
+</mapper>

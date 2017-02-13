@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.u2u.ibms.common.mapper.RentPersonMapper">
+
+	<resultMap id="rentPersonInfo" type="com.u2u.ibms.common.beans.RentPersonInfo" extends="baseBean">
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="name" jdbcType="VARCHAR" column="name" />
+		<result property="mobile" jdbcType="VARCHAR" column="mobile" />
+		<result property="email" jdbcType="VARCHAR" column="email" />
+		<result property="idCardFrontImg" jdbcType="VARCHAR" column="ID_Card_Front_img"/>
+		<result property="idCardBackImg" jdbcType="VARCHAR" column="ID_Card_Back_Img"/>
+		<result property="idCardHandImg" jdbcType="VARCHAR" column="Id_Card_Hand_Img"/>
+		<result property="personProvinceId" jdbcType="INTEGER" column="person_province_id"/>
+		<result property="personCityId" jdbcType="INTEGER" column="person_city_id"/>
+		<result property="address" jdbcType="VARCHAR" column="address"/>
+		<result property="postcode" jdbcType="VARCHAR" column="postcode"/>
+		<result property="emergencyContact" jdbcType="VARCHAR" column="emergency_contact" />
+		<result property="emergencyContactMobile" jdbcType="VARCHAR" column="emergency_contact_mobile"/>
+		<result property="relation" jdbcType="VARCHAR" column="relation"/>
+	</resultMap>
+
+	<sql id="BASE_RENTPERSON_SQL">
+		name,
+		mobile,
+		email,
+		ID_Card_Front_img,
+		ID_Card_Back_Img,
+		Id_Card_Hand_Img,
+		person_province_id,
+		person_city_id,
+		address,
+		postcode,
+		emergency_contact,
+		emergency_contact_mobile,
+		relation,
+		<include refid="BASE_BEAN_SQL" />
+	</sql>
+
+	<select id="getAll" resultMap="rentPersonInfo">
+		SELECT
+			ID,
+			<include refid="BASE_RENTPERSON_SQL"/>
+		FROM
+			T_RENT_PERSON_INFO
+		ORDER BY CREATE_DATE DESC
+	</select>
+	
+	<select id="getById" resultMap="rentPersonInfo">
+		SELECT
+			ID,
+			<include refid="BASE_RENTPERSON_SQL" />
+		FROM
+			T_RENT_PERSON_INFO
+		WHERE
+			ID = #{id}
+	</select>
+	
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO T_RENT_PERSON_INFO
+		(
+			<include refid="BASE_RENTPERSON_SQL" />
+		)
+		VALUES
+		(
+			#{name},
+			#{mobile},
+			#{email},
+			#{idCardFrontImg},
+			#{idCardBackImg},
+			#{idCardHandImg},
+			#{personProvinceId},
+			#{personCityId},
+			#{address},
+			#{postcode},
+			#{emergencyContact},
+			#{emergencyContactMobile},
+			#{relation},
+			#{createDate},
+			#{operateDate}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE T_RENT_PERSON_INFO
+		SET
+			name = #{name},
+			mobile = #{mobile},
+			email = #{email},
+			ID_Card_Front_img = #{idCardFrontImg},
+			ID_Card_Back_Img = #{idCardBackImg},
+			Id_Card_Hand_Img = #{idCardHandImg},
+			person_province_id = #{personProvinceId},
+			person_city_id = #{personCityId},
+			address = #{address},
+			postcode = #{postcode},
+			emergency_contact = #{emergencyContact},
+			emergency_contact_mobile = #{emergencyContactMobile},
+			relation = #{relation},
+			create_date=#{createDate},
+			operate_date = #{operateDate}
+		where
+			id = #{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM T_RENT_PERSON_INFO
+		WHERE ID = #{id}
+	</delete>
+	
+</mapper>

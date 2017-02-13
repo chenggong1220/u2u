@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.u2u.ibms.web.bill.mapper.BillMapper">
+
+	<resultMap id="bill" type="com.u2u.ibms.web.bill.bean.Bill" extends="baseBean">
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="accountNum" jdbcType="INTEGER" column="account_num" />
+		<result property="accountName" jdbcType="VARCHAR" column="account_name" />
+		<result property="cusName" jdbcType="VARCHAR" column="cus_name" />
+		<result property="cusNum" jdbcType="VARCHAR" column="cus_num" />
+		<result property="dealDate" jdbcType="VARCHAR" column="deal_date" />
+		<result property="amount" jdbcType="VARCHAR" column="amount" />
+		<result property="billingDate" jdbcType="VARCHAR" column="billing_date" />
+		<result property="billingStatus" jdbcType="TINYINT" column="billing_status" />
+		<result property="status" jdbcType="TINYINT" column="status" />
+		<result property="financialNum" jdbcType="VARCHAR" column="financial_num" />
+		<result property="bankSerialNumber" jdbcType="VARCHAR" column="bank_Serial_Number" />
+		<result property="remark" jdbcType="VARCHAR" column="remark" />
+	</resultMap>
+
+	<sql id="BASE_BILL_SQL">
+		account_num,
+		account_name,
+		cus_name,
+		cus_num,
+		deal_date,
+		amount,
+		billing_date,
+		billing_status,
+		status,
+		financial_num,
+		bank_Serial_Number,
+		remark,
+		<include refid="BASE_BEAN_SQL" />
+	</sql>
+
+	<select id="getAll" resultMap="bill">
+		SELECT
+			ID,
+			<include refid="BASE_BILL_SQL" />
+		FROM
+			T_BILL
+		<where>
+			<if test="accountNum!=null">
+				AND account_num like concat('%',#{accountNum},'%')
+			</if>
+			<if test="accountName!=null">
+				AND account_name like concat('%',#{accountName},'%')
+			</if>
+			<if test="cusName!=null">
+				AND cus_name like concat('%',#{cusName},'%')
+			</if>
+			<if test="cusNum!=null">
+				AND cus_num like concat('%',#{cusNum},'%')
+			</if>
+			<if test="status!=null">
+				AND status = #{status}
+			</if>
+			<if test="billingStatus!=null">
+				AND billing_status = #{billingStatus}
+			</if>
+			<if test="bankSerialNumber!=null">
+				AND bank_Serial_Number like concat('%',#{bankSerialNumber},'%')
+			</if>
+			<if test="startDate!=null">
+				and deal_date &gt;= #{startDate}
+			</if>
+			<if test="endDate!=null">
+				and deal_date &lt;= #{endDate}
+			</if>
+		</where>
+		ORDER BY T_BILL.DEAL_DATE DESC
+	</select>
+	
+	<!-- Start: Get one bill record, by SUNZHE, 2017-01-19 -->
+	<select id="getOne" resultMap="bill">
+		SELECT
+			ID,
+			<include refid="BASE_BILL_SQL" />
+		FROM
+			T_BILL
+		<where>
+			bank_Serial_Number = #{bankSerialNumber}
+		</where>
+	</select>	
+	<!-- End: Get one bill record, by SUNZHE, 2017-01-19 -->
+	
+	<select id="getById" resultMap="bill">
+		SELECT
+			ID,
+			<include refid="BASE_BILL_SQL" />
+		FROM
+			T_BILL
+		WHERE
+			ID = #{id}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO T_BILL
+		(
+			<include refid="BASE_BILL_SQL" />
+		)
+		VALUES
+		(
+			#{accountNum},
+			#{accountName},
+			#{cusName},
+			#{cusNum},
+			#{dealDate},
+			#{amount},
+			#{billingDate},
+			#{billingStatus},
+			#{status},
+			#{financialNum},
+			#{bankSerialNumber},
+			#{remark},
+			#{createDate},
+			#{operateDate}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE T_BILL
+		SET
+			account_num = #{accountNum},
+			account_name = #{accountName},
+			cus_name = #{cusName},
+			cus_num = #{cusNum},
+			deal_date = #{dealDate},
+			amount = #{amount},
+			billing_date = #{billingDate},
+			billing_status = #{billingStatus},
+			status = #{status},
+			financial_num = #{financialNum},
+			remark = #{remark}, 
+			create_date = #{createDate},
+			operate_date = #{operateDate}
+		where
+			id = #{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM T_BILL
+		WHERE ID = #{id}
+	</delete>
+	
+</mapper>

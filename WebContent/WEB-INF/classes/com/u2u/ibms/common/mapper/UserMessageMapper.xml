@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.u2u.ibms.common.mapper.UserMessageMapper" >
+	
+	<resultMap id="userMessage" type="com.u2u.ibms.common.beans.UserMessage" extends="baseBean">
+        <result property="id" jdbcType="INTEGER" column="id"/>
+        <result property="userId" jdbcType="INTEGER" column="user_id"/>
+        <result property="msgId" jdbcType="INTEGER" column="msg_id"/>
+        <result property="status" jdbcType="TINYINT" column="status"/>
+	</resultMap>
+	
+	<sql id="BASE_USER_MESSAGE_SQL">
+		USER_ID,
+		MSG_ID,
+		STATUS,
+		<include refid="BASE_BEAN_SQL"/>
+	</sql>
+	
+	<select id="getByUserId" resultMap="userMessage">
+		SELECT 
+			ID,
+			<include refid="BASE_USER_MESSAGE_SQL"/>
+		FROM 
+			T_USER_MESSAGE
+		WHERE 
+			USER_ID = #{userId}
+		ORDER BY CREATE_DATE DESC
+	</select>
+	
+	<select id="getByMessageId" resultMap="userMessage">
+		SELECT 
+			ID,
+			<include refid="BASE_USER_MESSAGE_SQL"/>
+		FROM 
+			T_USER_MESSAGE
+		WHERE 
+			MSG_ID = #{msgId}
+	</select>
+	
+	<select id="getByMessageIdAndUserId" resultMap="userMessage">
+		SELECT 
+			ID,
+			<include refid="BASE_USER_MESSAGE_SQL"/>
+		FROM 
+			T_USER_MESSAGE
+		WHERE 
+			MSG_ID = #{msgId} AND USER_ID = #{userId}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO T_USER_MESSAGE
+		(
+			<include refid="BASE_USER_MESSAGE_SQL"/>
+		)
+		VALUES
+		(
+			#{userId},
+			#{msgId},
+			#{status},
+			#{createDate},
+			#{operateDate}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE T_USER_MESSAGE
+		SET 
+			user_id = #{userId},
+			msg_id = #{msgId},
+			status = #{status},
+			create_date = #{createDate},
+			operate_date = #{operateDate}
+		where
+			id = #{id}
+	</update>
+	
+	<delete id="deleteById">
+		DELETE FROM T_USER_MESSAGE
+		WHERE ID = #{id}
+	</delete>
+	
+	<delete id="deleteByUserId">
+		DELETE FROM T_USER_MESSAGE
+		WHERE USER_ID = #{userId}
+	</delete>
+	
+	<delete id="deleteByMessageId">
+		DELETE FROM T_USER_MESSAGE
+		WHERE MSG_ID = #{msgId}
+	</delete>
+		
+</mapper>

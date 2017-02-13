@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.u2u.framework.sys.authorize.mapper.DepartmentMapper">
+	
+	<resultMap id="department"
+		type="com.u2u.framework.sys.authorize.beans.Department" extends="baseBean">
+		<id property="id" jdbcType="INTEGER" column="ID" />
+		<result property="name" jdbcType="VARCHAR" column="name" />
+		<result property="parentId" jdbcType="INTEGER" column="parent_id" />
+		<result property="level" jdbcType="INTEGER" column="level" />
+		
+	</resultMap>
+
+	<sql id="BASE_DEPARTMENT_SQL">
+		NAME,
+		PARENT_ID,
+		LEVEL,
+		<include refid="BASE_BEAN_SQL"/>
+	</sql>
+	
+	<select id="getAll" resultMap="department">
+		SELECT 
+			ID,
+			<include refid="BASE_DEPARTMENT_SQL"/>
+		FROM SYS_DEPARTMENT
+		<where>
+			<if test="name!=null">
+				AND name like CONCAT('%',#{name},'%')
+			</if>
+		</where>
+	</select>
+	
+	<select id="getById" resultMap="department">
+		SELECT 
+			ID,
+			<include refid="BASE_DEPARTMENT_SQL"/>
+		FROM SYS_DEPARTMENT
+		WHERE ID = #{id}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO SYS_DEPARTMENT
+		(
+			<include refid="BASE_DEPARTMENT_SQL" />
+		)
+		VALUES
+		(
+			#{name},
+			#{parentId},
+			#{level},
+			#{createDate},
+			#{operateDate}
+		)
+	</insert>
+	
+	<update id="update">
+		UPDATE SYS_DEPARTMENT
+		SET
+			NAME = #{name},
+			PARENT_ID = #{parentId},
+			LEVEL = #{level},
+			CREATE_DATE = #{createDate},
+			OPERATE_DATE = #{operateDate}
+		WHERE 
+			ID = #{id}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM SYS_DEPARTMENT
+		WHERE ID = #{id}
+	</delete>
+</mapper>

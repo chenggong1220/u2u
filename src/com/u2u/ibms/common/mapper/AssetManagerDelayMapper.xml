@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.u2u.ibms.common.mapper.AssetManagerDelayMapper">
+
+	
+	<resultMap id="assetManagerDelay" type="com.u2u.ibms.common.beans.AssetManagerDelay" extends="baseBean">
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="orderId" jdbcType="INTEGER" column="order_id" />
+		<result property="userId" jdbcType="INTEGER" column="user_id" />
+		<result property="delayDate" jdbcType="INTEGER" column="delay_date" />
+		<result property="status" jdbcType="INTEGER" column="status" />
+		<result property="feedback" jdbcType="VARCHAR" column="feedback" />
+	</resultMap>
+
+	<sql id="BASE_ASSET_MANAGER_DELAY_SQL">
+		order_id,
+		user_id,
+		delay_date,
+		status,
+		feedback,
+		<include refid="BASE_BEAN_SQL" />
+	</sql>
+
+	<select id="getAll" resultMap="assetManagerDelay">
+		SELECT
+			ID,
+			<include refid="BASE_ASSET_MANAGER_DELAY_SQL" />
+		FROM
+			T_ASSET_MANAGER_DELAY
+		<where>
+			<if test="orderId!=null">
+				AND order_id = #{orderId}
+			</if>
+		</where>
+		ORDER BY CREATE_DATE DESC
+	</select>
+	
+	<select id="getById" resultMap="assetManagerDelay">
+		SELECT
+			ID,
+			<include refid="BASE_ASSET_MANAGER_DELAY_SQL" />
+		FROM
+			T_ASSET_MANAGER_DELAY
+		WHERE
+			ID = #{id}
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO T_ASSET_MANAGER_DELAY
+		(
+			<include refid="BASE_ASSET_MANAGER_DELAY_SQL" />
+		)
+		VALUES
+		(
+			#{orderId},
+			#{userId},
+			#{delayDate},
+			#{status},
+			#{feedback},
+			#{createDate},
+			#{operateDate}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE T_ASSET_MANAGER_DELAY
+		SET
+			order_id = #{orderId},
+			user_id = #{userId},
+			delay_date = #{delayDate},
+			status = #{status},
+			feedback = #{feedback},
+			create_date = #{createDate},
+			operate_date = #{operateDate}
+		where
+			id = #{id}
+	</update>
+
+	<delete id="delete">
+		DELETE FROM T_ASSET_MANAGER_DELAY
+		WHERE ID = #{id}
+	</delete>
+	
+</mapper>

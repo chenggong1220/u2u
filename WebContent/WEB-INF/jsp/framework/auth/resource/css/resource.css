@@ -1,0 +1,27 @@
+.tree-class{ 
+	padding:4px 4px 0 4px;
+    border-bottom:1px solid #ccc;
+    margin-bottom:4px;
+}
+.tree-class li{ 
+    display:inline-block;
+    padding:4px 1px;
+    margin-bottom:-1px;
+    text-overflow:ellipsis; 
+    white-space:nowrap; 
+    overflow:hidden;
+    text-align:center;
+    width:30px;
+}
+.tree-class li.tree-class-select{ 
+    background:#f4f4f4;
+    font-weight:bolder;
+    border:1px solid #ccc;
+    border-bottom:0;
+    border-radius:5px 5px 0 0;
+    -webkit-border-radius:5px 5px 0 0;
+    -moz-border-radius:5px 5px 0 0;
+    text-overflow:clip;
+    width:auto;
+}
+.tree-class li:hover{cursor:pointer;}

@@ -1,0 +1,146 @@
+/*滑动切换样式*/
+html,body{
+	margin:0;
+	padding:0;
+	}  
+ol,ul,li{list-style:none;}
+.ibms_clear { +display:block; clear:both; zoom:1;}
+.ibms_clear:after { content:"."; display:block; width:0; height:0; clear:both; visibility:hidden;} 
+
+.ibms_wrapper{
+	height:37px;
+	margin:0 auto;
+	}
+.ibms_notice{
+	float:right;
+	width:94px;
+	height:37px;
+	background:url(../images/gjbg.png) no-repeat 0 50%;/*修改的属性*/
+	}
+.ibms_notice span{
+	display:block;
+	padding-left:40px;
+	height:37px;
+	line-height:37px;
+	background:url(../images/GJdong1.gif) no-repeat 15px 50%;
+	font-size:12px;
+	color:#333;
+	}
+.ibms_notice span b{
+	padding-right:5px;
+	font-size:14px;
+	font-weight:bold;
+	color:#ab2d38;
+	} 
+	 
+.ibms_slide{
+	margin-right:94px;
+	height:37px;
+	}
+.ibms_slide_left{
+	float:left;
+	width:150px;
+	height:37px;
+	position:absolute;
+	top:0;
+	left:0;
+	background:url(../images/pagination-start-bg.png) no-repeat 0 50%;/*修改的属性*/
+	}
+.ibms_slide_right{ 
+	float:right;
+	width:150px;
+	height:37px;
+	position:absolute;
+	top:0;
+	right:94px;
+	background:url(../images/pagination-end-bg.png) no-repeat 0 50%;/*修改的属性*/
+	}
+.ibms_slide_center{
+	margin:0 150px;
+	padding:0;
+	height:37px;
+	background:url(../images/pagination-middle-bg.png) repeat-x 0 50%;/*修改的属性*/
+	position:relative;
+	overflow:hidden;
+	}		
+.ibms_slide_center ul{
+	margin:0;
+	padding:0;
+	height:37px;
+	position:absolute;
+	top:0;
+	left:0;
+	} 
+.ibms_slide_center ul li{
+	float:left;
+	height:37px;
+	text-align:center;
+	position:relative;
+	}
+.ibms_slide_center ul li a{
+	display:inline-block;
+	width:8%;
+	height:37px;
+	line-height:37px;
+	margin:0;
+	text-align:center;
+	font-size:14px;
+	color:#444;/*修改的属性*/
+	text-decoration:none;
+	outline:none;
+	vertical-align:middle;
+	}
+.ibms_slide_center ul li a:hover,.ibms_slide_center ul li a.ibms_slide_select{
+	color:#d23d2b;/*修改的属性*/
+	font-size:16px;
+	font-weight:bold;
+	background:url(../images/louCeng-hoverbg.png) no-repeat 50% 0;/*修改的属性*/
+	}
+.ibms_slide_left .preNext{
+	width:39px;
+	height:37px;
+	position:absolute;
+	top:0;
+	cursor:pointer;
+	} 
+.ibms_slide_right .preNext{
+	width:39px;
+	height:37px;
+	position:absolute;
+	top:0;
+	cursor:pointer;
+	} 
+.ibms_slide_left .pre{
+	right:0;
+	background:url(../images/prev-btn.png) no-repeat 50% 50%;/*修改的属性*/
+    } 
+.ibms_slide_right .next{
+	left:0;
+	background:url(../images/next-btn.png) no-repeat 50% 50%;/*修改的属性*/
+	}
+.ibms_slide_left .pre:hover{
+	background:url(../images/prev-btn-hover.png) no-repeat 0 0;/*修改的属性*/
+    }
+.ibms_slide_right .next:hover{
+	background:url(../images/next-btn-hover.png) no-repeat 0 0;/*修改的属性*/
+    } 
+.ibms_slide_left .pre.disabled{
+	cursor:default;
+	background:url(../images/prev-btn-disabled.png) no-repeat 50% 50%;
+    } 
+.ibms_slide_right .next.disabled{
+	cursor:default;
+	background:url(../images/next-btn-disabled.png) no-repeat 50% 50%;
+    }
+.ibms_slide_left .numNext{
+	width:100px;
+	height:37px;
+	line-height:37px;
+	position:absolute;
+	top:0;
+	right:39px;
+	font-size:12px;
+	color:#444;
+	text-align:right;
+	text-shadow:1px 0 0 rgba(255,255,255,0.8);
+	} 

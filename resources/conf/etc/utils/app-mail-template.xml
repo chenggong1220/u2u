@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<app-vm-template-config>
+
+	<vm-template>
+		<name>defaultVm</name>
+		<subject><![CDATA[${title}]]></subject>
+		<body>
+		<![CDATA[
+			<p>设备[${content}]</p>
+			<p>${company}</p>
+			<p>${url}</p>
+		]]>
+		</body>
+	</vm-template>
+	
+	<vm-template>
+		<name>contractVm</name>
+		<subject><![CDATA[${title}]]></subject>
+		<body>
+		<![CDATA[
+			<span style="font-family: 宋体; font-size: 12pt; mso-bidi-font-family: 宋体; mso-font-kerning: 0pt;">尊敬的客户，</span>
+			<br />
+			    &nbsp;&nbsp;您好！感谢您选择我们的租赁产品，附件是租赁合同，请查收。我们的业务人员会尽快与您联系。
+			<br />
+			    &nbsp;&nbsp;根据您的线上申请，我们非常荣幸地向您提供《设备租赁合同》，请见此邮件附件。
+			<br />
+			    <strong>&nbsp;&nbsp;<u>请您在签署合同之前，仔细阅读以下《合同签署注意事项》及此邮件附件内容。</u></strong>
+			<br />
+			    &nbsp;&nbsp;祝您的事业腾飞！
+			<br />
+			<br />
+			<br />
+			   &nbsp;&nbsp;敬礼！
+			<br />
+			<br />
+			<br />
+				&nbsp;&nbsp;--- 优尼斯融资租赁（上海）有限公司
+			<br />
+			<span style="margin-left:500px;">${year}年${month}月${day}日</span>
+	
+			<p style="margin-left:300px;">合同签署要求</p>
+			<br />
+			<p><strong>个人客户</strong>请注意：</p>
+			<p>1.《设备租赁合同》及《设备租赁合同一般条款》应本人签字、按手印，并在两份文件上<font style="color: red;">骑缝签字</font>。</p>
+			<p>2.《租赁物数据信息采集使用政策》应本人签字、按手印。</p>
+            <p>3.《优尼斯租赁业务提示函》应本人签字、按手印。</p>
+			<p>4. 合同打印用纸牢固，打印的内容完整、清晰、可辨识，合同用纸上不可出现与本合同无关的字样。</p>
+			<p>5. 用黑色中性笔/钢笔签字，字迹应清晰可辨识。</p>
+			<p>6. 合同内容和签字内容不可涂改。</p>
+			<p>7. 合同邮寄时做好防水措施。</p>
+			<p>8.《服务商义务确认书》无需您签字或盖章。</p>
+			<br />
+			<br />
+			<p><strong>企业客户</strong>请注意：</p>
+			<p>1.《设备租赁合同》及《设备租赁合同一般条款》应由企业法定代表人签字、盖公章，并在两份文件盖骑缝章。</p>
+			<p>2.《保证函》中保证人如为企业法人的，应由其法定代表人签字、盖公章，同时对《保证函》盖<font style="color: red;">骑缝公章</font>；</p>
+			<p>&nbsp;&nbsp;保证人如为自然人的，应由其本人签字、按手印，同时对《保证函》做骑缝签字。</p>
+			<p>3.《租赁物数据信息采集使用政策》应由其法定代表人签字、盖公章。</p>
+            <p>4.《优尼斯租赁业务提示函》应由其法定代表人签字、盖公章。</p>
+			<p>5. 合同打印用纸牢固，打印的内容完整、清晰、可辨识，合同用纸上不可出现与本合同无关的字样。</p>
+			<p>6. 用黑色中性笔/钢笔签字，字迹应清晰可辨识。</p>
+			<p>7. 所盖公章要清晰并完整。</p>
+			<p>8. 合同内容和签字内容不可涂改。</p>
+			<p>9. 合同邮寄时做好防水措施。</p>
+			<p>10.《服务商义务确认书》无需您签字或盖章。</p>
+			<br />
+			<br />
+			<p>如您未按照上述要求签署合同，我司将有权将相关资料退回并要求您重新签署和盖章。</p>
+		]]>
+		</body>
+	</vm-template>
+	
+</app-vm-template-config>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+	<!-- spring db -->
+	<import resource="application-db.xml" />
+	<!-- spring security -->
+	<import resource="application-security.xml" />
+
+	<!-- quartz -->
+	<!-- <import resource="application-quartz-cluster.xml" /> -->
+	<import resource="application-quartz-singleton.xml" />
+	
+	<!-- enable autowire -->
+	<context:annotation-config />
+	
+	<!-- 扫描web包，应用Spring的注解 -->
+	<context:component-scan base-package="com.u2u" />
+
+	<bean id="springContextHolder" class="com.u2u.framework.spring.SpringContextHolder" />
+
+	<aop:aspectj-autoproxy /> 
+<!-- 	<cache:annotation-driven /> -->
+
+	<!--start 一般的spring_ehcache缓存管理 -->
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
+		p:cache-manager-ref="ehcache" />
+	<!-- EhCache library setup -->
+	<bean id="ehcache"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
+		p:config-location="classpath:/conf/cache/ehcache.xml" p:shared="true" />
+
+	<!-- MessageResolve -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>conf.res.messages</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dbLoggerMethodInterceptor"
+		class="com.u2u.framework.adapter.interceptor.DBLoggerMethodInterceptor">
+		<property name="loggerService" ref="LoggerService" />
+	</bean>
+	<bean id="excelExportInterceptor"
+		class="com.u2u.framework.adapter.interceptor.ExcelExportInterceptor">
+	</bean>
+	<bean id="LoggerService" class="com.u2u.framework.sys.log.service.LoggerServiceImpl">
+		<property name="loggerMapper" ref="loggerMapper" />
+	</bean>
+	
+	<bean id="objectMapper" class="org.codehaus.jackson.map.ObjectMapper" />
+	
+	
+	<!-- 阿里大于短信网关 -->
+	<bean id="alidayuSmsTemplate" class="com.u2u.common.component.sms.AlidayuSmsTemplate">
+	    <property name="url" value="http://gw.api.taobao.com/router/rest" />
+	    <property name="appKey" value="23538998" />
+	    <property name="appSecret" value="baac0c50c48259fb869c4076ab2aaae4" />
+	    <property name="smsType" value="normal" />
+	    <!-- 短信签名 -->
+		<property name="signNames">
+			<map>
+                <entry key="zhuce" value="注册验证" />
+                
+            </map>
+		</property>
+		<!-- 短信模版 -->
+		<property name="templateCodes">
+			<map>
+			    <!--  -->
+                <entry key="zhuce" value="SMS_27765001" />
+                
+            </map>
+		</property>
+	</bean>
+	<bean id="jPushService" class="com.u2u.common.component.jpush.JPushServiceImpl">
+		<property name="appKey" value="8d4d29c3c494921719e71785"></property>
+		<property name="masterSecret" value="3960d492d7ae89e902423d43"></property>
+	</bean>
+</beans> 
