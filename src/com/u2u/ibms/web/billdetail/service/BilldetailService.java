@@ -97,10 +97,10 @@ public class BilldetailService extends BaseService {
 		Asset asset = assetMapper.getByAssetId(billDetail.getDeviceno());
 		List<Contract> contracts = contractMapper.getAll(new RowBounds(),
 				billDetail.getContract(), null, null, null, null, null, null,
-				null, null, null, null, null,null,null);
+				null, null, null, null, null,null,null,null);
 		if (CollectionUtils.isNotEmpty(contracts)) {
 			Contract contract = contracts.get(0);
-			Order order = orderMapper.getById(contract.getOrderId());
+			Order order = orderMapper.getById(contract.getOrderId()); 	
 			List<SubOrder> subOrders = subOrderMapper.getByOrderId(
 					new RowBounds(), contract.getOrderId());
 			
