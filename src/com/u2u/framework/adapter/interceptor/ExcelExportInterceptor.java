@@ -86,6 +86,7 @@ public class ExcelExportInterceptor {
 						list = (List) object;
 					}
 				}
+				
 				if (ObjectUtils.isNotEmpty(response) && ObjectUtils.isNotEmpty(baseReq)) {
 					try {
 						ExcelUtils.exportExcel(baseReq.getTitle() + ".xls", baseReq, list, response);

@@ -14,6 +14,7 @@ import com.u2u.framework.base.BaseService;
 import com.u2u.framework.sys.authorize.beans.User;
 import com.u2u.framework.sys.authorize.mapper.AuthorizeMapper;
 import com.u2u.framework.util.DateUtil;
+import com.u2u.ibms.common.beans.Asset;
 import com.u2u.ibms.common.beans.AssetType;
 import com.u2u.ibms.common.beans.Combo;
 import com.u2u.ibms.common.beans.Contract;
@@ -35,6 +36,8 @@ import com.u2u.ibms.web.report.bean.HasRent;
 import com.u2u.ibms.web.report.bean.RentDetail;
 import com.u2u.ibms.web.report.condition.ReportCondition;
 import com.u2u.ibms.web.shop.mapper.ShopMapper;
+import com.u2u.ibms.web.asset.condition.AssetCondition;
+import com.u2u.ibms.web.asset.service.AssetService;
 
 @Service
 @Transactional
@@ -58,6 +61,9 @@ public class ReportService extends BaseService {
 	private ComboMapper comboMapper;
 	@Autowired
 	private ShopMapper shopMapper;
+	
+	@Autowired
+	private AssetService assetService;	
 
 	public List<HasRent> getHasRent(ReportCondition condition, RowBounds rb) {
 		List<Contract> contracts = contractMapper.getAll(rb, null, null, null,
@@ -190,4 +196,21 @@ public class ReportService extends BaseService {
 		}
 		return rdetail;
 	}
+	
+	
+	public Map<String, Object> getAssetDetails(ReportCondition condition, RowBounds rb) {
+		AssetCondition assetCondition = new AssetCondition();
+		assetCondition.setBrandId(condition.getBrandId());		
+		assetCondition.setAssetTypeId(condition.getAssetTypeId());
+		assetCondition.setProvinceId(condition.getProvinceId());	
+		assetCondition.setCityId(condition.getCityId());
+		
+		List<Asset> assets = assetService.getByContract(assetCondition, rb);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("total", assetService.getByContract(assetCondition, rb)
+				.size());
+		result.put("rows", assets);		
+		
+		return result;
+	}	
 }

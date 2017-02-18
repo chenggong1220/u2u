@@ -50,6 +50,11 @@ public class Asset extends BaseBean {
 	private AssetType assetType;
 
 	private Shop shop;
+	
+	private String contractId;
+	private String rentPersonType;
+	private String compPersonName;
+	private String assetLocation;
 
 	public Shop getShop() {
 		return shop;
@@ -203,4 +208,37 @@ public class Asset extends BaseBean {
 		this.location = location;
 	}
 
+	//Start: for 租赁物明细报表，SUNZHE, 2017-02-15
+	public String getContractId() {
+		return contractId;
+	}
+
+	public void setContractId(String contractId) {
+		this.contractId = contractId;
+	}
+	
+	public String getRentPersonType() {
+		return rentPersonType;
+	}
+
+	public void setRentPersonType(String rentPersonType) {
+		this.rentPersonType = rentPersonType;
+	}	
+	
+	public String getCompPersonName() {
+		return compPersonName;
+	}
+
+	public void setCompPersonName(String compPersonName) {
+		this.compPersonName = compPersonName;
+	}		
+	
+	public String getAssetLocation() {
+		return assetLocation;
+	}
+
+	public void setAssetLocation(String assetLocation) {
+		this.assetLocation = assetLocation;
+	}
+	//End: for 租赁物明细报表，SUNZHE, 2017-02-15
 }

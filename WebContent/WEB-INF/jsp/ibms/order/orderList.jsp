@@ -80,7 +80,7 @@
 
 <table id="querygrid" class="easyui-datagrid" title="订单列表"
 	data-options="
-				iconCls: 'icon-edit',
+				iconCls: 'icon-list',
 				singleSelect: true,
 				toolbar: '#tb',
 				pagination:true,
@@ -114,7 +114,7 @@
 </table>
 <div id="tb" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton auto-editbutton"
-		data-options="iconCls:'icon-save',plain:true,index:'id',url:'${pageContext.request.contextPath}/web/order/detail'">订单详情</a>
+		data-options="iconCls:'cheked-all',plain:true,index:'id',url:'${pageContext.request.contextPath}/web/order/detail'">订单详情</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton auto-addbutton"
 		data-options="iconCls:'icon-add',plain:true,url:'${pageContext.request.contextPath}/web/order/add'">添加</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton delorderbutton"

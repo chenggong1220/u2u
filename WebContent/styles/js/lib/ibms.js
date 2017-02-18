@@ -248,6 +248,7 @@ function queryGrid(form,datagrid){
 }
 
 function exportExcel(queryGrid,exportUrl){
+	alert("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
 	queryGrid = queryGrid||".easyui-datagrid";
 	var options = $(queryGrid).datagrid('options');
 	var columns = options.columns[0];	

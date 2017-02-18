@@ -22,6 +22,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<result property="insuranceAmount" jdbcType="VARCHAR" column="insurance_amount" />
 		<result property="insuranceStart" jdbcType="DATE" column="insurance_start" />
 		<result property="insuranceEnd" jdbcType="DATE" column="insurance_end" />
+
+		<result property="contractId" jdbcType="VARCHAR" column="contract_id" />	
+		<result property="rentPersonType" jdbcType="VARCHAR" column="rent_person_type" />	
+		<result property="compPersonName" jdbcType="VARCHAR" column="comp_person_name" />
+		<result property="assetLocation" jdbcType="VARCHAR" column="detail_location" />
 	</resultMap>
 
 	<sql id="BASE_ASSET_SQL">
@@ -87,6 +92,51 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		WHERE
 			ID = #{id}
 	</select>
+	
+	<select id="getByContract" resultMap="asset">
+		SELECT
+			t.asset_type_id,
+			t.code,
+			t.shop_id,
+			t.province_id,
+			t.city_id,
+			t.use_time,
+			t.rent,
+			t.location,
+			u.contract_id,
+			u.rent_person_type,
+			u.comp_person_name,
+			u.detail_location 
+		FROM t_asset t 
+		LEFT JOIN 
+			(SELECT c.contract_id, c.send_date, c.back_date, r.asset_id, o.rent_person_type, o.name AS comp_person_name, o.detail_location   
+			 FROM t_contract c, 
+				(SELECT o1.id AS order_id, o1.rent_person_type, NAME, o1.detail_location  FROM t_rent_company_info m, t_order o1 WHERE  o1.rent_person_type = 1 AND rent_company_id = m.id
+					UNION 
+				SELECT o2.id AS order_id,o2.rent_person_type, NAME, o2.detail_location FROM t_rent_person_info p, t_order o2 WHERE o2.rent_person_type = 0 AND o2.rent_person_id = p.id) 
+			 o, t_asset_manager_rent_asset r 
+			 WHERE 
+				r.order_id = o.order_id AND
+				c.order_id = o.order_id) u ON t.id = u.asset_id 
+		<where>
+			<if test="assetTypeIds!=null">
+				AND asset_type_id in 
+				<foreach item="item" collection="assetTypeIds" separator="," open="(" close=")" >  
+		      		#{item}  
+				</foreach>
+			</if>
+			<if test="rent!=null">
+				AND rent = #{rent}
+			</if>
+			<if test="provinceId!=null">
+				AND province_id = #{provinceId}
+			</if>
+			<if test="cityId!=null">
+				AND city_id = #{cityId}
+			</if>
+		</where>
+		ORDER BY u.contract_id,operate_date DESC
+	</select>	
 	
 	<insert id="insert">
 		INSERT INTO T_ASSET

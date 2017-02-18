@@ -56,7 +56,7 @@ public class ContractController extends BaseController {
 		for (Role role : user.getRoles()) {
 			if (role.getRoleName().equals(Constants.ROLE_CUSTOMER_OPERATOR)) {
 				condition.setOperatorId(user.getId() + "");
-				System.out.println("========================Current Operator ID:" + condition.getOperatorId());
+				//System.out.println("========================Current Operator ID:" + condition.getOperatorId());
 			}
 		}		
 		//针对客户专员加查看权限，只有看到他自己关联的合同, by SUNZHE, 2017-02-12

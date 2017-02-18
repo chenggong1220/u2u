@@ -3,7 +3,7 @@
 
 <form id="queryForm">
 	<div class="easyui-panel ibms_form_panel"
-		data-options="iconCls:'icon-search',collapsible:true" title="合同查询">
+		data-options="iconCls:'icon-search',collapsible:true" title="租赁查询">
 		<div class="ibms_form_default">
 			<ul>
 				<li><font>创建时间(始)：</font>
@@ -24,7 +24,7 @@
 	</div>
 </form>
 
-<table id="querygrid" class="easyui-datagrid" title="合同列表"
+<table id="querygrid" class="easyui-datagrid" title="租赁列表"
 	data-options="
 				iconCls: 'icon-edit',
 				singleSelect: true,

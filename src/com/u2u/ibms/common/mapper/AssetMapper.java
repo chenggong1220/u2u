@@ -23,4 +23,11 @@ public interface AssetMapper {
 	void update(Asset asset);
 
 	void delete(@Param("id") int id);
+	
+	//Start: 租赁物明细报表, SUNZHE, 2017-02-15
+	List<Asset> getByContract(@Param("assetTypeIds") List<Integer> assetTypeIds,
+			@Param("rent") Boolean rent,
+			@Param("provinceId") Integer provinceId,
+			@Param("cityId") Integer cityId, RowBounds rb);
+	//End: 租赁物明细报表, SUNZHE, 2017-02-15	
 }

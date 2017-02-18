@@ -125,4 +125,41 @@ public class AssetService extends BaseService {
 	public void delete(int id) {
 		assetMapper.delete(id);
 	}
+	
+	//Start: 租赁物明细报表, SUNZHE, 2017-02-15
+	public List<Asset> getByContract(AssetCondition condition, RowBounds rb) {
+		Integer brandId = getIntegerCondition(condition.getBrandId());
+		List<Integer> list = new ArrayList<Integer>();
+		if (brandId == null) {
+			if (getIntegerCondition(condition.getAssetTypeId()) != null) {
+				list.add(getIntegerCondition(condition.getAssetTypeId()));
+			}
+		} else {
+			if (getIntegerCondition(condition.getAssetTypeId()) != null) {
+				list.add(getIntegerCondition(condition.getAssetTypeId()));
+			} else {
+				List<AssetType> assetTypes = assetTypeMapper.getAll(
+						new RowBounds(), brandId, null);
+				if (CollectionUtils.isEmpty(assetTypes)) {
+					list.add(null);
+				} else {
+					for (AssetType assetType : assetTypes) {
+						list.add(assetType.getId());
+					}
+				}
+			}
+		}
+
+		List<Asset> assets = assetMapper.getByContract(
+				CollectionUtils.isNotEmpty(list) ? list : null,
+				getBooleanCondition(condition.getRent()),
+				getIntegerCondition(condition.getProvinceId()),
+				getIntegerCondition(condition.getCityId()), rb);
+
+		for (final Asset asset : assets) {
+			this.convert(asset);
+		}
+		return assets;
+	}
+	//End: 租赁物明细报表, SUNZHE, 2017-02-15
 }
