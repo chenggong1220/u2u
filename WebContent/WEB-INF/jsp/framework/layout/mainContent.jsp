@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 
 <script> var menuSize=0;</script>
@@ -33,22 +33,26 @@
 	</div>
 	<!-- to-hide ends -->
 	<div class="content">
-		     <div class="pagination-wrapper" id="ibms_floor">
-		     <script type="text/javascript" src="<c:url value='/styles/js/lib/floor.js'/>"></script>
-		     	<div class="ibms_wrapper">
-				 <div class="ibms_slide">
-				      <div class="ibms_slide_left"></div>
-				      <div class="ibms_slide_right"></div>
-				      <div class="ibms_slide_center"></div>
-			     </div>
-		        <div class="ibms_clear"></div>
-		        </div>
+		<div class="pagination-wrapper" id="ibms_floor">
+			<script type="text/javascript"
+				src="<c:url value='/styles/js/lib/floor.js'/>"></script>
+			<div class="ibms_wrapper">
+				<div class="ibms_slide">
+					<div class="ibms_slide_left"></div>
+					<div class="ibms_slide_right"></div>
+					<div class="ibms_slide_center"></div>
+				</div>
+				<div class="ibms_clear"></div>
 			</div>
-			<iframe  width="100%" height="100%" src="" frameborder="0" name="ibms_main_content_02"  id="ibms_main_content_02" scrolling="no"></iframe>
-		</div><!-- .content ends -->
-	</div><!-- .main ends -->
-	
-	<script>
+		</div>
+		<iframe width="100%" height="100%" src="" frameborder="0"
+			name="ibms_main_content_02" id="ibms_main_content_02" scrolling="no"></iframe>
+	</div>
+	<!-- .content ends -->
+</div>
+<!-- .main ends -->
+
+<script>
 	
 	$(function(){	
 	    //操作集二级菜单选中样式切换

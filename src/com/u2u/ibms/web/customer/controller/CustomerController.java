@@ -100,17 +100,17 @@ public class CustomerController extends BaseController {
 		mav.setViewName("/ibms/customer/customerUpdate");
 		String custType = id.substring(0,1);
 		String rowID = id.substring(1);
-		//System.out.println("======== " + custType + "; ======= " + rowID);
 		mav.addObject("customer", customerService.getById(rowID,custType));
 		return mav;
 	}
 
-	@RequestMapping("/verify")
-	public ModelAndView verify(int id) {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("/ibms/order/orderVerify");
-		mav.addObject("order", orderService.getById(id));
-		return mav;
+	@RequestMapping("/saveUpdate")
+	@ResponseBody
+	public AjaxDone saveUpdate(RentCompanyInfo renCompanyInfo,
+			RentPersonInfo rentPersonInfo, String startDatetime,
+			String endDatetime, HttpServletRequest request) {
+		customerService.update(request, renCompanyInfo, rentPersonInfo);
+		return ajaxDoneSuccess(null);
 	}
 
 	@RequestMapping("/delete")

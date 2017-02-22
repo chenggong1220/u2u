@@ -14,18 +14,15 @@
 				<li><font>名称：</font>
 					<h1>
 						<input id="name" name="name" type="text">
-					</h1>
-				</li>
+					</h1></li>
 				<li><font>BU：</font>
 					<h1>
 						<input id="bid" name="bid" type="text">
-					</h1>
-				</li>
+					</h1></li>
 				<li><font>联系人：</font>
 					<h1>
 						<input id="contactName" name="contactName" type="text">
-					</h1>
-				</li>
+					</h1></li>
 			</ul>
 		</div>
 		<div class="ibms_clear"></div>
@@ -57,7 +54,8 @@
 			<th data-options="field:'id',checkbox:true">序列号</th>
 			<th data-options="field:'name',width:'20%',editor:'text'">名称</th>
 			<th data-options="field:'address',width:'20%',editor:'text'">地址</th>
-			<th data-options="field:'bname',width:'20%',formatter:function(value,row,index){
+			<th
+				data-options="field:'bname',width:'20%',formatter:function(value,row,index){
                         return row.bu.name;
                     }">BU</th>
 			<th data-options="field:'contactName',width:'20%',editor:'text'">联系人</th>

@@ -1,4 +1,5 @@
-<%@ include file="/WEB-INF/jsp/framework/component/include_individual.jsp"%>
+<%@ include
+	file="/WEB-INF/jsp/framework/component/include_individual.jsp"%>
 <%@ include file="/WEB-INF/jsp/framework/component/include.jsp"%>
 <%@ include
 	file="/WEB-INF/jsp/framework/component/include_for_second_diaglog.jsp"%>
@@ -7,19 +8,20 @@
 <form id="addForm">
 	<div id="infopointAccordion" class="easyui-accordion"
 		style="width: 100%;" data-options="multiple:true">
-		<div title="项目基本信息" class="dcim_form_panel" data-options="selected:true">
+		<div title="项目基本信息" class="dcim_form_panel"
+			data-options="selected:true">
 			<div class="easyui-panel ibms_form_panel">
 				<div class="ibms_form_default">
 					<div class="ibms_clear"></div>
 					<div id="personDiv">
 						<ul>
 							<li><font>承租人名称：</font>
-							<h1>
+								<h1>
 									<input disabled="disabled" id="name" name="name"
 										value="${order.rentPersonInfo.name }" type="text">
 								</h1></li>
 							<li><font>手机号：</font>
-							<h1>
+								<h1>
 									<input disabled="disabled" id="mobile" name="mobile"
 										value="${order.rentPersonInfo.mobile }" type="text">
 								</h1></li>
@@ -27,18 +29,18 @@
 						<div class="ibms_clear"></div>
 						<ul>
 							<li><font>承租人省：</font>
-							<h1>
+								<h1>
 									<input disabled="disabled" id="personProvince"
 										name="personProvinceId"
 										value="${order.rentPersonInfo.personProvince }" type="text">
 								</h1></li>
 							<li><font>承租人市：</font>
-							<h1>
+								<h1>
 									<input disabled="disabled" id="personCity" name="personCityId"
 										type="text" value="${order.rentPersonInfo.personCity }">
 								</h1></li>
 							<li><font>承租人地址：</font>
-							<h1>
+								<h1>
 									<input disabled="disabled" id="address" name="address"
 										type="text" value="${order.rentPersonInfo.address }">
 								</h1></li>
@@ -48,12 +50,12 @@
 					<div id="companyDiv">
 						<ul>
 							<li><font>承租人名称：</font>
-							<h1>
+								<h1>
 									<input disabled="disabled" id="name" name="name"
 										value="${order.rentCompanyInfo.name }" type="text">
 								</h1></li>
 							<li><font>承租人地址：</font>
-							<h1>
+								<h1>
 									<input disabled="disabled" id="address" name="address"
 										value="${order.rentCompanyInfo.address }" type="text">
 								</h1></li>
@@ -61,17 +63,17 @@
 						<div class="ibms_clear"></div>
 						<ul>
 							<li><font>法人代表：</font>
-							<h1>
+								<h1>
 									<input disabled="disabled" id="legalName" name="legalName"
 										type="text" value="${order.rentCompanyInfo.legalName }">
 								</h1></li>
 							<li><font>联系电话：</font>
-							<h1>
+								<h1>
 									<input disabled="disabled" id="legalMobile" name="legalMobile"
 										type="text" value="${order.rentCompanyInfo.legalMobile }">
 								</h1></li>
 							<li><font>Email：</font>
-							<h1>
+								<h1>
 									<input disabled="disabled" name="legalEmail" type="text"
 										value="${order.rentCompanyInfo.legalEmail }">
 								</h1></li>
@@ -80,17 +82,18 @@
 					</div>
 					<ul>
 						<li><font>业务员姓名：</font>
-						<h1>
+							<h1>
 								<input disabled="disabled" id="operator" name="operator"
 									value="${order.operator }" type="text">
 							</h1></li>
 						<li><font>业务员手机：</font>
-						<h1>
-								<input disabled="disabled" id="operatorMobile" name="operatorMobile"
-									value="${order.operatorMobile }" type="text">
+							<h1>
+								<input disabled="disabled" id="operatorMobile"
+									name="operatorMobile" value="${order.operatorMobile }"
+									type="text">
 							</h1></li>
 						<li><font>报告日期：</font>
-						<h1>
+							<h1>
 								<input disabled="disabled" id="operateDate" name="operateDate"
 									value="${project.viewDate }" type="text">
 							</h1></li>
@@ -98,36 +101,36 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div title="交易结构" class="ibms_form_panel" data-options="selected:true">
 			<div class="easyui-panel ibms_form_panel">
 				<div class="ibms_form_default">
 					<ul>
 						<li><font>租赁设备净值：</font>
-						<h1>
+							<h1>
 								<input disabled="disabled" name="amount"
 									value="${orderStatistics.amount }" type="text">
 							</h1></li>
 						<li><font>租期（月）：</font>
-						<h1>
-								<input disabled="disabled" id="date" name="date"
-									type="text" value="${orderStatistics.date }">
+							<h1>
+								<input disabled="disabled" id="date" name="date" type="text"
+									value="${orderStatistics.date }">
 							</h1></li>
 						<li><font>押金：</font>
-						<h1>
-								<input disabled="disabled" id="deposit" name="deposit" type="text"
-									value="${orderStatistics.deposit }">
+							<h1>
+								<input disabled="disabled" id="deposit" name="deposit"
+									type="text" value="${orderStatistics.deposit }">
 							</h1></li>
 						<li><font>租金：</font>
-						<h1>
-								<input disabled="disabled" id="rentAmount"
-									name="rentAmount" value="${orderStatistics.rentAmount }"
-									type="text">
+							<h1>
+								<input disabled="disabled" id="rentAmount" name="rentAmount"
+									value="${orderStatistics.rentAmount }" type="text">
 							</h1></li>
 						<li><font>租金总额：</font>
 							<h1>
-								<input disabled="disabled" id="rentSumAmount" name="rentSumAmount"
-									type="text" value="${orderStatistics.rentSumAmount }">
+								<input disabled="disabled" id="rentSumAmount"
+									name="rentSumAmount" type="text"
+									value="${orderStatistics.rentSumAmount }">
 							</h1></li>
 						<li><font>押金比例%：</font>
 							<h1>
@@ -139,7 +142,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div title="租赁物信息" class="dcim_form_panel">
 			<table id="rentAssetTypes" class="easyui-datagrid" title="租赁物信息"
 				data-options="
@@ -169,9 +172,10 @@
 				</thead>
 			</table>
 		</div>
-		
+
 		<div title="起租设置" class="dcim_form_panel">
-			<table id="rentAssetList" class="easyui-datagrid easyui-datagrid_2" title="租赁物列表"
+			<table id="rentAssetList" class="easyui-datagrid easyui-datagrid_2"
+				title="租赁物列表"
 				data-options="
 							iconCls: 'icon-edit',
 							singleSelect: true,
@@ -189,15 +193,20 @@
 				<thead>
 					<tr>
 						<th data-options="field:'id',checkbox:true">序列号</th>
-						<th data-options="field:'brand',width:'20%',formatter:function(value,rec){return rec.asset.assetType.brand;}">品牌</th>
-						<th data-options="field:'model',width:'20%',formatter:function(value,rec){return rec.asset.assetType.model;}">型号</th>
-						<th data-options="field:'code',width:'20%',formatter:function(value,rec){return rec.asset.code;}">设备编码</th>
-						<th data-options="field:'rentStartDate',width:'20%',formatter:function(value,rec){return rec.order.startDatetime;}">起租时间</th>
+						<th
+							data-options="field:'brand',width:'20%',formatter:function(value,rec){return rec.asset.assetType.brand;}">品牌</th>
+						<th
+							data-options="field:'model',width:'20%',formatter:function(value,rec){return rec.asset.assetType.model;}">型号</th>
+						<th
+							data-options="field:'code',width:'20%',formatter:function(value,rec){return rec.asset.code;}">设备编码</th>
+						<th
+							data-options="field:'rentStartDate',width:'20%',formatter:function(value,rec){return rec.order.startDatetime;}">起租时间</th>
 					</tr>
 				</thead>
 			</table>
 			<div id="rent_assets" style="height: auto">
-				<a href="javascript:void(0)" class="easyui-linkbutton auto-editbutton_2"
+				<a href="javascript:void(0)"
+					class="easyui-linkbutton auto-editbutton_2"
 					data-options="iconCls:'icon-add',d_width:'80%',d_height:'80%',plain:true,index:'id',url:'${pageContext.request.contextPath}/web/asset/manager/back/edit?orderId=${order.id }'">换货</a>
 			</div>
 		</div>

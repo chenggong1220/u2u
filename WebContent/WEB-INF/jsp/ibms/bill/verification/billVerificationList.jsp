@@ -8,7 +8,8 @@
 			<ul>
 				<li><font>是否核销：</font>
 					<h1>
-						<select id="statusId" name="statusId" class="easyui-combobox" data-options="editable:false">
+						<select id="statusId" name="statusId" class="easyui-combobox"
+							data-options="editable:false">
 							<option value="">全部</option>
 							<option value="true">已核销</option>
 							<option value="false">未核销</option>
@@ -16,27 +17,30 @@
 					</h1></li>
 				<li><font>开票状态：</font>
 					<h1>
-						<select id="billingStatusId" name="billingStatusId" class="easyui-combobox" data-options="editable:false">
+						<select id="billingStatusId" name="billingStatusId"
+							class="easyui-combobox" data-options="editable:false">
 							<option value="">全部</option>
 							<option value="true">已开票</option>
 							<option value="false">未开票</option>
 						</select>
 					</h1></li>
-					<li><font>客户账号：</font>
+				<li><font>客户账号：</font>
 					<h1>
 						<input id="accountNum" name="accountNum" type="text">
 					</h1></li>
-					<li><font>客户名称：</font>
+				<li><font>客户名称：</font>
 					<h1>
 						<input id="accountName" name="accountName" type="text">
 					</h1></li>
-					<li><font>交易日期(始)：</font>
+				<li><font>交易日期(始)：</font>
 					<h1>
-						<input id="startDate" name="startDate" type="text" class="easyui-datebox">
+						<input id="startDate" name="startDate" type="text"
+							class="easyui-datebox">
 					</h1></li>
 				<li><font>交易日期(终)：</font>
 					<h1>
-						<input id="endDate" name="endDate" type="text" class="easyui-datebox">
+						<input id="endDate" name="endDate" type="text"
+							class="easyui-datebox">
 					</h1></li>
 			</ul>
 		</div>
@@ -70,8 +74,10 @@
 			<th data-options="field:'accountName',width:'20%',editor:'text'">客户户名</th>
 			<th data-options="field:'dealDate',width:'20%',editor:'text'">交易日期</th>
 			<th data-options="field:'amount',width:'15%',editor:'text'">收到金额</th>
-			<th data-options="field:'billingStatus',width:'12%',editor:'text',formatter:function(value,rec){if(rec.billingStatus==true){return '已开票';}else{return '未开票';}}">开票状态</th>
-			<th data-options="field:'status',width:'10%',editor:'text',formatter:function(value,rec){if(rec.status==true){return '已核销';}else{return '未核销';}}">状态</th>
+			<th
+				data-options="field:'billingStatus',width:'12%',editor:'text',formatter:function(value,rec){if(rec.billingStatus==true){return '已开票';}else{return '未开票';}}">开票状态</th>
+			<th
+				data-options="field:'status',width:'10%',editor:'text',formatter:function(value,rec){if(rec.status==true){return '已核销';}else{return '未核销';}}">状态</th>
 		</tr>
 	</thead>
 </table>

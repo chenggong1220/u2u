@@ -2,4 +2,5 @@
 <%@ include file="/WEB-INF/jsp/framework/component/include.sys2.jsp"%>
 Error CODE:
 <strong>404</strong>
-Further Help please contact the <a href="#">Administrator</a>
+Further Help please contact the
+<a href="#">Administrator</a>

@@ -5,28 +5,35 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.u2u.ibms.common.mapper.ProjectMapper">
 
-	<resultMap id="project" type="com.u2u.ibms.common.beans.Project" extends="baseBean">
-        <result property="id" jdbcType="INTEGER" column="id"/>
-        <result property="projectId" jdbcType="INTEGER" column="project_id"/>
-        <result property="orderId" jdbcType="INTEGER" column="order_id"/>
-        <result property="required1" jdbcType="TINYINT" column="required1"/>
-        <result property="required1Content" jdbcType="VARCHAR" column="required1_content"/>
-        <result property="required2" jdbcType="TINYINT" column="required2"/>
-        <result property="required2Content" jdbcType="VARCHAR" column="required2_content"/>
-        <result property="required3" jdbcType="TINYINT" column="required3"/>
-        <result property="required3Content" jdbcType="VARCHAR" column="required3_content"/>
-        <result property="required4" jdbcType="TINYINT" column="required4"/>
-        <result property="required4Content" jdbcType="VARCHAR" column="required4_content"/>
-        <result property="required5" jdbcType="TINYINT" column="required5"/>
-        <result property="required5Content" jdbcType="VARCHAR" column="required5_content"/>
-        <result property="required6" jdbcType="TINYINT" column="required6"/>
-        <result property="required6Content" jdbcType="VARCHAR" column="required6_content"/>
-        <result property="identifyImage" jdbcType="VARCHAR" column="identify_image"/>
-        <result property="result" jdbcType="INTEGER" column="result"/>
-        <result property="creditResult" jdbcType="INTEGER" column="credit_result"/>
-        <result property="feedback" jdbcType="INTEGER" column="feedback"/>
+	<resultMap id="project" type="com.u2u.ibms.common.beans.Project"
+		extends="baseBean">
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="projectId" jdbcType="INTEGER" column="project_id" />
+		<result property="orderId" jdbcType="INTEGER" column="order_id" />
+		<result property="required1" jdbcType="TINYINT" column="required1" />
+		<result property="required1Content" jdbcType="VARCHAR"
+			column="required1_content" />
+		<result property="required2" jdbcType="TINYINT" column="required2" />
+		<result property="required2Content" jdbcType="VARCHAR"
+			column="required2_content" />
+		<result property="required3" jdbcType="TINYINT" column="required3" />
+		<result property="required3Content" jdbcType="VARCHAR"
+			column="required3_content" />
+		<result property="required4" jdbcType="TINYINT" column="required4" />
+		<result property="required4Content" jdbcType="VARCHAR"
+			column="required4_content" />
+		<result property="required5" jdbcType="TINYINT" column="required5" />
+		<result property="required5Content" jdbcType="VARCHAR"
+			column="required5_content" />
+		<result property="required6" jdbcType="TINYINT" column="required6" />
+		<result property="required6Content" jdbcType="VARCHAR"
+			column="required6_content" />
+		<result property="identifyImage" jdbcType="VARCHAR" column="identify_image" />
+		<result property="result" jdbcType="INTEGER" column="result" />
+		<result property="creditResult" jdbcType="INTEGER" column="credit_result" />
+		<result property="feedback" jdbcType="INTEGER" column="feedback" />
 	</resultMap>
-	
+
 	<sql id="BASE_PROJECT_SQL">
 		T_PROJECT.PROJECT_ID,
 		T_PROJECT.ORDER_ID,
@@ -49,18 +56,19 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		T_PROJECT.CREATE_DATE,
 		T_PROJECT.OPERATE_DATE
 	</sql>
-	
+
 	<select id="getAll" resultMap="project">
 		SELECT
-			T_PROJECT.ID,
-			<include refid="BASE_PROJECT_SQL" />
+		T_PROJECT.ID,
+		<include refid="BASE_PROJECT_SQL" />
 		FROM
-			T_PROJECT
+		T_PROJECT
 		LEFT JOIN T_ORDER O
-				ON T_PROJECT.ORDER_ID = O.ID
+		ON T_PROJECT.ORDER_ID = O.ID
 		<where>
 			<if test="projectId!=null">
-				and T_PROJECT.project_id like concat('%',#{projectId},'%')
+				and T_PROJECT.project_id like
+				concat('%',#{projectId},'%')
 			</if>
 			<if test="result!=null">
 				and T_PROJECT.result = #{result}
@@ -86,77 +94,77 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		</where>
 		ORDER BY T_PROJECT.CREATE_DATE DESC
 	</select>
-	
+
 	<select id="getById" resultMap="project">
 		SELECT
-			ID,
-			<include refid="BASE_PROJECT_SQL" />
+		ID,
+		<include refid="BASE_PROJECT_SQL" />
 		FROM
-			T_PROJECT
+		T_PROJECT
 		WHERE
-			ID = #{id}
+		ID = #{id}
 	</select>
-	
+
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO T_PROJECT
 		(
-			<include refid="BASE_PROJECT_SQL" />
+		<include refid="BASE_PROJECT_SQL" />
 		)
 		VALUES
 		(
-    		#{projectId},
-	        #{orderId},
-	        #{required1},
-	        #{required1Content},
-	        #{required2},
-	        #{required2Content},
-	        #{required3},
-	        #{required3Content},
-	        #{required4},
-	        #{required4Content},
-	        #{required5},
-	        #{required5Content},
-	        #{required6},
-	        #{required6Content},
-	        #{identifyImage},
-	        #{result},
-	    	#{creditResult},
-	        #{feedback},
-			#{createDate},
-			#{operateDate}
+		#{projectId},
+		#{orderId},
+		#{required1},
+		#{required1Content},
+		#{required2},
+		#{required2Content},
+		#{required3},
+		#{required3Content},
+		#{required4},
+		#{required4Content},
+		#{required5},
+		#{required5Content},
+		#{required6},
+		#{required6Content},
+		#{identifyImage},
+		#{result},
+		#{creditResult},
+		#{feedback},
+		#{createDate},
+		#{operateDate}
 		)
 	</insert>
 
 	<update id="update">
 		UPDATE T_PROJECT
 		SET
-			PROJECT_ID = #{projectId},
-			ORDER_ID = #{orderId},
-			REQUIRED1 = #{required1},
-			REQUIRED1_CONTENT = #{required1Content},
-			REQUIRED2 = #{required2},
-			REQUIRED2_CONTENT = #{required2Content},
-			REQUIRED3 = #{required3},
-			REQUIRED3_CONTENT = #{required3Content},
-			REQUIRED4 = #{required4},
-			REQUIRED4_CONTENT = #{required4Content},
-			REQUIRED5 = #{required5},
-			REQUIRED5_CONTENT = #{required5Content},
-			REQUIRED6 = #{required6},
-			REQUIRED6_CONTENT = #{required6Content},
-			IDENTIFY_IMAGE = #{identifyImage},
-			RESULT = #{result},
-			CREDIT_RESULT = #{creditResult},
-			FEEDBACK = #{feedback},
-			create_date = #{createDate},
-			operate_date = #{operateDate}
+		PROJECT_ID = #{projectId},
+		ORDER_ID = #{orderId},
+		REQUIRED1 = #{required1},
+		REQUIRED1_CONTENT = #{required1Content},
+		REQUIRED2 = #{required2},
+		REQUIRED2_CONTENT = #{required2Content},
+		REQUIRED3 = #{required3},
+		REQUIRED3_CONTENT = #{required3Content},
+		REQUIRED4 = #{required4},
+		REQUIRED4_CONTENT = #{required4Content},
+		REQUIRED5 = #{required5},
+		REQUIRED5_CONTENT = #{required5Content},
+		REQUIRED6 = #{required6},
+		REQUIRED6_CONTENT = #{required6Content},
+		IDENTIFY_IMAGE = #{identifyImage},
+		RESULT = #{result},
+		CREDIT_RESULT = #{creditResult},
+		FEEDBACK = #{feedback},
+		create_date = #{createDate},
+		operate_date = #{operateDate}
 		where
-			id = #{id}
+		id = #{id}
 	</update>
 
 	<delete id="delete">
 		DELETE FROM T_PROJECT
 		WHERE ID = #{id}
 	</delete>
-	
+
 </mapper>

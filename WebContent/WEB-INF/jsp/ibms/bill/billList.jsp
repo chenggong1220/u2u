@@ -27,17 +27,19 @@
 					<h1>
 						<input id="cusName" name="cusName" type="text">
 					</h1></li>
-					<li><font>联系电话：</font>
+				<li><font>联系电话：</font>
 					<h1>
 						<input id="cusNum" name="cusNum" type="text">
 					</h1></li>
-					<li><font>交易日期(始)：</font>
+				<li><font>交易日期(始)：</font>
 					<h1>
-						<input id="startDate" name="startDate" type="text" class="easyui-datebox">
+						<input id="startDate" name="startDate" type="text"
+							class="easyui-datebox">
 					</h1></li>
 				<li><font>交易日期(终)：</font>
 					<h1>
-						<input id="endDate" name="endDate" type="text" class="easyui-datebox">
+						<input id="endDate" name="endDate" type="text"
+							class="easyui-datebox">
 					</h1></li>
 			</ul>
 		</div>

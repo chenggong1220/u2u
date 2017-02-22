@@ -14,8 +14,8 @@
 		</div>
 		<div class="ibms_clear"></div>
 		<div class="ibms_form_btn">
-			<a href="#" class="auto-querybutton query_list_button">查 询</a>
-			<a href="#" class="auto-resetbutton query_list_button">重 置</a>
+			<a href="#" class="auto-querybutton query_list_button">查 询</a> <a
+				href="#" class="auto-resetbutton query_list_button">重 置</a>
 		</div>
 	</div>
 </form>
@@ -40,7 +40,8 @@
 		<tr>
 			<th data-options="field:'id',checkbox:true">序列号</th>
 			<th data-options="field:'version',width:'20%'">版本号</th>
-			<th data-options="field:'enforce',width:'20%',formatter:function(value,rec){if(rec.enforce==true){return '是';}else{return '否';}}">是否强制更新</th>
+			<th
+				data-options="field:'enforce',width:'20%',formatter:function(value,rec){if(rec.enforce==true){return '是';}else{return '否';}}">是否强制更新</th>
 			<th data-options="field:'createTime',width:'20%'">修改时间</th>
 			<th data-options="field:'operatTimet',width:'20%'">创建时间</th>
 		</tr>

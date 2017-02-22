@@ -1,11 +1,11 @@
-body,h1,h2,h3,p,quote,small,form,input,ul,li,ol,label {
+body, h1, h2, h3, p, quote, small, form, input, ul, li, ol, label {
 	padding: 0px;
 	margin: 0px;
 	font-size: 13px;
 	font-family: Arial, SimSun, sans-serif;
 }
 
-body,html {
+body, html {
 	width: 100%;
 	height: 100%;
 }
@@ -48,7 +48,7 @@ body,html {
 	min-width: 275px;
 }
 
-.ibms_form_default ul li font,.ibms_form_default_textarea font {
+.ibms_form_default ul li font, .ibms_form_default_textarea font {
 	display: block;
 	float: left;
 	width: 95px;
@@ -59,7 +59,7 @@ body,html {
 	overflow: hidden;
 }
 
-.ibms_form_default ul li h1,.ibms_form_default_textarea h1 {
+.ibms_form_default ul li h1, .ibms_form_default_textarea h1 {
 	display: block;
 	margin-left: 90px;
 	padding: 5px 0;
@@ -68,7 +68,7 @@ body,html {
 	font-weight: normal;
 }
 
-.ibms_form_default ul li h1 b,.ibms_form_default ul li h1 label {
+.ibms_form_default ul li h1 b, .ibms_form_default ul li h1 label {
 	display: inline-block;
 	padding: 4px 4px 0 0;
 	font-weight: normal;
@@ -128,8 +128,8 @@ body,html {
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
-	border:1px solid #bac58a;/*�޸ĵ�����*/
-	background:#f9f8ee;/*�޸ĵ�����*/
+	border: 1px solid #bac58a; /*�޸ĵ�����*/
+	background: #f9f8ee; /*�޸ĵ�����*/
 	text-align: center;
 	font-size: 13px;
 	font-weight: bold;
@@ -139,7 +139,7 @@ body,html {
 }
 
 .ibms_form_btn a:hover {
-	background:#e8e4be;/*�޸ĵ�����*/
+	background: #e8e4be; /*�޸ĵ�����*/
 }
 
 .easyui-toolbar {

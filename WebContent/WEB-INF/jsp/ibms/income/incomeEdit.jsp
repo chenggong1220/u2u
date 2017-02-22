@@ -1,27 +1,56 @@
-<%@ include file="/WEB-INF/jsp/framework/component/include_individual.jsp"%>
+<%@ include
+	file="/WEB-INF/jsp/framework/component/include_individual.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<form id="addForm" >
+<form id="addForm">
 	<div class="easyui-panel ibms_form_panel">
 		<div class="ibms_form_default">
-			<input type="hidden" name="incomeId" value="${income.id }">
-			<input type="hidden" name="contractId" value="${income.contract.id }">
-	        <ul>
-	        	<li><font>合同编号：</font><h1><input name="contract"  type="text" value="${income.contract.contractId }" disabled="disabled"></h1></li>
-	        	<li><font>开票时间：</font><h1><input name="selectDate"  type="text" value="${incomeTicket.openDateView }" class="easyui-datebox"></h1></li>
-	        	<li><font>项目：</font><h1><input id="project" name="project"  type="text" value="${billcheck.outdateView }" class="easyui-combobox"></h1></li>
-	        	<li><font>票据种类：</font><h1><input id="type" name="type"  type="text" value="${billcheck.enddateView }" class="easyui-combobox"></h1></li>
-	        	<li><font>票据编号：</font><h1><input name="ticketId"  type="text" value="${incomeTicket.ticketId }"></h1></li>
-	        	<li><font>应开金额：</font><h1><input name="amount"  type="text" value="${income.payAmount }"></h1></li>
-	        	<li><font>实开金额：</font><h1><input name="realAmount"  type="text" value="${incomeTicket.realAmount==null?income.payAmount:incomeTicket.realAmount }"></h1></li>
-	        </ul>
+			<input type="hidden" name="incomeId" value="${income.id }"> <input
+				type="hidden" name="contractId" value="${income.contract.id }">
+			<ul>
+				<li><font>合同编号：</font>
+				<h1>
+						<input name="contract" type="text"
+							value="${income.contract.contractId }" disabled="disabled">
+					</h1></li>
+				<li><font>开票时间：</font>
+				<h1>
+						<input name="selectDate" type="text"
+							value="${incomeTicket.openDateView }" class="easyui-datebox">
+					</h1></li>
+				<li><font>项目：</font>
+				<h1>
+						<input id="project" name="project" type="text"
+							value="${billcheck.outdateView }" class="easyui-combobox">
+					</h1></li>
+				<li><font>票据种类：</font>
+				<h1>
+						<input id="type" name="type" type="text"
+							value="${billcheck.enddateView }" class="easyui-combobox">
+					</h1></li>
+				<li><font>票据编号：</font>
+				<h1>
+						<input name="ticketId" type="text"
+							value="${incomeTicket.ticketId }">
+					</h1></li>
+				<li><font>应开金额：</font>
+				<h1>
+						<input name="amount" type="text" value="${income.payAmount }">
+					</h1></li>
+				<li><font>实开金额：</font>
+				<h1>
+						<input name="realAmount" type="text"
+							value="${incomeTicket.realAmount==null?income.payAmount:incomeTicket.realAmount }">
+					</h1></li>
+			</ul>
 			<div class="ibms_clear"></div>
-        </div>
-        
+		</div>
+
 	</div>
 	<div class="ibms_form_btn">
-        <a href="#" class="query_list_button auto-savebutton" data-options="iconCls:'icon-save',plain:true,url:'${pageContext.request.contextPath}/web/income/update',autoclose:true">保存</a>
-        <a href="#" class="query_list_button auto-resetbutton">重 置</a>
-    </div>
+		<a href="#" class="query_list_button auto-savebutton"
+			data-options="iconCls:'icon-save',plain:true,url:'${pageContext.request.contextPath}/web/income/update',autoclose:true">保存</a>
+		<a href="#" class="query_list_button auto-resetbutton">重 置</a>
+	</div>
 </form>
 <script type="text/javascript">
 var projectData = [];

@@ -21,17 +21,17 @@
 	<!-- quartz -->
 	<!-- <import resource="application-quartz-cluster.xml" /> -->
 	<import resource="application-quartz-singleton.xml" />
-	
+
 	<!-- enable autowire -->
 	<context:annotation-config />
-	
+
 	<!-- 扫描web包，应用Spring的注解 -->
 	<context:component-scan base-package="com.u2u" />
 
 	<bean id="springContextHolder" class="com.u2u.framework.spring.SpringContextHolder" />
 
-	<aop:aspectj-autoproxy /> 
-<!-- 	<cache:annotation-driven /> -->
+	<aop:aspectj-autoproxy />
+	<!-- <cache:annotation-driven /> -->
 
 	<!--start 一般的spring_ehcache缓存管理 -->
 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager"
@@ -61,30 +61,30 @@
 	<bean id="LoggerService" class="com.u2u.framework.sys.log.service.LoggerServiceImpl">
 		<property name="loggerMapper" ref="loggerMapper" />
 	</bean>
-	
+
 	<bean id="objectMapper" class="org.codehaus.jackson.map.ObjectMapper" />
-	
-	
+
+
 	<!-- 阿里大于短信网关 -->
 	<bean id="alidayuSmsTemplate" class="com.u2u.common.component.sms.AlidayuSmsTemplate">
-	    <property name="url" value="http://gw.api.taobao.com/router/rest" />
-	    <property name="appKey" value="23538998" />
-	    <property name="appSecret" value="baac0c50c48259fb869c4076ab2aaae4" />
-	    <property name="smsType" value="normal" />
-	    <!-- 短信签名 -->
+		<property name="url" value="http://gw.api.taobao.com/router/rest" />
+		<property name="appKey" value="23538998" />
+		<property name="appSecret" value="baac0c50c48259fb869c4076ab2aaae4" />
+		<property name="smsType" value="normal" />
+		<!-- 短信签名 -->
 		<property name="signNames">
 			<map>
-                <entry key="zhuce" value="注册验证" />
-                
-            </map>
+				<entry key="zhuce" value="注册验证" />
+
+			</map>
 		</property>
 		<!-- 短信模版 -->
 		<property name="templateCodes">
 			<map>
-			    <!--  -->
-                <entry key="zhuce" value="SMS_27765001" />
-                
-            </map>
+				<!-- -->
+				<entry key="zhuce" value="SMS_27765001" />
+
+			</map>
 		</property>
 	</bean>
 	<bean id="jPushService" class="com.u2u.common.component.jpush.JPushServiceImpl">

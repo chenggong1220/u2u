@@ -29,7 +29,7 @@ public class Asset extends BaseBean {
 	private String province;
 	private String city;
 	// 使用时长
-	private int useTime;
+	private float useTime;
 	// 出租
 	private int rent;
 	// location
@@ -184,11 +184,11 @@ public class Asset extends BaseBean {
 		this.cityId = cityId;
 	}
 
-	public int getUseTime() {
+	public float getUseTime() {
 		return useTime;
 	}
 
-	public void setUseTime(int useTime) {
+	public void setUseTime(float useTime) {
 		this.useTime = useTime;
 	}
 

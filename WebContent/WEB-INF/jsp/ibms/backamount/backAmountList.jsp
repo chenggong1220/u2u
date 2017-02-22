@@ -20,19 +20,20 @@
 							<option value="终止">终止</option>
 						</select>
 					</h1></li>
-					<li><font>收货人：</font>
+				<li><font>收货人：</font>
 					<h1>
 						<input id="orderPerson" name="orderPerson" type="text">
 					</h1></li>
-					<li><font>合同类型：</font>
+				<li><font>合同类型：</font>
 					<h1>
-						<select id="contractType" name="contractType" class="easyui-combobox">
+						<select id="contractType" name="contractType"
+							class="easyui-combobox">
 							<option value="">全部</option>
 							<option value="0">个人</option>
 							<option value="1">企业</option>
 						</select>
 					</h1></li>
-					<li><font>归还状态：</font>
+				<li><font>归还状态：</font>
 					<h1>
 						<select id="backStatus" name="backStatus" class="easyui-combobox">
 							<option value="">全部</option>
@@ -74,7 +75,8 @@
 			<th data-options="field:'orderProvince',width:'10%'">省</th>
 			<th data-options="field:'orderPerson',width:'10%'">收货人</th>
 			<th data-options="field:'orderMobile',width:'10%'">手机号</th>
-			<th data-options="field:'deposit',width:'10%',formatter:function(value,rec){return rec.order.leftDeposit+'/'+rec.order.deposit}">保证金实收/应收</th>
+			<th
+				data-options="field:'deposit',width:'10%',formatter:function(value,rec){return rec.order.leftDeposit+'/'+rec.order.deposit}">保证金实收/应收</th>
 			<th
 				data-options="field:'sendStatus',width:'10%',formatter:function(value,rec){if(value==false){return '未发货' ;}else{return '已发货';}}">发货状态</th>
 			<th

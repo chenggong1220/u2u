@@ -11,37 +11,36 @@
 	<http pattern="/auth/loginFailure" security="none" />
 	<http pattern="/styles/**" security="none" />
 	<http pattern="/mobile/**" security="none" />
-	
-	<http access-denied-page="/auth/login"  auto-config="true"  use-expressions="true">
-		
-		
+
+	<http access-denied-page="/auth/login" auto-config="true"
+		use-expressions="true">
+
+
 		<intercept-url pattern="/**" access="isAuthenticated()" />
-		<form-login login-page="/auth/login" default-target-url="/auth/loginSuccess"  authentication-failure-url="/auth/loginFailure" always-use-default-target="true"/>
-				
+		<form-login login-page="/auth/login" default-target-url="/auth/loginSuccess"
+			authentication-failure-url="/auth/loginFailure"
+			always-use-default-target="true" />
+
 		<logout invalidate-session="true" logout-success-url="/auth/login"
-			logout-url="/auth/logout/success"/>
-			
-<!-- 		<custom-filter ref="securityFilter" before="FILTER_SECURITY_INTERCEPTOR"/> -->
-		
+			logout-url="/auth/logout/success" />
+
+		<!-- <custom-filter ref="securityFilter" before="FILTER_SECURITY_INTERCEPTOR"/> -->
+
 	</http>
-	
-	<beans:bean id="securityFilter" class="com.u2u.framework.sys.authorize.security.SecurityFilter">
-        <beans:property name="authenticationManager"
-            ref="authenticationManager" />
-        <beans:property name="accessDecisionManager"
-            ref="accessDecisionManagerBean" />
-        <beans:property name="securityMetadataSource"
-            ref="securityMetadataSource" />
-    </beans:bean>
-    
-	<beans:bean id="tagSercurityInterceptor" class="com.u2u.framework.sys.authorize.security.TagSercurityInterceptor">
-        <beans:property name="authenticationManager"
-            ref="authenticationManager" />
-        <beans:property name="accessDecisionManager"
-            ref="accessDecisionManagerBean" />
-        <beans:property name="securityMetadataSource"
-            ref="tagSecurityMetadataSourceService" />
-    </beans:bean>
+
+	<beans:bean id="securityFilter"
+		class="com.u2u.framework.sys.authorize.security.SecurityFilter">
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<beans:property name="accessDecisionManager" ref="accessDecisionManagerBean" />
+		<beans:property name="securityMetadataSource" ref="securityMetadataSource" />
+	</beans:bean>
+
+	<beans:bean id="tagSercurityInterceptor"
+		class="com.u2u.framework.sys.authorize.security.TagSercurityInterceptor">
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<beans:property name="accessDecisionManager" ref="accessDecisionManagerBean" />
+		<beans:property name="securityMetadataSource" ref="tagSecurityMetadataSourceService" />
+	</beans:bean>
 
 	<authentication-manager alias="authenticationManager">
 		<authentication-provider user-service-ref="customUserDetailsService">
@@ -61,22 +60,22 @@
 		class="com.u2u.framework.sys.authorize.service.AuthorizeService">
 		<beans:property name="authorizeMapper" ref="authorizeMapper" />
 	</beans:bean>
-	
+
 	<beans:bean id="accessDecisionManagerBean"
-        class="com.u2u.framework.sys.authorize.security.SecurityAccessDecisionManager">
-    </beans:bean>
-	
+		class="com.u2u.framework.sys.authorize.security.SecurityAccessDecisionManager">
+	</beans:bean>
+
 	<beans:bean id="securityMetadataSource"
-        class="com.u2u.framework.sys.authorize.security.SecurityMetadataSourceService">
+		class="com.u2u.framework.sys.authorize.security.SecurityMetadataSourceService">
 		<beans:property name="authorizeService" ref="authorizeService" />
-    </beans:bean>
+	</beans:bean>
 	<beans:bean id="tagSecurityMetadataSourceService"
-        class="com.u2u.framework.sys.authorize.security.TagSecurityMetadataSourceService">
+		class="com.u2u.framework.sys.authorize.security.TagSecurityMetadataSourceService">
 		<beans:property name="authorizeService" ref="authorizeService" />
-    </beans:bean>
-    <beans:bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler"/>
-    
- 	<beans:bean id="authenticatedTag"
-		class="com.u2u.framework.tag.AuthenticatedTag">
+	</beans:bean>
+	<beans:bean id="webexpressionHandler"
+		class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+
+	<beans:bean id="authenticatedTag" class="com.u2u.framework.tag.AuthenticatedTag">
 	</beans:bean>
 </beans:beans> 

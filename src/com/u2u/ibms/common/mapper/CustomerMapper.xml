@@ -5,58 +5,65 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.u2u.ibms.common.mapper.CustomerMapper">
 
-	<resultMap id="customer" type="com.u2u.ibms.common.beans.Customer" extends="baseBean">
-        <result property="id" jdbcType="VARCHAR" column="id"/>
-        <result property="custType" jdbcType="VARCHAR" column="rent_person_type"/>
-        <result property="custName" jdbcType="VARCHAR" column="name"/>
-        <result property="custAddress" jdbcType="VARCHAR" column="address"/>
-        <result property="legalName" jdbcType="VARCHAR" column="legal_name"/>
-        <result property="legalMobile" jdbcType="VARCHAR" column="legal_mobile"/>
-        <result property="emergencyContact" jdbcType="VARCHAR" column="emergency_contact"/>
-        <result property="emergencyMobile" jdbcType="VARCHAR" column="emergency_contact_mobile"/>
-        <result property="relation" jdbcType="VARCHAR" column="relation"/>        
+	<resultMap id="customer" type="com.u2u.ibms.common.beans.Customer"
+		extends="baseBean">
+		<result property="id" jdbcType="VARCHAR" column="id" />
+		<result property="custType" jdbcType="VARCHAR" column="rent_person_type" />
+		<result property="custName" jdbcType="VARCHAR" column="name" />
+		<result property="custAddress" jdbcType="VARCHAR" column="address" />
+		<result property="legalName" jdbcType="VARCHAR" column="legal_name" />
+		<result property="legalMobile" jdbcType="VARCHAR" column="legal_mobile" />
+		<result property="emergencyContact" jdbcType="VARCHAR"
+			column="emergency_contact" />
+		<result property="emergencyMobile" jdbcType="VARCHAR"
+			column="emergency_contact_mobile" />
+		<result property="relation" jdbcType="VARCHAR" column="relation" />
 	</resultMap>
-	
+
 	<sql id="BASE_CUSTOMER_SQL">
-			rent_person_type, 
-			name, 
-			address, 
-			legal_name, 
-			legal_mobile, 
-			emergency_contact,
-			emergency_contact_mobile, 
-			relation,			
-			operate_date
+		rent_person_type,
+		name,
+		address,
+		legal_name,
+		legal_mobile,
+		emergency_contact,
+		emergency_contact_mobile,
+		relation,
+		operate_date
 	</sql>
-	
+
 	<select id="getAll" resultMap="customer">
-		SELECT 
-			CONCAT(rent_person_type,id) AS id,  
-			<include refid="BASE_CUSTOMER_SQL"/>
-		FROM 
-			(SELECT id, '1' AS rent_person_type, name, address, legal_name, legal_mobile, emergency_contact,
-				emergency_contact_mobile, relation, operate_date FROM t_rent_company_info
-		 	 UNION 
-		 	 SELECT id, '0' AS rent_person_type, name, address, NAME, mobile, emergency_contact,
-				emergency_contact_mobile, relation, operate_date FROM t_rent_person_info
-		 	 ) customer
+		SELECT
+		CONCAT(rent_person_type,id) AS id,
+		<include refid="BASE_CUSTOMER_SQL" />
+		FROM
+		(SELECT id, '1' AS rent_person_type, name, address, legal_name, legal_mobile,
+		emergency_contact,
+		emergency_contact_mobile, relation, operate_date FROM t_rent_company_info
+		UNION
+		SELECT id, '0' AS rent_person_type, name, address, NAME, mobile,
+		emergency_contact,
+		emergency_contact_mobile, relation, operate_date FROM t_rent_person_info
+		) customer
 		ORDER BY operate_date DESC
 	</select>
-	
+
 	<select id="getById" resultMap="customer">
-		SELECT 
-			CONCAT(rent_person_type,id) AS id,  
-			<include refid="BASE_CUSTOMER_SQL"/>
-		FROM 
-			(SELECT id, '1' AS rent_person_type, name, address, legal_name, legal_mobile, emergency_contact,
-				emergency_contact_mobile, relation, operate_date FROM t_rent_company_info
-		 	 UNION 
-		 	 SELECT id, '0' AS rent_person_type, name, address, NAME, mobile, emergency_contact,
-				emergency_contact_mobile, relation, operate_date FROM t_rent_person_info
-		 	 ) customer
+		SELECT
+		CONCAT(rent_person_type,id) AS id,
+		<include refid="BASE_CUSTOMER_SQL" />
+		FROM
+		(SELECT id, '1' AS rent_person_type, name, address, legal_name, legal_mobile,
+		emergency_contact,
+		emergency_contact_mobile, relation, operate_date FROM t_rent_company_info
+		UNION
+		SELECT id, '0' AS rent_person_type, name, address, NAME, mobile,
+		emergency_contact,
+		emergency_contact_mobile, relation, operate_date FROM t_rent_person_info
+		) customer
 		WHERE
-			ID = #{id} 
-			AND rent_person_type = #{custType}		
+		ID = #{id}
+		AND rent_person_type = #{custType}
 	</select>
-	
+
 </mapper>

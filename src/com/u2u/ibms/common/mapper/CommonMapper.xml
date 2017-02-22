@@ -6,7 +6,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.u2u.ibms.common.mapper.CommonMapper">
 
 	<select id="getNextInteval" resultType="INTEGER">
-		SELECT nextval() 
+		SELECT nextval()
 	</select>
-	
+
 </mapper>

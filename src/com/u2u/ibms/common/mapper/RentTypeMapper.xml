@@ -5,7 +5,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.u2u.ibms.common.mapper.RentTypeMapper">
 
-	<resultMap id="rentType" type="com.u2u.ibms.common.beans.RentType" extends="baseBean">
+	<resultMap id="rentType" type="com.u2u.ibms.common.beans.RentType"
+		extends="baseBean">
 		<result property="id" jdbcType="INTEGER" column="id" />
 		<result property="name" jdbcType="VARCHAR" column="name" />
 	</resultMap>
@@ -17,49 +18,49 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 	<select id="getAll" resultMap="rentType">
 		SELECT
-			ID,
-			<include refid="BASE_RENT_TYPE_SQL" />
+		ID,
+		<include refid="BASE_RENT_TYPE_SQL" />
 		FROM
-			T_RENT_TYPE
+		T_RENT_TYPE
 		ORDER BY CREATE_DATE DESC
 	</select>
-	
+
 	<select id="getById" resultMap="rentType">
 		SELECT
-			ID,
-			<include refid="BASE_RENT_TYPE_SQL" />
+		ID,
+		<include refid="BASE_RENT_TYPE_SQL" />
 		FROM
-			T_RENT_TYPE
+		T_RENT_TYPE
 		WHERE
-			ID = #{id}
+		ID = #{id}
 	</select>
-	
+
 	<insert id="insert">
 		INSERT INTO T_RENT_TYPE
 		(
-			<include refid="BASE_RENT_TYPE_SQL" />
+		<include refid="BASE_RENT_TYPE_SQL" />
 		)
 		VALUES
 		(
-			#{name},
-			#{createDate},
-			#{operateDate}
+		#{name},
+		#{createDate},
+		#{operateDate}
 		)
 	</insert>
 
 	<update id="update">
 		UPDATE T_RENT_TYPE
 		SET
-			name = #{name},
-			create_date = #{createDate},
-			operate_date = #{operateDate}
+		name = #{name},
+		create_date = #{createDate},
+		operate_date = #{operateDate}
 		where
-			id = #{id}
+		id = #{id}
 	</update>
 
 	<delete id="delete">
 		DELETE FROM T_RENT_TYPE
 		WHERE ID = #{id}
 	</delete>
-	
+
 </mapper>

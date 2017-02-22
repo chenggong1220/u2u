@@ -1,5 +1,6 @@
 <%@ include file="/WEB-INF/jsp/framework/component/include.jsp"%>
-<%@ include file="/WEB-INF/jsp/framework/component/include_individual.jsp"%>
+<%@ include
+	file="/WEB-INF/jsp/framework/component/include_individual.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <script type="text/javascript"
 	src="<c:url value='/auth/resource/js/resourceAdd.js'/>"></script>
@@ -14,11 +15,15 @@
 		<ul>
 			<li><font>资源名称：</font>
 				<h1>
-					<input id="resourceName" name="resourceName" type="text" class="easyui-validatebox" data-options="required:true,validType:'minLength[1]'">
+					<input id="resourceName" name="resourceName" type="text"
+						class="easyui-validatebox"
+						data-options="required:true,validType:'minLength[1]'">
 				</h1></li>
 			<li><font>资源优先级：</font>
 				<h1>
-					<input id="priority" name="priority" type="text" class="easyui-validatebox" data-options="required:true,validType:'number'">
+					<input id="priority" name="priority" type="text"
+						class="easyui-validatebox"
+						data-options="required:true,validType:'number'">
 				</h1></li>
 			<li><font>URL：</font>
 				<h1>
@@ -33,8 +38,8 @@
 					<b><input id="validate" name="validate" type="checkbox"
 						checked="checked">是否可用</b>
 				</h1></li>
-			</ul>
-			<div class="ibms_clear"></div>
+		</ul>
+		<div class="ibms_clear"></div>
 	</div>
 	<div class="ibms_form_btn">
 		<a href="#" class="resource_save_button"

@@ -2,39 +2,52 @@
 <%@ include file="/WEB-INF/jsp/framework/component/include.jsp"%>
 
 <form id="saveForm">
-	<div class="easyui-panel ibms_form_panel" data-options="iconCls:'icon-search'" title="修改密码">
+	<div class="easyui-panel ibms_form_panel"
+		data-options="iconCls:'icon-search'" title="修改密码">
 		<div class="ibms_form_default">
-	        <ul>
-	           <li><font>用户名：</font>
-	               <h1><lable><span>${user.username }</span></lable></h1>
-	               <input name="username" type="hidden" value="${user.username }">
-	           </li>
-	        </ul>
-	        <div class="ibms_clear"></div>
-	        <ul>
-	           <li><font>密码：</font>
-	               <h1><input type="password" id="oldPassword" name="oldPassword" class="easyui-validatebox" data-options="required:true"></h1>
-	           </li>
-	        </ul>
-	        <div class="ibms_clear"></div>
-	        <ul>
-	           <li><font>新密码：</font>
-	               <h1><input type="password" id="newPassword" name="newPassword" class="easyui-validatebox" value="" data-options="required:true,validType:'minLength[8]'"></h1>
-	           </li>
-	        </ul>
-	        <div class="ibms_clear"></div>
-	        <ul>
-	           <li><font>再次输入：</font>
-	               <h1><input type="password" id="newPasswordAgain" name="newPasswordAgain" class="easyui-validatebox" data-options="required:true" validType="equalTo['#newPassword']" invalidMessage="两次输入密码不匹配"></h1>
-	           </li>
-	        </ul>
-	        <div class="ibms_clear"></div>
-        </div>
-        <div class="ibms_form_btn">
-	        <a href="#" id="save_self_user" class="auto-querybutton" data-options="url:'${pageContext.request.contextPath}/auth/user/self/save'" >保 存</a>
-	        <a href="#" class="query_list_button auto-resetbutton">重 置</a>
-	        <a href="#" id="cancel_eidt" class="query_list_button">取 消</a>
-        </div>
+			<ul>
+				<li><font>用户名：</font>
+					<h1>
+						<lable>
+						<span>${user.username }</span></lable>
+					</h1> <input name="username" type="hidden" value="${user.username }">
+				</li>
+			</ul>
+			<div class="ibms_clear"></div>
+			<ul>
+				<li><font>密码：</font>
+					<h1>
+						<input type="password" id="oldPassword" name="oldPassword"
+							class="easyui-validatebox" data-options="required:true">
+					</h1></li>
+			</ul>
+			<div class="ibms_clear"></div>
+			<ul>
+				<li><font>新密码：</font>
+					<h1>
+						<input type="password" id="newPassword" name="newPassword"
+							class="easyui-validatebox" value=""
+							data-options="required:true,validType:'minLength[8]'">
+					</h1></li>
+			</ul>
+			<div class="ibms_clear"></div>
+			<ul>
+				<li><font>再次输入：</font>
+					<h1>
+						<input type="password" id="newPasswordAgain"
+							name="newPasswordAgain" class="easyui-validatebox"
+							data-options="required:true" validType="equalTo['#newPassword']"
+							invalidMessage="两次输入密码不匹配">
+					</h1></li>
+			</ul>
+			<div class="ibms_clear"></div>
+		</div>
+		<div class="ibms_form_btn">
+			<a href="#" id="save_self_user" class="auto-querybutton"
+				data-options="url:'${pageContext.request.contextPath}/auth/user/self/save'">保
+				存</a> <a href="#" class="query_list_button auto-resetbutton">重 置</a> <a
+				href="#" id="cancel_eidt" class="query_list_button">取 消</a>
+		</div>
 	</div>
 </form>
 

@@ -5,7 +5,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.u2u.ibms.common.mapper.BrandMapper">
 
-	<resultMap id="brand" type="com.u2u.ibms.common.beans.Brand" extends="baseBean">
+	<resultMap id="brand" type="com.u2u.ibms.common.beans.Brand"
+		extends="baseBean">
 		<result property="id" jdbcType="INTEGER" column="id" />
 		<result property="name" jdbcType="VARCHAR" column="name" />
 	</resultMap>
@@ -14,11 +15,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		name,
 		<include refid="BASE_BEAN_SQL" />
 	</sql>
-	
+
 	<select id="getAll" resultMap="brand">
 		SELECT
-		    ID,
-			<include refid="BASE_BRAND_SQL" />
+		ID,
+		<include refid="BASE_BRAND_SQL" />
 		FROM T_BRAND
 		<where>
 			<if test="name!=null">
@@ -30,35 +31,35 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 	<select id="getById" resultMap="brand">
 		SELECT
-			ID,
-			<include refid="BASE_BRAND_SQL" />
+		ID,
+		<include refid="BASE_BRAND_SQL" />
 		FROM
-			T_BRAND
+		T_BRAND
 		WHERE
-			ID = #{id}
+		ID = #{id}
 	</select>
 
 	<insert id="insert">
 		INSERT INTO T_BRAND
 		(
-			<include refid="BASE_BRAND_SQL" />
+		<include refid="BASE_BRAND_SQL" />
 		)
 		VALUES
 		(
-			#{name},
-			#{createDate},
-			#{operateDate}
+		#{name},
+		#{createDate},
+		#{operateDate}
 		)
 	</insert>
 
 	<update id="update">
 		UPDATE T_BRAND
 		SET
-			name = #{name},
-			create_date = #{createDate},
-			operate_date = #{operateDate}
+		name = #{name},
+		create_date = #{createDate},
+		operate_date = #{operateDate}
 		where
-			id = #{id}
+		id = #{id}
 	</update>
 
 	<delete id="delete">

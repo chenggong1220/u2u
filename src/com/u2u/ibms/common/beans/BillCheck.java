@@ -20,9 +20,9 @@ public class BillCheck extends BaseBean {
 	private Timestamp enddate;
 	@SuppressWarnings("unused")
 	private String enddateView;
-	private float useTime;
-	private float repairTime;
-	private float rentAmount;
+	private float useDuration;		//使用时长
+	private float repairTime;		//维修时长
+	private float rentAmount;		//租金
 	private float interest;
 	private float allAmount;
 	private int rentType;
@@ -174,12 +174,14 @@ public class BillCheck extends BaseBean {
 		this.enddate = enddate;
 	}
 
-	public float getUseTime() {
-		return useTime;
+	public float getUseDuration() {
+		//重命名，原方法名getUseTime，重命名为了解决java.lang.NoSuchMethodError问题，SUNZHE, 2017-02-20
+		return useDuration;
 	}
 
-	public void setUseTime(float useTime) {
-		this.useTime = useTime;
+	public void setUseDuration(float useDuration) {
+		//重命名，原方法名getUseTime，重命名为了解决java.lang.NoSuchMethodError问题，SUNZHE, 2017-02-20
+		this.useDuration = useDuration;
 	}
 
 	public float getRepairTime() {

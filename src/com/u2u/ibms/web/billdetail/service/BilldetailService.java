@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.u2u.framework.base.BaseService;
+import com.u2u.framework.config.AppConfiguration;
 import com.u2u.framework.util.DateUtil;
 import com.u2u.ibms.common.beans.Asset;
 import com.u2u.ibms.common.beans.BillCheck;
@@ -124,9 +126,19 @@ public class BilldetailService extends BaseService {
 								.setCurrentTermDate(billDetail.getDevicedate());
 						billCheck.setTerms(order.getRentDate());
 						billCheck.setOutdate(null);
+						
+						//Start: 设置账单的付款截止时间，SUNZHE, 2017-02-22
 //						billCheck.setEnddate(new Timestamp(happenDate.getTime()
 //								+ 30 * 24 * 60 * 60 * 1000));
-						billCheck.setUseTime(Float.valueOf(billDetail
+						//计算当前账期的付款截止日期
+						String billPayEndDate = DateUtil.getNextMonthDate((billCheck.getCurrentTermDate().substring(0, 8))
+								.concat(AppConfiguration.getInstance().getString("SYS_BILL_PAY_END_DATE")));
+						billCheck.setEnddate(DateUtil.string2Timestamp(billPayEndDate,DateUtil.PATTERN_STANDARD));
+						
+						billCheck.setCurrentTermDate(billCheck.getCurrentTermDate().substring(0, 8) + "01");	//设置当月1号为账期日期
+						//End: 设置账单的付款截止时间，SUNZHE, 2017-02-22
+						
+						billCheck.setUseDuration(Float.valueOf(billDetail
 								.getRunningtime()));
 						billCheck.setRepairTime(Float.valueOf(billDetail
 								.getNochargingtime()));
@@ -138,6 +150,7 @@ public class BilldetailService extends BaseService {
 						Combo combo = comboMapper
 								.getById(suborder.getComboId());
 						if (order.getRentType() == 0) {
+							//分时租赁
 							billCheck.setRentType(0);
 							billCheck.setRentAmount(combo.getAmount()
 									* Float.valueOf(billDetail
@@ -155,12 +168,13 @@ public class BilldetailService extends BaseService {
 						billCheck.setOperateDate(DateUtil.currentTimestamp());
 						billCheckMapper.insert(billCheck);
 					} else {
-						billCheck.setUseTime(billCheck.getUseTime()
+						billCheck.setUseDuration(billCheck.getUseDuration()
 								+ Float.valueOf(billDetail.getRunningtime()));
 						billCheck.setRepairTime(billCheck.getRepairTime()
 								+ Float.valueOf(billDetail
 										.getNochargingtime()));
-
+						//System.out.println("Running Time: " + billDetail.getRunningtime() + "; NoChargingTime: " + billDetail
+						//		.getNochargingtime());
 						Combo combo = comboMapper
 								.getById(suborder.getComboId());
 						if (order.getRentType() == 0) {
@@ -174,7 +188,11 @@ public class BilldetailService extends BaseService {
 							//		+ combo.getAmount());
 							//End：按月租赁不需要重复计算租金
 						}
+						
+						//得到总费用(租金+罚息)，SUNZHE, 2017-02-21
+						//billCheck.setAllAmount(billCheck.getRentAmount() + billCheck.getInterest());
 						billCheck.setAllAmount(billCheck.getRentAmount());
+						
 						billCheck.setOperateDate(DateUtil.currentTimestamp());
 						billCheckMapper.update(billCheck);
 					}

@@ -3,113 +3,116 @@
 PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
-<mapper namespace="com.u2u.ibms.common.mapper.SysMessageMapper" >
-	
-	<resultMap id="sysMessage" type="com.u2u.ibms.common.beans.SysMessage" extends="baseBean">
-        <result property="id" jdbcType="INTEGER" column="id"/>
-        <result property="title" jdbcType="VARCHAR" column="title"/>
-        <result property="type" jdbcType="INTEGER" column="type"/>
-        <result property="userId" jdbcType="INTEGER" column="user_id"/>
-        <result property="content" jdbcType="VARCHAR" column="content"/>
+<mapper namespace="com.u2u.ibms.common.mapper.SysMessageMapper">
+
+	<resultMap id="sysMessage" type="com.u2u.ibms.common.beans.SysMessage"
+		extends="baseBean">
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="title" jdbcType="VARCHAR" column="title" />
+		<result property="type" jdbcType="INTEGER" column="type" />
+		<result property="userId" jdbcType="INTEGER" column="user_id" />
+		<result property="content" jdbcType="VARCHAR" column="content" />
 	</resultMap>
-	
+
 	<sql id="BASE_SYS_MESSAGE_SQL">
 		TITLE,
 		TYPE,
 		USER_ID,
 		CONTENT,
-		<include refid="BASE_BEAN_SQL"/>
+		<include refid="BASE_BEAN_SQL" />
 	</sql>
-	
+
 	<select id="getMessages" resultMap="sysMessage">
-		SELECT 
-			ID,
-			<include refid="BASE_SYS_MESSAGE_SQL"/>
-		FROM 
-			T_SYS_MESSAGE
+		SELECT
+		ID,
+		<include refid="BASE_SYS_MESSAGE_SQL" />
+		FROM
+		T_SYS_MESSAGE
 		WHERE
-			1=1
-			<if test="title!=null">
-				and title like CONCAT('%',#{title},'%')
-			</if>
-			<if test="startDate!=null">
-				and operate_date &gt;= #{startDate}
-			</if>
-			<if test="endDate!=null">
-				and operate_date &lt;= #{endDate}
-			</if>
-			<if test="type!=null">
-				and type = #{type}
-			</if>
+		1=1
+		<if test="title!=null">
+			and title like CONCAT('%',#{title},'%')
+		</if>
+		<if test="startDate!=null">
+			and operate_date &gt;= #{startDate}
+		</if>
+		<if test="endDate!=null">
+			and operate_date &lt;= #{endDate}
+		</if>
+		<if test="type!=null">
+			and type = #{type}
+		</if>
 		ORDER BY CREATE_DATE DESC
 	</select>
-	
+
 	<select id="getMessageByIds" resultMap="sysMessage">
-		SELECT 
-			ID,
-			<include refid="BASE_SYS_MESSAGE_SQL"/>
-		FROM 
-			T_SYS_MESSAGE
+		SELECT
+		ID,
+		<include refid="BASE_SYS_MESSAGE_SQL" />
+		FROM
+		T_SYS_MESSAGE
 		<where>
 			id in
-			<foreach item="item" collection="ids" separator="," open="(" close=")" >  
-	      		#{item}
+			<foreach item="item" collection="ids" separator="," open="("
+				close=")">
+				#{item}
 			</foreach>
 		</where>
 	</select>
-	
+
 	<select id="getMessageById" resultMap="sysMessage">
-		SELECT 
-			ID,
-			<include refid="BASE_SYS_MESSAGE_SQL"/>
-		FROM 
-			T_SYS_MESSAGE
+		SELECT
+		ID,
+		<include refid="BASE_SYS_MESSAGE_SQL" />
+		FROM
+		T_SYS_MESSAGE
 		WHERE
-			ID = #{id} 
+		ID = #{id}
 	</select>
-	
+
 	<insert id="insertMessage">
 		INSERT INTO T_SYS_MESSAGE
 		(
-			<include refid="BASE_SYS_MESSAGE_SQL"/>
+		<include refid="BASE_SYS_MESSAGE_SQL" />
 		)
 		VALUES
 		(
-			#{title},
-			#{type},
-			#{userId},
-			#{content},
-			#{createDate},
-			#{operateDate}
+		#{title},
+		#{type},
+		#{userId},
+		#{content},
+		#{createDate},
+		#{operateDate}
 		)
 	</insert>
-	
+
 	<update id="updateMessage">
 		UPDATE T_SYS_MESSAGE
-		SET 
-			TITLE = #{title},
-			TYPE = #{type},
-			USER_ID = #{userId},
-			CONTENT = #{content},
-			create_date = #{createDate},
-			operate_date = #{operateDate}
+		SET
+		TITLE = #{title},
+		TYPE = #{type},
+		USER_ID = #{userId},
+		CONTENT = #{content},
+		create_date = #{createDate},
+		operate_date = #{operateDate}
 		where
-			id = #{id}
+		id = #{id}
 	</update>
-	
+
 	<delete id="deleteMessage">
 		DELETE FROM T_SYS_MESSAGE
 		WHERE ID = #{id}
 	</delete>
-	
+
 	<delete id="deleteMessages">
 		DELETE FROM T_SYS_MESSAGE
 		<where>
 			id in
-			<foreach item="item" collection="ids" separator="," open="(" close=")" >  
-	      		#{item}
+			<foreach item="item" collection="ids" separator="," open="("
+				close=")">
+				#{item}
 			</foreach>
 		</where>
 	</delete>
-	
+
 </mapper>

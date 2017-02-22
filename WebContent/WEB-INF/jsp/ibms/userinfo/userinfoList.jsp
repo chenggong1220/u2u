@@ -1,7 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/framework/component/include.jsp"%>
 
-<script type="text/javascript" src="<c:url value='/styles/js/location.js'/>"></script>
+<script type="text/javascript"
+	src="<c:url value='/styles/js/location.js'/>"></script>
 
 <form id="queryForm">
 	<div class="easyui-panel ibms_form_panel"
@@ -18,15 +19,18 @@
 					</h1></li>
 				<li><font>省：</font>
 					<h1>
-						<input id="provinceId" name="provinceId" type="text" class="easyui-combobox">
+						<input id="provinceId" name="provinceId" type="text"
+							class="easyui-combobox">
 					</h1></li>
 				<li><font>市：</font>
 					<h1>
-						<input id="cityId" name="cityId" type="text" class="easyui-combobox">
+						<input id="cityId" name="cityId" type="text"
+							class="easyui-combobox">
 					</h1></li>
-					<li><font>用户类型：</font>
+				<li><font>用户类型：</font>
 					<h1>
-						<select id="userType" name="userType" class="easyui-combobox" data-options="editable:false">
+						<select id="userType" name="userType" class="easyui-combobox"
+							data-options="editable:false">
 							<option value="">全部</option>
 							<option value="0">个人用户</option>
 							<option value="1">企业用户</option>
@@ -39,8 +43,8 @@
 		</div>
 		<div class="ibms_clear"></div>
 		<div class="ibms_form_btn">
-			<a href="#" class="auto-querybutton query_list_button">查 询</a>
-			<a href="#" class="auto-resetbutton query_list_button">重 置</a>
+			<a href="#" class="auto-querybutton query_list_button">查 询</a> <a
+				href="#" class="auto-resetbutton query_list_button">重 置</a>
 		</div>
 	</div>
 </form>
@@ -68,8 +72,10 @@
 			<th data-options="field:'mobile',width:'20%'">手机号</th>
 			<th data-options="field:'province',width:'10%'">省</th>
 			<th data-options="field:'city',width:'10%'">市</th>
-			<th data-options="field:'realnameVerify',width:'10%',formatter:function(value,rec){if(value=='0'){return '未实名' ;}else{return '已实名';}}">实名状态</th>
-			<th data-options="field:'userType',width:'10%',formatter:function(value,rec){if(value=='0'){return '个人用户' ;}else{return '企业用户';}}">用户类型</th>
+			<th
+				data-options="field:'realnameVerify',width:'10%',formatter:function(value,rec){if(value=='0'){return '未实名' ;}else{return '已实名';}}">实名状态</th>
+			<th
+				data-options="field:'userType',width:'10%',formatter:function(value,rec){if(value=='0'){return '个人用户' ;}else{return '企业用户';}}">用户类型</th>
 			<th data-options="field:'viewDate',width:'10%'">注册时间</th>
 		</tr>
 	</thead>

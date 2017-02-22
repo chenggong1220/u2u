@@ -5,7 +5,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.u2u.ibms.common.mapper.BillCheckMapper">
 
-	<resultMap id="billCheck" type="com.u2u.ibms.common.beans.BillCheck" extends="baseBean">
+	<resultMap id="billCheck" type="com.u2u.ibms.common.beans.BillCheck"
+		extends="baseBean">
 		<result property="id" jdbcType="INTEGER" column="id" />
 		<result property="orderId" jdbcType="INTEGER" column="order_id" />
 		<result property="userId" jdbcType="INTEGER" column="user_id" />
@@ -15,7 +16,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<result property="terms" jdbcType="INTEGER" column="terms" />
 		<result property="outdate" jdbcType="DATE" column="outdate" />
 		<result property="enddate" jdbcType="DATE" column="enddate" />
-		<result property="useTime" jdbcType="INTEGER" column="use_time" />
+		<result property="useDuration" jdbcType="INTEGER" column="use_time" />
 		<result property="repairTime" jdbcType="INTEGER" column="repair_time" />
 		<result property="rentAmount" jdbcType="FLOAT" column="rent_amount" />
 		<result property="interest" jdbcType="FLOAT" column="interest" />
@@ -49,10 +50,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 	<select id="getAll" resultMap="billCheck">
 		SELECT
-			ID,
-			<include refid="BASE_BILL_CHECK_SQL" />
+		ID,
+		<include refid="BASE_BILL_CHECK_SQL" />
 		FROM
-			T_BILL_CHECK
+		T_BILL_CHECK
 		<where>
 			<if test="orderId!=null">
 				and ORDER_ID = #{orderId}
@@ -72,112 +73,112 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		</where>
 		ORDER BY CREATE_DATE DESC
 	</select>
-	
+
 	<select id="getById" resultMap="billCheck">
 		SELECT
-			ID,
-			<include refid="BASE_BILL_CHECK_SQL" />
+		ID,
+		<include refid="BASE_BILL_CHECK_SQL" />
 		FROM
-			T_BILL_CHECK
+		T_BILL_CHECK
 		WHERE
-			ID = #{id}
+		ID = #{id}
 	</select>
-	
+
 	<select id="getByContractIdAndCurrentTerm" resultMap="billCheck">
 		SELECT
-			ID,
-			<include refid="BASE_BILL_CHECK_SQL" />
+		ID,
+		<include refid="BASE_BILL_CHECK_SQL" />
 		FROM
-			T_BILL_CHECK
+		T_BILL_CHECK
 		WHERE
-			contract_id = #{contractId}
-			and current_term = #{currentTerm}
+		contract_id = #{contractId}
+		and current_term = #{currentTerm}
 		ORDER BY CREATE_DATE DESC
 	</select>
-	
+
 	<select id="getLastOrder" resultMap="billCheck">
 		SELECT
-			ID,
-			<include refid="BASE_BILL_CHECK_SQL" />
+		ID,
+		<include refid="BASE_BILL_CHECK_SQL" />
 		FROM
-			(SELECT 
-				ID,
-				<include refid="BASE_BILL_CHECK_SQL" />
-			 FROM t_bill_check 
-			 WHERE USER_ID = #{id}
-			 ORDER BY outdate DESC
-			)  AS a GROUP BY a.order_id
+		(SELECT
+		ID,
+		<include refid="BASE_BILL_CHECK_SQL" />
+		FROM t_bill_check
+		WHERE USER_ID = #{id}
+		ORDER BY outdate DESC
+		) AS a GROUP BY a.order_id
 	</select>
 
 	<select id="getByOrder" resultMap="billCheck">
 		SELECT
-			ID,
-			<include refid="BASE_BILL_CHECK_SQL" />
+		ID,
+		<include refid="BASE_BILL_CHECK_SQL" />
 		FROM
-			T_BILL_CHECK
+		T_BILL_CHECK
 		WHERE
-			order_id = #{value}
-			order by outdate desc
+		order_id = #{value}
+		order by outdate desc
 	</select>
-	
+
 	<insert id="insert">
 		INSERT INTO T_BILL_CHECK
 		(
-			<include refid="BASE_BILL_CHECK_SQL" />
+		<include refid="BASE_BILL_CHECK_SQL" />
 		)
 		VALUES
 		(
-			#{orderId},
-			#{userId},
-			#{contractId},
-			#{currentTerm},
-			#{currentTermDate},
-			#{terms},
-			#{outdate},
-			#{enddate},
-			#{useTime},
-			#{repairTime},
-			#{rentAmount},
-			#{interest},
-			#{allAmount},
-			#{rentType},
-			#{payStatus},
-			#{payAmount},
-			${status},
-			#{createDate},
-			#{operateDate}
+		#{orderId},
+		#{userId},
+		#{contractId},
+		#{currentTerm},
+		#{currentTermDate},
+		#{terms},
+		#{outdate},
+		#{enddate},
+		#{useDuration},
+		#{repairTime},
+		#{rentAmount},
+		#{interest},
+		#{allAmount},
+		#{rentType},
+		#{payStatus},
+		#{payAmount},
+		${status},
+		#{createDate},
+		#{operateDate}
 		)
 	</insert>
 
 	<update id="update">
 		UPDATE T_BILL_CHECK
 		SET
-			order_id = #{orderId},
-			user_id = #{userId},
-			contract_id = #{contractId},
-			current_term = #{currentTerm},
-			current_term_date = #{currentTermDate},
-			terms = #{terms},
-			outdate = #{outdate},
-			enddate = #{enddate},
-			use_time = #{useTime},
-			repair_time = #{repairTime},
-			rent_amount = #{rentAmount},
-			interest = #{interest},
-			all_amount = #{allAmount},
-			rent_type = #{rentType},
-			pay_status = #{payStatus},
-			pay_amount = #{payAmount},
-			status = ${status},
-			create_date = #{createDate},
-			operate_date = #{operateDate}
+		order_id = #{orderId},
+		user_id = #{userId},
+		contract_id = #{contractId},
+		current_term = #{currentTerm},
+		current_term_date = #{currentTermDate},
+		terms = #{terms},
+		outdate = #{outdate},
+		enddate = #{enddate},
+		use_time = #{useDuration},
+		repair_time = #{repairTime},
+		rent_amount = #{rentAmount},
+		interest = #{interest},
+		all_amount = #{allAmount},
+		rent_type = #{rentType},
+		pay_status = #{payStatus},
+		pay_amount = #{payAmount},
+		status = ${status},
+		create_date = #{createDate},
+		operate_date = #{operateDate}
 		where
-			id = #{id}
+		id = #{id}
 	</update>
 
 	<delete id="delete">
 		DELETE FROM T_BILL_CHECK
 		WHERE ID = #{id}
 	</delete>
-	
+
 </mapper>

@@ -5,23 +5,29 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.u2u.ibms.common.mapper.RentCompanyMapper">
 
-	<resultMap id="rentCompanyInfo" type="com.u2u.ibms.common.beans.RentCompanyInfo" extends="baseBean">
+	<resultMap id="rentCompanyInfo" type="com.u2u.ibms.common.beans.RentCompanyInfo"
+		extends="baseBean">
 		<result property="id" jdbcType="INTEGER" column="id" />
 		<result property="name" jdbcType="VARCHAR" column="name" />
 		<result property="address" jdbcType="VARCHAR" column="address" />
-		<result property="companyProvinceId" jdbcType="INTEGER" column="company_province_id" />
+		<result property="companyProvinceId" jdbcType="INTEGER"
+			column="company_province_id" />
 		<result property="companyCityId" jdbcType="INTEGER" column="company_city_id" />
 		<result property="postalAddress" jdbcType="VARCHAR" column="postal_address" />
 		<result property="postcode" jdbcType="VARCHAR" column="postcode" />
-		<result property="businessLicensePath" jdbcType="VARCHAR" column="business_License_Path" />
-		<result property="lastYearApplicationFormPath" jdbcType="VARCHAR" column="last_year_Application_Form_Path" />
+		<result property="businessLicensePath" jdbcType="VARCHAR"
+			column="business_License_Path" />
+		<result property="lastYearApplicationFormPath" jdbcType="VARCHAR"
+			column="last_year_Application_Form_Path" />
 		<result property="legalName" jdbcType="TINYINT" column="legal_name" />
 		<result property="legalMobile" jdbcType="VARCHAR" column="legal_mobile" />
-		<result property="legalEmail" jdbcType="VARCHAR" column="legal_email"/>
+		<result property="legalEmail" jdbcType="VARCHAR" column="legal_email" />
 		<result property="certificatePath" jdbcType="VARCHAR" column="certificate_Path" />
-		<result property="emergencyContact" jdbcType="VARCHAR" column="emergency_contact" />
+		<result property="emergencyContact" jdbcType="VARCHAR"
+			column="emergency_contact" />
 		<result property="relation" jdbcType="VARCHAR" column="relation" />
-		<result property="emergencyContactMobile" jdbcType="VARCHAR" column="emergency_contact_mobile" />
+		<result property="emergencyContactMobile" jdbcType="VARCHAR"
+			column="emergency_contact_mobile" />
 		<result property="idCardFrontImg" jdbcType="VARCHAR" column="ID_Card_Front_img" />
 		<result property="idCardBackImg" jdbcType="VARCHAR" column="ID_Card_Back_Img" />
 		<result property="idCardHandImg" jdbcType="VARCHAR" column="Id_Card_Hand_Img" />
@@ -53,85 +59,85 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 	<select id="getAll" resultMap="rentCompanyInfo">
 		SELECT
-			ID,
-			<include refid="BASE_RENTCOMPANY_SQL"/>
+		ID,
+		<include refid="BASE_RENTCOMPANY_SQL" />
 		FROM
-			T_RENT_COMPANY_INFO
+		T_RENT_COMPANY_INFO
 		ORDER BY CREATE_DATE DESC
 	</select>
-	
+
 	<select id="getById" resultMap="rentCompanyInfo">
 		SELECT
-			ID,
-			<include refid="BASE_RENTCOMPANY_SQL" />
+		ID,
+		<include refid="BASE_RENTCOMPANY_SQL" />
 		FROM
-			T_RENT_COMPANY_INFO
+		T_RENT_COMPANY_INFO
 		WHERE
-			ID = #{id}
+		ID = #{id}
 	</select>
-	
+
 	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO T_RENT_COMPANY_INFO
 		(
-			<include refid="BASE_RENTCOMPANY_SQL" />
+		<include refid="BASE_RENTCOMPANY_SQL" />
 		)
 		VALUES
 		(
-			#{name},
-			#{address},
-			#{companyProvinceId},
-			#{companyCityId},
-			#{postalAddress},
-			#{postcode},
-			#{businessLicensePath},
-			#{lastYearApplicationFormPath},
-			#{legalName},
-			#{legalMobile},
-			#{legalEmail},
-			#{certificatePath},
-			#{emergencyContact},
-			#{relation},
-			#{emergencyContactMobile},
-			#{idCardFrontImg},
-			#{idCardBackImg},
-			#{idCardHandImg},
-			#{compCode},
-			#{createDate},
-			#{operateDate}
+		#{name},
+		#{address},
+		#{companyProvinceId},
+		#{companyCityId},
+		#{postalAddress},
+		#{postcode},
+		#{businessLicensePath},
+		#{lastYearApplicationFormPath},
+		#{legalName},
+		#{legalMobile},
+		#{legalEmail},
+		#{certificatePath},
+		#{emergencyContact},
+		#{relation},
+		#{emergencyContactMobile},
+		#{idCardFrontImg},
+		#{idCardBackImg},
+		#{idCardHandImg},
+		#{compCode},
+		#{createDate},
+		#{operateDate}
 		)
 	</insert>
 
 	<update id="update">
 		UPDATE T_RENT_COMPANY_INFO
 		SET
-			name = #{name},
-			address = #{address},
-			company_province_id = #{companyProvinceId},
-			company_city_id = #{companyCityId},
-			postal_address = #{postalAddress},
-			postcode = #{postcode},
-			business_license_path = #{businessLicensePath},
-			last_year_application_form_path = #{lastYearApplicationFormPath},
-			legal_name = #{legalName},
-			legal_mobile = #{legalMobile},
-			legal_email = #{legalEmail},
-			certificate_path = #{certificatePath},
-			emergency_contact = #{emergencyContact},
-			relation = #{relation},
-			emergency_contact_mobile = #{emergencyContactMobile},
-			create_date=#{createDate},
-			operate_date = #{operateDate},
-			ID_Card_Front_img = #{idCardFrontImg},
-			ID_Card_Back_Img = #{idCardBackImg},
-			Id_Card_Hand_Img = #{idCardHandImg},
-			Comp_Code = #{compCode} 
+		name = #{name},
+		address = #{address},
+		company_province_id = #{companyProvinceId},
+		company_city_id = #{companyCityId},
+		postal_address = #{postalAddress},
+		postcode = #{postcode},
+		business_license_path = #{businessLicensePath},
+		last_year_application_form_path = #{lastYearApplicationFormPath},
+		legal_name = #{legalName},
+		legal_mobile = #{legalMobile},
+		legal_email = #{legalEmail},
+		certificate_path = #{certificatePath},
+		emergency_contact = #{emergencyContact},
+		relation = #{relation},
+		emergency_contact_mobile = #{emergencyContactMobile},
+		create_date=#{createDate},
+		operate_date = #{operateDate},
+		ID_Card_Front_img = #{idCardFrontImg},
+		ID_Card_Back_Img = #{idCardBackImg},
+		Id_Card_Hand_Img = #{idCardHandImg},
+		Comp_Code = #{compCode}
 		where
-			id = #{id}
+		id = #{id}
 	</update>
 
 	<delete id="delete">
 		DELETE FROM T_RENT_COMPANY_INFO
 		WHERE ID = #{id}
 	</delete>
-	
+
 </mapper>

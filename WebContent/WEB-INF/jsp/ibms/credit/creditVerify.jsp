@@ -5,7 +5,8 @@
 <form id="addForm">
 	<div id="infopointAccordion" class="easyui-accordion"
 		style="width: 100%;" data-options="multiple:true">
-		<div title="项目基本信息" class="dcim_form_panel" data-options="selected:true">
+		<div title="项目基本信息" class="dcim_form_panel"
+			data-options="selected:true">
 			<div class="easyui-panel ibms_form_panel">
 				<div class="ibms_form_default">
 					<div id="personDiv">
@@ -14,36 +15,32 @@
 								<h1>
 									<input disabled="disabled" id="name" name="name"
 										value="${order.rentPersonInfo.name }" type="text">
-								</h1>
-							</li>
+								</h1></li>
 							<li><font>手机号：</font>
 								<h1>
 									<input disabled="disabled" id="mobile" name="mobile"
 										value="${order.rentPersonInfo.mobile }" type="text">
-								</h1>
-							</li>		
-							<li>
-								<font>Email：</font>
+								</h1></li>
+							<li><font>Email：</font>
 								<h1>
-									<input disabled="disabled" name="email" value="${order.rentPersonInfo.email}" type="text">
-								</h1>
-							</li>
+									<input disabled="disabled" name="email"
+										value="${order.rentPersonInfo.email}" type="text">
+								</h1></li>
 						</ul>
 						<div class="ibms_clear"></div>
 						<ul>
 							<li><font>身份证号：</font>
 								<h1>
-									<input id="idcard_no" name="idcard_no" value="${order.idCard }" type="text" disabled="disabled">
-								</h1>
-							</li>						
+									<input id="idcard_no" name="idcard_no" value="${order.idCard }"
+										type="text" disabled="disabled">
+								</h1></li>
 
-							<li>
-								<font>邮政编码：</font>
+							<li><font>邮政编码：</font>
 								<h1>
-									<input disabled="disabled" name="postcode" value="${order.rentPersonInfo.postcode}" type="text">
-								</h1>
-							</li>
-<!-- Change to TextArea, Shield by SUNZHE, 2017-02-13						
+									<input disabled="disabled" name="postcode"
+										value="${order.rentPersonInfo.postcode}" type="text">
+								</h1></li>
+							<!-- Change to TextArea, Shield by SUNZHE, 2017-02-13						
 							<li>
 								<font>通讯地址：</font>
 								<h1>
@@ -66,35 +63,46 @@
 								</h1>
 							</li>						
 						</ul>
--->						
+-->
 
-						<div class="ibms_clear"></div>
-						<div class="ibms_form_default_textarea">
-							<font>通讯地址：</font>
-							<h1>
-								<textarea id="postAddress" name="postAddress" disabled="disabled">${order.rentPersonInfo.address}</textarea>
-							</h1>							
-						</div>	
-						
-						<div class="ibms_clear"></div>
-						<div class="ibms_form_default_textarea">
-							<font>设备放置地：</font>
-							<h1>
-								<textarea id="machLocation" name="machLocation" disabled="disabled">${assetSaveLocationx}</textarea>
-							</h1>							
-						</div>	
-						<div class="ibms_clear"></div>
-						<ul>
-				           <li><font>紧急联系人：</font>
-				           		<h1><input disabled="disabled" id="emergencyContact" name="emergencyContact" value="${order.rentPersonInfo.emergencyContact }" type="text"></h1>
-				           	</li>
-				           <li><font>联系电话：</font><h1>
-				           		<input disabled="disabled" id="emergencyContactMobile" name="emergencyContactMobile" value="${order.rentPersonInfo.emergencyContactMobile }" type="text"></h1>
-				           	</li>
-				           <li><font>关系：</font><h1>
-				           		<input disabled="disabled" id="relation" name="relation" value="${order.rentPersonInfo.relation }" type="text"></h1>
-				           	</li>
-				        </ul>
+							<div class="ibms_clear"></div>
+							<div class="ibms_form_default_textarea">
+								<font>通讯地址：</font>
+								<h1>
+									<textarea id="postAddress" name="postAddress"
+										disabled="disabled">${order.rentPersonInfo.address}</textarea>
+								</h1>
+							</div>
+
+							<div class="ibms_clear"></div>
+							<div class="ibms_form_default_textarea">
+								<font>设备放置地：</font>
+								<h1>
+									<textarea id="machLocation" name="machLocation"
+										disabled="disabled">${assetSaveLocationx}</textarea>
+								</h1>
+							</div>
+							<div class="ibms_clear"></div>
+							<ul>
+								<li><font>紧急联系人：</font>
+									<h1>
+										<input disabled="disabled" id="emergencyContact"
+											name="emergencyContact"
+											value="${order.rentPersonInfo.emergencyContact }" type="text">
+									</h1></li>
+								<li><font>联系电话：</font>
+								<h1>
+										<input disabled="disabled" id="emergencyContactMobile"
+											name="emergencyContactMobile"
+											value="${order.rentPersonInfo.emergencyContactMobile }"
+											type="text">
+									</h1></li>
+								<li><font>关系：</font>
+								<h1>
+										<input disabled="disabled" id="relation" name="relation"
+											value="${order.rentPersonInfo.relation }" type="text">
+									</h1></li>
+							</ul>
 					</div>
 					<div id="companyDiv">
 						<ul>
@@ -102,15 +110,16 @@
 								<h1>
 									<input disabled="disabled" id="name" name="name"
 										value="${order.rentCompanyInfo.name }" type="text">
-								</h1>
-							</li>	
-	<!-- Start: Add CompCode, by SUNZHE, 2017-01-16  -->						
+								</h1></li>
+							<!-- Start: Add CompCode, by SUNZHE, 2017-01-16  -->
 							<li><font>企业代码：</font>
-							<h1>
-								<input id="compCode" name="compCode" value="${order.rentCompanyInfo.compCode}" type="text" disabled="disabled">
-							</h1></li>		
-	<!-- End: Add CompCode, by SUNZHE, 2017-01-16  -->													
-<!-- 							
+								<h1>
+									<input id="compCode" name="compCode"
+										value="${order.rentCompanyInfo.compCode}" type="text"
+										disabled="disabled">
+								</h1></li>
+							<!-- End: Add CompCode, by SUNZHE, 2017-01-16  -->
+							<!-- 							
 							<li><font>企业地址：</font>
 								<h1>
 									<input disabled="disabled" id="address" name="address"
@@ -123,105 +132,105 @@
 										value="${order.rentType==0?'分时租赁':'分月租赁'}" type="text">
 								</h1>
 							</li>
--->							
+-->
 						</ul>
 						<div class="ibms_clear"></div>
 						<ul>
 							<li><font>法人代表：</font>
 								<h1>
-									<input disabled="disabled" id="legalName" name="legalName" type="text" value="${order.rentCompanyInfo.legalName }">
-								</h1>
-							</li>
+									<input disabled="disabled" id="legalName" name="legalName"
+										type="text" value="${order.rentCompanyInfo.legalName }">
+								</h1></li>
 							<li><font>联系电话：</font>
 								<h1>
-									<input disabled="disabled" id="legalMobile" name="legalMobile" type="text" value="${order.rentCompanyInfo.legalMobile }">
-								</h1>
-							</li>
-							<li>
-								<font>Email：</font>
+									<input disabled="disabled" id="legalMobile" name="legalMobile"
+										type="text" value="${order.rentCompanyInfo.legalMobile }">
+								</h1></li>
+							<li><font>Email：</font>
 								<h1>
-									<input disabled="disabled" name="legalMobile" value="${order.rentCompanyInfo.legalEmail}" type="text">
-								</h1>
-							</li>								
-<!-- 							
+									<input disabled="disabled" name="legalMobile"
+										value="${order.rentCompanyInfo.legalEmail}" type="text">
+								</h1></li>
+							<!-- 							
 							<li><font>客户经理：</font>
 								<h1>
 									<input disabled="disabled" name="realname" type="text" value="${order.manager.realname }">
 								</h1>
 							</li>
--->							
+-->
 						</ul>
 						<div class="ibms_clear"></div>
 						<ul>
 							<li><font>身份证号：</font>
-							<h1>
-								<input id="idcard_no" name="idcard_no" value="${order.idCard }" type="text" disabled="disabled">
-							</h1></li>
-
-							<li>
-								<font>邮政编码：</font>
 								<h1>
-									<input disabled="disabled" name="postcode" value="${order.rentCompanyInfo.postcode}" type="text">
-								</h1>
-							</li>	
+									<input id="idcard_no" name="idcard_no" value="${order.idCard }"
+										type="text" disabled="disabled">
+								</h1></li>
+
+							<li><font>邮政编码：</font>
+								<h1>
+									<input disabled="disabled" name="postcode"
+										value="${order.rentCompanyInfo.postcode}" type="text">
+								</h1></li>
 						</ul>
-				
+
 						<div class="ibms_clear"></div>
 						<div class="ibms_form_default_textarea">
 							<font>通讯地址：</font>
 							<h1>
-								<textarea id="postAddress" name="postAddress" disabled="disabled">${order.rentCompanyInfo.address}</textarea>
-							</h1>							
-						</div>	
-						
+								<textarea id="postAddress" name="postAddress"
+									disabled="disabled">${order.rentCompanyInfo.address}</textarea>
+							</h1>
+						</div>
+
 						<div class="ibms_clear"></div>
 						<div class="ibms_form_default_textarea">
 							<font>设备放置地：</font>
 							<h1>
-								<textarea id="machLocation" name="machLocation" disabled="disabled">${assetSaveLocationx}</textarea>
-							</h1>							
-						</div>				
-						
-<!-- Start: Add by SUNZHE, 2017-01-15 -->
+								<textarea id="machLocation" name="machLocation"
+									disabled="disabled">${assetSaveLocationx}</textarea>
+							</h1>
+						</div>
+
+						<!-- Start: Add by SUNZHE, 2017-01-15 -->
 						<ul>
-							<li>
-								<font>紧急联系人：</font>
+							<li><font>紧急联系人：</font>
 								<h1>
-									<input disabled="disabled" name="mobile" value="${order.rentCompanyInfo.emergencyContact}" type="text">
-								</h1>
-							</li>
+									<input disabled="disabled" name="mobile"
+										value="${order.rentCompanyInfo.emergencyContact}" type="text">
+								</h1></li>
 
-							<li>
-								<font>关系：</font>
+							<li><font>关系：</font>
 								<h1>
-									<input disabled="disabled" name="mobile" value="${order.rentCompanyInfo.relation}" type="text">
-								</h1>
-							</li>
+									<input disabled="disabled" name="mobile"
+										value="${order.rentCompanyInfo.relation}" type="text">
+								</h1></li>
 
-							<li>
-								<font>联系人电话：</font>
+							<li><font>联系人电话：</font>
 								<h1>
-									<input disabled="disabled" name="mobile" value="${order.rentCompanyInfo.emergencyContactMobile}" type="text">
-								</h1>
-							</li>
+									<input disabled="disabled" name="mobile"
+										value="${order.rentCompanyInfo.emergencyContactMobile}"
+										type="text">
+								</h1></li>
 						</ul>
-<!-- End: Add by SUNZHE, 2017-01-15 -->						
+						<!-- End: Add by SUNZHE, 2017-01-15 -->
 					</div>
 
 					<div class="ibms_clear"></div>
 					<ul>
 						<li><font>业务员姓名：</font>
-						<h1>
-								<input id="operator" name="operator"
-									value="${order.operator }" type="text" disabled="disabled">
+							<h1>
+								<input id="operator" name="operator" value="${order.operator }"
+									type="text" disabled="disabled">
 							</h1></li>
 						<li><font>业务员手机：</font>
-						<h1>
+							<h1>
 								<input id="operatorMobile" name="operatorMobile"
-									value="${order.operatorMobile }" type="text" disabled="disabled">
+									value="${order.operatorMobile }" type="text"
+									disabled="disabled">
 							</h1></li>
 						<li><font>报告日期：</font>
-						<h1>
+							<h1>
 								<input disabled="disabled" id="viewDate" name="viewDate"
 									value="${order.viewDate }" type="text">
 							</h1></li>
@@ -230,36 +239,36 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div title="交易结构" class="ibms_form_panel" data-options="selected:true">
 			<div class="easyui-panel ibms_form_panel">
 				<div class="ibms_form_default">
 					<ul>
 						<li><font>租赁设备净值：</font>
-						<h1>
+							<h1>
 								<input disabled="disabled" name="amount"
 									value="${orderStatistics.amount }" type="text">
 							</h1></li>
 						<li><font>租期（月）：</font>
-						<h1>
-								<input disabled="disabled" id="date" name="date"
-									type="text" value="${orderStatistics.date }">
+							<h1>
+								<input disabled="disabled" id="date" name="date" type="text"
+									value="${orderStatistics.date }">
 							</h1></li>
 						<li><font>押金：</font>
-						<h1>
-								<input disabled="disabled" id="deposit" name="deposit" type="text"
-									value="${orderStatistics.deposit }">
+							<h1>
+								<input disabled="disabled" id="deposit" name="deposit"
+									type="text" value="${orderStatistics.deposit }">
 							</h1></li>
 						<li><font>租金：</font>
-						<h1>
-								<input disabled="disabled" id="rentAmount"
-									name="rentAmount" value="${orderStatistics.rentAmount }"
-									type="text">
+							<h1>
+								<input disabled="disabled" id="rentAmount" name="rentAmount"
+									value="${orderStatistics.rentAmount }" type="text">
 							</h1></li>
 						<li><font>租金总额：</font>
 							<h1>
-								<input disabled="disabled" id="rentSumAmount" name="rentSumAmount"
-									type="text" value="${orderStatistics.rentSumAmount }">
+								<input disabled="disabled" id="rentSumAmount"
+									name="rentSumAmount" type="text"
+									value="${orderStatistics.rentSumAmount }">
 							</h1></li>
 						<li><font>押金比例%：</font>
 							<h1>
@@ -300,7 +309,7 @@
 				</thead>
 			</table>
 		</div>
-		
+
 		<div title="结论建议" class="dcim_form_panel">
 			<div class="easyui-panel ibms_form_panel">
 				<div class="ibms_form_default">
@@ -422,20 +431,26 @@
 					<div class="ibms_form_default_textarea" id="personId">
 						<font>身份证正面：</font>
 						<h1 style="width: 90%;">
-							<b>  <a class="POPUP_A" href="javascript:void(0);"><img width="300" height="200"
-								src="${pageContext.request.contextPath}${order.rentPersonInfo.idCardFrontImg }" name="idCardFrontImg" /></a>
+							<b> <a class="POPUP_A" href="javascript:void(0);"><img
+									width="300" height="200"
+									src="${pageContext.request.contextPath}${order.rentPersonInfo.idCardFrontImg }"
+									name="idCardFrontImg" /></a>
 							</b>
 						</h1>
 						<font>身份证反面：</font>
 						<h1 style="width: 90%;">
-							<b>  <a class="POPUP_A" href="javascript:void(0);"><img width="300" height="200"
-								src="${pageContext.request.contextPath}${order.rentPersonInfo.idCardBackImg }" name="idCardBackImg" /></a>
+							<b> <a class="POPUP_A" href="javascript:void(0);"><img
+									width="300" height="200"
+									src="${pageContext.request.contextPath}${order.rentPersonInfo.idCardBackImg }"
+									name="idCardBackImg" /></a>
 							</b>
 						</h1>
 						<font>身份证手持：</font>
 						<h1 style="width: 90%;">
-							<b>  <a class="POPUP_A" href="javascript:void(0);"><img width="300" height="200"
-								src="${pageContext.request.contextPath}${order.rentPersonInfo.idCardHandImg }" name="idCardHandImg" /></a>
+							<b> <a class="POPUP_A" href="javascript:void(0);"><img
+									width="300" height="200"
+									src="${pageContext.request.contextPath}${order.rentPersonInfo.idCardHandImg }"
+									name="idCardHandImg" /></a>
 							</b>
 						</h1>
 					</div>
@@ -444,65 +459,77 @@
 						<font>公安部验证照片：</font>
 						<h1 style="width: 90%;">
 							<b> <img width="300" height="200"
-								src="data:image/png;base64,${realpicture.idImg }"/>
+								src="data:image/png;base64,${realpicture.idImg }" />
 							</b>
 						</h1>
 					</div>
-					<div class="ibms_form_default_textarea" id="companyId">	
+					<div class="ibms_form_default_textarea" id="companyId">
 						<font>身份证正面：</font>
 						<h1 style="width: 90%;">
-							<b> <a class="POPUP_A" href="javascript:void(0);"><img width="300" height="200"
-								src="${pageContext.request.contextPath}${order.rentCompanyInfo.idCardFrontImg }" name="idCardFrontImg" /></a>
+							<b> <a class="POPUP_A" href="javascript:void(0);"><img
+									width="300" height="200"
+									src="${pageContext.request.contextPath}${order.rentCompanyInfo.idCardFrontImg }"
+									name="idCardFrontImg" /></a>
 							</b>
 						</h1>
 						<font>身份证反面：</font>
 						<h1 style="width: 90%;">
-							<b>  <a class="POPUP_A" href="javascript:void(0);"><img width="300" height="200"
-								src="${pageContext.request.contextPath}${order.rentCompanyInfo.idCardBackImg }" name="idCardBackImg" /></a>
+							<b> <a class="POPUP_A" href="javascript:void(0);"><img
+									width="300" height="200"
+									src="${pageContext.request.contextPath}${order.rentCompanyInfo.idCardBackImg }"
+									name="idCardBackImg" /></a>
 							</b>
 						</h1>
 						<font>身份证手持：</font>
 						<h1 style="width: 90%;">
-							<b>  <a class="POPUP_A" href="javascript:void(0);"><img width="300" height="200"
-								src="${pageContext.request.contextPath}${order.rentCompanyInfo.idCardHandImg }" name="idCardHandImg" /></a>
+							<b> <a class="POPUP_A" href="javascript:void(0);"><img
+									width="300" height="200"
+									src="${pageContext.request.contextPath}${order.rentCompanyInfo.idCardHandImg }"
+									name="idCardHandImg" /></a>
 							</b>
 						</h1>
-<!-- Start: Added pics for Comp, by SUNZHE, 2017-01-17	---->
+						<!-- Start: Added pics for Comp, by SUNZHE, 2017-01-17	---->
 						<font>营业执照：</font>
 						<h1 style="width: 90%;">
-							<b>  <a class="POPUP_A" href="javascript:void(0);"><img width="300" height="200"
-								src="${pageContext.request.contextPath}${order.rentCompanyInfo.businessLicensePath }" name="businessLicensePath" /></a>
+							<b> <a class="POPUP_A" href="javascript:void(0);"><img
+									width="300" height="200"
+									src="${pageContext.request.contextPath}${order.rentCompanyInfo.businessLicensePath }"
+									name="businessLicensePath" /></a>
 							</b>
 						</h1>
 						<font>纳税登记表：</font>
 						<h1 style="width: 90%;">
-							<b>  <a class="POPUP_A" href="javascript:void(0);"><img width="300" height="200"
-								src="${pageContext.request.contextPath}${order.rentCompanyInfo.lastYearApplicationFormPath }" name="lastYearApplicationFormPath" /></a>
+							<b> <a class="POPUP_A" href="javascript:void(0);"><img
+									width="300" height="200"
+									src="${pageContext.request.contextPath}${order.rentCompanyInfo.lastYearApplicationFormPath }"
+									name="lastYearApplicationFormPath" /></a>
 							</b>
 						</h1>
-<!-- End: Added pics for Comp, by SUNZHE, 2017-01-17	---->
+						<!-- End: Added pics for Comp, by SUNZHE, 2017-01-17	---->
 					</div>
 
-			        <div class="ibms_clear"></div>
-			        <div class="ibms_form_default_textarea">
-				        <font>三网截屏：</font>
-				        <h1 style="width:90%;">
-							<b>
-								 <a class="POPUP_A" href="javascript:void(0);">
-								<img width="300" height="200" src="${pageContext.request.contextPath}${project.identifyImage }" id="identifyImagePreview" name="identifyImagePreview"/>
-								</a>
+					<div class="ibms_clear"></div>
+					<div class="ibms_form_default_textarea">
+						<font>三网截屏：</font>
+						<h1 style="width: 90%;">
+							<b> <a class="POPUP_A" href="javascript:void(0);"> <img
+									width="300" height="200"
+									src="${pageContext.request.contextPath}${project.identifyImage }"
+									id="identifyImagePreview" name="identifyImagePreview" />
+							</a>
 							</b>
 						</h1>
 					</div>
 					<c:forEach items="${projectPictures }" var="projectPicture">
 						<div class="ibms_clear"></div>
-				        <div class="ibms_form_default_textarea">
-					        <font>三网截屏：</font>
-					        <h1 style="width:90%;">
-								<b>
-								    <a class="POPUP_A" href="javascript:void(0);">
-									<img width="300" height="200" src="${pageContext.request.contextPath}${projectPicture.picture }" id="identifyImagePreview" name="identifyImagePreview"/>
-								    </a>
+						<div class="ibms_form_default_textarea">
+							<font>三网截屏：</font>
+							<h1 style="width: 90%;">
+								<b> <a class="POPUP_A" href="javascript:void(0);"> <img
+										width="300" height="200"
+										src="${pageContext.request.contextPath}${projectPicture.picture }"
+										id="identifyImagePreview" name="identifyImagePreview" />
+								</a>
 								</b>
 							</h1>
 						</div>
@@ -513,7 +540,7 @@
 		<div title="项目处理记录" class="dcim_form_panel">
 			<div class="easyui-panel ibms_form_panel">
 				<div class="project-record">
-<%-- 				    <h1>客户专员：<span>${project.operator }</span> 处理时间：<span>${project.operateViewDate }</span></h1> --%>
+					<%-- 				    <h1>客户专员：<span>${project.operator }</span> 处理时间：<span>${project.operateViewDate }</span></h1> --%>
 					<ul>
 						<li>操作人：<span>${order.manager.realname}</span></li>
 						<li>处理时间：<span>${order.operateViewDate }</span></li>
@@ -534,93 +561,96 @@
 		<div title="信用审核" class="dcim_form_panel">
 			<div class="easyui-panel ibms_form_panel">
 				<div class="project-table">
-				<input type="hidden" name="id" value="${project.id }">
-						<table cellspacing="0" cellpadding="0">
-							<thead>
-								<tr>
-									<th>复核内容</th>
-									<th>工作底稿记录（若有异常点需详细说明）</th>
-									<th>复核结论</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>身份信息验证</td>
-									<td><input type="text" name="required1Content" value="身份证号码，年龄已核实无误。" /></td>
-									<td><select name="creditRequired1">
-											<option value="1">无异常</option>
-											<option value="2">异常</option>
-									<!--  Hided by SUNZHE, 2017-01-12
+					<input type="hidden" name="id" value="${project.id }">
+					<table cellspacing="0" cellpadding="0">
+						<thead>
+							<tr>
+								<th>复核内容</th>
+								<th>工作底稿记录（若有异常点需详细说明）</th>
+								<th>复核结论</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>身份信息验证</td>
+								<td><input type="text" name="required1Content"
+									value="身份证号码，年龄已核实无误。" /></td>
+								<td><select name="creditRequired1">
+										<option value="1">无异常</option>
+										<option value="2">异常</option>
+										<!--  Hided by SUNZHE, 2017-01-12
 											<option value="3">通过</option>
 											<option value="4">不通过</option>
 									-->
-										</select></td>
-								</tr>
-								<tr>
-									<td>业务信息验证</td>
-									<td><input type="text" name="required2Content" value="设备型号，沈机业务经理信息不清台数，押金，放置地信息已确认无误。" /></td>
-									<td><select name="creditRequired2">
-											<option value="1">无异常</option>
-											<option value="2">异常</option>
-									<!--  Hided by SUNZHE, 2017-01-12
+								</select></td>
+							</tr>
+							<tr>
+								<td>业务信息验证</td>
+								<td><input type="text" name="required2Content"
+									value="设备型号，沈机业务经理信息不清台数，押金，放置地信息已确认无误。" /></td>
+								<td><select name="creditRequired2">
+										<option value="1">无异常</option>
+										<option value="2">异常</option>
+										<!--  Hided by SUNZHE, 2017-01-12
 											<option value="3">通过</option>
 											<option value="4">不通过</option>
 									-->
-										</select></td>
-								</tr>
-								<tr>
-									<td>其他信息</td>
-									<td><input type="text" name="required3Content" value="" /></td>
-									<td><select name="creditRequired3">
-											<option value="1">无异常</option>
-											<option value="2">异常</option>
-									<!--  Hided by SUNZHE, 2017-01-12
+								</select></td>
+							</tr>
+							<tr>
+								<td>其他信息</td>
+								<td><input type="text" name="required3Content" value="" /></td>
+								<td><select name="creditRequired3">
+										<option value="1">无异常</option>
+										<option value="2">异常</option>
+										<!--  Hided by SUNZHE, 2017-01-12
 											<option value="3">通过</option>
 											<option value="4">不通过</option>
 									-->
-										</select></td>
-								</tr>
-								<tr>
-									<td>项目风险提示</td>
-									<td colspan="2"><input type="text" name="required4Content" value="无" /></td>
-								</tr>
-								<tr>
-									<td>客户还款情况</td>
-									<td colspan="2"><a href="#">账单链接 </a></td>
-								</tr>
-<!--
+								</select></td>
+							</tr>
+							<tr>
+								<td>项目风险提示</td>
+								<td colspan="2"><input type="text" name="required4Content"
+									value="无" /></td>
+							</tr>
+							<tr>
+								<td>客户还款情况</td>
+								<td colspan="2"><a href="#">账单链接 </a></td>
+							</tr>
+							<!--
 								//Hided by SUNZHE, 2017-01-12
 								<tr>
 									<td>资产专员翻单意见</td>
 									<td colspan="2"><input type="text" name="required6Content" value="" /></td>
 								</tr>
 -->
-							</tbody>
-						</table>
-					</div>
+						</tbody>
+					</table>
+				</div>
 
 				<div class="ibms_form_default">
 					<ul>
-			        	<li><font>上传文件：</font>
-			           		<h1>
-			           			<b>
-									<input type="file" name="creditFileSelected" id="creditFileSelected" accept="*"/>
-									<input type="hidden" name="creditFile" id="creditFile" value=""/>
+						<li><font>上传文件：</font>
+							<h1>
+								<b> <input type="file" name="creditFileSelected"
+									id="creditFileSelected" accept="*" /> <input type="hidden"
+									name="creditFile" id="creditFile" value="" />
+								</b> <b> <input id="upload" type="button"
+									class="query_list_button" value="上传"
+									onclick="javascript:uploadFiles_framework('creditFileSelected','creditFile','creditFilePreview','file');">
 								</b>
-								<b>
-									<input id="upload" type="button" class="query_list_button" value="上传" onclick="javascript:uploadFiles_framework('creditFileSelected','creditFile','creditFilePreview','file');">
-								</b>
-							</h1>
-						</li>
+							</h1></li>
 						<li><font>下载文件：</font>
-							<h1>	
-								<a id="creditFilePreview" href="${pageContext.request.contextPath}${order.creditFile}" target="_blank">下载</a>
-							</h1>
-						</li>
-			        </ul>
-			        <div class="ibms_clear"></div>
-				 </div>				
-					
+							<h1>
+								<a id="creditFilePreview"
+									href="${pageContext.request.contextPath}${order.creditFile}"
+									target="_blank">下载</a>
+							</h1></li>
+					</ul>
+					<div class="ibms_clear"></div>
+				</div>
+
 				<div class="ibms_form_default">
 					<ul>
 						<li><font>处理结果：</font>
@@ -629,17 +659,16 @@
 									<option value="true">通过</option>
 									<option value="false">拒绝</option>
 								</select>
-							</h1>
-						</li>
+							</h1></li>
 					</ul>
 					<div class="ibms_clear"></div>
 					<div class="ibms_form_default_textarea">
 						<font>处理意见：</font>
 						<h1>
-							<textarea id="feedback" name="feedback" >${projectHandle.feedback }</textarea>
+							<textarea id="feedback" name="feedback">${projectHandle.feedback }</textarea>
 						</h1>
 					</div>
-			        <div class="ibms_clear"></div>
+					<div class="ibms_clear"></div>
 				</div>
 			</div>
 		</div>

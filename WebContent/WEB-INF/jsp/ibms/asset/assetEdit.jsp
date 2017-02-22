@@ -1,35 +1,84 @@
-<%@ include file="/WEB-INF/jsp/framework/component/include_individual.jsp"%>
+<%@ include
+	file="/WEB-INF/jsp/framework/component/include_individual.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 
-<form id="addForm" >
+<form id="addForm">
 	<div class="easyui-panel ibms_form_panel">
 		<div class="ibms_form_default">
 			<input type="hidden" name="id" value="${asset.id }">
-	        <ul>
-	           <li><font>省：</font><h1><input id="province" name="provinceId"  type="text" class="easyui-combobox"></h1></li>
-	           <li><font>市：</font><h1><input id="city" name="cityId"  type="text" class="easyui-combobox"></h1></li>
-	           <li><font>品牌：</font><h1><input id="brandId" name="brandId"  type="text" class="easyui-combobox"></h1></li>
-	           <li><font>型号：</font><h1><input id="assetType" name="assetTypeId"  type="text" class="easyui-combobox"></h1></li>
-	           <li><font>分享店：</font><h1><input id="shopId" name="shopId"  type="text" class="easyui-combobox"></h1></li>
-	           <li><font>编码：</font><h1><input name="code"  type="text" value="${asset.code }"></h1></li>
-	           <li><font>使用时长：</font><h1><input name="useTime"  type="text" value="${asset.useTime }"></h1></li>
-	           <li><font>出租状态：</font><h1><select id="rent" name="rent" class="easyui-combobox" data-options="editable:false">
-	           	</select>
-	           </h1></li>
-	           <li><font>所在位置：</font><h1><select id="location" name="location" class="easyui-combobox" data-options="editable:false">
-	           </select></h1></li>
-	           <li><font>加密狗：</font><h1><input name="softDog"  type="text" value="${asset.softDog }"></h1></li>
-	           <li><font>是否保险：</font><h1><select id="insurance" name="insurance" class="easyui-combobox"  data-options="editable:false">
-	           	</select></h1></li>
-	           <li><font>保险单号：</font><h1><input name="insuranceId"  type="text" value="${asset.insuranceId }"></h1></li>
-	           <li><font>保险金额：</font><h1><input name="insuranceAmount"  type="text" value="${asset.insuranceAmount }"></h1></li>
-	        </ul>
-        </div>
-        <div class="ibms_clear"></div>
-	    <div class="ibms_form_btn">
-	        <a href="#" class="query_list_button auto-savebutton" data-options="iconCls:'icon-save',plain:true,url:'${pageContext.request.contextPath}/web/asset/update',autoclose:true">保存</a>
-	        <a href="#" class="query_list_button auto-resetbutton">重 置</a>
-        </div>
+			<ul>
+				<li><font>省：</font>
+				<h1>
+						<input id="province" name="provinceId" type="text"
+							class="easyui-combobox">
+					</h1></li>
+				<li><font>市：</font>
+				<h1>
+						<input id="city" name="cityId" type="text" class="easyui-combobox">
+					</h1></li>
+				<li><font>品牌：</font>
+				<h1>
+						<input id="brandId" name="brandId" type="text"
+							class="easyui-combobox">
+					</h1></li>
+				<li><font>型号：</font>
+				<h1>
+						<input id="assetType" name="assetTypeId" type="text"
+							class="easyui-combobox">
+					</h1></li>
+				<li><font>分享店：</font>
+				<h1>
+						<input id="shopId" name="shopId" type="text"
+							class="easyui-combobox">
+					</h1></li>
+				<li><font>编码：</font>
+				<h1>
+						<input name="code" type="text" value="${asset.code }">
+					</h1></li>
+				<li><font>使用时长：</font>
+				<h1>
+						<input name="useTime" type="text" value="${asset.useTime }">
+					</h1></li>
+				<li><font>出租状态：</font>
+				<h1>
+						<select id="rent" name="rent" class="easyui-combobox"
+							data-options="editable:false">
+						</select>
+					</h1></li>
+				<li><font>所在位置：</font>
+				<h1>
+						<select id="location" name="location" class="easyui-combobox"
+							data-options="editable:false">
+						</select>
+					</h1></li>
+				<li><font>加密狗：</font>
+				<h1>
+						<input name="softDog" type="text" value="${asset.softDog }">
+					</h1></li>
+				<li><font>是否保险：</font>
+				<h1>
+						<select id="insurance" name="insurance" class="easyui-combobox"
+							data-options="editable:false">
+						</select>
+					</h1></li>
+				<li><font>保险单号：</font>
+				<h1>
+						<input name="insuranceId" type="text"
+							value="${asset.insuranceId }">
+					</h1></li>
+				<li><font>保险金额：</font>
+				<h1>
+						<input name="insuranceAmount" type="text"
+							value="${asset.insuranceAmount }">
+					</h1></li>
+			</ul>
+		</div>
+		<div class="ibms_clear"></div>
+		<div class="ibms_form_btn">
+			<a href="#" class="query_list_button auto-savebutton"
+				data-options="iconCls:'icon-save',plain:true,url:'${pageContext.request.contextPath}/web/asset/update',autoclose:true">保存</a>
+			<a href="#" class="query_list_button auto-resetbutton">重 置</a>
+		</div>
 	</div>
 </form>
 

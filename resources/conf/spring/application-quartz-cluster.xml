@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:util="http://www.springframework.org/schema/util"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"
-       default-lazy-init="false">
+	default-lazy-init="false">
 
-    <!-- Quartz集群Schduler -->
-    <bean id="clusterQuartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-        <!-- Triggers集成 -->
-        <property name="triggers">
-            <list>
-<!--                 <ref bean="ClusterTriggerSample" /> -->
-            </list>
-        </property>
-        
-        <!--  quartz配置文件路径-->
-        <property name="configLocation" value="classpath:conf/etc/utils/quartz.properties" />
-        <property name="applicationContextSchedulerContextKey" value="applicationContext" />
-        <property name="jobFactory">
-            <bean class="com.u2u.common.component.timer.AutoWiringSpringBeanJobFactory" />
-        </property>
-    </bean>
+	<!-- Quartz集群Schduler -->
+	<bean id="clusterQuartzScheduler"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<!-- Triggers集成 -->
+		<property name="triggers">
+			<list>
+				<!-- <ref bean="ClusterTriggerSample" /> -->
+			</list>
+		</property>
 
-    <bean id="ClusterTriggerSample" class="org.springframework.scheduling.quartz.CronTriggerBean">
-        <property name="jobDetail" ref="ClusterJobDetailSample" />
-        <!-- 每15秒执行一次 -->
-        <property name="cronExpression" value="0 0/15 * * * ?" />
-    </bean>
+		<!-- quartz配置文件路径 -->
+		<property name="configLocation" value="classpath:conf/etc/utils/quartz.properties" />
+		<property name="applicationContextSchedulerContextKey" value="applicationContext" />
+		<property name="jobFactory">
+			<bean class="com.u2u.common.component.timer.AutoWiringSpringBeanJobFactory" />
+		</property>
+	</bean>
 
-    <!-- Timer JobDetail, 基于JobDetailBean实例化Job Class,可持久化到数据库实现集群 -->
-    <bean id="ClusterJobDetailSample" class="org.springframework.scheduling.quartz.JobDetailBean">
-        <property name="jobClass" value="com.u2u.ibms.demo.test.service.ClusterTimerSample" />
-    </bean>
-    
+	<bean id="ClusterTriggerSample" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="ClusterJobDetailSample" />
+		<!-- 每15秒执行一次 -->
+		<property name="cronExpression" value="0 0/15 * * * ?" />
+	</bean>
+
+	<!-- Timer JobDetail, 基于JobDetailBean实例化Job Class,可持久化到数据库实现集群 -->
+	<bean id="ClusterJobDetailSample" class="org.springframework.scheduling.quartz.JobDetailBean">
+		<property name="jobClass"
+			value="com.u2u.ibms.demo.test.service.ClusterTimerSample" />
+	</bean>
+
 </beans>

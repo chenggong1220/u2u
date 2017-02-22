@@ -1,19 +1,44 @@
-<%@ include file="/WEB-INF/jsp/framework/component/include_individual.jsp"%>
+<%@ include
+	file="/WEB-INF/jsp/framework/component/include_individual.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
-<form id="addForm" >
+<form id="addForm">
 	<div class="easyui-panel ibms_form_panel">
 		<div class="ibms_form_default">
-	        <ul>
-	        	<li><font>合同编号：</font><h1><input name="deposit"  type="text" value="${billcheck.contract.contractId }" disabled="disabled"></h1></li>
-	        	<li><font>账单期数：</font><h1><input name="deposit"  type="text" value="${billcheck.currentTerm }" disabled="disabled"></h1></li>
-	        	<li><font>出账日期：</font><h1><input name="deposit"  type="text" value="${billcheck.outdateView }" disabled="disabled"></h1></li>
-	        	<li><font>付款截止日期：</font><h1><input name="deposit"  type="text" value="${billcheck.enddateView }" disabled="disabled"></h1></li>
-	        	<li><font>计费时长：</font><h1><input name="deposit"  type="text" value="${billcheck.useTime }" disabled="disabled"></h1></li>
-	        	<li><font>当期总费用：</font><h1><input name="deposit"  type="text" value="${billcheck.allAmount }" disabled="disabled"></h1></li>
-	        </ul>
+			<ul>
+				<li><font>合同编号：</font>
+				<h1>
+						<input name="deposit" type="text"
+							value="${billcheck.contract.contractId }" disabled="disabled">
+					</h1></li>
+				<li><font>账单期数：</font>
+				<h1>
+						<input name="deposit" type="text"
+							value="${billcheck.currentTerm }" disabled="disabled">
+					</h1></li>
+				<li><font>出账日期：</font>
+				<h1>
+						<input name="deposit" type="text"
+							value="${billcheck.outdateView }" disabled="disabled">
+					</h1></li>
+				<li><font>付款截止日期：</font>
+				<h1>
+						<input name="deposit" type="text"
+							value="${billcheck.enddateView }" disabled="disabled">
+					</h1></li>
+				<li><font>计费时长：</font>
+				<h1>
+						<input name="deposit" type="text"
+							value="${billcheck.useDuration }" disabled="disabled">
+					</h1></li>
+				<li><font>当期总费用：</font>
+				<h1>
+						<input name="deposit" type="text" value="${billcheck.allAmount }"
+							disabled="disabled">
+					</h1></li>
+			</ul>
 			<div class="ibms_clear"></div>
-        </div>
-        <div class="ibms_form_default">
+		</div>
+		<div class="ibms_form_default">
 			<table id="querygrid" class="easyui-datagrid" title="设备清单"
 				data-options="
 						iconCls: 'icon-edit',

@@ -1,69 +1,82 @@
-.clearfix:before,.clearfix:after{
+.clearfix:before, .clearfix:after {
 	display: table;
 	content: " ";
 }
-.clearfix:after{clear: both;}
-.timeline-title{ 
-	font-size:12px;
-	font-weight:bold;
-	color:#085f55;
-	padding:5px;
-	margin-bottom:5px;
-	border-bottom:1px solid #c8c8c8;
+
+.clearfix:after {
+	clear: both;
 }
-.timeline{
-	position:relative;
-	padding:0 100px;
+
+.timeline-title {
+	font-size: 12px;
+	font-weight: bold;
+	color: #085f55;
+	padding: 5px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #c8c8c8;
 }
-.timeline > div{
-	position:relative;
-	height:50px;
-	cursor:pointer;
+
+.timeline {
+	position: relative;
+	padding: 0 100px;
 }
-.timeline > div > h1,.timeline > div > h2{
-	position:absolute;
-	top:0;
-	font-size:12px;
+
+.timeline>div {
+	position: relative;
+	height: 50px;
+	cursor: pointer;
 }
-.timeline > div > h1{
-	left:50%;
-	width:24px;
-	margin-left:-12px;
-	height:50px;
-	background:
-	url(../images/timeline-normal.png) no-repeat 0 50%,
-	url(../images/timeline.png) repeat-y 0 0;
-	color:#fff;
+
+.timeline>div>h1, .timeline>div>h2 {
+	position: absolute;
+	top: 0;
+	font-size: 12px;
 }
-.timeline > div > h2{
-	top:8px;
-	width:37%;
-	height:30px;
-	line-height:30px;
-	text-align:center;
-	background-color:#fff;
-	border:1px solid #096358;
-	color:#096358;
+
+.timeline>div>h1 {
+	left: 50%;
+	width: 24px;
+	margin-left: -12px;
+	height: 50px;
+	background: url(../images/timeline-normal.png) no-repeat 0 50%,
+		url(../images/timeline.png) repeat-y 0 0;
+	color: #fff;
 }
-.timeline > div:nth-child(2n+1) > h2{
-	right:0;
+
+.timeline>div>h2 {
+	top: 8px;
+	width: 37%;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	background-color: #fff;
+	border: 1px solid #096358;
+	color: #096358;
 }
-.timeline > div:nth-child(2n) > h2{
-	left:0;
+
+.timeline>div:nth-child(2n+1)>h2 {
+	right: 0;
 }
-.timeline > div.active > h1{
-	background:
-	url(../images/timeline-active.png) no-repeat 0 50%,
-	url(../images/timeline.png) repeat-y 0 0;
+
+.timeline>div:nth-child(2n)>h2 {
+	left: 0;
 }
-.timeline > div.active > h2{
-	background-color:#d3656a;
-	border:1px solid #d83a40;
-	color:#fff;
+
+.timeline>div.active>h1 {
+	background: url(../images/timeline-active.png) no-repeat 0 50%,
+		url(../images/timeline.png) repeat-y 0 0;
 }
-.timeline > div:nth-child(2n+1){
-	background:url(../images/timeline-line.png) no-repeat 90% 50%;
+
+.timeline>div.active>h2 {
+	background-color: #d3656a;
+	border: 1px solid #d83a40;
+	color: #fff;
 }
-.timeline > div:nth-child(2n){
-	background:url(../images/timeline-line.png) no-repeat 10% 50%;
+
+.timeline>div:nth-child(2n+1) {
+	background: url(../images/timeline-line.png) no-repeat 90% 50%;
+}
+
+.timeline>div:nth-child(2n) {
+	background: url(../images/timeline-line.png) no-repeat 10% 50%;
 }

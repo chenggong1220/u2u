@@ -111,19 +111,22 @@ public class CustomerService extends BaseService {
 	
 	public void update(HttpServletRequest request, 
 			RentCompanyInfo rentCompanyInfo, RentPersonInfo rentPersonInfo) {
-		String rentPersonType = request.getParameter("rentPersonType");
-
-		if (rentPersonType.equals("0")) {
+		String custType = request.getParameter("rentPersonType");
+		
+		custType = "0";
+		if(custType.equals("0")) {
 			//个人客户
+			System.out.println("1111111111111111===ID " + rentPersonInfo.getId());
+			//System.out.println("2222222222222222======ID " + rentPersonInfo.getId());
 			rentPersonInfo
-					.setName(this.getStartComma(rentPersonInfo.getName()));
-			rentPersonInfo.setAddress(this.getStartComma(rentPersonInfo
-					.getAddress()));
-			rentPersonInfo.setPostcode(this.getStartComma(rentPersonInfo
-					.getPostcode()));
+					.setName(rentPersonInfo.getName());
+			rentPersonInfo.setAddress(rentPersonInfo
+					.getAddress());
+			rentPersonInfo.setPostcode(rentPersonInfo
+					.getPostcode());
 			rentPersonInfo.setCreateDate(DateUtil.currentTimestamp());
 			rentPersonInfo.setOperateDate(DateUtil.currentTimestamp());
-			rentPersonMapper.insert(rentPersonInfo);
+			rentPersonMapper.update(rentPersonInfo);
 		} else {
 			//企业客户
 			rentCompanyInfo
@@ -138,7 +141,7 @@ public class CustomerService extends BaseService {
 			rentCompanyInfo.setIdCardFrontImg(rentCompanyInfo.getC_idCardFrontImg());
 			rentCompanyInfo.setIdCardBackImg(rentCompanyInfo.getC_idCardBackImg());
 			rentCompanyInfo.setIdCardHandImg(rentCompanyInfo.getC_idCardHandImg());
-			rentCompanyMapper.insert(rentCompanyInfo);
+			rentCompanyMapper.update(rentCompanyInfo);
 		}
 	}	
 	
@@ -147,7 +150,6 @@ public class CustomerService extends BaseService {
 		if(custType.equals("0"))
 		{
 			RentPersonInfo rentPersonInfo = rentPersonMapper.getById(Integer.parseInt(id));
-			System.out.println(rentPersonInfo.getIdCardFrontImg() + "==========" + rentPersonInfo.getIdCardImg());
 			customer.setRentPersonInfo(rentPersonInfo);
 		}else{
 			RentCompanyInfo rentCompanyInfo = rentCompanyMapper.getById(Integer.parseInt(id));
@@ -164,7 +166,7 @@ public class CustomerService extends BaseService {
 		for (final Customer customer : customers) {
 			this.convertOrder(customer);
 		}
-*/		
+*/
 		return customers;
 	}	
 	

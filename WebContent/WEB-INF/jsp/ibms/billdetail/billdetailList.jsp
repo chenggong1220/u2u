@@ -11,11 +11,28 @@
 		data-options="iconCls:'icon-search',collapsible:true" title="设备使用情况查询">
 		<div class="ibms_form_default">
 			<ul>
-				<li><font>客户名：</font><h1><input id="customer" name="customer" type="text"></h1></li>
-				<li><font>设备序列号：</font><h1><input id="deviceno" name="deviceno" type="text"></h1></li>
-				<li><font>开始时间：</font><h1><input id="startDate" name="startDate" type="text" class="easyui-datebox"></h1></li>
-				<li><font>结束时间：</font><h1><input id="endDate" name="endDate" type="text" class="easyui-datebox"></h1></li>
-				<li><font>设备型号：</font><h1><input id="type" name="type" type="text"></h1></li>
+				<li><font>客户名：</font>
+				<h1>
+						<input id="customer" name="customer" type="text">
+					</h1></li>
+				<li><font>设备序列号：</font>
+				<h1>
+						<input id="deviceno" name="deviceno" type="text">
+					</h1></li>
+				<li><font>开始时间：</font>
+				<h1>
+						<input id="startDate" name="startDate" type="text"
+							class="easyui-datebox">
+					</h1></li>
+				<li><font>结束时间：</font>
+				<h1>
+						<input id="endDate" name="endDate" type="text"
+							class="easyui-datebox">
+					</h1></li>
+				<li><font>设备型号：</font>
+				<h1>
+						<input id="type" name="type" type="text">
+					</h1></li>
 			</ul>
 		</div>
 		<div class="ibms_clear"></div>
@@ -57,10 +74,10 @@
 	</thead>
 </table>
 <div id="tb" style="height: auto">
-<!-- 	<a href="javascript:void(0)" class="easyui-linkbutton auto-addbutton" -->
-<%-- 		data-options="iconCls:'icon-add',plain:true,url:'${pageContext.request.contextPath}/web/billdetail/add'">添加</a> --%>
-<!-- 	<a href="javascript:void(0)" class="easyui-linkbutton auto-editbutton" -->
-<%-- 		data-options="iconCls:'icon-edit',plain:true,index:'id',url:'${pageContext.request.contextPath}/web/billdetail/edit'">修改</a> --%>
+	<!-- 	<a href="javascript:void(0)" class="easyui-linkbutton auto-addbutton" -->
+	<%-- 		data-options="iconCls:'icon-add',plain:true,url:'${pageContext.request.contextPath}/web/billdetail/add'">添加</a> --%>
+	<!-- 	<a href="javascript:void(0)" class="easyui-linkbutton auto-editbutton" -->
+	<%-- 		data-options="iconCls:'icon-edit',plain:true,index:'id',url:'${pageContext.request.contextPath}/web/billdetail/edit'">修改</a> --%>
 	<a href="javascript:void(0)" class="easyui-linkbutton auto-delbutton"
 		data-options="iconCls:'icon-remove',plain:true,index:'id',url:'${pageContext.request.contextPath}/web/billdetail/delete'">删除</a>
 	<a href="javascript:openDialog('#importFile')"

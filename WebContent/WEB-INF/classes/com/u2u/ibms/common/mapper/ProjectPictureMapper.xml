@@ -5,7 +5,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.u2u.ibms.common.mapper.ProjectPictureMapper">
 
-	<resultMap id="projectPicture" type="com.u2u.ibms.common.beans.ProjectPicture" extends="baseBean">
+	<resultMap id="projectPicture" type="com.u2u.ibms.common.beans.ProjectPicture"
+		extends="baseBean">
 		<result property="id" jdbcType="INTEGER" column="id" />
 		<result property="projectId" jdbcType="INTEGER" column="project_id" />
 		<result property="pictureIndex" jdbcType="INTEGER" column="picture_index" />
@@ -18,11 +19,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		picture,
 		<include refid="BASE_BEAN_SQL" />
 	</sql>
-	
+
 	<select id="getAll" resultMap="projectPicture">
 		SELECT
-		    ID,
-			<include refid="BASE_PROJECT_PICTURE_SQL" />
+		ID,
+		<include refid="BASE_PROJECT_PICTURE_SQL" />
 		FROM T_PROJECT_PICTURE
 		<where>
 			<if test="projectId!=null">
@@ -34,10 +35,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 	<select id="getByProjectIdAndIndex" resultMap="projectPicture">
 		SELECT
-			ID,
-			<include refid="BASE_PROJECT_PICTURE_SQL" />
+		ID,
+		<include refid="BASE_PROJECT_PICTURE_SQL" />
 		FROM
-			T_PROJECT_PICTURE
+		T_PROJECT_PICTURE
 		<where>
 			<if test="projectId!=null">
 				and project_id = #{projectId}
@@ -50,44 +51,45 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 	<select id="getById" resultMap="projectPicture">
 		SELECT
-			ID,
-			<include refid="BASE_PROJECT_PICTURE_SQL" />
+		ID,
+		<include refid="BASE_PROJECT_PICTURE_SQL" />
 		FROM
-			T_PROJECT_PICTURE
+		T_PROJECT_PICTURE
 		WHERE
-			ID = #{id}
+		ID = #{id}
 	</select>
 
 	<insert id="insert">
 		INSERT INTO T_PROJECT_PICTURE
 		(
-			<include refid="BASE_PROJECT_PICTURE_SQL" />
+		<include refid="BASE_PROJECT_PICTURE_SQL" />
 		)
 		VALUES
 		(
-			#{projectId},
-			#{pictureIndex},
-			#{picture},
-			#{createDate},
-			#{operateDate}
+		#{projectId},
+		#{pictureIndex},
+		#{picture},
+		#{createDate},
+		#{operateDate}
 		)
 	</insert>
 
 	<update id="update">
 		UPDATE T_PROJECT_PICTURE
 		SET
-			project_id = #{projectId},
-			picture_index = #{pictureIndex},
-			picture = #{picture},
-			create_date = #{createDate},
-			operate_date = #{operateDate}
+		project_id = #{projectId},
+		picture_index = #{pictureIndex},
+		picture = #{picture},
+		create_date = #{createDate},
+		operate_date = #{operateDate}
 		where
-			id = #{id}
+		id = #{id}
 	</update>
 
 	<delete id="delete">
 		DELETE FROM T_PROJECT_PICTURE
-		WHERE project_id = #{projectId}
+		WHERE project_id =
+		#{projectId}
 	</delete>
 
 </mapper>

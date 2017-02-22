@@ -13,6 +13,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.springframework.util.Assert;
 
+import com.u2u.framework.config.AppConfiguration;
+
 /**
  * 
  * @ClassName: DateUtil <br>
@@ -145,7 +147,8 @@ public class DateUtil
         // } else {
         // System.out.println("ok");
         // }
-        
+    	//System.out.println(getNextMonthDate("2016-12-12 12:12:12"));
+    	//ystem.out.println(getNextMonthDate("2017-02-28 12:12:12"));
     }
     
     public static Date string2Date(final String strDate, String pattern)
@@ -258,4 +261,78 @@ public class DateUtil
         }
         return new SimpleDateFormat(pattern).format(new Date(timestamp.getTime()));
     }
+    
+    
+    //Start: Add functions by SUNZHE, 2017-02-22
+    public static String getThisYear()
+    {
+    	Calendar cal = Calendar.getInstance();
+        return String.valueOf(cal.get(Calendar.YEAR));
+    }
+    
+    public static String getThisMonth()
+    {
+    	Calendar cal = Calendar.getInstance();
+    	int month = cal.get(Calendar.MONTH) + 1;    	
+        if (month < 10)
+        {
+            return "0".concat(String.valueOf(month));
+        }
+        return String.valueOf(month);
+    }
+    
+    public static String getDateTime(String baseDate, String dayTime)
+    {
+        if (dayTime == null || dayTime.equals("") || baseDate == null || baseDate.equals(""))
+        {
+            throw new java.lang.IllegalArgumentException("BaseDate or DateTime is null");
+        }
+        String dateTime = baseDate.substring(0,8) + dayTime;
+        return String.valueOf(dateTime);
+    }   
+    
+    public static String getDateTime(String year, String month, String dateTime)
+    {
+        if (dateTime == null || dateTime.equals(""))
+        {
+            throw new java.lang.IllegalArgumentException("DateTime is null");
+        }
+    	dateTime = year + "-" + month + "-" + dateTime;
+        return String.valueOf(dateTime);
+    }
+    
+    public static int compareDate(final Timestamp firstDate, final Timestamp secondDate)
+    {
+        if (firstDate == null || secondDate == null)
+        {
+            throw new java.lang.RuntimeException();
+        }
+
+        //获得两个日期的时间差（天）
+        return (int)Math.ceil((firstDate.getTime() - secondDate.getTime())/1000/60/60/24 - 1);
+    }    
+    
+    public static String getNextMonthDate(String dateTime)
+    {
+    	//时间类型为：yyyy-MM-dd hh:mm:ss
+    	String year = dateTime.substring(0, 4);
+    	String month = dateTime.substring(5, 7);
+    	String dayTime = dateTime.substring(8);
+    	
+    	if(month.equals("12"))
+    	{
+    		year = String.valueOf((Integer.parseInt(year) + 1));
+    		month = "01";
+    	}else{
+            if ((Integer.parseInt(month) + 1) < 10)
+            {
+                month = "0".concat(String.valueOf((Integer.parseInt(month) + 1)));
+            }else{
+            	month = String.valueOf((Integer.parseInt(month) + 1));
+            }
+    	}
+    	return year + "-" + month + "-" + dayTime; 
+    }
+    //End: Add functions by SUNZHE, 2017-02-22
 }
+

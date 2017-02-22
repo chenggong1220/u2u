@@ -5,7 +5,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.u2u.ibms.common.mapper.MailHistoryMapper">
 
-	<resultMap id="mailHistory" type="com.u2u.ibms.common.beans.MailHistory" extends="baseBean">
+	<resultMap id="mailHistory" type="com.u2u.ibms.common.beans.MailHistory"
+		extends="baseBean">
 		<result property="id" jdbcType="INTEGER" column="id" />
 		<result property="operatorId" jdbcType="INTEGER" column="operator_id" />
 		<result property="contractId" jdbcType="INTEGER" column="contract_id" />
@@ -24,11 +25,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		ATTACH,
 		<include refid="BASE_BEAN_SQL" />
 	</sql>
-	
+
 	<select id="getAll" resultMap="mailHistory">
 		SELECT
-		    ID,
-			<include refid="BASE_MAIL_HISTORY_SQL" />
+		ID,
+		<include refid="BASE_MAIL_HISTORY_SQL" />
 		FROM T_MAIL_HISTORY
 		<where>
 			<if test="operatorId!=null">
@@ -40,45 +41,45 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 	<select id="getByContractId" resultMap="mailHistory">
 		SELECT
-			ID,
-			<include refid="BASE_MAIL_HISTORY_SQL" />
+		ID,
+		<include refid="BASE_MAIL_HISTORY_SQL" />
 		FROM
-			T_MAIL_HISTORY
+		T_MAIL_HISTORY
 		WHERE
-			contract_id = #{contractId}
+		contract_id = #{contractId}
 	</select>
 
 	<insert id="insert">
 		INSERT INTO T_MAIL_HISTORY
 		(
-			<include refid="BASE_MAIL_HISTORY_SQL" />
+		<include refid="BASE_MAIL_HISTORY_SQL" />
 		)
 		VALUES
 		(
-			#{operatorId},
-			#{contractId},
-			#{title},
-			#{sendTo},
-			#{contractFile},
-			#{attach},
-			#{createDate},
-			#{operateDate}
+		#{operatorId},
+		#{contractId},
+		#{title},
+		#{sendTo},
+		#{contractFile},
+		#{attach},
+		#{createDate},
+		#{operateDate}
 		)
 	</insert>
 
 	<update id="update">
 		UPDATE T_MAIL_HISTORY
 		SET
-			OPERATOR_ID = #{operatorId},
-			CONTRACT_ID = #{contractId},
-			TITLE = #{title},
-			SEND_TO = #{sendTo},
-			CONTRACT_FILE = #{contractFile},
-			ATTACH = #{attach},
-			create_date = #{createDate},
-			operate_date = #{operateDate}
+		OPERATOR_ID = #{operatorId},
+		CONTRACT_ID = #{contractId},
+		TITLE = #{title},
+		SEND_TO = #{sendTo},
+		CONTRACT_FILE = #{contractFile},
+		ATTACH = #{attach},
+		create_date = #{createDate},
+		operate_date = #{operateDate}
 		where
-			id = #{id}
+		id = #{id}
 	</update>
 
 	<delete id="delete">

@@ -16,7 +16,7 @@ public class Combo extends BaseBean {
 	private String name;
 	private int type;
 	private float amount;
-	private int minimumUseTime;
+	private float minimumUseTime;
 	private String amountRule;
 	private String notice;
 	// 是否明星产品
@@ -80,11 +80,11 @@ public class Combo extends BaseBean {
 		this.amount = amount;
 	}
 
-	public int getMinimumUseTime() {
+	public float getMinimumUseTime() {
 		return minimumUseTime;
 	}
 
-	public void setMinimumUseTime(int minimumUseTime) {
+	public void setMinimumUseTime(float minimumUseTime) {
 		this.minimumUseTime = minimumUseTime;
 	}
 
@@ -111,5 +111,4 @@ public class Combo extends BaseBean {
 	public void setAssetTypeId(int assetTypeId) {
 		this.assetTypeId = assetTypeId;
 	}
-
 }

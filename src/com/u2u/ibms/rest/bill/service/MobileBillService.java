@@ -34,7 +34,7 @@ public class MobileBillService {
 		for (BillCheck billCheck : billChecks) {
 			BillListResponse response = new BillListResponse();
 			response.setOrderNo(billCheck.getOrderId() + "");
-			response.setTotalUsedTime(billCheck.getUseTime() + "");// 当月累计使用时长(小时)
+			response.setTotalUsedTime(billCheck.getUseDuration() + "");// 当月累计使用时长(小时)
 			response.setCurrentTotalCost(billCheck.getAllAmount() + "");// 当月总费用
 			list.add(response);
 		}
@@ -53,7 +53,7 @@ public class MobileBillService {
 	// response.setAmount(billCheck.getAllAmount()+"");//金额
 	// response.setPayStatus(billCheck.getPayStatus()+"");//支付状态
 	// response.setAccountPeriod(billCheck.getOutdate()+""); //账期
-	// response.setAccountPeriodStatus("");//账期状态(已出账、未出账)
+	// response.setAccountPeriodStatus("");//账期状态(已 、未出账)
 	// response.setPayTime(""); //缴费时间
 	//
 	// return response;

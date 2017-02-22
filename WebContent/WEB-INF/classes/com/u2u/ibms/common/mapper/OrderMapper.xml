@@ -5,46 +5,48 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.u2u.ibms.common.mapper.OrderMapper">
 
-	<resultMap id="order" type="com.u2u.ibms.common.beans.Order" extends="baseBean">
-        <result property="id" jdbcType="INTEGER" column="id"/>
-        <result property="code" jdbcType="VARCHAR" column="code"/>
-        <result property="userId" jdbcType="INTEGER" column="user_id"/>
-        <result property="rentType" jdbcType="INTEGER" column="rent_type"/>
-        <result property="subOrderId" jdbcType="INTEGER" column="sub_order_id"/>
-        <result property="startDate" jdbcType="DATE" column="start_date"/>
-        <result property="endDate" jdbcType="DATE" column="end_date"/>
-        <result property="rentDate" jdbcType="INTEGER" column="rent_date"/>
-        <result property="provinceId" jdbcType="INTEGER" column="province_id"/>
-        <result property="cityId" jdbcType="INTEGER" column="city_id"/>
-        <result property="detailLocation" jdbcType="VARCHAR" column="detail_location"/>
-        <result property="idCard" jdbcType="VARCHAR" column="id_card"/>
-        <result property="deposit" jdbcType="FLOAT" column="deposit"/>
-        <result property="leftDeposit" jdbcType="FLOAT" column="left_deposit"/>
-        <result property="depositCheck" jdbcType="FLOAT" column="deposit_check"/>
-        <result property="rentPersonType" jdbcType="INTEGER" column="rent_person_type"/>
-        <result property="rentPersonId" jdbcType="INTEGER" column="rent_person_id"/>
-        <result property="rentCompanyId" jdbcType="INTEGER" column="rent_company_id"/>
-        <result property="needInvoices" jdbcType="TINYINT" column="need_invoices"/>
-        <result property="createSource" jdbcType="INTEGER" column="create_source"/>
-        <result property="managerId" jdbcType="INTEGER" column="manager_id"/>
-        <result property="remark" jdbcType="VARCHAR" column="remark"/>
-        <result property="assigned" jdbcType="TINYINT" column="assigned"/>
-        <result property="feedback" jdbcType="VARCHAR" column="feedback"/>
-        <result property="feedStatus" jdbcType="TINYINT" column="feed_status"/>
-        <result property="status" jdbcType="VARCHAR" column="status"/>
-        <result property="operatorId" jdbcType="VARCHAR" column="operator_id"/>
-        <result property="operator" jdbcType="VARCHAR" column="operator"/>
-        <result property="operatorMobile" jdbcType="VARCHAR" column="operator_mobile"/>
-        <result property="custormerManager" jdbcType="VARCHAR" column="custormer_manager"/>
-        <result property="delStatus" jdbcType="TINYINT" column="del_status"/>
-        <result property="creditFile" jdbcType="VARCHAR" column="credit_file"/>
+	<resultMap id="order" type="com.u2u.ibms.common.beans.Order"
+		extends="baseBean">
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="code" jdbcType="VARCHAR" column="code" />
+		<result property="userId" jdbcType="INTEGER" column="user_id" />
+		<result property="rentType" jdbcType="INTEGER" column="rent_type" />
+		<result property="subOrderId" jdbcType="INTEGER" column="sub_order_id" />
+		<result property="startDate" jdbcType="DATE" column="start_date" />
+		<result property="endDate" jdbcType="DATE" column="end_date" />
+		<result property="rentDate" jdbcType="INTEGER" column="rent_date" />
+		<result property="provinceId" jdbcType="INTEGER" column="province_id" />
+		<result property="cityId" jdbcType="INTEGER" column="city_id" />
+		<result property="detailLocation" jdbcType="VARCHAR" column="detail_location" />
+		<result property="idCard" jdbcType="VARCHAR" column="id_card" />
+		<result property="deposit" jdbcType="FLOAT" column="deposit" />
+		<result property="leftDeposit" jdbcType="FLOAT" column="left_deposit" />
+		<result property="depositCheck" jdbcType="FLOAT" column="deposit_check" />
+		<result property="rentPersonType" jdbcType="INTEGER" column="rent_person_type" />
+		<result property="rentPersonId" jdbcType="INTEGER" column="rent_person_id" />
+		<result property="rentCompanyId" jdbcType="INTEGER" column="rent_company_id" />
+		<result property="needInvoices" jdbcType="TINYINT" column="need_invoices" />
+		<result property="createSource" jdbcType="INTEGER" column="create_source" />
+		<result property="managerId" jdbcType="INTEGER" column="manager_id" />
+		<result property="remark" jdbcType="VARCHAR" column="remark" />
+		<result property="assigned" jdbcType="TINYINT" column="assigned" />
+		<result property="feedback" jdbcType="VARCHAR" column="feedback" />
+		<result property="feedStatus" jdbcType="TINYINT" column="feed_status" />
+		<result property="status" jdbcType="VARCHAR" column="status" />
+		<result property="operatorId" jdbcType="VARCHAR" column="operator_id" />
+		<result property="operator" jdbcType="VARCHAR" column="operator" />
+		<result property="operatorMobile" jdbcType="VARCHAR" column="operator_mobile" />
+		<result property="custormerManager" jdbcType="VARCHAR"
+			column="custormer_manager" />
+		<result property="delStatus" jdbcType="TINYINT" column="del_status" />
+		<result property="creditFile" jdbcType="VARCHAR" column="credit_file" />
 	</resultMap>
-	
+
 	<resultMap type="com.u2u.ibms.common.CustomerName" id="customerName">
-	  <result property="id" jdbcType="VARCHAR" column="id"/>
-	    <result property="customerName" jdbcType="VARCHAR" column="NAME"/>
+		<result property="id" jdbcType="VARCHAR" column="id" />
+		<result property="customerName" jdbcType="VARCHAR" column="NAME" />
 	</resultMap>
-	
+
 	<sql id="BASE_ORDER_SQL">
 		CODE,
 		user_id,
@@ -77,15 +79,15 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		customer_manager,
 		del_status,
 		credit_file,
-		<include refid="BASE_BEAN_SQL"/>
+		<include refid="BASE_BEAN_SQL" />
 	</sql>
-	
+
 	<select id="getAll" resultMap="order">
 		SELECT
-			ID,
-			<include refid="BASE_ORDER_SQL" />
+		ID,
+		<include refid="BASE_ORDER_SQL" />
 		FROM
-			T_ORDER t
+		T_ORDER t
 		<where>
 			del_status = #{delStatus}
 			<if test="code!=null">
@@ -102,7 +104,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test="depositCheck!=null">
 				and deposit_check = #{depositCheck}
-			</if>	
+			</if>
 			<if test="startDate!=null">
 				and operate_date &gt;= #{startDate}
 			</if>
@@ -121,137 +123,137 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			<if test="operator!=null">
 				AND operator = #{operator}
 			</if>
-			
+
 			<if test="customerName!=null">
-					AND t.id in (
-							SELECT o.`id` AS o_id FROM t_order o
-							JOIN t_rent_person_Info r 
-							ON o.`rent_person_id` = r.`id`
-							WHERE o.`rent_person_type`=0
-							AND r.name LIKE CONCAT('%',#{customerName},'%')
-							UNION
-							SELECT o.`id` AS o_id FROM t_order o
-							JOIN t_rent_company_info r 
-							ON o.`rent_company_id` = r.`id`
-							WHERE o.`rent_person_type` = 1
-							AND r.name LIKE  CONCAT('%',#{customerName},'%')
-							UNION SELECT DISTINCT -1 FROM t_order
-					)
+				AND t.id in (
+				SELECT o.`id` AS o_id FROM t_order o
+				JOIN t_rent_person_Info r
+				ON o.`rent_person_id` = r.`id`
+				WHERE o.`rent_person_type`=0
+				AND r.name LIKE CONCAT('%',#{customerName},'%')
+				UNION
+				SELECT o.`id` AS o_id FROM t_order o
+				JOIN t_rent_company_info r
+				ON o.`rent_company_id` = r.`id`
+				WHERE o.`rent_person_type` = 1
+				AND r.name LIKE CONCAT('%',#{customerName},'%')
+				UNION SELECT DISTINCT -1 FROM t_order
+				)
 			</if>
-			
+
 			<if test="assetProvinceId!=null">
 				AND province_id = #{assetProvinceId}
 			</if>
-			
-			
+
+
 		</where>
 		ORDER BY CREATE_DATE DESC
 	</select>
-	
+
 	<select id="getById" resultMap="order">
 		SELECT
-			ID,
-			<include refid="BASE_ORDER_SQL" />
+		ID,
+		<include refid="BASE_ORDER_SQL" />
 		FROM
-			T_ORDER
+		T_ORDER
 		WHERE
-			ID = #{id}
+		ID = #{id}
 	</select>
-	
-	<insert id="insert"   useGeneratedKeys="true" keyProperty="id">
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO T_ORDER
 		(
-			<include refid="BASE_ORDER_SQL" />
+		<include refid="BASE_ORDER_SQL" />
 		)
 		VALUES
 		(
-			#{code},
-	        #{userId},
-	        #{rentType},
-	        #{subOrderId},
-	        #{startDate},
-	        #{endDate},
-	        #{rentDate},
-	        #{provinceId},
-	        #{cityId},
-	        #{detailLocation},
-	        #{idCard},
-	        #{deposit},
-	        #{leftDeposit},
-	        #{depositCheck},
-	        #{rentPersonType},
-	        #{rentPersonId},
-	        #{rentCompanyId},
-	        #{needInvoices},
-	        #{createSource},
-	        #{managerId},
-	        #{remark},
-	        #{assigned},
-	        #{feedback},
-	        #{feedStatus},
-	        #{status},
-	        #{operatorId},
-	        #{operator},
-			#{operatorMobile},
-			#{customerManager},
-			#{delStatus},
-			#{creditFile},
-			#{createDate},
-			#{operateDate}
+		#{code},
+		#{userId},
+		#{rentType},
+		#{subOrderId},
+		#{startDate},
+		#{endDate},
+		#{rentDate},
+		#{provinceId},
+		#{cityId},
+		#{detailLocation},
+		#{idCard},
+		#{deposit},
+		#{leftDeposit},
+		#{depositCheck},
+		#{rentPersonType},
+		#{rentPersonId},
+		#{rentCompanyId},
+		#{needInvoices},
+		#{createSource},
+		#{managerId},
+		#{remark},
+		#{assigned},
+		#{feedback},
+		#{feedStatus},
+		#{status},
+		#{operatorId},
+		#{operator},
+		#{operatorMobile},
+		#{customerManager},
+		#{delStatus},
+		#{creditFile},
+		#{createDate},
+		#{operateDate}
 		)
 	</insert>
 
 	<update id="update">
 		UPDATE T_ORDER
 		SET
-			code = #{code},
-	        user_id = #{userId},
-	        rent_type = #{rentType},
-	        sub_order_id = #{subOrderId},
-	        start_date = #{startDate},
-	        end_date = #{endDate},
-	        rent_date = #{rentDate},
-	        province_id = #{provinceId},
-	        city_id = #{cityId},
-	        detail_location = #{detailLocation},
-	        id_card = #{idCard},
-	        deposit = #{deposit},
-	        left_deposit = #{leftDeposit},
-	        deposit_check = #{depositCheck},
-	        rent_person_type = #{rentPersonType},
-	        rent_person_id = #{rentPersonId},
-	        rent_company_id = #{rentCompanyId},
-	        need_invoices = #{needInvoices},
-	        create_source = #{createSource},
-	        manager_id = #{managerId},
-	        remark = #{remark},
-	        assigned = #{assigned},
-	        feedback = #{feedback},
-	        feed_status = #{feedStatus},
-	        status = #{status},
-	        operator_id = #{operatorId},
-			operator = #{operator},
-			operator_mobile = #{operatorMobile},
-			customer_manager = #{customerManager},
-			del_status = #{delStatus},
-			credit_file = #{creditFile},
-			create_date = #{createDate},
-			operate_date = #{operateDate}
+		code = #{code},
+		user_id = #{userId},
+		rent_type = #{rentType},
+		sub_order_id = #{subOrderId},
+		start_date = #{startDate},
+		end_date = #{endDate},
+		rent_date = #{rentDate},
+		province_id = #{provinceId},
+		city_id = #{cityId},
+		detail_location = #{detailLocation},
+		id_card = #{idCard},
+		deposit = #{deposit},
+		left_deposit = #{leftDeposit},
+		deposit_check = #{depositCheck},
+		rent_person_type = #{rentPersonType},
+		rent_person_id = #{rentPersonId},
+		rent_company_id = #{rentCompanyId},
+		need_invoices = #{needInvoices},
+		create_source = #{createSource},
+		manager_id = #{managerId},
+		remark = #{remark},
+		assigned = #{assigned},
+		feedback = #{feedback},
+		feed_status = #{feedStatus},
+		status = #{status},
+		operator_id = #{operatorId},
+		operator = #{operator},
+		operator_mobile = #{operatorMobile},
+		customer_manager = #{customerManager},
+		del_status = #{delStatus},
+		credit_file = #{creditFile},
+		create_date = #{createDate},
+		operate_date = #{operateDate}
 		where
-			id = #{id}
+		id = #{id}
 	</update>
 
 	<delete id="delete">
 		DELETE FROM T_ORDER
 		WHERE ID = #{id}
 	</delete>
-	
+
 	<select id="getByUser" resultMap="order">
 		SELECT
-			ID,
-			<include refid="BASE_ORDER_SQL" />
+		ID,
+		<include refid="BASE_ORDER_SQL" />
 		FROM
-			T_ORDER
+		T_ORDER
 		<where>
 			<if test="id!=null">
 				USER_ID = #{id}
@@ -259,11 +261,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		</where>
 		ORDER BY CREATE_DATE DESC
 	</select>
-	
+
 	<select id="getCustomerNames" resultMap="customerName">
-		SELECT ID,NAME FROM t_rent_person_info
+		SELECT ID,NAME FROM
+		t_rent_person_info
 		union
 		SELECT ID,NAME FROM t_rent_company_info
 	</select>
-	
+
 </mapper>

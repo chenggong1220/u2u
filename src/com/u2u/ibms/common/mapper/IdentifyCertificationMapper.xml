@@ -5,7 +5,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.u2u.ibms.common.mapper.IdentifyCertificationMapper">
 
-	<resultMap id="identifyCertification" type="com.u2u.ibms.common.beans.IdentifyCertification" extends="baseBean">
+	<resultMap id="identifyCertification"
+		type="com.u2u.ibms.common.beans.IdentifyCertification" extends="baseBean">
 		<result property="id" jdbcType="INTEGER" column="id" />
 		<result property="name" jdbcType="VARCHAR" column="name" />
 		<result property="idCard" jdbcType="VARCHAR" column="id_card" />
@@ -18,11 +19,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		id_img,
 		<include refid="BASE_BEAN_SQL" />
 	</sql>
-	
+
 	<select id="getByNameAndIdcard" resultMap="identifyCertification">
 		SELECT
-		    ID,
-			<include refid="BASE_IDENTIFY_CERTIFICATION_SQL" />
+		ID,
+		<include refid="BASE_IDENTIFY_CERTIFICATION_SQL" />
 		FROM T_IDENTIFY_CERTIFICATION
 		<where>
 			<if test="name!=null">
@@ -38,16 +39,16 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 	<insert id="insert">
 		INSERT INTO T_IDENTIFY_CERTIFICATION
 		(
-			<include refid="BASE_IDENTIFY_CERTIFICATION_SQL" />
+		<include refid="BASE_IDENTIFY_CERTIFICATION_SQL" />
 		)
 		VALUES
 		(
-			#{name},
-			#{idCard},
-			#{idImg},
-			#{createDate},
-			#{operateDate}
+		#{name},
+		#{idCard},
+		#{idImg},
+		#{createDate},
+		#{operateDate}
 		)
 	</insert>
-	
+
 </mapper>

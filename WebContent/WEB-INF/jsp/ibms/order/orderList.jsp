@@ -1,7 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/framework/component/include.jsp"%>
-<script type="text/javascript" src="<c:url value='/styles/js/location.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/styles/js/assetType.js'/>"></script>
+<script type="text/javascript"
+	src="<c:url value='/styles/js/location.js'/>"></script>
+<script type="text/javascript"
+	src="<c:url value='/styles/js/assetType.js'/>"></script>
 <form id="queryForm">
 	<div class="easyui-panel ibms_form_panel"
 		data-options="iconCls:'icon-search',collapsible:true" title="订单查询">
@@ -13,7 +15,8 @@
 					</h1></li>
 				<li><font>创建来源：</font>
 					<h1>
-						<select id="createSource" name="createSource" class="easyui-combobox" data-options="editable:false">
+						<select id="createSource" name="createSource"
+							class="easyui-combobox" data-options="editable:false">
 							<option value="">全部</option>
 							<option value="0">手机平台</option>
 							<option value="1">后台创建</option>
@@ -21,30 +24,35 @@
 					</h1></li>
 				<li><font>创建时间(始)：</font>
 					<h1>
-						<input id="startDate" name="startDate" type="text" class="easyui-datebox">
+						<input id="startDate" name="startDate" type="text"
+							class="easyui-datebox">
 					</h1></li>
 				<li><font>创建时间(终)：</font>
 					<h1>
-						<input id="endDate" name="endDate" type="text" class="easyui-datebox">
+						<input id="endDate" name="endDate" type="text"
+							class="easyui-datebox">
 					</h1></li>
 				<li><font>订单状态：</font>
 					<h1>
-						<select id="delStatus" name="delStatus" class="easyui-combobox" data-options="editable:false">
+						<select id="delStatus" name="delStatus" class="easyui-combobox"
+							data-options="editable:false">
 							<option value="false">正常</option>
 							<option value="true">已删除</option>
 						</select>
 					</h1></li>
-					<li><font>租赁类型：</font>
+				<li><font>租赁类型：</font>
 					<h1>
-						<select id="rentType" name="rentType" class="easyui-combobox" data-options="editable:false">
+						<select id="rentType" name="rentType" class="easyui-combobox"
+							data-options="editable:false">
 							<option value="">全部</option>
 							<option value="0">分时租赁</option>
 							<option value="1">分月租赁</option>
 						</select>
 					</h1></li>
-					<li><font>订单状态：</font>
+				<li><font>订单状态：</font>
 					<h1>
-						<select id="status" name="status" class="easyui-combobox" data-options="editable:false">
+						<select id="status" name="status" class="easyui-combobox"
+							data-options="editable:false">
 							<option value="">全部</option>
 							<option value="租赁申请">租赁申请</option>
 							<option value="订单处理">订单处理</option>
@@ -59,21 +67,21 @@
 							<option value="到货确认">到货确认</option>
 						</select>
 					</h1></li>
-					<li><font>客户姓名：</font>
+				<li><font>客户姓名：</font>
 					<h1>
 						<input id="customerName" name="customerName" type="text">
-					</h1>
-					</li>
-					<li><font>租赁物(省)：</font>
+					</h1></li>
+				<li><font>租赁物(省)：</font>
 					<h1>
-						<input id="provinceId" name="assetProvinceId" type="text" class="easyui-combobox">
+						<input id="provinceId" name="assetProvinceId" type="text"
+							class="easyui-combobox">
 					</h1></li>
 			</ul>
 		</div>
 		<div class="ibms_clear"></div>
 		<div class="ibms_form_btn">
-			<a href="#" class="auto-querybutton query_list_button">查 询</a>
-			<a href="#" class="auto-resetbutton query_list_button">重 置</a>
+			<a href="#" class="auto-querybutton query_list_button">查 询</a> <a
+				href="#" class="auto-resetbutton query_list_button">重 置</a>
 		</div>
 	</div>
 </form>
@@ -99,16 +107,20 @@
 			<th data-options="field:'id',checkbox:true">序列号</th>
 			<th data-options="field:'code',width:'10%',editor:'text'">订单编号</th>
 			<th data-options="field:'status',width:'6%'">状态</th>
-			<th data-options="field:'name',width:'15%',formatter:function(value,rec){if(rec.rentPersonType=='0'){return rec.rentPersonInfo.name;}else{return rec.rentCompanyInfo.name;}}">客户姓名</th>
-			<th data-options="field:'mobile',width:'10%',formatter:function(value,rec){if(rec.rentPersonType=='0'){return rec.rentPersonInfo.mobile;}else{return rec.rentCompanyInfo.legalMobile;}}">联系电话</th>
+			<th
+				data-options="field:'name',width:'15%',formatter:function(value,rec){if(rec.rentPersonType=='0'){return rec.rentPersonInfo.name;}else{return rec.rentCompanyInfo.name;}}">客户姓名</th>
+			<th
+				data-options="field:'mobile',width:'10%',formatter:function(value,rec){if(rec.rentPersonType=='0'){return rec.rentPersonInfo.mobile;}else{return rec.rentCompanyInfo.legalMobile;}}">联系电话</th>
 			<th data-options="field:'assetFullAdress',width:'20%'">放置地</th>
-			<th data-options="field:'rentType',width:'8%',formatter:function(value,rec){if(value=='0'){return '分时租赁' ;}else{return '分月租赁';}}">租赁类型</th>
+			<th
+				data-options="field:'rentType',width:'8%',formatter:function(value,rec){if(value=='0'){return '分时租赁' ;}else{return '分月租赁';}}">租赁类型</th>
 			<th data-options="field:'deposit',width:'8%'">保证金</th>
-			<th data-options="field:'needInvoices',width:'6%',formatter:function(value,rec){if(value==false){return '不需要' ;}else{return '需要';}}">需要发票</th>
+			<th
+				data-options="field:'needInvoices',width:'6%',formatter:function(value,rec){if(value==false){return '不需要' ;}else{return '需要';}}">需要发票</th>
 			<th data-options="field:'startDatetime',width:'7%'">起始时间</th>
 			<th data-options="field:'endDatetime',width:'7%'">结束时间</th>
 			<th data-options="field:'createTime',width:'15%'">创建时间</th>
-<!-- 			<th data-options="field:'name',width:'15%',formatter:function(value,rec){alert();}">客户姓名</th> -->
+			<!-- 			<th data-options="field:'name',width:'15%',formatter:function(value,rec){alert();}">客户姓名</th> -->
 		</tr>
 	</thead>
 </table>

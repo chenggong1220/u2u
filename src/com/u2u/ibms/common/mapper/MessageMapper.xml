@@ -3,32 +3,33 @@
 PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
-<mapper namespace="com.u2u.ibms.common.mapper.MessageMapper" >
-	
-	<resultMap id="message" type="com.u2u.ibms.common.beans.Message" extends="baseBean">
-        <result property="id" jdbcType="INTEGER" column="id"/>
-        <result property="title" jdbcType="VARCHAR" column="title"/>
-        <result property="content" jdbcType="VARCHAR" column="content"/>
-        <result property="type" jdbcType="VARCHAR" column="type"/>
-        <result property="msgType" jdbcType="VARCHAR" column="msg_type"/>
+<mapper namespace="com.u2u.ibms.common.mapper.MessageMapper">
+
+	<resultMap id="message" type="com.u2u.ibms.common.beans.Message"
+		extends="baseBean">
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="title" jdbcType="VARCHAR" column="title" />
+		<result property="content" jdbcType="VARCHAR" column="content" />
+		<result property="type" jdbcType="VARCHAR" column="type" />
+		<result property="msgType" jdbcType="VARCHAR" column="msg_type" />
 	</resultMap>
-	
+
 	<sql id="BASE_MESSAGE_SQL">
 		TITLE,
 		CONTENT,
 		TYPE,
 		MSG_TYPE,
-		<include refid="BASE_BEAN_SQL"/>
+		<include refid="BASE_BEAN_SQL" />
 	</sql>
-	
+
 	<select id="getMessages" resultMap="message">
-		SELECT 
-			ID,
-			<include refid="BASE_MESSAGE_SQL"/>
-		FROM 
-			T_MESSAGE
+		SELECT
+		ID,
+		<include refid="BASE_MESSAGE_SQL" />
+		FROM
+		T_MESSAGE
 		<where>
-				<if test="title!=null">
+			<if test="title!=null">
 				and title like CONCAT('%',#{title},'%')
 			</if>
 			<if test="startDate!=null">
@@ -40,75 +41,77 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			<if test="type!=null">
 				and type = #{type}
 			</if>
-		</where>		
+		</where>
 		ORDER BY CREATE_DATE DESC
 	</select>
-	
+
 	<select id="getMessageByIds" resultMap="message">
-		SELECT 
-			ID,
-			<include refid="BASE_MESSAGE_SQL"/>
-		FROM 
-			T_MESSAGE
+		SELECT
+		ID,
+		<include refid="BASE_MESSAGE_SQL" />
+		FROM
+		T_MESSAGE
 		<where>
 			id in
-			<foreach item="item" collection="ids" separator="," open="(" close=")" >  
-	      		#{item}
+			<foreach item="item" collection="ids" separator="," open="("
+				close=")">
+				#{item}
 			</foreach>
 		</where>
 		ORDER BY CREATE_DATE DESC
 	</select>
-	
+
 	<select id="getMessageById" resultMap="message">
-		SELECT 
-			ID,
-			<include refid="BASE_MESSAGE_SQL"/>
-		FROM 
-			T_MESSAGE
+		SELECT
+		ID,
+		<include refid="BASE_MESSAGE_SQL" />
+		FROM
+		T_MESSAGE
 		WHERE
-			ID = #{id} 
+		ID = #{id}
 	</select>
-	
+
 	<insert id="insertMessage" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO T_MESSAGE
 		(
-			<include refid="BASE_MESSAGE_SQL"/>
+		<include refid="BASE_MESSAGE_SQL" />
 		)
 		VALUES
 		(
-			#{title},
-			#{content},
-			#{type},
-			#{msgType},
-			#{createDate},
-			#{operateDate}
+		#{title},
+		#{content},
+		#{type},
+		#{msgType},
+		#{createDate},
+		#{operateDate}
 		)
 	</insert>
-	
+
 	<update id="updateMessage">
 		UPDATE T_MESSAGE
-		SET 
-			title = #{title},
-			content = #{content},
-			type = #{type},
-			msg_type = #{msgType},
-			create_date = #{createDate},
-			operate_date = #{operateDate}
+		SET
+		title = #{title},
+		content = #{content},
+		type = #{type},
+		msg_type = #{msgType},
+		create_date = #{createDate},
+		operate_date = #{operateDate}
 		where
-			id = #{id}
+		id = #{id}
 	</update>
-	
+
 	<delete id="deleteMessage">
 		DELETE FROM T_MESSAGE
 		WHERE ID = #{id}
 	</delete>
-	
+
 	<delete id="deleteMessages">
 		DELETE FROM T_MESSAGE
 		<where>
 			id in
-			<foreach item="item" collection="ids" separator="," open="(" close=")" >  
-	      		#{item}
+			<foreach item="item" collection="ids" separator="," open="("
+				close=")">
+				#{item}
 			</foreach>
 		</where>
 	</delete>

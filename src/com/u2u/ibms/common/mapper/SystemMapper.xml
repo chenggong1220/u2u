@@ -5,7 +5,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.u2u.ibms.common.mapper.SystemMapper">
 
-	<resultMap id="mainImg" type="com.u2u.ibms.common.beans.MainImg" extends="baseBean">
+	<resultMap id="mainImg" type="com.u2u.ibms.common.beans.MainImg"
+		extends="baseBean">
 		<result property="id" jdbcType="INTEGER" column="id" />
 		<result property="img" jdbcType="VARCHAR" column="img_path" />
 		<result property="desc" jdbcType="VARCHAR" column="desc" />
@@ -15,12 +16,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		img_path,
 		<include refid="BASE_BEAN_SQL" />
 	</sql>
-	
+
 	<select id="getAll" resultMap="mainImg">
 		SELECT
-		    ID,
-		    <include refid="BASE_MAIN_PAGE_SQL"/>
-		FROM T_MAIN_IMGS ORDER BY CREATE_DATE  DESC
+		ID,
+		<include refid="BASE_MAIN_PAGE_SQL" />
+		FROM T_MAIN_IMGS ORDER BY CREATE_DATE DESC
 	</select>
 
 

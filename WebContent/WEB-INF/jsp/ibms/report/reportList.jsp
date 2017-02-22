@@ -14,11 +14,13 @@
 			<ul>
 				<li><font>创建时间(始)：</font>
 					<h1>
-						<input id="startDate" name="startDate" type="text" class="easyui-datebox">
+						<input id="startDate" name="startDate" type="text"
+							class="easyui-datebox">
 					</h1></li>
 				<li><font>创建时间(终)：</font>
 					<h1>
-						<input id="endDate" name="endDate" type="text" class="easyui-datebox">
+						<input id="endDate" name="endDate" type="text"
+							class="easyui-datebox">
 					</h1></li>
 			</ul>
 		</div>
@@ -29,9 +31,9 @@
 		</div>
 	</div>
 </form>
-<div id="hasRent" style="height:400px;width:50%;float:left;"></div>
-<div id="hasPay" style="height:400px;width:50%;float:left;"></div>
-  <script type="text/javascript">
+<div id="hasRent" style="height: 400px; width: 50%; float: left;"></div>
+<div id="hasPay" style="height: 400px; width: 50%; float: left;"></div>
+<script type="text/javascript">
         // 基于准备好的dom，初始化echarts图表
         var hasRent = echarts.init(document.getElementById('hasRent')); 
         var hasPay = echarts.init(document.getElementById('hasPay')); 

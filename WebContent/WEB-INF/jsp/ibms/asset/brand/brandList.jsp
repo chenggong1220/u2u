@@ -14,8 +14,8 @@
 		</div>
 		<div class="ibms_clear"></div>
 		<div class="ibms_form_btn">
-			<a href="#" class="auto-querybutton query_list_button">查 询</a>
-			<a href="#" class="auto-resetbutton query_list_button">重 置</a>
+			<a href="#" class="auto-querybutton query_list_button">查 询</a> <a
+				href="#" class="auto-resetbutton query_list_button">重 置</a>
 		</div>
 	</div>
 </form>

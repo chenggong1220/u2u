@@ -119,40 +119,38 @@
 </script>
 
 <form>
-	<input type="hidden" id="taskUrl" tlink="/web/billdetail/billdetailList" floor="false"/>
+	<input type="hidden" id="taskUrl"
+		tlink="/web/billdetail/billdetailList" floor="false" />
 	<div class="ibms_form_panel">
 		<div class="ibms_form_default">
 			<ul class="ibms_clear">
-				<li>
-					<font>步骤1：</font>
+				<li><font>步骤1：</font>
 					<h1>
-						<a id="downAssetModel" href="${pageContext.request.contextPath}/web/billdetail/download"
+						<a id="downAssetModel"
+							href="${pageContext.request.contextPath}/web/billdetail/download"
 							data-options="plain:true,url:'${pageContext.request.contextPath}/exportExcel/assetModel'">点击下载导入模板</a>
-					</h1>
-				</li>
-				<li>
-					<font>步骤2：</font>
-					<h1>填写导入数据</h1>
-				</li>
-				<li>
-					<font>步骤3：</font>
-					<h1>导入文件 </h1>
-				</li>
+					</h1></li>
+				<li><font>步骤2：</font>
+					<h1>填写导入数据</h1></li>
+				<li><font>步骤3：</font>
+					<h1>导入文件</h1></li>
 			</ul>
 		</div>
 		<div id="upload">
 			<div id="buttonArea">
 				<div id="controlBtns" style="display: none;">
-					<a href="javascript:void(0);" id="btnClear" onclick="removeFile();" class="btn" style="display: none;">
-					<span><img src="<c:url value='/styles/component/multiupload/img/clear.gif'/>" />删除文件</span> 
-					</a>
-					<a href="javascript:void(0);" id="btnStart" onclick="startUploadFiles();" class="btn">
-					<span><img src="<c:url value='/styles/component/multiupload/img/start.gif'/>" />开始上传</span>
+					<a href="javascript:void(0);" id="btnClear" onclick="removeFile();"
+						class="btn" style="display: none;"> <span><img
+							src="<c:url value='/styles/component/multiupload/img/clear.gif'/>" />删除文件</span>
+					</a> <a href="javascript:void(0);" id="btnStart"
+						onclick="startUploadFiles();" class="btn"> <span><img
+							src="<c:url value='/styles/component/multiupload/img/start.gif'/>" />开始上传</span>
 					</a>
 				</div>
-				<a href="javascript:void(0);" id="addFiles" class="btn"><span><div id="divAddFiles">添加文件</div></span></a>							
+				<a href="javascript:void(0);" id="addFiles" class="btn"><span><div
+							id="divAddFiles">添加文件</div></span></a>
 			</div>
-			<div id="listArea" style="height:auto;">
+			<div id="listArea" style="height: auto;">
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<thead id="listTitle">
 						<tr>
@@ -166,7 +164,7 @@
 				</table>
 			</div>
 			<div id="progressArea">
-			<!-- 
+				<!-- 
 				<div id="progressBar">
 					<span>0%</span>
 					<div id="progress" style="width: 1px;"></div>

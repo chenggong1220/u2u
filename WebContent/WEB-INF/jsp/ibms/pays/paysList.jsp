@@ -51,5 +51,4 @@
 		</tr>
 	</thead>
 </table>
-<div id="tb" style="height: auto">
-</div>
+<div id="tb" style="height: auto"></div>

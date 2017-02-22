@@ -12,7 +12,7 @@
 		]]>
 		</body>
 	</vm-template>
-	
+
 	<vm-template>
 		<name>contractVm</name>
 		<subject><![CDATA[${title}]]></subject>
@@ -69,5 +69,5 @@
 		]]>
 		</body>
 	</vm-template>
-	
+
 </app-vm-template-config>

@@ -14,6 +14,7 @@ import com.u2u.framework.base.BaseService;
 import com.u2u.framework.util.DateUtil;
 import com.u2u.ibms.common.beans.Asset;
 import com.u2u.ibms.common.beans.BillCheck;
+import com.u2u.ibms.common.beans.Combo;
 import com.u2u.ibms.common.beans.Contract;
 import com.u2u.ibms.common.beans.Order;
 import com.u2u.ibms.common.beans.SubOrder;
@@ -123,14 +124,49 @@ public class BillCheckService extends BaseService {
 	}
 
 	public void update(int id) {
-		BillCheck exist = billCheckMapper.getById(id);
-		exist.setStatus(true);
+		BillCheck existBillCheck = billCheckMapper.getById(id);
+		existBillCheck.setStatus(true);
 		Timestamp outdate = DateUtil.currentTimestamp();
-		exist.setOutdate(outdate);
-		exist.setEnddate(new Timestamp(outdate.getTime() + 30 * 24 * 60 * 60
-				* 1000));
-		exist.setOperateDate(DateUtil.currentTimestamp());
-		billCheckMapper.update(exist);
+		existBillCheck.setOutdate(outdate);
+		
+		
+		//屏蔽bySUNZHE，2017-02-22,BilldetailService中增加了Set EndDate逻辑
+		//existBillCheck.setEnddate(new Timestamp(outdate.getTime() + 30 * 24 * 60 * 60
+		//		* 1000));
+		
+		//Start: 手动出账时增加分时租赁的最低消费逻辑，SUNZHE, 2017-02-21
+		Order order = orderMapper.getById(existBillCheck.getOrderId()); 	
+		if (order.getRentType() == 0) {
+			Float realAmount = getRentAmountByMinAmount(existBillCheck);
+			existBillCheck.setRentAmount(realAmount);
+			//得到总费用=租金+罚息
+			existBillCheck.setAllAmount(realAmount + existBillCheck.getInterest());
+
+		}
+		//End: 手动出账时增加分时租赁的最低消费逻辑，SUNZHE, 2017-02-21
+		
+		existBillCheck.setOperateDate(DateUtil.currentTimestamp());
+		billCheckMapper.update(existBillCheck);
 	}
 
+	public Float getRentAmountByMinAmount(BillCheck billCheck)
+	{
+		//Start: 判断是否达到最低消费，SUNZHE, 2017-02-21	
+		Float retAmount = 0f;
+		List<SubOrder> subOrders = subOrderMapper.getByOrderId(new RowBounds(), billCheck.getOrderId());
+		for (SubOrder suborder : subOrders) {
+			Combo combo = comboMapper.getById(suborder.getComboId());
+			Float minRentAmount = combo.getAmount()*combo.getMinimumUseTime();
+			Float realRentAmount = billCheck.getRentAmount();
+			if(minRentAmount > realRentAmount)
+			{
+				retAmount = retAmount + minRentAmount;
+			}else{
+				retAmount = retAmount + realRentAmount;
+			}
+		}
+		return retAmount;
+		//End: 判断是否达到最低消费，SUNZHE, 2017-02-21		
+	}
+	
 }

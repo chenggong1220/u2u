@@ -3,9 +3,10 @@
 
 	<properties fileName="conf/etc/core/app-core.properties" />
 	<properties fileName="conf/etc/utils/app-mail.properties" />
+	<properties fileName="conf/bill/app-bill.properties" />
 
 	<xml fileName="conf/etc/utils/app-mail-template.xml" />
-	<xml fileName="conf/etc/utils/app-validation-code.xml"/>
+	<xml fileName="conf/etc/utils/app-validation-code.xml" />
 	<xml fileName="conf/etc/utils/app-session-config.xml" />
 
 </configuration>

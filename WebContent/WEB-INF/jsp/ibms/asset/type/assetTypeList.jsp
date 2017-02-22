@@ -1,8 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/framework/component/include.jsp"%>
 
-<script type="text/javascript" src="<c:url value='/styles/js/location.js'/>"></script>
-<script type="text/javascript" src="<c:url value='/styles/js/assetType.js'/>"></script>
+<script type="text/javascript"
+	src="<c:url value='/styles/js/location.js'/>"></script>
+<script type="text/javascript"
+	src="<c:url value='/styles/js/assetType.js'/>"></script>
 
 <form id="queryForm">
 	<div class="easyui-panel ibms_form_panel"
@@ -21,8 +23,8 @@
 		</div>
 		<div class="ibms_clear"></div>
 		<div class="ibms_form_btn">
-			<a href="#" class="auto-querybutton query_list_button">查 询</a>
-			<a href="#" class="auto-resetbutton query_list_button">重 置</a>
+			<a href="#" class="auto-querybutton query_list_button">查 询</a> <a
+				href="#" class="auto-resetbutton query_list_button">重 置</a>
 		</div>
 	</div>
 </form>

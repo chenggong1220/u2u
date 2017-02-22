@@ -12,27 +12,30 @@
 					</h1></li>
 				<li><font>创建时间(始)：</font>
 					<h1>
-						<input id="startDate" name="startDate" type="text" class="easyui-datebox">
+						<input id="startDate" name="startDate" type="text"
+							class="easyui-datebox">
 					</h1></li>
 				<li><font>创建时间(终)：</font>
 					<h1>
-						<input id="endDate" name="endDate" type="text" class="easyui-datebox">
+						<input id="endDate" name="endDate" type="text"
+							class="easyui-datebox">
 					</h1></li>
 				<li><font>创建类型：</font>
 					<h1>
-						<select id="type" name="type" class="easyui-combobox" data-options="required:true,editable:false">
-	                        <option value="">全部</option>
-	                        <option value="0">系统消息</option>
-	                        <option value="1">个人消息</option>
-                        </select>
+						<select id="type" name="type" class="easyui-combobox"
+							data-options="required:true,editable:false">
+							<option value="">全部</option>
+							<option value="0">系统消息</option>
+							<option value="1">个人消息</option>
+						</select>
 					</h1></li>
 			</ul>
-			
+
 		</div>
 		<div class="ibms_clear"></div>
 		<div class="ibms_form_btn">
-			<a href="#" class="auto-querybutton query_list_button">查 询</a>
-			<a href="#" class="auto-resetbutton query_list_button">重 置</a>
+			<a href="#" class="auto-querybutton query_list_button">查 询</a> <a
+				href="#" class="auto-resetbutton query_list_button">重 置</a>
 		</div>
 	</div>
 </form>

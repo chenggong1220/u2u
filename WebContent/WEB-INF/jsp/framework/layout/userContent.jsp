@@ -20,9 +20,7 @@ $(function(){
 	reloadTarget();
 });
 </script>
-<div  id="ibms_main_content_01" style="margin:0 8px 0 0;">
-
-</div>
+<div id="ibms_main_content_01" style="margin: 0 8px 0 0;"></div>
 <script type="application/javascript">
 
 $('body').mCustomScrollbar(

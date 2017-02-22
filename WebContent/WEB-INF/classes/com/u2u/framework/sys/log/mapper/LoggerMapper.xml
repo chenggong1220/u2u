@@ -5,8 +5,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.u2u.framework.sys.log.mapper.LoggerMapper">
 
-	<resultMap id="log"
-		type="com.u2u.framework.sys.log.beans.LogType">
+	<resultMap id="log" type="com.u2u.framework.sys.log.beans.LogType">
 		<result property="id" jdbcType="INTEGER" column="ID" />
 		<result property="username" jdbcType="VARCHAR" column="OPERATOR" />
 		<result property="operateObject" jdbcType="VARCHAR" column="OPERATE_OBJECT" />
@@ -22,7 +21,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		OPERATE_TIME,
 		OPERATE_IP
 	</sql>
-	
+
 	<sql id="SELECT_BASE_COLUMN_LIST">
 		ID,
 		<include refid="BASE_COLUMN_LIST" />
@@ -44,7 +43,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 		<if test="sort!=null and sort=='operateTime'">
-			ORDER BY OPERATE_TIME 
+			ORDER BY OPERATE_TIME
 			<if test="order!=null and order=='ASC'">
 				ASC
 			</if>
@@ -53,10 +52,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			</if>
 		</if>
 	</select>
-	
+
 	<select id="getLogsSize" resultType="java.lang.Integer">
 		SELECT
-			count(*)
+		count(*)
 		FROM SYS_LOG
 		<where>
 			<if test="username!=null">
@@ -75,30 +74,31 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		INSERT INTO SYS_LOG(
 		<include refid="BASE_COLUMN_LIST" />
 		) VALUES(#{username},
-				#{operateObject},
-				#{operateDesc},
-				#{operateTime},
-				#{operateIp})
+		#{operateObject},
+		#{operateDesc},
+		#{operateTime},
+		#{operateIp})
 	</insert>
 
 	<update id="updateLog">
-		UPDATE SYS_LOG SET 
-			OPERATOR = #{username},
-			OPERATE_OBJECT = #{operateObject},
-			OPERATE_DESC = #{operateDesc},
-			OPERATE_TIME = #{operateTime},
-			OPERATE_IP = #{operateIp}
+		UPDATE SYS_LOG SET
+		OPERATOR = #{username},
+		OPERATE_OBJECT = #{operateObject},
+		OPERATE_DESC = #{operateDesc},
+		OPERATE_TIME = #{operateTime},
+		OPERATE_IP = #{operateIp}
 		WHERE ID = #{id}
 	</update>
 
 	<delete id="deleteLog">
-		DELETE FROM SYS_LOG 
-		<where>  
-		  ID in
-			<foreach item="item" collection="ids" separator="," open="(" close=")" >  
-	      		#{item}  
+		DELETE FROM SYS_LOG
+		<where>
+			ID in
+			<foreach item="item" collection="ids" separator="," open="("
+				close=")">
+				#{item}
 			</foreach>
-		</where>  
+		</where>
 	</delete>
 
 </mapper>

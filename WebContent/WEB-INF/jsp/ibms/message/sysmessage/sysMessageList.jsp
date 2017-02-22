@@ -12,27 +12,30 @@
 					</h1></li>
 				<li><font>创建类型：</font>
 					<h1>
-						<select id="type" name="type" name="type" class="easyui-combobox" data-options="editable:false">
-	                        <option value="">全部</option>
-	                        <option value="短信">短信</option>
-	                        <option value="钉钉">钉钉</option>
-                        </select>
+						<select id="type" name="type" name="type" class="easyui-combobox"
+							data-options="editable:false">
+							<option value="">全部</option>
+							<option value="短信">短信</option>
+							<option value="钉钉">钉钉</option>
+						</select>
 					</h1></li>
 				<li><font>创建时间(始)：</font>
 					<h1>
-						<input id="startDate" name="startDate" type="text" class="easyui-datebox">
+						<input id="startDate" name="startDate" type="text"
+							class="easyui-datebox">
 					</h1></li>
 				<li><font>创建时间(终)：</font>
 					<h1>
-						<input id="endDate" name="endDate" type="text" class="easyui-datebox">
+						<input id="endDate" name="endDate" type="text"
+							class="easyui-datebox">
 					</h1></li>
 			</ul>
-			
+
 		</div>
 		<div class="ibms_clear"></div>
 		<div class="ibms_form_btn">
-			<a href="#" class="auto-querybutton query_list_button">查 询</a>
-			<a href="#" class="auto-resetbutton query_list_button">重 置</a>
+			<a href="#" class="auto-querybutton query_list_button">查 询</a> <a
+				href="#" class="auto-resetbutton query_list_button">重 置</a>
 		</div>
 	</div>
 </form>
@@ -58,7 +61,8 @@
 			<th data-options="field:'title',width:'20%'">标题</th>
 			<th data-options="field:'content',width:'30%'">内容</th>
 			<th data-options="field:'type',width:'10%'">消息类型</th>
-			<th data-options="field:'realname',width:'20%',formatter:function(value,rec){return rec.user.realname;}">发送对象</th>
+			<th
+				data-options="field:'realname',width:'20%',formatter:function(value,rec){return rec.user.realname;}">发送对象</th>
 			<th data-options="field:'viewDate',width:'10%'">发布日期</th>
 		</tr>
 	</thead>

@@ -3,85 +3,85 @@
 PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 
-<mapper namespace="com.u2u.ibms.common.mapper.LocationMapper" >
-	
+<mapper namespace="com.u2u.ibms.common.mapper.LocationMapper">
+
 	<resultMap id="province" type="com.u2u.ibms.common.beans.location.Province">
-        <result property="id" jdbcType="INTEGER" column="id"/>
-        <result property="name" jdbcType="VARCHAR" column="name"/>
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="name" jdbcType="VARCHAR" column="name" />
 	</resultMap>
-	
+
 	<resultMap id="city" type="com.u2u.ibms.common.beans.location.City">
-        <result property="id" jdbcType="INTEGER" column="id"/>
-        <result property="name" jdbcType="VARCHAR" column="name"/>
-        <result property="provinceId" jdbcType="INTEGER" column="province_id"/>
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="name" jdbcType="VARCHAR" column="name" />
+		<result property="provinceId" jdbcType="INTEGER" column="province_id" />
 	</resultMap>
-	
+
 	<resultMap id="district" type="com.u2u.ibms.common.beans.location.District">
-        <result property="id" jdbcType="INTEGER" column="id"/>
-        <result property="name" jdbcType="VARCHAR" column="name"/>
-        <result property="cityId" jdbcType="INTEGER" column="city_id"/>
+		<result property="id" jdbcType="INTEGER" column="id" />
+		<result property="name" jdbcType="VARCHAR" column="name" />
+		<result property="cityId" jdbcType="INTEGER" column="city_id" />
 	</resultMap>
-	
+
 	<select id="getProvinces" resultMap="province">
-		SELECT 
-			ID,
-			NAME
-		FROM 
-			t_l_province
+		SELECT
+		ID,
+		NAME
+		FROM
+		t_l_province
 	</select>
-	
+
 	<select id="getProvinceById" resultMap="province">
 		SELECT
-			ID,
-			NAME
-		FROM 
-			t_l_province
+		ID,
+		NAME
+		FROM
+		t_l_province
 		WHERE
-			id = #{id}
+		id = #{id}
 	</select>
-		
+
 	<select id="getCities" resultMap="city">
-		SELECT 
-			ID,
-			NAME,
-			PROVINCE_ID
-		FROM 
-			t_l_city
+		SELECT
+		ID,
+		NAME,
+		PROVINCE_ID
+		FROM
+		t_l_city
 		WHERE
-			province_id = #{provinceId}
+		province_id = #{provinceId}
 	</select>
-	
+
 	<select id="getCityById" resultMap="city">
-		SELECT 
-			ID,
-			NAME,
-			PROVINCE_ID
-		FROM 
-			t_l_city
+		SELECT
+		ID,
+		NAME,
+		PROVINCE_ID
+		FROM
+		t_l_city
 		WHERE
-			id = #{id}
+		id = #{id}
 	</select>
-	
+
 	<select id="getDistricts" resultMap="district">
-		SELECT 
-			ID,
-			NAME,
-			CITY_ID
-		FROM 
-			t_l_district
-		WHERE 
-			city_id = #{cityId}
+		SELECT
+		ID,
+		NAME,
+		CITY_ID
+		FROM
+		t_l_district
+		WHERE
+		city_id = #{cityId}
 	</select>
-	
+
 	<select id="getDistrictById" resultMap="district">
-		SELECT 
-			ID,
-			NAME,
-			CITY_ID
-		FROM 
-			t_l_district
-		WHERE 
-			id = #{id}
+		SELECT
+		ID,
+		NAME,
+		CITY_ID
+		FROM
+		t_l_district
+		WHERE
+		id = #{id}
 	</select>
 
 </mapper>
