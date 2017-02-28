@@ -79,7 +79,7 @@
 								<font>设备放置地：</font>
 								<h1>
 									<textarea id="machLocation" name="machLocation"
-										disabled="disabled">${assetSaveLocationx}</textarea>
+										disabled="disabled">${order.detailLocation}</textarea>
 								</h1>
 							</div>
 							<div class="ibms_clear"></div>
@@ -187,7 +187,7 @@
 							<font>设备放置地：</font>
 							<h1>
 								<textarea id="machLocation" name="machLocation"
-									disabled="disabled">${assetSaveLocationx}</textarea>
+									disabled="disabled">${assetSaveLocation}</textarea>
 							</h1>
 						</div>
 

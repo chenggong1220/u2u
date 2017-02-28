@@ -17,7 +17,7 @@
 		<property name="jobDetail" ref="scheduleBilCheckTask" />
 		<property name="cronExpression">
 			<!-- 每15分钟执行一次 -->
-			<value>0 0/15 * * * ?</value>
+			<value>0 0/1 * * * ?</value>
 		</property>
 	</bean>
 

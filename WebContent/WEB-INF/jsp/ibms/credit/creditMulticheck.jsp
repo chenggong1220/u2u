@@ -79,7 +79,7 @@
 								<font>设备放置地：</font>
 								<h1>
 									<textarea id="machLocation" name="machLocation"
-										disabled="disabled">${assetSaveLocationx}</textarea>
+										disabled="disabled">${assetSaveLocation}</textarea>
 								</h1>
 							</div>
 							<div class="ibms_clear"></div>
@@ -188,7 +188,7 @@
 							<font>设备放置地：</font>
 							<h1>
 								<textarea id="machLocation" name="machLocation"
-									disabled="disabled">${assetSaveLocationx}</textarea>
+									disabled="disabled">${assetSaveLocation}</textarea>
 							</h1>
 						</div>
 
@@ -614,6 +614,7 @@
 								<a id="creditFilePreview"
 									href="${pageContext.request.contextPath}${order.creditFile}"
 									target="_blank">下载</a>
+								${order.creditFile==""?"(未上传)":"(已上传)"}									
 							</h1></li>
 					</ul>
 					<div class="ibms_clear"></div>

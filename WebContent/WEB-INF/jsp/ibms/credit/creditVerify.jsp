@@ -79,7 +79,7 @@
 								<font>设备放置地：</font>
 								<h1>
 									<textarea id="machLocation" name="machLocation"
-										disabled="disabled">${assetSaveLocationx}</textarea>
+										disabled="disabled">${assetSaveLocation}</textarea>
 								</h1>
 							</div>
 							<div class="ibms_clear"></div>
@@ -188,7 +188,7 @@
 							<font>设备放置地：</font>
 							<h1>
 								<textarea id="machLocation" name="machLocation"
-									disabled="disabled">${assetSaveLocationx}</textarea>
+									disabled="disabled">${assetSaveLocation}</textarea>
 							</h1>
 						</div>
 
@@ -641,12 +641,17 @@
 									onclick="javascript:uploadFiles_framework('creditFileSelected','creditFile','creditFilePreview','file');">
 								</b>
 							</h1></li>
-						<li><font>下载文件：</font>
+
+						<li><font>状态：</font>
 							<h1>
-								<a id="creditFilePreview"
-									href="${pageContext.request.contextPath}${order.creditFile}"
-									target="_blank">下载</a>
-							</h1></li>
+								${order.creditFile==""?"未上传":("已上传")}															
+							</h1>
+						</li>
+						<div id="creditFileDownload">
+							<h1>	
+								<a id="creditFilePreview" href="${pageContext.request.contextPath}${order.creditFile}" target="_blank">下载</a>
+							</h1>
+						</div>
 					</ul>
 					<div class="ibms_clear"></div>
 				</div>
@@ -695,5 +700,12 @@
   		$("#companyId").show();
 		$("#personEmgcy").remove();
 		$("#companyEmgcy").show();
+	}
+
+
+	if('${order.creditFile}'==''){
+  		$("#creditFileDownload").hide();
+	}else{
+ 		$("#creditFileDownload").show();
 	}
 </script>

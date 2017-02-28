@@ -4,6 +4,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,7 @@ import com.u2u.ibms.web.billcheck.condition.BillCheckCondition;
 import com.u2u.ibms.web.billcheck.vo.AssetListResponse;
 import com.u2u.ibms.web.billdetail.bean.Billdetail;
 import com.u2u.ibms.web.billdetail.mapper.BilldetailMapper;
+import com.u2u.ibms.web.schedule.ScheduleBillCheck;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -156,6 +159,7 @@ public class BillCheckService extends BaseService {
 		List<SubOrder> subOrders = subOrderMapper.getByOrderId(new RowBounds(), billCheck.getOrderId());
 		for (SubOrder suborder : subOrders) {
 			Combo combo = comboMapper.getById(suborder.getComboId());
+
 			Float minRentAmount = combo.getAmount()*combo.getMinimumUseTime();
 			Float realRentAmount = billCheck.getRentAmount();
 			if(minRentAmount > realRentAmount)

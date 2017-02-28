@@ -373,6 +373,7 @@ public class OrderService extends BaseService {
 		for (final SubOrder subOrder : subOrders) {
 			subOrder.setCombo(comboMapper.getById(subOrder.getComboId())
 					.getName());
+			
 			AssetType assetType = assetTypeMapper.getById(subOrder
 					.getAssetTypeId());
 			subOrder.setBrand(assetType.getBrand());
