@@ -52,7 +52,7 @@ public class MobileAuthorService {
 	private LocationMapper locationMapper;
 	@Autowired
 	private SystemMapper systemMapper;
-	public LoginRespose login(String username, String pwd) throws Exception {
+	public LoginRespose login(String username, String pwd, String regID) throws Exception {
 		LoginRespose response = new LoginRespose();
 		UserInfo userinfo = userInfoMapper.getUserByUserName(username);
 		if (userinfo == null) {
@@ -74,6 +74,10 @@ public class MobileAuthorService {
 			City city = locationMapper.getCityById(userinfo.getCityId());
 			response.setCityName(city.getName());
 			response.setProviceName(province.getName());
+			
+			//更新App RegID信息，SUNZHE, 2017-03-26
+			userinfo.setDeviceRegID(regID);
+			userInfoMapper.update(userinfo);
 		}
 		return response;
 	}

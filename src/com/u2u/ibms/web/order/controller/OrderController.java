@@ -116,6 +116,7 @@ public class OrderController extends BaseController {
 		orderService.delete(id);
 		return ajaxDoneSuccess(null);
 	}
+	
 	@RequestMapping(value = "/getCustomerName")
 	@ResponseBody
 	public List<CustomerName> getCustomerName() {

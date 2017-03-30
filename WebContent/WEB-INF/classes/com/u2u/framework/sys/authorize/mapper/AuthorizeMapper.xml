@@ -22,6 +22,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<result property="provinceId" jdbcType="INTEGER" column="province_id" />
 		<result property="cityId" jdbcType="INTEGER" column="city_id" />
 		<result property="shopId" jdbcType="INTEGER" column="shop_id" />
+		<result property="email" jdbcType="VARCHAR" column="email" />
+		<result property="cities" jdbcType="VARCHAR" column="cities" />		
 	</resultMap>
 
 	<resultMap id="userRole"
@@ -72,6 +74,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		PROVINCE_ID,
 		CITY_ID,
 		SHOP_ID,
+		EMAIL,
+		CITIES,		
 		<include refid="BASE_BEAN_SQL" />
 	</sql>
 
@@ -115,6 +119,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		#{provinceId},
 		#{cityId},
 		#{shopId},
+		#{email},
+		#{cities},		
 		#{createDate},
 		#{operateDate}
 		)
@@ -132,6 +138,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		province_id = #{provinceId},
 		city_id = #{cityId},
 		shop_id = #{shopId},
+		email = #{email},
+		cities = #{cities},		
 		create_date = #{createDate},
 		operate_date = #{operateDate}
 		WHERE ID=#{id}

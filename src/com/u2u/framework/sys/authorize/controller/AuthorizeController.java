@@ -3,6 +3,7 @@ package com.u2u.framework.sys.authorize.controller;
 import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -144,8 +145,7 @@ public class AuthorizeController extends BaseController {
 
 	@RequestMapping(value = { "/main" }, method = RequestMethod.GET)
 	public String main(HttpServletRequest request) {
-		request.setAttribute("login_session_user",
-				SecurityContextUtil.getUserName());
+		request.setAttribute("login_session_user", SecurityContextUtil.getUserName());
 		LogUtil.debug(LOG, "架构主页面被访问");
 		return "index";
 	}
@@ -197,8 +197,7 @@ public class AuthorizeController extends BaseController {
 	}
 
 	@RequestMapping(value = "/user/self/update", method = RequestMethod.GET)
-	public ModelAndView userSelfUpdate(String username)
-			throws ServiceAuthorizeException {
+	public ModelAndView userSelfUpdate(String username) throws ServiceAuthorizeException {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("framework/auth/user/userSelfEdit");
 
@@ -211,11 +210,9 @@ public class AuthorizeController extends BaseController {
 
 	@RequestMapping(value = "/user/self/save", method = RequestMethod.POST)
 	@ResponseBody
-	public AjaxDone userSelfSave(String username, String oldPassword,
-			String newPassword) throws Exception {
+	public AjaxDone userSelfSave(String username, String oldPassword, String newPassword) throws Exception {
 		User user = authorizeService.getUser(username);
-		if (user.getPassword().toLowerCase()
-				.equals(MD5Util.MD5(oldPassword).toLowerCase())) {
+		if (user.getPassword().toLowerCase().equals(MD5Util.MD5(oldPassword).toLowerCase())) {
 			user.setPassword(newPassword);
 			authorizeService.updateUser(user);
 			return ajaxDoneSuccess("修改成功", "/auth/user/self");
@@ -251,8 +248,7 @@ public class AuthorizeController extends BaseController {
 				LogUtil.error(LOG, e.getMessage());
 			}
 		} else {
-			ret = convertToUserResponseList(authorizeService
-					.getAllUsers(buildRowBounds(userReq)));
+			ret = convertToUserResponseList(authorizeService.getAllUsers(buildRowBounds(userReq)));
 			all = authorizeService.getAllUsers(new RowBounds());
 		}
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -302,8 +298,7 @@ public class AuthorizeController extends BaseController {
 			response.setBu(bu.getName());
 		}
 
-		Province province = locationMapper
-				.getProvinceById(user.getProvinceId());
+		Province province = locationMapper.getProvinceById(user.getProvinceId());
 		if (province == null) {
 			response.setProvince("");
 		} else {
@@ -345,8 +340,7 @@ public class AuthorizeController extends BaseController {
 	public ModelAndView addUser() {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("framework/auth/user/userAdd");
-		mav.addObject("roleId", authorizeService.getAllRoles(new RowBounds())
-				.get(0).getId());
+		mav.addObject("roleId", authorizeService.getAllRoles(new RowBounds()).get(0).getId());
 
 		return mav;
 	}
@@ -373,6 +367,18 @@ public class AuthorizeController extends BaseController {
 		user.setProvinceId(userReq.getProvinceId());
 		user.setCityId(userReq.getCityId());
 		user.setShopId(userReq.getShopId());
+		user.setEmail(userReq.getEmail());
+
+		StringBuilder cityStr = new StringBuilder();
+		if (userReq.getCities() != null) {
+			for (Integer cityId : userReq.getCities()) {
+				City city = locationMapper.getCityByUnionCode(cityId);
+				if (city != null) {
+					cityStr.append(city.getUnionCode() + ",");
+				}
+			}
+			user.setCities(StringUtils.removeEnd(cityStr.toString(), ","));
+		}
 
 		if (!StringUtils.isEmpty(userReq.getRoles())) {
 			String[] roleIds = StringUtils.split(userReq.getRoles(), ",");
@@ -397,8 +403,7 @@ public class AuthorizeController extends BaseController {
 	 */
 	@RequestMapping(value = "/user/save")
 	@ResponseBody
-	public AjaxDone saveUser(UserRequest userReq)
-			throws ServiceBusinessException {
+	public AjaxDone saveUser(UserRequest userReq) throws ServiceBusinessException {
 		authorizeService.insertUser(convertUserReq(userReq));
 		return ajaxDoneSuccess("保存成功！", null);
 	}
@@ -416,8 +421,7 @@ public class AuthorizeController extends BaseController {
 	 */
 	@RequestMapping(value = "/user/update")
 	@ResponseBody
-	public AjaxDone updateUser(UserRequest userReq)
-			throws ServiceBusinessException {
+	public AjaxDone updateUser(UserRequest userReq) throws ServiceBusinessException {
 		authorizeService.updateUser(convertUserReq(userReq));
 		return ajaxDoneSuccess("修改成功！", null);
 	}
@@ -435,15 +439,24 @@ public class AuthorizeController extends BaseController {
 	 * @update:[2015-3-24] [更改人姓名][变更描述]
 	 */
 	@RequestMapping(value = "/user/edit")
-	public ModelAndView editUser(UserRequest userReq, boolean self)
-			throws ServiceAuthorizeException {
+	public ModelAndView editUser(UserRequest userReq, boolean self) throws ServiceAuthorizeException {
 		ModelAndView mav = new ModelAndView();
 
 		User user = authorizeService.getUser(userReq.getUsername());
 		List<Role> roles = user.getRoles();
 		user.setPassword(AuthorizeService.UNIQUE_PASSWORD);
+
 		mav.addObject("self", self);
 		mav.addObject("user", user);
+
+		List<Integer> cities = new ArrayList<Integer>();
+
+		if (StringUtils.isNotEmpty(user.getCities())) {
+			for (String city : user.getCities().split(",")) {
+				cities.add(Integer.valueOf(city));
+			}
+		}
+		mav.addObject("cities", Arrays.toString(cities.toArray(new Integer[] {})));
 
 		if (roles.size() > 0) {
 			mav.addObject("roleid", roles.get(0).getId());
@@ -487,8 +500,8 @@ public class AuthorizeController extends BaseController {
 	 */
 	@RequestMapping(value = "/user/delete")
 	@ResponseBody
-	public AjaxDone deleteUser(HttpServletRequest req, String[] id)
-			throws NumberFormatException, ServiceBusinessException {
+	public AjaxDone deleteUser(HttpServletRequest req, String[] id) throws NumberFormatException,
+			ServiceBusinessException {
 		for (String userid : id) {
 			authorizeService.deleteUser(Integer.parseInt(userid));
 		}
@@ -557,8 +570,7 @@ public class AuthorizeController extends BaseController {
 	 */
 	@RequestMapping(value = "/role/getResources")
 	public @ResponseBody List<TreeVo> getResources() {
-		List<Resource> resources = authorizeService
-				.getAllResourcesAsTree(new RowBounds());
+		List<Resource> resources = authorizeService.getAllResourcesAsTree(new RowBounds());
 		return convert(resources);
 	}
 
@@ -585,16 +597,15 @@ public class AuthorizeController extends BaseController {
 
 	@RequestMapping(value = "/role/save")
 	@ResponseBody
-	public AjaxDone saveRole(RoleRequest userReq)
-			throws ServiceBusinessException {
+	public AjaxDone saveRole(RoleRequest userReq) throws ServiceBusinessException {
 		authorizeService.insertRole(convertRoleReq(userReq));
 		return ajaxDoneSuccess("保存成功！", null);
 	}
 
 	@RequestMapping(value = "/role/delete")
 	@ResponseBody
-	public AjaxDone deleteRole(HttpServletRequest req, String[] id)
-			throws NumberFormatException, ServiceBusinessException {
+	public AjaxDone deleteRole(HttpServletRequest req, String[] id) throws NumberFormatException,
+			ServiceBusinessException {
 		for (String roleId : id) {
 			System.out.println(roleId);
 			authorizeService.deleteRole(Integer.parseInt(roleId));
@@ -604,8 +615,7 @@ public class AuthorizeController extends BaseController {
 
 	@RequestMapping(value = "/role/update")
 	@ResponseBody
-	public AjaxDone updateRole(RoleRequest roleReq)
-			throws ServiceBusinessException {
+	public AjaxDone updateRole(RoleRequest roleReq) throws ServiceBusinessException {
 		authorizeService.udpateRole(convertRoleReq(roleReq));
 		return ajaxDoneSuccess("修改成功！", null);
 	}
@@ -615,20 +625,17 @@ public class AuthorizeController extends BaseController {
 		Role role = new Role();
 		role.setId(roleReq.getId());
 		role.setRoleName(roleReq.getRolename());
-		String[] resourceIds = org.apache.commons.lang.StringUtils.split(
-				roleReq.getResources(), ",");
+		String[] resourceIds = org.apache.commons.lang.StringUtils.split(roleReq.getResources(), ",");
 		if (ObjectUtils.isNotEmpty(resourceIds)) {
 			for (String resourceId : resourceIds) {
-				role.getResources().add(
-						new Resource(Integer.parseInt(resourceId)));
+				role.getResources().add(new Resource(Integer.parseInt(resourceId)));
 			}
 		}
 		return role;
 	}
 
 	@RequestMapping(value = "/role/edit")
-	public String editRole(RoleRequest roleReq, Model model)
-			throws ServiceAuthorizeException, ServiceBusinessException {
+	public String editRole(RoleRequest roleReq, Model model) throws ServiceAuthorizeException, ServiceBusinessException {
 		Role role = authorizeService.getRoleById(roleReq.getId());
 		List<Resource> resources = role.getResources();
 		String str = "";
@@ -646,8 +653,7 @@ public class AuthorizeController extends BaseController {
 	private void logIntoDB(String targetObjet) {
 
 		String username = SecurityContextUtil.getUserName();
-		String currentDate = DateUtil.date2String(new Date(),
-				DateUtil.PATTERN_STANDARD);
+		String currentDate = DateUtil.date2String(new Date(), DateUtil.PATTERN_STANDARD);
 		String ip = request.getRemoteAddr();
 		String description = MessageFormat.format("[{0}]成功", targetObjet);
 
@@ -665,8 +671,7 @@ public class AuthorizeController extends BaseController {
 		 * 0-用户名 1-时间 2-操作 3-IP
 		 */
 		String operateLogDescription = "用户[{0}]在[{1}]时间[{2}],用户IP[{3}]";
-		LogUtil.info(LOG, operateLogDescription, username, currentDate,
-				description, ip);
+		LogUtil.info(LOG, operateLogDescription, username, currentDate, description, ip);
 	}
 
 	/**
@@ -725,8 +730,7 @@ public class AuthorizeController extends BaseController {
 	 */
 	@RequestMapping(value = { "/resource/edit" }, method = RequestMethod.GET)
 	public ModelAndView resourceEdit(int id) throws Exception {
-		ResourceRequest res = convertToResourceRequest(authorizeService
-				.getResourceById(id));
+		ResourceRequest res = convertToResourceRequest(authorizeService.getResourceById(id));
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("framework/auth/resource/resourceEdit");
 		mav.addObject("resource", res);
@@ -750,8 +754,8 @@ public class AuthorizeController extends BaseController {
 	 */
 	@RequestMapping(value = { "/resource/save" }, method = RequestMethod.POST)
 	@ResponseBody
-	public AjaxDone resourceSave(ResourceRequest request,
-			HttpServletRequest servletRequest) throws ServiceAuthorizeException {
+	public AjaxDone resourceSave(ResourceRequest request, HttpServletRequest servletRequest)
+			throws ServiceAuthorizeException {
 		try {
 			authorizeService.insertNewResource(request);
 			return ajaxDoneSuccess(null);
@@ -764,21 +768,17 @@ public class AuthorizeController extends BaseController {
 	@RequestMapping(value = "/resource/getResources")
 	public @ResponseBody List<TreeVo> getAllResources(Integer id) {
 		if (id == null) {
-			return convertResources(authorizeService
-					.getAllResourcesAsTreeAndNotValid());
+			return convertResources(authorizeService.getAllResourcesAsTreeAndNotValid());
 		} else {
-			return convertResources(authorizeService
-					.getResourcesAsTreeAndNotValidByParentId(id));
+			return convertResources(authorizeService.getResourcesAsTreeAndNotValidByParentId(id));
 		}
 	}
 
 	@RequestMapping(value = "/resource/getResourcesById")
-	public @ResponseBody List<TreeVo> getResourcesById(Integer nodeId,
-			Integer id) {
+	public @ResponseBody List<TreeVo> getResourcesById(Integer nodeId, Integer id) {
 		if (id == null || id == 0)
 			id = nodeId;
-		List<Resource> resources = authorizeService
-				.getAllResourceWithCurrentRole(id);
+		List<Resource> resources = authorizeService.getAllResourceWithCurrentRole(id);
 
 		return convertResources(resources, true);
 	}
@@ -802,8 +802,7 @@ public class AuthorizeController extends BaseController {
 		return tvs;
 	}
 
-	private List<TreeVo> convertResources(List<Resource> resources,
-			boolean async) {
+	private List<TreeVo> convertResources(List<Resource> resources, boolean async) {
 
 		List<TreeVo> tvs = new ArrayList<TreeVo>();
 		for (Resource resource : resources) {

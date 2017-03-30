@@ -14,7 +14,13 @@
 				<li><font>用户名：</font>
 					<h1>
 						<input id="userName" name="userName" type="text">
-					</h1></li>
+					</h1>
+				</li>
+				<li><font>资金来源：</font>
+					<h1>
+						<input id="upaySourceStr" name="paySourceStr" type="text">
+					</h1>
+				</li>				
 			</ul>
 		</div>
 		<div class="ibms_clear"></div>
@@ -45,10 +51,15 @@
 		<tr>
 			<th data-options="field:'id',checkbox:true">序列号</th>
 			<th data-options="field:'userName',width:'23%',editor:'text'">用户名</th>
-			<th data-options="field:'paySourceStr',width:'25%',editor:'text'">账户来源</th>
+			<th data-options="field:'paySourceStr',width:'25%',editor:'text'">资金来源</th>
 			<th data-options="field:'amount',width:'25%',editor:'text'">金额</th>
 			<th data-options="field:'operateViewDate',width:'25%',editor:'text'">缴费日期</th>
 		</tr>
 	</thead>
 </table>
-<div id="tb" style="height: auto"></div>
+<div id="tb" style="height: auto">
+	<!-- Start: 增加转换记录为核销项功能，by SUNZHE, 2017-03-12 -->
+	<a href="javascript:void(0)" class="easyui-linkbutton convertbillcheckbutton"
+		data-options="iconCls:'icon-remove',plain:true,index:'id',url:'${pageContext.request.contextPath}/web/pays/convert'">转为核销项</a>
+	<!-- End: 增加转换记录为核销项功能，by SUNZHE, 2017-03-12 -->
+</div>

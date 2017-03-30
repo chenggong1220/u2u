@@ -43,7 +43,19 @@ public class UserInfo extends BaseBean {
 	private float amount;
 
 	private boolean pushMessage;
+	
+	private String deviceRegID;
 
+	//Start: 为消息推送, SUNZHE, 2017-03-25
+	public String getDeviceRegID() {
+		return deviceRegID;
+	}
+
+	public void setDeviceRegID(String deviceRegID) {
+		this.deviceRegID = deviceRegID;
+	}	
+	//End: 为消息推送, SUNZHE, 2017-03-25
+	
 	public float getMemberAmount() {
 		return memberAmount;
 	}
@@ -287,7 +299,6 @@ public class UserInfo extends BaseBean {
 		return hasDeposited;
 	}
 	
-
 	public void setHasDeposited(boolean hasDeposited) {
 		this.hasDeposited = hasDeposited;
 	}

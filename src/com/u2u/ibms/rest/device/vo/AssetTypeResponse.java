@@ -29,6 +29,8 @@ public class AssetTypeResponse {
 	private String assetTypeId;
 	//押金
 	private String deposit;
+	//保险
+	private String insurance;	
 
 	/**
 	 * 返回 设备类型ID
@@ -301,5 +303,21 @@ public class AssetTypeResponse {
 		this.deposit = deposit;
 	}
 	
+	//Start: 增加保险费信息，SUNZHE, 2017-03-26
+	/**
+	 * 返回 保险费   
+	 * @return 保险费
+	*/
+	public String getInsurance() {
+		return insurance;
+	}
 	
+	/**
+	 * 设置 保险费
+	 * @param deposit   保险费
+	 */
+	public void setInsurance(String insurance) {
+		this.insurance = insurance;
+	}
+	//Start: 增加保险费信息，SUNZHE, 2017-03-26
 }

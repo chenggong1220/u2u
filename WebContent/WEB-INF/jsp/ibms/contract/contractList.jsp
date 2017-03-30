@@ -98,10 +98,8 @@
 		<tr>
 			<th data-options="field:'id',checkbox:true">序列号</th>
 			<th
-				data-options="field:'contractId',width:'10%',formatter:function(value,rec){return '<a target=\'_blank\' 
-				href=\'${pageContext.request.contextPath}'+
-				rec.saveLocation +'\'>'
-				+ value+'</a>' }">合同号
+				data-options="field:'contractId',width:'10%',formatter:function(value,rec){return '<a target=\'_blank\' href=\'${pageContext.request.contextPath}'+
+				rec.saveLocation +'\'>'	+ value+'</a>' }">合同号
 			</th>
 			<th data-options="field:'orderName',width:'22%'">合同类型</th>
 			<!-- 

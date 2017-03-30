@@ -119,7 +119,7 @@
 			<th data-options="field:'endDatetime',width:'7%'">结束时间</th>
 			<th data-options="field:'createTime',width:'15%'">创建时间</th>
 			<th
-				data-options="field:'operator',width:'10%',formatter:function(value,rec){return rec.manager.realname ;}">客户专员</th>
+				data-options="field:'operator',width:'10%',formatter:function(value,rec){return rec.operator ;}">客户专员</th>
 
 
 

@@ -284,6 +284,8 @@ public class AuthorizeService {
 		exist.setBuId(user.getBuId());
 		exist.setProvinceId(user.getProvinceId());
 		exist.setCityId(user.getCityId());
+		exist.setEmail(user.getEmail());
+		exist.setCities(user.getCities());		
 		exist.setOperateDate(DateUtil.currentTimestamp());
 		authorizeMapper.updateUser(exist);
 

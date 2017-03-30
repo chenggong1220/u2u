@@ -23,6 +23,10 @@ public class RegistRequest {
 	private String industry;
 	// 用户类型
 	private Integer userType;
+	
+	// 客户移动设备ID
+	private String deviceRegID;	
+	
 
 	/**
 	 * 返回 登录名
@@ -233,4 +237,13 @@ public class RegistRequest {
 		this.userType = userType;
 	}
 
+	//Start: 为消息推送, SUNZHE, 2017-03-25
+	public String getDeviceRegID() {
+		return deviceRegID;
+	}
+
+	public void setDeviceRegID(String deviceRegID) {
+		this.deviceRegID = deviceRegID;
+	}	
+	//End: 为消息推送, SUNZHE, 2017-03-25	
 }

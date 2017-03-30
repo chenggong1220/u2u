@@ -14,7 +14,10 @@ import com.u2u.framework.sys.authorize.beans.User;
 import com.u2u.framework.sys.authorize.beans.UserRole;
 import com.u2u.framework.sys.authorize.mapper.AuthorizeMapper;
 import com.u2u.framework.util.DateUtil;
+import com.u2u.framework.util.StringUtils;
 import com.u2u.ibms.common.beans.Order;
+import com.u2u.ibms.common.beans.location.City;
+import com.u2u.ibms.common.mapper.LocationMapper;
 import com.u2u.ibms.common.mapper.OrderMapper;
 import com.u2u.ibms.web.order.service.OrderService;
 
@@ -30,36 +33,40 @@ public class AutoSubOrderService extends BaseService {
 	@Autowired
 	private AuthorizeMapper authorizeMapper;
 
+	@Autowired
+	private LocationMapper locationMapper;
+
 	public boolean seperate(Order order) {
 		if (order != null) {
 			Role role = authorizeMapper.getRoleByName("客户专员");
 			if (role != null) {
-				List<UserRole> userRoles = authorizeMapper
-						.getUserRoleRelationsByRoleIds(Arrays
-								.asList(new Integer[] { role.getId() }));
+				List<UserRole> userRoles = authorizeMapper.getUserRoleRelationsByRoleIds(Arrays
+						.asList(new Integer[] { role.getId() }));
 
 				for (UserRole userRole : userRoles) {
-					User user = authorizeMapper.getUserById(userRole
-							.getUserId());
-					if (user.getProvinceId() == order.getProvinceId()
-							&& user.getCityId() == order.getCityId()) {
+					User user = authorizeMapper.getUserById(userRole.getUserId());
+					if (StringUtils.isNotEmpty(user.getCities())) {
+						List<String> cities = Arrays.asList(user.getCities().split(","));
 
-						order.setOperatorId(user.getId());
-						// order.setOperator(user.getRealname());
-						// order.setOperatorMobile(user.getMobile());
-						order.setManagerId(user.getId());
+						City city = locationMapper.getCityById(order.getCityId());
+						if (CollectionUtils.isNotEmpty(cities) && cities.contains(String.valueOf(city.getUnionCode()))) {
+							order.setOperatorId(user.getId());
+							order.setOperator(user.getRealname());
+							// order.setOperatorMobile(user.getMobile());
+							order.setManagerId(user.getId());
 
-						User manager = getCustomerManager();
-						if (manager != null) {
-							order.setManagerId(manager.getId());
+							User manager = getCustomerManager();
+							if (manager != null) {
+								order.setManagerId(manager.getId());
+							}
+
+							order.setAssigned(true);
+							order.setOperateDate(DateUtil.currentTimestamp());
+							orderMapper.update(order);
+
+							DingDingAuthUtil.send(user);
+							return true;
 						}
-
-						order.setAssigned(true);
-						order.setOperateDate(DateUtil.currentTimestamp());
-						orderMapper.update(order);
-
-						DingDingAuthUtil.send(user);
-						return true;
 					}
 				}
 			}
@@ -70,12 +77,10 @@ public class AutoSubOrderService extends BaseService {
 	public User getCustomerManager() {
 		Role role = authorizeMapper.getRoleByName("客户经理");
 		if (role != null) {
-			List<UserRole> userRoles = authorizeMapper
-					.getUserRoleRelationsByRoleIds(Arrays
-							.asList(new Integer[] { role.getId() }));
+			List<UserRole> userRoles = authorizeMapper.getUserRoleRelationsByRoleIds(Arrays.asList(new Integer[] { role
+					.getId() }));
 			if (CollectionUtils.isNotEmpty(userRoles)) {
-				return authorizeMapper
-						.getUserById(userRoles.get(0).getUserId());
+				return authorizeMapper.getUserById(userRoles.get(0).getUserId());
 			}
 		}
 		return null;

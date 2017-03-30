@@ -5,6 +5,8 @@ public class LoginRequest {
 	private String username;
 	// 密码
 	private String pwd;
+	//App的设备ID
+	private String regID;
 
 	public String getUsername() {
 		return username;
@@ -33,4 +35,13 @@ public class LoginRequest {
 		this.pwd = pwd;
 	}
 
+	//Start: 为了消息推送，增加设备ID信息，SUNZHE,2017-03-26
+	public String getRegID() {
+		return regID;
+	}
+
+	public void setRegID(String regID) {
+		this.regID = regID;
+	}
+	//End: 为了消息推送，增加设备ID信息，SUNZHE,2017-03-26
 }

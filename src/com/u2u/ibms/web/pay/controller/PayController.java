@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.u2u.framework.base.BaseController;
 import com.u2u.framework.base.BaseRequest;
+import com.u2u.framework.beans.AjaxDone;
 import com.u2u.ibms.common.beans.Pays;
 import com.u2u.ibms.web.pay.condition.PayCondition;
 import com.u2u.ibms.web.pay.service.PayService;
@@ -37,4 +38,12 @@ public class PayController extends BaseController {
 		return result;
 	}
 
+	//Start: 转成核销项, by SUNZHE, 2017-03-12
+	@RequestMapping("/convert")
+	@ResponseBody
+	public AjaxDone convert(int id) {
+		payservice.convertToBillCheck(id);
+		return ajaxDoneSuccess(null);
+	}
+	//End: 转成核销项, by SUNZHE, 2017-03-12
 }

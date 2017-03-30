@@ -197,6 +197,39 @@ $(function() {
 	});	
 	//End: 增加删除订单操作 ，by SUNZHE, 2017-02-11 -->
 	
+	//Start: 增加转换核销项操作 ，by SUNZHE, 2017-03-12 -->
+	$(".convertbillcheckbutton").click(function(){
+		var dataOption = parseOption(this);
+		var index = dataOption.index || "id";
+		var checkedList = $(".easyui-datagrid").datagrid('getChecked');
+		if(!checkedList.length){
+			$.messager.alert('提示消息','请选择要操作的数据!',"info");
+		}else if(checkedList[0].paySourceStr == "银行汇款"){
+			IBMS.messager.alert('提示消息',"不能对【银行汇款】的记录进行转换!","info");
+			return;
+		}else{
+			var alarmInfo = dataOption.alarmInfo || "确定要执行该操作吗?";
+			IBMS.messager.confirm('确认', alarmInfo, function(r){
+				if (r){
+						var param = {};
+						var indexArray=[];
+						$.each(checkedList,function(k,v){
+							indexArray.push(v[index]);					
+						});
+						param[index] = indexArray.join(",");
+						IBMS.post(dataOption.url, param,function(data) {
+							if (data.message) {
+								IBMS.messager.alert("提示消息", data.message, "info", function() {
+									$(".auto-querybutton").click();
+								});
+							}
+					});
+				}
+			});
+		}
+	});	
+	//End: 增加转换核销项操作 ，by SUNZHE, 2017-03-12 -->	
+	
 	$(".auto-verifybutton").click(function(){
 		var dataOption = parseOption(this);
 		var index = dataOption.index || "id";

@@ -75,7 +75,6 @@
 		<property name="signNames">
 			<map>
 				<entry key="zhuce" value="注册验证" />
-
 			</map>
 		</property>
 		<!-- 短信模版 -->

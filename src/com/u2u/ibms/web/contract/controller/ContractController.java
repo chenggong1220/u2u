@@ -50,6 +50,7 @@ public class ContractController extends BaseController {
 	@ResponseBody
 	public Map<String, Object> list(BaseRequest baseRequest,
 			ContractCondition condition) throws Exception {
+
 		//针对客户专员加查看权限，只有看到他自己关联的合同, by SUNZHE, 2017-02-12
 		User user = authorizeService.getUser(SecurityContextUtil.getUserName());
 

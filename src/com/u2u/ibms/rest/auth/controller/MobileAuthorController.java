@@ -66,8 +66,8 @@ public class MobileAuthorController extends BaseRestController {
 	@ResponseBody
 	public MobileResponse login(@RequestBody LoginRequest request)
 			throws Exception {
-		MobileResponse response = success(mobileAuthorService
-				.login(request.getUsername(), request.getPwd()));
+		MobileResponse response = success(mobileAuthorService.login(request.getUsername(), request.getPwd(), request.getRegID()));
+				//(request.getUsername(), request.getPwd()), request.getRegID());
 		return response;
 	}
 	/**

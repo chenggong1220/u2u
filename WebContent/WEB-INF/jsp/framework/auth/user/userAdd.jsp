@@ -44,6 +44,7 @@
 						<input id="dingding" name="dingding" type="text"
 							class="easyui-validatebox" data-options="required:true">
 					</h1></li>
+				<li><font>邮箱：</font><h1><input id="email" name="email" type="text" class="easyui-validatebox" data-options="required:true"></h1></li>					
 			</ul>
 			<div class="ibms_clear"></div>
 			<ul>
@@ -69,6 +70,10 @@
 					</h1></li>
 			</ul>
 			<div class="ibms_clear"></div>
+	        <ul>
+	           <li><font>辖区：</font><h1><input id="cities" name="cities" type="text" class="easyui-combobox" data-options="required:true"></h1></li>
+	        </ul>
+	        <div class="ibms_clear"></div>			
 		</div>
 		<div class="ibms_form_btn">
 			<a href="#" class="query_list_button auto-savebutton"
@@ -119,5 +124,17 @@ $('#provinceId').combobox({
 		    textField:'name'
 		});
     }
+});
+
+
+$('#cities').combotree({
+	editable:false,
+    url: WEB_APP + '/web/location/getLocation',
+    valueField:'id',
+    textField:'name',
+    method:'get',
+    multiple:true,
+    onLoadSuccess: function(node,data){
+    	$("#cities").combotree('tree').tree("collapseAll");}    
 });
 </script>

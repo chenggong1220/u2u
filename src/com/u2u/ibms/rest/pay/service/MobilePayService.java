@@ -35,6 +35,7 @@ import com.u2u.ibms.rest.pay.vo.AlipayRequest;
 import com.u2u.ibms.rest.pay.vo.AlipayResponse;
 import com.u2u.ibms.rest.pay.vo.AlipayVerifyRequest;
 import com.u2u.ibms.rest.pay.vo.AlipayVerifyResponse;
+import com.u2u.ibms.web.schedule.ScheduleBillCheck;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -143,6 +144,7 @@ public class MobilePayService {
 	public void alipayCallback(HttpServletRequest servletRequest,
 			AlipayCallbackRequest request) {
 
+		LogUtil.info(log, "================== Start Mobile Payment =================");
 		Map<String, String> params = new HashMap<String, String>();
 		Map requestParams = servletRequest.getParameterMap();
 		for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext();) {
@@ -157,6 +159,7 @@ public class MobilePayService {
 			// valueStr = new String(valueStr.getBytes("ISO-8859-1"), "gbk");
 			params.put(name, valueStr);
 		}
+
 
 		if (!AlipayNotify.verify(params)) {// 验证失败
 			throw new RuntimeException("支付宝回调消息验证签名失败");
@@ -205,6 +208,8 @@ public class MobilePayService {
 				billCheck.setOperateDate(DateUtil.currentTimestamp());
 				billCheckMapper.update(billCheck);
 			}
+			
+			LogUtil.info(log, "================== 插入Paymet数据 =================");
 			Pays pay = new Pays();
 			pay.setPayId(CommonIdGenerator.generatePayId());
 			pay.setPaySource(0);
@@ -216,6 +221,7 @@ public class MobilePayService {
 			pay.setCreateDate(DateUtil.currentTimestamp());
 			pay.setOperateDate(DateUtil.currentTimestamp());
 			paysMapper.insert(pay);
+			LogUtil.info(log, "================== Success 插入Paymet数据 =================");
 
 			Income income = new Income();
 			income.setOrderId(pay.getOrderId());

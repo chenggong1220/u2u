@@ -26,8 +26,27 @@ public class UserRequest extends BaseRequest {
 	private int provinceId;
 	private int cityId;
 
+	private String email;
+	private Integer[] cities;
 	private int shopId;
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Integer[] getCities() {
+		return cities;
+	}
+
+	public void setCities(Integer[] cities) {
+		this.cities = cities;
+	}
+	
+	
 	public int getShopId() {
 		return shopId;
 	}

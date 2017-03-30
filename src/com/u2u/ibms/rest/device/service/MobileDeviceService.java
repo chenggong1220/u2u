@@ -118,6 +118,7 @@ public class MobileDeviceService {
 				response.setLayout(assetType.getLayout());
 				response.setDriving(assetType.getDriving());
 				response.setDeposit(assetType.getDeposit() + "");
+				response.setInsurance(assetType.getInsuranceAmount() + "");
 				list.add(response);
 			}
 		}

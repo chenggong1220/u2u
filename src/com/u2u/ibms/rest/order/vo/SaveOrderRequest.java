@@ -38,12 +38,16 @@ public class SaveOrderRequest {
 	private String needInvoices;
 	private RentSideInfo rentSideInfo;
 	// 证件正面
-		private String idCardFrontImg;
-		// 证件反面
-		private String idCardBackImg;
-		// 证件手持
-		private String idCardHandImg;
+	private String idCardFrontImg;
+	// 证件反面
+	private String idCardBackImg;
+	// 证件手持
+	private String idCardHandImg;
 
+	public String rentDuraion;		//SUNZHE, 2017-03-26
+	public String totalDeposit;		//SUNZHE, 2017-03-26
+	public String totalInsurance;	//SUNZHE, 2017-03-26
+	
 	/**
 	 * 返回 租赁物存放详细地址
 	 * 
@@ -358,4 +362,27 @@ public class SaveOrderRequest {
 		this.idCardHandImg = idCardHandImg;
 	}
 	
+	
+	//Start: SUNZHE, 2017-03-26
+	public String getRentDuraion() {
+		return rentDuraion;
+	}
+	public void setRentDuraion(String rentDuraion) {
+		this.rentDuraion = rentDuraion;
+	}
+	
+	public String getTotalDeposit() {
+		return totalDeposit;
+	}
+	public void setTotalDeposit(String totalDeposit) {
+		this.totalDeposit = totalDeposit;
+	}
+	
+	public String getTotalInsurance() {
+		return totalInsurance;
+	}
+	public void setTotalInsurance(String totalInsurance) {
+		this.totalInsurance = totalInsurance;
+	}	
+	//End: SUNZHE, 2017-03-26
 }

@@ -73,8 +73,7 @@
 		<tr>
 			<th data-options="field:'id',checkbox:true">序列号</th>
 			<th
-				data-options="field:'contractId',width:'10%',formatter:function(value,rec){return '<a target=\'
-				_blank\' href=\'${pageContext.request.contextPath}'+rec.contract.saveLocation +'\'>'
+				data-options="field:'contractId',width:'10%',formatter:function(value,rec){return '<a target=\'_blank\' href=\'${pageContext.request.contextPath}'+rec.contract.saveLocation +'\'>'
 				+ rec.contract.contractId+'</a>' }">合同号
 			</th>
 			<th data-options="field:'customer',width:'10%'">客户</th>

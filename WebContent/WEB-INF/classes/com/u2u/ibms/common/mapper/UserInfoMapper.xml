@@ -38,6 +38,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<result property="payDeposit" jdbcType="FLOAT" column="pay_deposit" />
 		<result property="amount" jdbcType="FLOAT" column="amount" />
 		<result property="pushMessage" jdbcType="TINYINT" column="push_message" />
+		<result property="deviceRegID" jdbcType="VARCHAR" column="device_regid" />
 
 	</resultMap>
 
@@ -68,6 +69,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		PAY_DEPOSIT,
 		AMOUNT,
 		PUSH_MESSAGE,
+		DEVICE_REGID,
 		<include refid="BASE_BEAN_SQL" />
 	</sql>
 
@@ -171,6 +173,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		#{payDeposit},
 		#{amount},
 		#{pushMessage},
+		#{deviceRegID},
 		#{createDate},
 		#{operateDate}
 		)
@@ -205,6 +208,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		PAY_DEPOSIT = #{payDeposit},
 		AMOUNT = #{amount},
 		PUSH_MESSAGE = #{pushMessage},
+		DEVICE_REGID = #{deviceRegID},
 		create_date = #{createDate},
 		operate_date = #{operateDate}
 		where

@@ -32,11 +32,30 @@ public class User extends BaseBean implements Serializable {
 	private int buId;
 	private int provinceId;
 	private int cityId;
-
+	private String email;
+	private String cities;
 	private int shopId;
 	private Shop shop;
 	private List<Role> roles = new ArrayList<>();
 
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getCities() {
+		return cities;
+	}
+
+	public void setCities(String cities) {
+		this.cities = cities;
+	}
+
+	
 	public int getShopId() {
 		return shopId;
 	}

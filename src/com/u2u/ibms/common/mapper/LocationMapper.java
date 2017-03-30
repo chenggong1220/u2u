@@ -18,6 +18,8 @@ public interface LocationMapper {
 
 	City getCityById(@Param("id") Integer id);
 
+	City getCityByUnionCode(@Param("unionCode") Integer unionCode);
+	
 	List<District> getDistricts(@Param("cityId") Integer cityId);
 
 	District getDistrictById(@Param("id") Integer id);

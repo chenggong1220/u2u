@@ -14,6 +14,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<result property="id" jdbcType="INTEGER" column="id" />
 		<result property="name" jdbcType="VARCHAR" column="name" />
 		<result property="provinceId" jdbcType="INTEGER" column="province_id" />
+		<result property="unionCode" jdbcType="INTEGER" column="union_code"/>
 	</resultMap>
 
 	<resultMap id="district" type="com.u2u.ibms.common.beans.location.District">
@@ -44,7 +45,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		SELECT
 		ID,
 		NAME,
-		PROVINCE_ID
+		PROVINCE_ID,
+		UNION_CODE 
 		FROM
 		t_l_city
 		WHERE
@@ -55,12 +57,26 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		SELECT
 		ID,
 		NAME,
-		PROVINCE_ID
+		PROVINCE_ID,
+		UNION_CODE 
 		FROM
 		t_l_city
 		WHERE
 		id = #{id}
 	</select>
+
+	<select id="getCityByUnionCode" resultMap="city">
+		SELECT 
+			ID,
+			NAME,
+			PROVINCE_ID,
+			UNION_CODE
+		FROM 
+			t_l_city
+		WHERE
+			union_code = #{unionCode}
+	</select>
+	
 
 	<select id="getDistricts" resultMap="district">
 		SELECT

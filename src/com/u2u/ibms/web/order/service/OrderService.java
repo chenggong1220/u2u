@@ -146,7 +146,11 @@ public class OrderService extends BaseService {
 
 	public Order getById(int id) {
 		Order order = orderMapper.getById(id);
-		return convertOrder(order);
+		if(order == null){
+			return order;
+		}else{
+			return convertOrder(order);
+		}
 	}
 
 	public OrderStatistics getOrderStatistics(int orderId) {
@@ -181,7 +185,7 @@ public class OrderService extends BaseService {
 	}
 
 	public Order convertOrder(final Order order) {
-
+		
 		order.setStartDatetime(DateUtil.timestamp2String(order.getStartDate(),
 				DateUtil.PATTERN_DATE));
 		order.setEndDatetime(DateUtil.timestamp2String(order.getEndDate(),

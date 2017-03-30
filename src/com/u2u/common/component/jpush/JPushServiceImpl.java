@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service;
 
 import com.u2u.common.component.sms.SendSMSUtilServiceImpl;
 
+import cn.jiguang.common.resp.APIConnectionException;
+import cn.jiguang.common.resp.APIRequestException;
 import cn.jpush.api.JPushClient;
-import cn.jpush.api.common.resp.APIConnectionException;
-import cn.jpush.api.common.resp.APIRequestException;
 import cn.jpush.api.push.PushResult;
 import cn.jpush.api.push.model.PushPayload;
 
@@ -35,15 +35,23 @@ public class JPushServiceImpl implements JPushService {
 	}
 	
 	@Override
-	public void push(String content)
-			throws APIConnectionException, APIRequestException {
-		JPushClient jpushClient = new JPushClient(masterSecret, appKey);
-		PushPayload pushPayload=	JpushUtils.buildPushObject_android_and_ios(content);
-		PushResult result = jpushClient.sendPush(pushPayload);
-		log.info("success->msg_id=" + result.msg_id + ",sendno="
-				+ result.sendno);
-		int resultCode = result.getResponseCode();
-		log.info("result=" + resultCode);
-		System.out.println("msg_id="+result.msg_id+",sendno="+result.sendno+",resultCode="+resultCode);
+	public void push(String content) {
+		PushPayload pushPayload= JPushUtils.buildPushObject_android_and_ios(content);
+		try{
+			JPushClient jpushClient = new JPushClient(masterSecret, appKey);
+			
+			PushResult result = jpushClient.sendPush(pushPayload);
+			log.info("success->msg_id=" + result.msg_id + ",sendno="
+					+ result.sendno);
+			int resultCode = result.getResponseCode();
+			log.info("result=" + resultCode);
+			System.out.println("msg_id="+result.msg_id+",sendno="+result.sendno+",resultCode="+resultCode);
+		} catch (APIConnectionException ce) { 
+		    log.error("Connection error. Should retry later. ", ce); 
+		    log.error("Sendno: " + pushPayload.getSendno()); 
+		} catch (APIRequestException re) { 
+			log.error("Error response from JPush server. Should review and fix it. ", re); 
+			log.error("Sendno: " + pushPayload.getSendno()); 			
+	}
 	}
 }

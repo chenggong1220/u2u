@@ -1,5 +1,7 @@
 package com.u2u.ibms.web.message.service;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.u2u.common.component.jpush.JPushUtils;
 import com.u2u.common.component.sms.AlidayuSmsMessage;
 import com.u2u.common.component.sms.ThridPartySmsTemplate;
 import com.u2u.framework.base.BaseCondition;
@@ -24,6 +27,13 @@ import com.u2u.ibms.common.mapper.MessageMapper;
 import com.u2u.ibms.common.mapper.UserInfoMapper;
 import com.u2u.ibms.common.mapper.UserMessageMapper;
 import com.u2u.ibms.web.message.vo.MessageVo;
+
+import cn.jpush.api.JPushClient;
+import cn.jpush.api.push.PushResult;
+import cn.jpush.api.push.model.Platform;
+import cn.jpush.api.push.model.PushPayload;
+import cn.jpush.api.push.model.audience.Audience;
+import cn.jpush.api.push.model.notification.Notification;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -81,11 +91,11 @@ public class MessageService extends BaseService {
 	}
 
 	public void insert(Message message, String[] userIds) {
-
 		message.setCreateDate(DateUtil.currentTimestamp());
 		message.setOperateDate(DateUtil.currentTimestamp());
 		messageMapper.insertMessage(message);
 
+		ArrayList<String> pushRegIDs = new ArrayList<String>();
 		if (message.getMsgType().equals("个人消息")) {
 			for (String userId : userIds) {
 				try {
@@ -101,19 +111,24 @@ public class MessageService extends BaseService {
 						smsmessage.setPhoneNum(userInfo.getMobile());
 						smsmessage.bulidContext(maps);
 						// smsTemplate.sendMessage(smsmessage);
-					} else {
-						// 极光推送
 					}
+					
+					//Set RegID for Selected Users
+					if(userInfo.getDeviceRegID()!= null && userInfo.isPushMessage()){
+						pushRegIDs.add(userInfo.getDeviceRegID());
+					}
+					
 					UserMessage userMessage = new UserMessage();
 					userMessage.setMsgId(message.getId());
 					userMessage.setUserId(getIntegerCondition(userId));
 					userMessage.setOperateDate(DateUtil.currentTimestamp());
 					userMessage.setCreateDate(DateUtil.currentTimestamp());
-					userMessageMapper.insert(userMessage);
+					userMessageMapper.insert(userMessage);			
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
+			
 		} else {
 			List<UserInfo> userInfos = userInfoMapper.getUserInfos(
 					new RowBounds(), null, null, null, null,null);
@@ -129,8 +144,6 @@ public class MessageService extends BaseService {
 						smsmessage.setPhoneNum(userInfo.getMobile());
 						smsmessage.bulidContext(maps);
 						// smsTemplate.sendMessage(smsmessage);
-					} else {
-						// 极光推送
 					}
 					UserMessage userMessage = new UserMessage();
 					userMessage.setMsgId(message.getId());
@@ -141,7 +154,17 @@ public class MessageService extends BaseService {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
+				//Set RegID for All Users
+				if(userInfo.getDeviceRegID()!= null && userInfo.isPushMessage()){
+					pushRegIDs.add(userInfo.getDeviceRegID());
+				}
 			}
+		}
+		
+		if (message.getType().equals("APP") && pushRegIDs != null) {
+			//极光消息推送
+			JPushUtils.pushMessage(message.getTitle(), message.getContent(), pushRegIDs);
 		}
 	}
 
@@ -149,4 +172,5 @@ public class MessageService extends BaseService {
 		messageMapper.deleteMessage(id);
 		userMessageMapper.deleteByMessageId(id);
 	}
+	
 }

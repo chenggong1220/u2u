@@ -56,6 +56,7 @@ public class ContractService extends BaseService {
 	private AssetManagerRentAssetService assetManagerRentAssetService;
 
 	public List<Contract> getAll(RowBounds rb, ContractCondition condition) {
+		
 		List<Contract> contracts = contractMapper.getAll(rb,
 				getStringCondition(condition.getContractId()),
 				getBooleanCondition(condition.getSendStatus()),
@@ -74,6 +75,7 @@ public class ContractService extends BaseService {
 		for (final Contract contract : contracts) {
 			convertToContract(contract);
 		}
+		
 		return contracts;
 	}
 

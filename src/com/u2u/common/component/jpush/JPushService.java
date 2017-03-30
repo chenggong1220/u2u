@@ -1,7 +1,7 @@
 package com.u2u.common.component.jpush;
 
-import cn.jpush.api.common.resp.APIConnectionException;
-import cn.jpush.api.common.resp.APIRequestException;
+import cn.jiguang.common.resp.APIConnectionException;
+import cn.jiguang.common.resp.APIRequestException;
 
 public interface JPushService {
 

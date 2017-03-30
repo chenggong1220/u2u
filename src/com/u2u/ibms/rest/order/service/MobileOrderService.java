@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.jpush.api.utils.StringUtils;
-
 import com.u2u.framework.util.DateUtil;
 import com.u2u.ibms.common.AutoSubOrderService;
 import com.u2u.ibms.common.Constants;
@@ -37,6 +35,8 @@ import com.u2u.ibms.rest.order.vo.OrderRequest;
 import com.u2u.ibms.rest.order.vo.OrderResponse;
 import com.u2u.ibms.rest.order.vo.RentSideInfo;
 import com.u2u.ibms.rest.order.vo.SaveOrderRequest;
+
+import cn.jiguang.common.utils.StringUtils;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRES_NEW)
