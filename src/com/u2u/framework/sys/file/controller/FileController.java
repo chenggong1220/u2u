@@ -102,14 +102,14 @@ public class FileController extends BaseController {
 			}
 			File smallSaveFile = new File(logoRealPathDir + File.separator
 					+ "deviceTypeImgs");
-			System.out.println("====" + logoRealPathDir + File.separator
-					+ "deviceTypeImgs");
+			//System.out.println("====" + logoRealPathDir + File.separator
+			//		+ "deviceTypeImgs");
 			if (!smallSaveFile.exists()) {
 				smallSaveFile.mkdirs();
 			}
 			String smallFileName = logoRealPathDir + File.separator
 					+ "deviceTypeImgs" + File.separator + logImageName;
-			System.out.println(smallFileName);
+			//System.out.println(smallFileName);
 			try {
 				ImageResizer.resizeImage(fileName, smallFileName, 200, 200);
 			} catch (IOException e) {

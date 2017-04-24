@@ -183,6 +183,8 @@ public class MobileOrderService {
 		System.out.println(getMonthSpace("2016-11-07", "2016-12-15"));
 		System.out.println(getMonthSpace("2016-12-07", "2017-06-15"));
 		System.out.println(getMonthSpace("2016-12-07", "2018-12-15"));
+		//MobileOrderService mOrderService = new 	MobileOrderService();
+		//System.out.println(mOrderService.getOrderList("三和航空").toString());
 	}
 
 	public static int getMonthSpace(String date1, String date2)
@@ -210,6 +212,11 @@ public class MobileOrderService {
 	}
 
 	public List<OrderListResponse> getOrderList(String username) {
+		try{
+			username = new String(username.getBytes("ISO-8859-1"),"UTF-8");
+		}catch(Exception e){
+			username = "";
+		}
 		UserInfo userinfo = userInfoMapper.getUserByUserName(username);
 		List<Order> orders = orderMapper.getByUser(userinfo);
 		List<OrderListResponse> list = new ArrayList<OrderListResponse>();

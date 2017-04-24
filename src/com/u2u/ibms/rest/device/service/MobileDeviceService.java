@@ -59,7 +59,7 @@ public class MobileDeviceService {
 		String picture = typeType.getPicture();
 		String end = picture.substring(( picture.lastIndexOf("/")+1),picture.length());
 		String before = picture.substring(0,picture.lastIndexOf("/"));
-		System.out.println(before+"/deviceTypeImgs/"+end);
+		//System.out.println(before+"/deviceTypeImgs/"+end);
 		response.setPicture(before+"/deviceTypeImgs/"+end);
 		response.setBrand(typeType.getBrand());
 		response.setModel(typeType.getModel());

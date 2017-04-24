@@ -72,14 +72,14 @@
 			<th data-options="field:'id',checkbox:true">序列号</th>
 			<th data-options="field:'bankSerialNumber',width:'12%',editor:'text'">银行流水号</th>
 			<th data-options="field:'accountNum',width:'15%',editor:'text'">对方账号</th>
-			<th data-options="field:'accountName',width:'8%',editor:'text'">对方户名</th>
-			<th data-options="field:'cusName',width:'8%',editor:'text'">客户姓名</th>
+			<th data-options="field:'accountName',width:'15%',editor:'text'">对方户名</th>
+			<th data-options="field:'cusName',width:'15%',editor:'text'">客户姓名</th>
 			<th data-options="field:'cusNum',width:'10%',editor:'text'">联系电话</th>
 			<th data-options="field:'dealDate',width:'10%',editor:'text'">交易日期</th>
 			<th data-options="field:'amount',width:'10%',editor:'text'">借方发生额</th>
 			<th data-options="field:'billingDate',width:'10%',editor:'text'">已开票日期</th>
 			<th data-options="field:'financialNum',width:'12%',editor:'text'">财务凭证号</th>
-			<th data-options="field:'remark',width:'12%',editor:'text'">备注</th>
+			<th data-options="field:'remark',width:'10%',editor:'text'">备注</th>
 		</tr>
 	</thead>
 </table>

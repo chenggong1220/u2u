@@ -146,29 +146,35 @@ public class BillController extends BaseController {
 				continue;
 			}
 			Bill bill = new Bill();
-			bill.setAccountNum(row.getCell(0).toString());
-			bill.setAccountName(row.getCell(1).toString());
-			bill.setCusName(row.getCell(2).toString());
-			bill.setCusNum(row.getCell(3).toString());
+			bill.setAccountNum(convertCellValue(row.getCell(0)));
+			bill.setAccountName(convertCellValue(row.getCell(1)));
+			bill.setCusName(convertCellValue(row.getCell(2)));
+			bill.setCusNum(convertCellValue(row.getCell(3)));
 			
-			bill.setDealDate(row.getCell(4).toString());
+			//bill.setDealDate(convertCellValue(row.getCell(4)));
 			
 			//Change Field Type from Date to String directly, by SUNZHE, 2017-01-19
-			//bill.setDealDate(DateUtil.date2String(
-			//		row.getCell(4).getDateCellValue(), DateUtil.PATTERN_DATE));
+			try{
+				bill.setDealDate(DateUtil.timestamp2String(
+						DateUtil.string2Timestamp(row.getCell(4).toString(), DateUtil.PATTERN_DATE),
+						DateUtil.PATTERN_DATE));
+			}catch(Exception e){
+				bill.setDealDate("");
+			}
 			
-			bill.setAmount(row.getCell(5).toString());
+			bill.setAmount(convertCellValue(row.getCell(5)));
 			
-			bill.setBillingDate(row.getCell(6).toString());
+			bill.setBillingDate(convertCellValue(row.getCell(6)));
 			//Change Field Type from Date to String directly, by SUNZHE, 2017-01-19
 			//bill.setBillingDate(DateUtil.date2String(
 			//		row.getCell(6).getDateCellValue(), DateUtil.PATTERN_DATE));
-			bill.setFinancialNum(row.getCell(7).toString());
-			bill.setBankSerialNumber(row.getCell(8).toString());
+			bill.setFinancialNum(convertCellValue(row.getCell(7)));
+			String bankSerialNumber = convertCellValue(row.getCell(8));
+			bill.setBankSerialNumber(bankSerialNumber);
 			bill.setCreateDate(DateUtil.currentTimestamp());
 			bill.setOperateDate(DateUtil.currentTimestamp());
-			String bankSerialNumber = row.getCell(8).toString();
-			bill.setRemark(row.getCell(9).toString());
+
+			bill.setRemark(convertCellValue(row.getCell(9)));
 			
 			Bill existBill = billService.getOne(bankSerialNumber);
 			if(existBill != null)
@@ -182,6 +188,16 @@ public class BillController extends BaseController {
 		}
 	}
 
+	private String convertCellValue(Cell inputCell)
+	{
+		if(inputCell == null){
+			return "";
+		}else{
+			return inputCell.toString();
+		}
+		 
+	}
+	
 	@RequestMapping(value = "/download")
 	public ModelAndView download(HttpServletRequest request,
 			HttpServletResponse response) {
