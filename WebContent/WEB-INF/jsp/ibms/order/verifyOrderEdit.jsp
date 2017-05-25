@@ -203,15 +203,15 @@ End: Temp Replace with above input Type, by SUNZHE, 2017-01-18   -->
 					</ul>
 					<div class="ibms_clear"></div>
 					<div class="ibms_form_default_textarea">
-						<font>身份证验证：</font>
-						<h1 style="width: 90%;">
-							<b> <img width="300" height="200"
-								src="${pageContext.request.contextPath}"
-								name="identifyCertification" id="identifyCertification" />
-							</b>
-						</h1>
 					</div>
 					<div class="ibms_form_default_textarea" id="personId">
+						<font>身份证验证：</font>
+						<h1 style="width: 90%;">
+							<b> 
+								<a class="POPUP_A" href="javascript:void(0);"><img width="300" height="200" tag="notpass" 
+								src="data:image/png;base64,${realpicture.idImg}" name="idCardVerifyImg" /></a>
+							</b>
+						</h1>					
 						<font>身份证正面：</font>
 						<h1 style="width: 90%;">
 							<b> <a class="POPUP_A" href="javascript:void(0);"><img
@@ -238,6 +238,13 @@ End: Temp Replace with above input Type, by SUNZHE, 2017-01-18   -->
 						</h1>
 					</div>
 					<div class="ibms_form_default_textarea" id="companyId">
+						<font>身份证验证：</font>
+						<h1 style="width: 90%;">
+							<b> 
+								<a class="POPUP_A" href="javascript:void(0);"><img width="300" height="200" tag="notpass" 
+								src="data:image/png;base64,${realpicture.idImg }" name="idCardVerifyImg" /></a>
+							</b>
+						</h1>					
 						<font>身份证正面：</font>
 						<h1 style="width: 90%;">
 							<b> <a class="POPUP_A" href="javascript:void(0);"><img
@@ -281,6 +288,8 @@ End: Temp Replace with above input Type, by SUNZHE, 2017-01-18   -->
 						</h1>
 						<!-- End: Added pics for Comp, by SUNZHE, 2017-01-17	---->
 					</div>
+					
+					<input type="hidden" name="idVerifyFlag" id="idVerifyFlag" value="${realpicture.idImg}">
 					<script type="text/javascript">
 						$("#identifyCertificationButton").click(function(){
 							var id = $("#orderId").val();
@@ -290,12 +299,25 @@ End: Temp Replace with above input Type, by SUNZHE, 2017-01-18   -->
 								if(ret.error!=0){
 									$.messager.alert('错误',ret.response,'error');	
 								}else{
-									console.log(ret.response);
-	 								$("#identifyCertification").attr("src","data:image/png;base64,"+ret.response);
+									//console.log(ret.response);
+									$.messager.alert('成功','验证通过！','info');
+	 								$("#idCardVerifyImg").attr("src","data:image/png;base64,"+ret.response);
 // 	 								console.log(ret)
 								}
 							})
 						});
+						
+						$("#orderVerifyButton").click(function(){
+							//var id = $("#orderId").val();
+							//$.post(WEB_APP+"/web/order/verify/identify/certification",{"id":id,"idCard":idCard},function(ret){
+							//$.messager.alert('成功','验证通过！','info');
+							if($("#idVerifyFlag").val() == ""){
+								$.messager.alert('提示信息','未通过身份证校验,无法审核通过！','info');
+							}else{
+								$("#orderVerifyButton").attr("data-options","iconCls:'icon-save',plain:true,url:'${pageContext.request.contextPath}/web/order/verify/save',autoclose:true");
+							}
+							
+						});						
 					</script>
 				</div>
 			</div>
@@ -356,8 +378,7 @@ End: Temp Replace with above input Type, by SUNZHE, 2017-01-18   -->
 		</div>
 	</div>
 	<div class="ibms_form_btn">
-		<a href="#" class="query_list_button auto-savebutton"
-			data-options="iconCls:'icon-save',plain:true,url:'${pageContext.request.contextPath}/web/order/verify/save',autoclose:true">审核</a>
+		<a href="#" class="query_list_button auto-savebutton" id="orderVerifyButton" >审核</a>
 		<a href="#" class="query_list_button auto-resetbutton">重 置</a>
 	</div>
 </form>

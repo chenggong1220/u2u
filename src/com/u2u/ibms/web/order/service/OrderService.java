@@ -1,5 +1,6 @@
 package com.u2u.ibms.web.order.service;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,8 +27,10 @@ import com.u2u.framework.sys.authorize.beans.User;
 import com.u2u.framework.sys.authorize.service.AuthorizeService;
 import com.u2u.framework.util.DateUtil;
 import com.u2u.ibms.common.AutoSubOrderService;
+import com.u2u.ibms.common.Config;
 import com.u2u.ibms.common.Constants;
 import com.u2u.ibms.common.CustomerName;
+import com.u2u.ibms.common.ImageWaterMark;
 import com.u2u.ibms.common.beans.AssetType;
 import com.u2u.ibms.common.beans.IdentifyCertification;
 import com.u2u.ibms.common.beans.Order;
@@ -450,18 +453,23 @@ public class OrderService extends BaseService {
 			throws Exception {
 		Order order = this.getById(getIntegerCondition(id));
 		String name = null;
+		String idCardImg = null;
 		if (order.getRentPersonType() == 0) {
 			name = order.getRentPersonInfo().getName();
+			idCardImg = order.getRentPersonInfo().getIdCardFrontImg();
 		} else {
 			name = order.getRentCompanyInfo().getLegalName();
+			idCardImg = order.getRentCompanyInfo().getIdCardFrontImg();
 		}
-
+		idCardImg = Config.webUrl + idCardImg;
+		
 		IdentifyCertification identifyCertification = identifyCertificationMapper
 				.getByNameAndIdcard(name, idCard);
 
 		String result = null;
 		if (identifyCertification == null) {
 			try {
+			
 				String ret = IdentityUtils.identityCard(name, idCard);
 
 				ObjectMapper objectMapper = new ObjectMapper();
@@ -473,18 +481,20 @@ public class OrderService extends BaseService {
 					throw new RuntimeException(response.getReason());
 				}
 				if (response.getResult().getRes() != 1) {
-					throw new RuntimeException("不匹配");
+					throw new RuntimeException("姓名与证件号码不匹配！");
 				}
 
 				IdentifyCertification identify = new IdentifyCertification();
 				identify.setName(name);
-				identify.setIdCard(idCard);
-				identify.setIdImg(response.getResult().getHeadimg());
+				identify.setIdCard(idCard);		
+				//identify.setIdImg(response.getResult().getHeadimg());	//聚合返回头像功能失效，SUNZHE, 2017-05-23
+				//System.out.println(idCardImg);
+				identify.setIdImg(ImageWaterMark.addTxtMark(idCardImg, "Passed! ", 30));
 				identify.setCreateDate(DateUtil.currentTimestamp());
 				identify.setOperateDate(DateUtil.currentTimestamp());
 				identifyCertificationMapper.insert(identify);
 
-				result = response.getResult().getHeadimg();
+				result = response.getResult().getHeadimg();		
 			} catch (Exception e) {
 				throw e;
 			}

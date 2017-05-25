@@ -18,8 +18,10 @@ import com.u2u.framework.sys.authorize.beans.User;
 import com.u2u.framework.sys.authorize.security.SecurityContextUtil;
 import com.u2u.framework.sys.authorize.service.AuthorizeService;
 import com.u2u.ibms.common.Constants;
+import com.u2u.ibms.common.beans.IdentifyCertification;
 import com.u2u.ibms.common.beans.Order;
 import com.u2u.ibms.common.beans.SubOrder;
+import com.u2u.ibms.common.mapper.IdentifyCertificationMapper;
 import com.u2u.ibms.web.order.condition.OrderCondition;
 import com.u2u.ibms.web.order.service.OrderService;
 
@@ -32,6 +34,9 @@ public class VerifyOrderController extends BaseController {
 
 	@Autowired
 	private AuthorizeService authorizeService;
+	
+	@Autowired
+	private IdentifyCertificationMapper identifyCertificationMapper;		
 
 	@RequestMapping("/index")
 	public String index() {
@@ -76,7 +81,19 @@ public class VerifyOrderController extends BaseController {
 	public ModelAndView seperate(int id) {
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("/ibms/order/verifyOrderEdit");
-		mav.addObject("order", orderService.getById(id));
+		Order order = orderService.getById(id);
+		mav.addObject("order", order);
+		
+		String name = null;
+		if (order.getRentPersonType() == 0) {
+			name = order.getRentPersonInfo().getName();
+		} else {
+			name = order.getRentCompanyInfo().getLegalName();
+		}
+		IdentifyCertification identifyCertification = identifyCertificationMapper
+				.getByNameAndIdcard(name, order.getIdCard());
+		mav.addObject("realpicture", identifyCertification);			
+		
 		return mav;
 	}
 

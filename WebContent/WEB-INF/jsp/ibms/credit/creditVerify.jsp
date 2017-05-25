@@ -633,18 +633,16 @@
 					<ul>
 						<li><font>上传文件：</font>
 							<h1>
-								<b> <input type="file" name="creditFileSelected"
-									id="creditFileSelected" accept="*" /> <input type="hidden"
-									name="creditFile" id="creditFile" value="" />
-								</b> <b> <input id="upload" type="button"
-									class="query_list_button" value="上传"
-									onclick="javascript:uploadFiles_framework('creditFileSelected','creditFile','creditFilePreview','file');">
-								</b>
-							</h1></li>
+								<input type="file" name="creditFileSelected" id="creditFileSelected" accept="*" />
+								<input type="hidden" name="creditFile" id="creditFile" value="" />
+								<input id="upload" type="button" class="query_list_button" value="上传"
+									onclick="javascript:uploadFiles_framework('creditFileSelected','creditFile','creditFilePreview','file');" />
+							</h1>
+						</li>
 
-						<li><font>状态：</font>
+						<li>
 							<h1>
-								${order.creditFile==""?"未上传":("已上传")}															
+								状态：${order.creditFile==""?"未上传":("已上传")}															
 							</h1>
 						</li>
 						<div id="creditFileDownload">

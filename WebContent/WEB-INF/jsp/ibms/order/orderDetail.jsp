@@ -202,6 +202,13 @@
 				<div class="ibms_form_default">
 					<div class="ibms_clear"></div>
 					<div class="ibms_form_default_textarea" id="personId">
+						<font>身份证验证：</font>
+						<h1 style="width: 90%;">
+							<b> 
+								<a class="POPUP_A" href="javascript:void(0);"><img width="300" height="200"
+								src="data:image/png;base64,${realpicture.idImg }" name="idCardVerifyImg" /></a>
+							</b>
+						</h1>					
 						<font>身份证正面：</font>
 						<h1 style="width: 90%;">
 							<b> <a class="POPUP_A" href="javascript:void(0);"><img
@@ -228,6 +235,13 @@
 						</h1>
 					</div>
 					<div class="ibms_form_default_textarea" id="companyId">
+						<font>身份证验证：</font>
+						<h1 style="width: 90%;">
+							<b> 
+								<a class="POPUP_A" href="javascript:void(0);"><img width="300" height="200"
+								src="data:image/png;base64,${realpicture.idImg }" name="idCardVerifyImg" /></a>
+							</b>
+						</h1>					
 						<font>身份证正面：</font>
 						<h1 style="width: 90%;">
 							<b> <a class="POPUP_A" href="javascript:void(0);"><img
@@ -236,6 +250,15 @@
 									name="idCardFrontImg" /></a>
 							</b>
 						</h1>
+						
+						<font>身份证验证：</font>
+						<h1 style="width: 90%;">
+							<b> 
+								<img width="300" height="200"
+								src="data:image/png;base64,${realpicture.idImg }" />
+							</b>
+						</h1>						
+						
 						<font>身份证反面：</font>
 						<h1 style="width: 90%;">
 							<b> <a class="POPUP_A" href="javascript:void(0);"><img

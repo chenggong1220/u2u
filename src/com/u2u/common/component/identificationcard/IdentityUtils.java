@@ -20,12 +20,16 @@ import org.codehaus.jackson.map.ObjectMapper;
  */
 public class IdentityUtils {
 
-	private static final String key = "c9266e9ff45cc84b4536bb86e5556793";
+	private static final String key1 = "c9266e9ff45cc84b4536bb86e5556793";
+	private static final String key2 = "09d4d7c1bd64b6df005d3d24a88172b3";
 
 	public static void main(String[] args) throws Exception {
 		// sendToCorpConversation("deandongming", "测试消息，11请忽略，谢谢1123！");
 
-		String result = identityCard("董明", "210311198303180012");
+		//String result = identityCard("董明", "210311198303180012");
+		String result = identityCard("孙喆", "211224197708222113");
+		System.out.println(result);
+	
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.configure(Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		IdentityResponse response = objectMapper.readValue(result,
@@ -48,8 +52,8 @@ public class IdentityUtils {
 	public static String identityCard(String realname, String idcard)
 			throws Exception {
 
-		String URL = "http://v.juhe.cn/idcardhead/query?key=" + key;
-
+		//String URL = "http://v.juhe.cn/idcardhead/query?key=" + key1;	返回身份头像
+		String URL = "http://op.juhe.cn/idcard/query?key=" + key2;
 		String param = "realname=" + realname + "&idcard=" + idcard;
 		// post(URL, Json);
 		String sr = IdentityUtils.sendPost(URL, param);

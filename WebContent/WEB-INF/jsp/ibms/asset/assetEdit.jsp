@@ -103,8 +103,17 @@ $("#rent").combobox({
 });
 
 var locationData = [];
+locationData.push({ "value": "客户端", "id": "客户端" });
+locationData.push({ "value": "沈阳", "id": "沈阳" });
+locationData.push({ "value": "宁波配送中心", "id": "宁波配送中心" });
+locationData.push({ "value": "常州机电展厅", "id": "常州机电展厅" });
+locationData.push({ "value": "洛阳亚广4S店", "id": "洛阳亚广4S店" });
+locationData.push({ "value": "石家庄配送中心", "id": "石家庄配送中心" });
+locationData.push({ "value": "深圳鹏创4s店", "id": "深圳鹏创4s店" });
+locationData.push({ "value": "寄存南方机床", "id": "寄存南方机床" });
 locationData.push({ "value": "U2U", "id": "U2U" });
 locationData.push({ "value": "厂商", "id": "厂商" });
+
 $("#location").combobox({
 	editable:false,
     data:locationData,

@@ -51,6 +51,14 @@
 				<h1>
 						<select name="location" class="easyui-combobox"
 							data-options="editable:false">
+							<option value="沈阳">沈阳</option>
+							<option value="客户端">客户端</option>
+							<option value="宁波配送中心">宁波配送中心</option>
+							<option value="常州机电展厅">常州机电展厅</option>
+							<option value="洛阳亚广4S店">洛阳亚广4S店</option>
+							<option value="石家庄配送中心">石家庄配送中心</option>
+							<option value="深圳鹏创4s店">深圳鹏创4s店</option>
+							<option value="寄存南方机床">寄存南方机床</option>
 							<option value="U2U">U2U</option>
 							<option value="厂商">厂商</option>
 						</select>
