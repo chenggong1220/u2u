@@ -251,14 +251,6 @@
 							</b>
 						</h1>
 						
-						<font>身份证验证：</font>
-						<h1 style="width: 90%;">
-							<b> 
-								<img width="300" height="200"
-								src="data:image/png;base64,${realpicture.idImg }" />
-							</b>
-						</h1>						
-						
 						<font>身份证反面：</font>
 						<h1 style="width: 90%;">
 							<b> <a class="POPUP_A" href="javascript:void(0);"><img

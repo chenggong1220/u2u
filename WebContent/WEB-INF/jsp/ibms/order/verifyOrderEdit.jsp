@@ -2,6 +2,28 @@
 	file="/WEB-INF/jsp/framework/component/include_individual.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
 
+
+<style type="text/css">
+.waitingHint{
+	 border:1px solid #939393;
+	 width:250px;
+	 height:50px;
+	 line-height:55px;
+	 padding:0 20px;
+	 position:absolute;
+	 left:50%;
+	 margin-left:-140px;
+	 top:50%;
+	 margin-top:-40px;
+	 font-size:15px;
+	 color:#333;
+	 font-weight:bold;
+	 text-align:center;
+	 background-color:#f9f9f9;
+}
+.waitingHint img{position:relative;top:10px;left:-8px;}
+</style>
+
 <form id="addForm">
 	<div id="infopointAccordion" class="easyui-accordion"
 		style="width: 100%;" data-options="multiple:true">
@@ -209,7 +231,7 @@ End: Temp Replace with above input Type, by SUNZHE, 2017-01-18   -->
 						<h1 style="width: 90%;">
 							<b> 
 								<a class="POPUP_A" href="javascript:void(0);"><img width="300" height="200" tag="notpass" 
-								src="data:image/png;base64,${realpicture.idImg}" name="idCardVerifyImg" /></a>
+								src="data:image/png;base64,${realpicture.idImg}" id="idCardVerifyImg" /></a>
 							</b>
 						</h1>					
 						<font>身份证正面：</font>
@@ -242,7 +264,7 @@ End: Temp Replace with above input Type, by SUNZHE, 2017-01-18   -->
 						<h1 style="width: 90%;">
 							<b> 
 								<a class="POPUP_A" href="javascript:void(0);"><img width="300" height="200" tag="notpass" 
-								src="data:image/png;base64,${realpicture.idImg }" name="idCardVerifyImg" /></a>
+								src="data:image/png;base64,${realpicture.idImg }" id="idCardVerifyImg" /></a>
 							</b>
 						</h1>					
 						<font>身份证正面：</font>
@@ -290,19 +312,27 @@ End: Temp Replace with above input Type, by SUNZHE, 2017-01-18   -->
 					</div>
 					
 					<input type="hidden" name="idVerifyFlag" id="idVerifyFlag" value="${realpicture.idImg}">
+					<div id="waitingHint" class="waitingHint" style="display:none">
+					    <img src="${pageContext.request.contextPath}/styles/images/waiting.gif" />正在验证，请稍等．．．
+					</div>					
 					<script type="text/javascript">
 						$("#identifyCertificationButton").click(function(){
 							var id = $("#orderId").val();
 							var idCard = $("#idCard").val();
+							$("#waitingHint").show();
 							$.post(WEB_APP+"/web/order/verify/identify/certification",{"id":id,"idCard":idCard},function(ret){
-								console.log(ret.error);
+								//console.log(ret.error);
+								$("#waitingHint").hide();
 								if(ret.error!=0){
-									$.messager.alert('错误',ret.response,'error');	
+									$.messager.alert('提示信息',ret.response,'error');	
 								}else{
 									//console.log(ret.response);
-									$.messager.alert('成功','验证通过！','info');
+									$.messager.alert('提示信息','验证通过！','info');;
 	 								$("#idCardVerifyImg").attr("src","data:image/png;base64,"+ret.response);
+	 								$("#idVerifyFlag").val('passed');
 // 	 								console.log(ret)
+
+	 								
 								}
 							})
 						});

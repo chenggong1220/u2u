@@ -111,7 +111,10 @@ public class FileController extends BaseController {
 					+ "deviceTypeImgs" + File.separator + logImageName;
 			//System.out.println(smallFileName);
 			try {
-				ImageResizer.resizeImage(fileName, smallFileName, 200, 200);
+				//add "if" sentence because some are excel files, resizeImage doesn't work on them, SUNZHE, 2017-05-25
+				if(fileName.indexOf("jpg")>0 || fileName.indexOf("jpeg")>0 || fileName.indexOf("png")>0){
+					ImageResizer.resizeImage(fileName, smallFileName, 200, 200);
+				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

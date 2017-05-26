@@ -149,8 +149,13 @@ public class CreditController extends BaseController {
 
 		if (orderService.validateIsCreditMultichecked(order)) {
 		} else {
-			mav.setViewName("/ibms/order/orderDenied");
-			mav.addObject("message", "订单已经复核通过，不需要再次复核！");
+			
+			mav.setViewName("/ibms/credit/creditMulticheck");
+			mav.addObject("ifMultiChecked", "yes");
+			
+			//Marked by SUNZHE, 2017-05-26
+			//mav.setViewName("/ibms/order/orderDenied");
+			//mav.addObject("message", "订单已经复核通过，不需要再次复核！");
 			return mav;
 		}
 		return mav;

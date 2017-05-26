@@ -29,21 +29,25 @@ public class ImageWaterMark {
 	public static void main(String[] args) {  
 
 	    File srcImgFile = new File("D:/wartmarksrc.jpg");  
-	    String logoText = "身 份 证 验 证 通 过 ！";  
+	    String logoText = "Passed!";  
 	    String srcImageFile = "http://localhost:8089/U2U/styles/mobile/static/2017-04-21/17bdd575-0883-4718-891c-a3a7edc323cf.1492740740110.jpg";  
 	    //File outputRotateImageFile = new File("D:/wartmarkresult2.jpg");  
 	    //createWaterMarkByText(srcImgFile, logoText, outputImageFile);  
 	    
 //	    System.out.println("压缩图片开始...");  
 	    File srcImgfile = getOnlineImg(srcImageFile);  
-	    File diskImgFile = new File("tmpDistImg.jpg"); 
+	    File distImgFile = new File("tmpDistImg.jpg"); 
 //	    System.out.println("压缩前srcfile size:" + srcImgfile.length());  
 //	    reduceImg(srcImgfile, diskImgFile, 1000, 1000, (float)0.8);  
 //	    System.out.println("压缩后distfile size:" + diskImgFile.length()); 	    
 	    
+	   // System.out.println(distImgFile.getAbsolutePath());
+	   // distImgFile.delete();
 	    //System.out.println(addText(getOnlineImg(srcImageFile), logoText, 20));
-	    reduceImg(srcImgfile, diskImgFile, 1000, 1000, (float)0.8);
-	    System.out.println(addText(diskImgFile, logoText, 20));
+	    
+	    reduceImg(srcImgfile, distImgFile, 300, 200, null);
+	    System.out.println(addText(distImgFile, logoText, 20));
+	    
 	    //System.out.println(imageToBase64(diskImgFile.getAbsolutePath()));
 	} 	
 	
@@ -52,16 +56,21 @@ public class ImageWaterMark {
 		//String logoText = "身 份 证 验 证 通 过 ！";  
 	    File srcImgfile = getOnlineImg(srcImageFile);  
 	    File diskImgFile = new File("tmpDistImg.jpg"); 
-	    reduceImg(srcImgfile, diskImgFile, 1000, 1000, (float)0.8);
+	    diskImgFile.delete();
+	    diskImgFile = new File("tmpDistImg.jpg"); 
+	    //reduceImg(srcImgfile, diskImgFile, 1000, 1000, (float)0.1);
+	    reduceImg(srcImgfile, diskImgFile, 300, 200, null);
 	    return addText(diskImgFile, markText, degree);		
 	}
 	
 	public static File getOnlineImg(String srcImgFile){
 	    String tmpImgPath = "";
 	    File tmpFile = new File("tmpSrcImg.jpg");
+	    tmpFile.delete();
+	    tmpFile = new File("tmpSrcImg.jpg");
 		try{
 	        tmpImgPath = tmpFile.getAbsolutePath();
-	        System.out.println("Temp Img for ID Verify: " + tmpImgPath);
+	        //System.out.println("Temp Img for ID Verify: " + tmpImgPath);
 	        URL url = new URL(srcImgFile);  
 	        //打开链接  
 	        HttpURLConnection conn = (HttpURLConnection)url.openConnection();  
@@ -113,11 +122,11 @@ public class ImageWaterMark {
 	                    (double) buffImg.getHeight() / 2);  
 	        }  
 	        g.setColor(Color.DARK_GRAY);  
-	        g.setFont(new Font("宋体", Font.BOLD, 128));  
+	        g.setFont(new Font("宋体", Font.BOLD, 36));  
 	        float alpha = 0.8f;  
 	        g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP,  
 	                alpha));  
-	        g.drawString(logoText, buffImg.getWidth()/3, buffImg.getHeight()/2);  
+	        g.drawString(logoText, buffImg.getWidth()/4, buffImg.getHeight()/2);  
 	        g.dispose();  
 	        
 

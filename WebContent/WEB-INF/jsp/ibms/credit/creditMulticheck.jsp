@@ -607,14 +607,26 @@
 					</table>
 				</div>
 
+<!-- 
+				<input type="hidden" name="ifMultiChecked" id="ifMultiChecked" value="${ifMultiChecked}">
+-->				
 				<div class="ibms_form_default">
 					<ul>
 						<li><font>下载文件：</font>
 							<h1>
+<!-- 							
 								<a id="creditFilePreview"
 									href="${pageContext.request.contextPath}${order.creditFile}"
 									target="_blank">下载</a>
 								${order.creditFile==""?"(未上传)":"(已上传)"}									
+
+								${order.creditFile==""?"(未上传)":"<a id='creditFilePreview' href='"}${pageContext.request.contextPath}${order.creditFile}${"' target='_blank'>下载</a> (已上传)"}
+-->
+								<div id="notuploaded">(未上传)</div>
+								<div id="uploaded"><a id="creditFilePreview"
+									href="${pageContext.request.contextPath}${order.creditFile}"
+									target="_blank">下载</a> (已上传)
+								</div>
 							</h1></li>
 					</ul>
 					<div class="ibms_clear"></div>
@@ -626,6 +638,7 @@
 								<select id="status" name="status" class="easyui-combobox">
 									<option value="true">通过</option>
 									<option value="false">拒绝</option>
+									<option value="back">退回</option>
 								</select>
 							</h1></li>
 					</ul>
@@ -643,7 +656,8 @@
 	</div>
 	<div class="ibms_form_btn">
 		<a id="save_credit_multicheck" href="#" class="query_list_button">保存</a>
-		<a href="#" class="query_list_button auto-resetbutton">重 置</a> <a
+		<a href="#" class="query_list_button auto-resetbutton">重 置</a> 
+		<a
 			id="save_credit_multicheck_click" href="#"
 			class="query_list_button auto-savebutton" style="visibility: hidden"
 			data-options="plain:true,url:'${pageContext.request.contextPath}/web/credit/multicheck/save',autoclose:true">1</a>
@@ -667,8 +681,20 @@
 		$("#companyEmgcy").show();
 	}
 	
-
+	if('${order.creditFile}'==''){
+		$("#notuploaded").show();
+		$("#uploaded").hide();
+	}else{
+		$("#notuploaded").hide();
+		$("#uploaded").show();	
+	}
+	
 	$("#save_credit_multicheck").click(function(){
+		if('${ifMultiChecked}' == 'yes'){
+			$.messager.alert('提示信息','该订单已经信审复核通过，生成了合同，不能再重复复核！','info');
+			return;
+		}
+		
 		var confirmMsg = "复核通过后系统会自动生成合同，请确认是否复核通过？";
 		var checkValue = $('#status').combobox('getValue');  
 

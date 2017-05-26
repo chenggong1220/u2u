@@ -489,12 +489,15 @@ public class OrderService extends BaseService {
 				identify.setIdCard(idCard);		
 				//identify.setIdImg(response.getResult().getHeadimg());	//聚合返回头像功能失效，SUNZHE, 2017-05-23
 				//System.out.println(idCardImg);
-				identify.setIdImg(ImageWaterMark.addTxtMark(idCardImg, "Passed! ", 30));
+				
+				String markedIdImg = ImageWaterMark.addTxtMark(idCardImg, "Passed! ", 30);
+				identify.setIdImg(markedIdImg);
 				identify.setCreateDate(DateUtil.currentTimestamp());
 				identify.setOperateDate(DateUtil.currentTimestamp());
 				identifyCertificationMapper.insert(identify);
 
-				result = response.getResult().getHeadimg();		
+				//result = response.getResult().getHeadimg();		//聚合返回头像功能失效，SUNZHE, 2017-05-23
+				result = markedIdImg;
 			} catch (Exception e) {
 				throw e;
 			}
