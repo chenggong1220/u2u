@@ -22,7 +22,7 @@ function uploadFiles_framework(select, upload, preview) {
 		},
 		fileElementId : select,// 文件选择框的id属性
 		success : function(data) {
-			console.log(data);
+			//console.log(data);
 			data = eval('(' + data + ')');
 			$.messager.progress('close');
 			if (data.error == 'false') {

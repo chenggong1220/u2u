@@ -50,6 +50,21 @@ public class AssetController extends BaseController {
 		result.put("rows", assets);
 		return result;
 	}
+	
+	//start: Add more query conditions, SUNZHE, 2017-06-19 	
+	@RequestMapping("/assetList")
+	@ResponseBody
+	public Map<String, Object> assetList(BaseRequest baseRequest,
+			AssetCondition condition) {
+		List<Asset> assets = assetService.getSearchedAll(condition,
+				buildRowBounds(baseRequest));
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("total", assetService.getSearchedAll(condition, buildRowBounds())
+				.size());
+		result.put("rows", assets);
+		return result;
+	}	
+	//End: Add more query conditions, SUNZHE, 2017-06-19 	
 
 	@RequestMapping("/add")
 	public ModelAndView add() {

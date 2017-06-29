@@ -94,7 +94,7 @@
 				data-options="field:'startDateTime',width:'8%',formatter:function(value,rec){return rec.order.startDatetime;}">起租时间</th>
 			<th
 				data-options="field:'rentDate',align:'center',width:'5%',formatter:function(value,rec){return rec.order.rentDate;}">租期</th>
-			<th data-options="field:'location',width:'30%'">放置地</th>
+			<th data-options="field:'location',width:'30%',formatter:function(value,rec){return rec.order.assetFullAdress;}">放置地</th>
 		</tr>
 	</thead>
 </table>

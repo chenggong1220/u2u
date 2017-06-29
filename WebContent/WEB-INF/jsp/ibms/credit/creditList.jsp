@@ -24,6 +24,7 @@
 							<option value="0">未审核</option>
 							<option value="1">待复核</option>
 							<option value="2">复核通过</option>
+							<option value="3">信审拒绝</option>
 						</select>
 					</h1></li>
 				<li><font>创建时间(始)：</font>

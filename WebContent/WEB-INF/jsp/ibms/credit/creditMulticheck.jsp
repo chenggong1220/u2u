@@ -625,7 +625,7 @@
 								<div id="notuploaded">(未上传)</div>
 								<div id="uploaded"><a id="creditFilePreview"
 									href="${pageContext.request.contextPath}${order.creditFile}"
-									target="_blank">下载</a> (已上传)
+									target="_blank">打开查看</a> (已上传)
 								</div>
 							</h1></li>
 					</ul>
@@ -637,8 +637,10 @@
 							<h1>
 								<select id="status" name="status" class="easyui-combobox">
 									<option value="true">通过</option>
-									<option value="false">拒绝</option>
-									<option value="back">退回</option>
+									<option value="false">拒绝</option>		
+<!-- 
+									<option value="returnback">退回</option>		
+-->
 								</select>
 							</h1></li>
 					</ul>
@@ -691,17 +693,18 @@
 	
 	$("#save_credit_multicheck").click(function(){
 		if('${ifMultiChecked}' == 'yes'){
-			$.messager.alert('提示信息','该订单已经信审复核通过，生成了合同，不能再重复复核！','info');
+			$.messager.alert('提示信息','该订单已经信审复核通过，生成了合同，不能退回或重复复核！','info');
 			return;
 		}
 		
 		var confirmMsg = "复核通过后系统会自动生成合同，请确认是否复核通过？";
 		var checkValue = $('#status').combobox('getValue');  
 
-		if(checkValue == "false")
-		{
+		if(checkValue == "false"){
 			confirmMsg = "确定要拒绝该项目吗？";
-		}
+		}else if(checkValue == "returnback"){
+			confirmMsg = "确定要退回该项目，重新进行信用审核吗？";
+		}		
 
 		$.messager.confirm("保存提示", confirmMsg, function(r) {
 			if (r){

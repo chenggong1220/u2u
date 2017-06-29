@@ -36,6 +36,7 @@ public class User extends BaseBean implements Serializable {
 	private String cities;
 	private int shopId;
 	private Shop shop;
+	private Bu bu;
 	private List<Role> roles = new ArrayList<>();
 
 	
@@ -107,6 +108,14 @@ public class User extends BaseBean implements Serializable {
 	public void setBuId(int buId) {
 		this.buId = buId;
 	}
+	
+	public Bu getBu() {
+		return bu;
+	}
+
+	public void setBu(Bu bu) {
+		this.bu = bu;
+	}	
 
 	public int getProvinceId() {
 		return provinceId;

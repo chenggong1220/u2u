@@ -119,10 +119,19 @@
 </table>
 <div id="tb" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton auto-editbutton"
-		data-options="iconCls:'icon-save',plain:true,index:'id',url:'${pageContext.request.contextPath}/web/order/detail'">订单详情</a>
+		data-options="iconCls:'cheked-all',plain:true,index:'id',url:'${pageContext.request.contextPath}/web/order/detail'">订单详情</a>
 	<a href="javascript:void(0)"
 		class="easyui-linkbutton auto-verifybutton"
-		data-options="iconCls:'icon-edit',plain:true,index:'id',url:'${pageContext.request.contextPath}/web/order/verify/edit'">审核</a>
+		data-options="iconCls:'icon-save',plain:true,index:'id',url:'${pageContext.request.contextPath}/web/order/verify/edit'">审核</a>
+		
+	<!-- Start: 增加订单修改功能，by SUNZHE, 2017-06-22 -->
+
+	<a href="javascript:void(0)" class="easyui-linkbutton auto-editbutton"
+		data-options="iconCls:'icon-edit',plain:true,index:'id',url:'${pageContext.request.contextPath}/web/order/modify'">修改</a>
+
+	<!-- End: 增加订单修改功能，by SUNZHE, 2017-06-22 -->		
+
+		
 	<!-- Start: 增加订单审核时删除功能，by SUNZHE, 2017-02-11 -->
 	<a href="javascript:void(0)" class="easyui-linkbutton delorderbutton"
 		data-options="iconCls:'icon-remove',plain:true,index:'id',url:'${pageContext.request.contextPath}/web/order/delete'">删除</a>

@@ -63,11 +63,13 @@
 							<option value="true">已发货</option>
 						</select>
 					</h1></li>
+<!-- 					
 				<li><font>省：</font>
 					<h1>
 						<input id="provinceId" name="provinceId" type="text"
 							class="easyui-combobox">
 					</h1></li>
+-->					
 			</ul>
 		</div>
 		<div class="ibms_clear"></div>

@@ -62,18 +62,20 @@ public class BillService extends BaseService {
 	}
 
 	public void update(Bill bill) {
-
+		Contract contract = contractMapper.getById(bill.getContractId());
+		if (contract == null) {
+			throw new RuntimeException("没有选择合同信息!");
+		}
+		
 		Bill exist = billMapper.getById(bill.getId());
+		System.out.println("bill.getBillCheckId(): " + bill.getBillCheckId() + "; bill.getContractId(): " + bill.getContractId());
 		exist.setBillingStatus(bill.isBillingStatus());
 		exist.setStatus(true);
 		exist.setContractId(bill.getContractId());
 		exist.setBillCheckId(bill.getBillCheckId());
 		exist.setOperateDate(DateUtil.currentTimestamp());
 		billMapper.update(exist);
-		Contract contract = contractMapper.getById(bill.getContractId());
-		if (contract == null) {
-			throw new RuntimeException("没有选择合同信息!");
-		}
+
 		Order order = orderService.getById(contract.getOrderId());
 		
 		BillCheck billCheck = billCheckMapper.getById(bill.getBillCheckId());

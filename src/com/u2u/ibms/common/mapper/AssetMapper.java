@@ -10,10 +10,21 @@ import com.u2u.ibms.common.beans.Asset;
 public interface AssetMapper {
 
 	List<Asset> getAll(@Param("assetTypeIds") List<Integer> assetTypeIds,
-			@Param("rent") Boolean rent,
+			@Param("rent") Integer rent,
 			@Param("provinceId") Integer provinceId,
 			@Param("cityId") Integer cityId, RowBounds rb);
-
+	
+	//Start: Add this function for filtering the data with more conditions, SUNZHE, 2017-06-19
+	List<Asset> getSearchedAll(@Param("assetTypeIds") List<Integer> assetTypeIds,
+			@Param("rent") Integer rent,
+			@Param("provinceId") Integer provinceId,
+			@Param("cityId") Integer cityId, 
+			@Param("assetCode") String assetCode, 
+			@Param("assetLocation") String assetLocation,
+			@Param("assetShopId") Integer assetShopId,
+			RowBounds rb);	
+	//End: Add this function for filtering the data with more conditions, SUNZHE, 2017-06-19
+	
 	Asset getByAssetId(@Param("assetId") String assetid);
 
 	Asset getById(@Param("id") int id);

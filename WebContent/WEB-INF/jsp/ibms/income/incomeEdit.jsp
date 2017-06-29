@@ -24,7 +24,7 @@
 					</h1></li>
 				<li><font>票据种类：</font>
 				<h1>
-						<input id="type" name="type" type="text"
+						<input id="ticketType" name="type" type="text"
 							value="${billcheck.enddateView }" class="easyui-combobox">
 					</h1></li>
 				<li><font>票据编号：</font>
@@ -70,10 +70,11 @@ $("#project").combobox({
 });
 
 var typeData = [];
-typeData.push({ "value": "普票", "id": "普票" });
-typeData.push({ "value": "专票", "id": "专票" });
-typeData.push({ "value": "收据", "id": "收据" });
-$("#type").combobox({
+typeData.push({ "value": "收据(保证金)", "id": "收据(保证金)" });
+typeData.push({ "value": "服务费(保险服务费)", "id": "服务费(保险服务费)" });
+typeData.push({ "value": "增值税发票(17%的月租金发票)", "id": "增值税发票(17%的月租金发票)" });
+
+$("#ticketType").combobox({
 	editable:false,
 	data:typeData,
 	valueField:'id',

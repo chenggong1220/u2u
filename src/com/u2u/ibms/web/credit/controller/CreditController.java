@@ -54,6 +54,10 @@ public class CreditController extends BaseController {
 	public Map<String, Object> list(BaseRequest baseRequest,
 			ProjectCondition condition) {
 		condition.setResult("2");
+		if(condition.getCreditResult() != null && condition.getCreditResult().equals("3")){
+			//Add search records rejected by Credit team, SUNZHE, 2017-05-28
+			condition.setResult("4");
+		}
 		List<Project> projects = projectService.getAll(
 				buildRowBounds(baseRequest), condition);
 		Map<String, Object> result = new HashMap<String, Object>();

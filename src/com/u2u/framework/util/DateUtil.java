@@ -29,6 +29,7 @@ public class DateUtil
     public static final String PATTERN_STANDARD = "yyyy-MM-dd HH:mm:ss";
     
     public static final String PATTERN_DATE = "yyyy-MM-dd";
+    public static final String PATTERN_DATE1 = "yyyy/MM/dd";
     
     public static boolean compareDate(final Date firstDate, final Date secondDate)
     {
@@ -161,16 +162,21 @@ public class DateUtil
         {
             pattern = DateUtil.PATTERN_DATE;
         }
-        final SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         Date date = null;
         
         try
         {
             date = sdf.parse(strDate);
         }
-        catch (final ParseException e)
+        catch (ParseException e)
         {
-            throw new RuntimeException(e);
+        	try{
+        		sdf = new SimpleDateFormat(DateUtil.PATTERN_DATE1);
+        		date = sdf.parse(strDate);
+        	}catch(ParseException e1){
+        		throw new RuntimeException(e1);
+        	}
         }
         return date;
     }

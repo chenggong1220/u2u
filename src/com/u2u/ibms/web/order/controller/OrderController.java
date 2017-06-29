@@ -91,6 +91,29 @@ public class OrderController extends BaseController {
 		mav.addObject("order", orderService.getById(id));
 		return mav;
 	}
+	
+	//Start: Order Modify, SUNZHE, 2017-06-26
+	@RequestMapping("/modify")
+	public ModelAndView modify(int id) {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("/ibms/order/orderModify");
+		Order order = orderService.getById(id);
+		mav.addObject("order", order);
+/*		
+		String name = null;
+		if (order.getRentPersonType() == 0) {
+			name = order.getRentPersonInfo().getName();
+		} else {
+			name = order.getRentCompanyInfo().getLegalName();
+		}
+		IdentifyCertification identifyCertification = identifyCertificationMapper
+				.getByNameAndIdcard(name, order.getIdCard());
+		mav.addObject("realpicture", identifyCertification);			
+*/		
+		return mav;
+	}	
+	
+	//End: Order Modify, SUNZHE, 2017-06-26	
 
 	@RequestMapping("/detail")
 	public ModelAndView detail(int id) {
@@ -123,14 +146,28 @@ public class OrderController extends BaseController {
 	@RequestMapping("/update")
 	@ResponseBody
 	public AjaxDone update(Order order) {
+		System.out.println("exist.getCustomerName():");
+		System.out.println(order.getCustomerName());
 		orderService.update(order);
 		return ajaxDoneSuccess(null);
 	}
-
+	
+	@RequestMapping("/modifyorder")
+	@ResponseBody
+	public AjaxDone modifyorder(Order order, RentCompanyInfo renCompanyInfo,
+			RentPersonInfo rentPersonInfo, String startDatetime,
+			String endDatetime, HttpServletRequest request) {
+		System.out.println("exist.getCustomerName():");
+		System.out.println(order.getCustomerName());
+		//orderService.insert(request, order, renCompanyInfo, rentPersonInfo);
+		return ajaxDoneSuccess(null);
+	}	
+	
 	@RequestMapping("/delete")
 	@ResponseBody
 	public AjaxDone delete(int id) {
-		orderService.delete(id);
+		System.out.println("exist.getCustomerName():");
+		//orderService.delete(id);
 		return ajaxDoneSuccess(null);
 	}
 	

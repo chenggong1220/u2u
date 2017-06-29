@@ -10,6 +10,7 @@ import com.u2u.framework.sys.authorize.beans.Role;
 import com.u2u.framework.sys.authorize.beans.RoleResource;
 import com.u2u.framework.sys.authorize.beans.User;
 import com.u2u.framework.sys.authorize.beans.UserRole;
+import com.u2u.ibms.common.beans.Asset;
 
 /**
  * @ClassName: AuthorizeMapper <br>
@@ -26,7 +27,17 @@ public interface AuthorizeMapper {
 
 	User getUserById(@Param("userId") Integer userId);
 
-	List<User> getAllUsers(RowBounds rb);
+	//List<User> getAllUsers(RowBounds rb);
+	
+	List<User> getAllUsers(@Param("userName") String userName,
+			@Param("userShopId") Integer userShopId,
+			@Param("userBUId") Integer userBUId,
+			@Param("userRoleId") Integer userRoleId,RowBounds rb);	
+	
+	List<Asset> getAll(@Param("assetTypeIds") List<Integer> assetTypeIds,
+			@Param("rent") Boolean rent,
+			@Param("provinceId") Integer provinceId,
+			@Param("cityId") Integer cityId, RowBounds rb);	
 
 	void insertUser(User user);
 

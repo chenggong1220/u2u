@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.u2u.framework.base.BaseController;
+import com.u2u.framework.base.BaseRequest;
 import com.u2u.framework.beans.AjaxDone;
 import com.u2u.framework.exception.ServiceAuthorizeException;
 import com.u2u.framework.exception.ServiceBusinessException;
@@ -32,6 +33,7 @@ import com.u2u.framework.sys.authorize.beans.Bu;
 import com.u2u.framework.sys.authorize.beans.Resource;
 import com.u2u.framework.sys.authorize.beans.Role;
 import com.u2u.framework.sys.authorize.beans.User;
+import com.u2u.framework.sys.authorize.condition.UserCondition;
 import com.u2u.framework.sys.authorize.model.ResourceRequest;
 import com.u2u.framework.sys.authorize.model.RoleRequest;
 import com.u2u.framework.sys.authorize.model.TreeVo;
@@ -47,9 +49,11 @@ import com.u2u.framework.util.LogUtil;
 import com.u2u.framework.util.MD5Util;
 import com.u2u.framework.util.ObjectUtils;
 import com.u2u.framework.util.StringUtils;
+import com.u2u.ibms.common.beans.Asset;
 import com.u2u.ibms.common.beans.location.City;
 import com.u2u.ibms.common.beans.location.Province;
 import com.u2u.ibms.common.mapper.LocationMapper;
+import com.u2u.ibms.web.asset.condition.AssetCondition;
 
 /**
  * @ClassName: AuthorizeController <br>
@@ -231,6 +235,7 @@ public class AuthorizeController extends BaseController {
 	 * @author:[xuqinghan]
 	 * @update:[2015-3-24] [更改人姓名][变更描述]
 	 */
+/*	
 	@RequestMapping(value = "/user/list", method = RequestMethod.GET)
 	public @ResponseBody Map<String, Object> userList(UserRequest userReq) {
 		List<UserResponse> ret = new ArrayList<>();
@@ -258,11 +263,25 @@ public class AuthorizeController extends BaseController {
 
 		return result;
 	}
-
+*/
+	
+	@RequestMapping(value = "/user/list")
+	@ResponseBody
+	public Map<String, Object> list(BaseRequest baseRequest,
+			UserCondition condition) {
+		List<User> users = authorizeService.getAllUsers(condition,
+				buildRowBounds(baseRequest));
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("total", authorizeService.getAllUsers(condition, buildRowBounds())
+				.size());
+		result.put("rows", users);
+		return result;
+	}
+	
 	@RequestMapping(value = "/user/json")
 	@ResponseBody
 	public List<User> userJson() {
-		return authorizeService.getAllUsers(buildRowBounds());
+		return authorizeService.getAllUsers(null,buildRowBounds());
 	}
 
 	/**

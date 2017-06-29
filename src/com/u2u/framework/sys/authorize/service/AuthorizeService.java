@@ -9,6 +9,7 @@ import java.util.Set;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.u2u.framework.base.BaseService;
 import com.u2u.framework.exception.ServiceAuthorizeException;
 import com.u2u.framework.exception.ServiceBusinessException;
 import com.u2u.framework.sys.authorize.beans.Resource;
@@ -23,12 +25,18 @@ import com.u2u.framework.sys.authorize.beans.Role;
 import com.u2u.framework.sys.authorize.beans.RoleResource;
 import com.u2u.framework.sys.authorize.beans.User;
 import com.u2u.framework.sys.authorize.beans.UserRole;
+import com.u2u.framework.sys.authorize.condition.UserCondition;
 import com.u2u.framework.sys.authorize.mapper.AuthorizeMapper;
+import com.u2u.framework.sys.authorize.mapper.BuMapper;
 import com.u2u.framework.sys.authorize.model.ResourceRequest;
 import com.u2u.framework.sys.authorize.security.SecurityContextUtil;
 import com.u2u.framework.util.DateUtil;
 import com.u2u.framework.util.LogUtil;
 import com.u2u.framework.util.MD5Util;
+import com.u2u.framework.util.StringUtils;
+import com.u2u.ibms.common.beans.Asset;
+import com.u2u.ibms.common.mapper.RentCompanyMapper;
+import com.u2u.ibms.web.shop.mapper.ShopMapper;
 
 /**
  * @ClassName: AuthorizeService <br>
@@ -39,7 +47,7 @@ import com.u2u.framework.util.MD5Util;
  */
 @Service("authorizeService")
 @Transactional(propagation = Propagation.REQUIRES_NEW)
-public class AuthorizeService {
+public class AuthorizeService extends BaseService {
 
 	public static final String UNIQUE_PASSWORD = "9535B91966CFA19E013F6A0BECF37328001";
 
@@ -50,6 +58,12 @@ public class AuthorizeService {
 	private static final int LEVEL_FIRST_NAVIGATION_RESOURCE = 1;
 
 	private AuthorizeMapper authorizeMapper;
+	
+	@Autowired
+	private ShopMapper shopMapper;
+	
+	@Autowired
+	private BuMapper buMapper;	
 
 	/**
 	 * <p>
@@ -103,6 +117,7 @@ public class AuthorizeService {
 		return user;
 	}
 
+	/*
 	public List<User> getAllUsers(RowBounds rb) {
 		List<User> users = authorizeMapper.getAllUsers(rb);
 		List<Role> roles = authorizeMapper.getAllRole(new RowBounds());
@@ -122,6 +137,46 @@ public class AuthorizeService {
 
 		return users;
 	}
+	*/
+	
+	
+	//Start: Add this function for query with multiple conditions, SUNZHE, 2017-06-20
+	public List<User> getAllUsers(UserCondition condition, RowBounds rb){
+		try{
+			String userName = getStringCondition(condition.getUserName());
+			userName = new String(userName.getBytes("ISO-8859-1"),"utf-8");
+			condition.setUserName(userName);
+		}catch(Exception e){
+			
+		}
+		
+		List<Role> roles = authorizeMapper.getAllRole(new RowBounds());
+		List<UserRole> userRoles = authorizeMapper.getUserRoleAllRelations();		
+		
+		List<User> users = authorizeMapper.getAllUsers(
+				getStringCondition(condition.getUserName()),
+				getIntegerCondition(condition.getUserShopId()),
+				getIntegerCondition(condition.getUserBUId()),
+				getIntegerCondition(condition.getUserRoleId()), rb);
+
+		for (User user : users) {
+			user.setShop(shopMapper.getById(user.getShopId()));
+			user.setBu(buMapper.getById(user.getBuId()));
+			
+			for (UserRole userRole : userRoles) {
+				if (user.getId() == userRole.getUserId()) {
+					for (Role role : roles) {
+						if (userRole.getRoleId() == role.getId()) {
+							user.getRoles().add(role);
+						}
+					}
+				}
+			}			
+		}
+		
+		return users;
+	}	
+	//End: Add this function for query with multiple conditions, SUNZHE, 2017-06-20
 
 	/**
 	 * <p>

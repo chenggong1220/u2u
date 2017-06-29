@@ -63,7 +63,7 @@ public class AssetService extends BaseService {
 
 		List<Asset> assets = assetMapper.getAll(
 				CollectionUtils.isNotEmpty(list) ? list : null,
-				getBooleanCondition(condition.getRent()),
+				getIntegerCondition(condition.getRent()),
 				getIntegerCondition(condition.getProvinceId()),
 				getIntegerCondition(condition.getCityId()), rb);
 
@@ -73,6 +73,47 @@ public class AssetService extends BaseService {
 		return assets;
 	}
 
+	//Start: Add this function for filtering the data with more conditions, SUNZHE, 2017-06-19
+	public List<Asset> getSearchedAll(AssetCondition condition, RowBounds rb) {
+		Integer brandId = getIntegerCondition(condition.getBrandId());
+		List<Integer> list = new ArrayList<Integer>();
+		if (brandId == null) {
+			if (getIntegerCondition(condition.getAssetTypeId()) != null) {
+				list.add(getIntegerCondition(condition.getAssetTypeId()));
+			}
+		} else {
+			if (getIntegerCondition(condition.getAssetTypeId()) != null) {
+				list.add(getIntegerCondition(condition.getAssetTypeId()));
+			} else {
+				List<AssetType> assetTypes = assetTypeMapper.getAll(
+						new RowBounds(), brandId, null);
+				if (CollectionUtils.isEmpty(assetTypes)) {
+					list.add(null);
+				} else {
+					for (AssetType assetType : assetTypes) {
+						list.add(assetType.getId());
+					}
+				}
+			}
+		}
+
+		List<Asset> assets = assetMapper.getSearchedAll(
+				CollectionUtils.isNotEmpty(list) ? list : null,
+				getIntegerCondition(condition.getRent()),
+				getIntegerCondition(condition.getProvinceId()),
+				getIntegerCondition(condition.getCityId()), 
+				getStringCondition(condition.getAssetCode()), 
+				getStringCondition(condition.getAssetLocation()), 
+				getIntegerCondition(condition.getAssetShopId()), 
+				rb);
+
+		for (final Asset asset : assets) {
+			this.convert(asset);
+		}
+		return assets;
+	}
+	//End: Add this function for filtering the data with more conditions, SUNZHE, 2017-06-19
+	
 	public Asset getById(int id) {
 		return this.convert(assetMapper.getById(id));
 	}

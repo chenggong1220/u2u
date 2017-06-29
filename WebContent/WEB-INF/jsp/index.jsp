@@ -11,14 +11,14 @@
 		<div class="header">
 			<a class="logo" href="#"></a>
 			<ul class="main-nav">
-				<!-- 
+<!-- 
 		<li class="active"><a class="monitor" href="#" id="1">集中监控</a></li>
 		<li><a class="warning" href="#" id="2">集中告警</a></li>
 		<li><a class="config" href="#" id="3">联动配置</a></li>
 		<li><a class="analysis" href="#" id="4">统计分析</a></li>
 		<li><a class="access-control" href="#" id="5">权限管理</a></li>
 		<li><a class="log-manage" href="#" id="6">日志管理</a></li>
-	 -->
+-->
 			</ul>
 			<div class="user-logined">
 				<div>

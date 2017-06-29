@@ -29,11 +29,31 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		ID,
 		<include refid="BASE_PROJECT_HANDLE_SQL" />
 		FROM
-		T_PROJECT_HANDLE
+		T_PROJECT_HANDLE 
 		WHERE
-		PROJECT_ID = #{projectId}
+		PROJECT_ID = #{projectId} 
+		ORDER BY LEVEL
+	</select>	
+
+<!-- Start: Change username to realname in project handle list, SUNZHE, 2017-06-19 -->
+	<select id="getAllByProjId" resultMap="projectHandle">
+		SELECT
+		T1.ID,
+		T1.PROJECT_ID,
+		T1.LEVEL,
+		T2.REALNAME as USERNAME,
+		T1.STATUS,
+		T1.FEEDBACK,		
+		T1.CREATE_DATE,
+		T1.OPERATE_DATE
+		FROM
+		T_PROJECT_HANDLE T1, SYS_USER T2 
+		WHERE
+		T1.PROJECT_ID = #{projectId} 
+		AND T2.user_name = T1.username 
 		ORDER BY LEVEL
 	</select>
+<!-- Start: Change username to realname in project handle list, SUNZHE, 2017-06-19 -->
 
 	<select id="getAllByProjectIdAndLevel" resultMap="projectHandle">
 		SELECT

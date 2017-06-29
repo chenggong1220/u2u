@@ -121,7 +121,8 @@ public class ProjectService extends BaseService {
 	}
 
 	public List<ProjectHandle> getProjectHandleByProjectId(int projectId) {
-		return projectHandleMapper.getAllByProjectId(projectId);
+		//Change getAllByProjId from getAllByProjectId for getting real agent name, SUNZHE, 2017-06-19
+		return projectHandleMapper.getAllByProjId(projectId);	
 	}
 
 	public ProjectHandle getProjectHandlerByProjectIdAndLevel(int projectId,
@@ -414,6 +415,7 @@ public class ProjectService extends BaseService {
 		}
 
 		String dingdingMessage = null;
+		
 		if (projectHandle.isStatus()) {
 			existOrder.setStatus(Constants.ORDER_6_CREDIT_MULTI_CHECK);
 			existOrder.setOperateDate(DateUtil.currentTimestamp());
@@ -495,6 +497,7 @@ public class ProjectService extends BaseService {
 							natualPersonGuarantee.getFile());
 					contractFiles.put(contract.getContractId(),
 							contractFile.getFile());
+
 					// MessageManager.sendMailAndFile(companyInfo.getLegalEmail(),
 					// map, MailTemplateKey.contractVm, contractFiles);
 

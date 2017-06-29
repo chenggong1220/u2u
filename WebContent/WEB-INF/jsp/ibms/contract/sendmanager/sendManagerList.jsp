@@ -51,11 +51,13 @@
 							<option value="true">已发货</option>
 						</select>
 					</h1></li>
+<!-- 					
 				<li><font>省：</font>
 					<h1>
 						<input id="provinceId" name="provinceId" type="text"
 							class="easyui-combobox">
 					</h1></li>
+-->					
 			</ul>
 		</div>
 		<div class="ibms_clear"></div>
@@ -86,12 +88,13 @@
 		<tr>
 			<th data-options="field:'id',checkbox:true">序列号</th>
 			<th
-				data-options="field:'contractId',width:'10%',formatter:function(value,rec){return '<a target=\'
-				_blank\' href=\'${pageContext.request.contextPath}'+rec.saveLocation +'\'>'
+				data-options="field:'contractId',width:'10%',formatter:function(value,rec){return '<a target=\'_blank\' href=\'${pageContext.request.contextPath}'+rec.saveLocation +'\'>'
 				+ value+'</a>' }">合同号
 			</th>
 			<th data-options="field:'orderName',width:'10%'">合同类型</th>
+<!-- 			
 			<th data-options="field:'orderProvince',width:'10%'">省</th>
+-->			
 			<th data-options="field:'orderPerson',width:'10%'">收货人</th>
 			<th data-options="field:'orderMobile',width:'10%'">手机号</th>
 			<th

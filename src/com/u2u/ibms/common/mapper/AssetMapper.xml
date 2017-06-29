@@ -74,6 +74,35 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		</where>
 		ORDER BY CREATE_DATE DESC
 	</select>
+	
+	<!--  Start: Add for searching the data with more conditions, SUNZHE, 2017-06-19 -->
+	<select id="getSearchedAll" resultMap="asset">
+		SELECT
+		ID,
+		<include refid="BASE_ASSET_SQL" />
+		FROM
+		T_ASSET
+		<where>
+			<if test="assetTypeIds!=null">
+				AND asset_type_id in
+				<foreach item="item" collection="assetTypeIds" separator=","
+					open="(" close=")">
+					#{item}
+				</foreach>
+			</if>
+			<if test="rent!=null">
+				AND rent = #{rent}
+			</if>
+			<if test="assetCode!=null">
+				AND code like CONCAT('%',#{assetCode},'%')
+			</if>
+			<if test="assetShopId!=null">
+				AND shop_id = #{assetShopId}
+			</if>
+		</where>
+		ORDER BY CREATE_DATE DESC
+	</select>	
+	<!--  End: Add for searching the data with more conditions, SUNZHE, 2017-06-19 -->
 
 	<select id="getByAssetId" resultMap="asset">
 		SELECT

@@ -41,3 +41,4 @@
 <%-- <script src="<c:url value='/styles/ckeditor/ckeditor.js'/>"></script> --%>
 <script src="<c:url value='/styles/js/ajaxfileupload.js'/>"></script>
 <script src="<c:url value='/styles/js/fileUpload.js'/>"></script>
+<script src="<c:url value='/styles/js/creditFileUpload.js'/>"></script>

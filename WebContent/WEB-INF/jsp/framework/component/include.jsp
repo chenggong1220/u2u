@@ -270,14 +270,64 @@ $(function() {
 			    onDestroy:function(){alert("destroy");},
 			    onClose:function(){
 			    	$("#ibms_dialogId").html("");
-			    	$(".auto-querybutton").click();
+			    	//$(".auto-querybutton").click();
 			    },
 			    modal: true  
 			});
 		}
 	});
 	
-	
+//Start: Order Modifiy, SUNZHE, 2017-06-22
+/*
+	$(".modifyorderbutton").click(function(){
+		var dataOption = parseOption(this);
+		var index = dataOption.index || "id";
+		var checkedList = $(".easyui-datagrid").datagrid('getChecked');
+		if(checkedList[0].status != "租赁申请"){
+			IBMS.messager.alert('提示消息',"只能对【租赁申请】状态的订单操作!","info");
+			return;
+		}
+		var title = dataOption.title || "编辑";
+		var width = dataOption.d_width || '90%';
+		var height = dataOption.d_height || '80%';
+		var alarmOne = dataOption.alarmOne || "请选择要编辑的数据";
+		var alarmMany = dataOption.alarmMany || "只能选择一行进行编辑!";
+		if(!checkedList.length){
+			IBMS.messager.alert('提示消息',alarmOne,"info");
+		}else if(checkedList.length!=1){
+			IBMS.messager.alert('提示消息',alarmMany,"info");
+		}else{
+			var param = {};
+			param[index] = checkedList[0][index];
+			$("#ibms_dialogId").dialog({   
+			    title: title,   
+			    width: width,   
+			    height: height,   
+			    closed: false,   
+			    cache: false,   
+			    href:dataOption.url,
+			    method:"post",
+			    queryParams:param,
+			    onLoad:function(){  
+			    	$(".auto-savebutton").click(function(){bindSave(this);});
+			    	$(".auto-tablesavebutton").click(function(){bindTableSave(this);});
+					$(".auto-resetbutton").click(function() {
+						$(this).parents("form").form("reset");
+					});
+			    	//为保存按钮绑定事件
+			    }, 
+			    onDestroy:function(){alert("destroy");},
+			    onClose:function(){
+			    	$("#ibms_dialogId").html("");
+			    	//$(".auto-querybutton").click();
+			    },
+			    modal: true  
+			});
+		}
+	});
+*/
+
+//End: Order Modify, SUNZHE, 2017-06-22
 	
 // 	$(".auto-downloadbutton").click(function(){
 // 		var dataOption = parseOption(this);

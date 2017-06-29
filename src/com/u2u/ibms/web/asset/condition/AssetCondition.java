@@ -9,6 +9,36 @@ public class AssetCondition extends BaseCondition {
 	private String rent;
 	private String provinceId;
 	private String cityId;
+	
+	//start: Add more query conditions, SUNZHE, 2017-06-19 
+	private String assetCode;
+	private String assetLocation;
+	private String assetShopId;
+	
+	public String getAssetCode() {
+		return assetCode;
+	}
+
+	public void setAssetCode(String assetCode) {
+		this.assetCode = assetCode;
+	}	
+	
+	public String getAssetLocation() {
+		return assetLocation;
+	}
+
+	public void setAssetLocation(String assetLocation) {
+		this.assetLocation = assetLocation;
+	}	
+	
+	public String getAssetShopId() {
+		return assetShopId;
+	}
+
+	public void setAssetShopId(String assetShopId) {
+		this.assetShopId = assetShopId;
+	}		
+	//End: Add more query conditions, SUNZHE, 2017-06-19 
 
 	public String getBrandId() {
 		return brandId;

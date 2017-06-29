@@ -9,6 +9,8 @@ import com.u2u.ibms.common.beans.ProjectHandle;
 public interface ProjectHandleMapper {
 
 	List<ProjectHandle> getAllByProjectId(@Param("projectId") Integer projectId);
+	
+	List<ProjectHandle> getAllByProjId(@Param("projectId") Integer projectId);
 
 	ProjectHandle getAllByProjectIdAndLevel(@Param("projectId") Integer projectId, @Param("level") int level);
 

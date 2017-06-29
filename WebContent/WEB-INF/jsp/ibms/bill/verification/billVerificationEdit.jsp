@@ -87,7 +87,7 @@ $("#billingStatus").combobox({
 
 var statusData = [];
 statusData.push({ "value": "已核销", "id": "true" });
-statusData.push({ "value": "未核销", "id": "false" });
+//statusData.push({ "value": "未核销", "id": "false" });
 $("#status").combobox({
 	editable:false,
     data:statusData,

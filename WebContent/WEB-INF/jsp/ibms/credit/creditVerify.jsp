@@ -634,21 +634,20 @@
 						<li><font>上传文件：</font>
 							<h1>
 								<input type="file" name="creditFileSelected" id="creditFileSelected" accept="*" />
-								<input type="hidden" name="creditFile" id="creditFile" value="" />
+								<input type="hidden" name="creditFile" id="creditFile" value="${order.creditFile}" />
 								<input id="upload" type="button" class="query_list_button" value="上传"
-									onclick="javascript:uploadFiles_framework('creditFileSelected','creditFile','creditFilePreview','file');" />
-							</h1>
+									onclick="gotoUpload()" />	
+							</h1>						
 						</li>
-
 						<li>
 							<h1>
 								状态：${order.creditFile==""?"未上传":("已上传")}															
 							</h1>
 						</li>
 						<div id="creditFileDownload">
-							<h1>	
-								<a id="creditFilePreview" href="${pageContext.request.contextPath}${order.creditFile}" target="_blank">下载</a>
-							</h1>
+							<li><h1>	
+								<a id="creditFilePreview" href="${pageContext.request.contextPath}${order.creditFile}" target="_blank">打开查看</a>
+							</h1></li>
 						</div>
 					</ul>
 					<div class="ibms_clear"></div>
@@ -706,4 +705,27 @@
 	}else{
  		$("#creditFileDownload").show();
 	}
+	
+function gotoUpload(){
+	if ($("#creditFileSelected").val() == null || $("#creditFileSelected").val().trim() == "") {
+		$.messager.alert('警告', '请先选择需要上传的文件！');
+		return;
+	}	
+	
+	if($("#creditFile").val() != null && $("#creditFile").val() != ""){
+		var confirmMsg = "您已经上传过信审文件，重复上传会覆盖原来的文件，是否继续？";
+		$.messager.confirm("上传提示", confirmMsg, function(r) {
+			if (r){
+				uploadCreditFile('creditFileSelected','creditFile','${project.projectId}');
+			}else{
+				return;
+			}
+		});
+	}else{
+		uploadCreditFile('creditFileSelected','creditFile','${project.projectId}');
+	}
+	
+	//alert($("#creditFile").val());
+}	
+	
 </script>

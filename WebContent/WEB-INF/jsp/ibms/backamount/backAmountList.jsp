@@ -71,8 +71,10 @@
 		<tr>
 			<th data-options="field:'id',checkbox:true">序列号</th>
 			<th data-options="field:'contractId',width:'10%'">合同号</th>
-			<th data-options="field:'orderName',width:'10%'">地址</th>
+			<th data-options="field:'orderName',width:'20%'">地址</th>
+<!-- 			
 			<th data-options="field:'orderProvince',width:'10%'">省</th>
+-->			
 			<th data-options="field:'orderPerson',width:'10%'">收货人</th>
 			<th data-options="field:'orderMobile',width:'10%'">手机号</th>
 			<th

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,8 @@ import com.u2u.framework.sys.authorize.service.AuthorizeService;
 import com.u2u.ibms.common.Constants;
 import com.u2u.ibms.common.beans.IdentifyCertification;
 import com.u2u.ibms.common.beans.Order;
+import com.u2u.ibms.common.beans.RentCompanyInfo;
+import com.u2u.ibms.common.beans.RentPersonInfo;
 import com.u2u.ibms.common.beans.SubOrder;
 import com.u2u.ibms.common.mapper.IdentifyCertificationMapper;
 import com.u2u.ibms.web.order.condition.OrderCondition;
@@ -96,6 +100,7 @@ public class VerifyOrderController extends BaseController {
 		
 		return mav;
 	}
+	
 
 	@RequestMapping("/save")
 	@ResponseBody

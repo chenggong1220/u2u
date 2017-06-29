@@ -95,11 +95,45 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		WHERE ID=#{userId}
 	</select>
 
+<!-- 
 	<select id="getAllUsers" resultMap="user">
 		SELECT
 		ID,
 		<include refid="BASE_USER_SQL" />
 		FROM SYS_USER
+	</select>
+-->	
+
+	<select id="getAllUsers" resultMap="user">
+		SELECT
+		T1.ID,
+		T1.USER_NAME,
+		T1.PASSWORD,
+		T1.REALNAME,
+		T1.MOBILE,
+		T1.DINGDING,
+		T1.BU_ID,
+		T1.PROVINCE_ID,
+		T1.CITY_ID,
+		T1.SHOP_ID,
+		T1.EMAIL,
+		T1.CITIES,		
+		T1.CREATE_DATE,
+		T1.OPERATE_DATE
+		FROM SYS_USER T1, T_SHOP T2, SYS_BU T3, SYS_ROLE T4, SYS_USER_ROLE T5 
+		Where T1.SHOP_ID = T2.ID AND T1.BU_ID = T3.ID AND T5.ROLE_ID = T4.ID AND T5.USER_ID = T1.ID 
+		<if test="userName!=null">
+			AND (T1.USER_NAME LIKE CONCAT('%',#{userName},'%') OR T1.REALNAME LIKE CONCAT('%',#{userName},'%')) 
+		</if>
+		<if test="userShopId!=null">
+			AND T1.SHOP_ID = #{userShopId} 
+		</if>
+		<if test="userBUId!=null">
+			AND T1.BU_ID = #{userBUId} 
+		</if>
+		<if test="userRoleId!=null">
+			AND T4.ID = #{userRoleId} 
+		</if>					
 	</select>
 
 	<insert id="insertUser">

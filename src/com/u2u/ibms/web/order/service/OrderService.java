@@ -128,13 +128,16 @@ public class OrderService extends BaseService {
 
 	public List<Order> getAll(RowBounds rb, OrderCondition condition,
 			Boolean assigned) {
+		//System.out.println("condition.getStartDate: " + getStartDate(condition) + 
+		//		",   getEndDate(condition):" + getEndDate(condition));
 		List<Order> orders = orderMapper.getAll(rb,
 				getStringCondition(condition.getCode()),
 				getIntegerCondition(condition.getCreateSource()),
 				getIntegerCondition(condition.getOperatorId()), assigned, null,
 				getBooleanCondition(condition.getDelStatus()) == null ? false
 						: getBooleanCondition(condition.getDelStatus()),
-				getStartDate(condition), getEndDate(condition),
+				getStartDate(condition), 
+				getEndDate(condition),
 				getStringCondition(condition.getStatus()),
 				getStringCondition(condition.getRentType()),
 				getStringCondition(condition.getCustomerName()),
@@ -391,6 +394,7 @@ public class OrderService extends BaseService {
 
 	public void update(Order order) {
 		Order exist = orderMapper.getById(order.getId());
+		System.out.println("exist.getCustomerName(): " + exist.getCustomerName());
 		exist.setOperateDate(DateUtil.currentTimestamp());
 		orderMapper.update(exist);
 	}
