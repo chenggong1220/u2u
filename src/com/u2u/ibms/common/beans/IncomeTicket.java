@@ -13,7 +13,7 @@ public class IncomeTicket extends BaseBean {
 	private Timestamp openDate;
 	@SuppressWarnings("unused")
 	private String openDateView;
-	private String project;
+	private int project;
 	private String type;
 	private String ticketId;
 	private Float amount;
@@ -63,11 +63,11 @@ public class IncomeTicket extends BaseBean {
 		this.openDate = openDate;
 	}
 
-	public String getProject() {
+	public int getProject() {
 		return project;
 	}
 
-	public void setProject(String project) {
+	public void setProject(int project) {
 		this.project = project;
 	}
 

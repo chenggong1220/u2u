@@ -54,13 +54,13 @@
 </form>
 <script type="text/javascript">
 var projectData = [];
-projectData.push({ "value": "保证金", "id": "保证金" });
-projectData.push({ "value": "租金", "id": "租金" });
-projectData.push({ "value": "手续费", "id": "手续费" });
-projectData.push({ "value": "服务费", "id": "服务费" });
-projectData.push({ "value": "违约金", "id": "违约金" });
-projectData.push({ "value": "滞纳金", "id": "滞纳金" });
-projectData.push({ "value": "会员费", "id": "会员费" });
+projectData.push({ "value": "保证金", "id": "0" });
+projectData.push({ "value": "租金", "id": "1" });
+projectData.push({ "value": "手续费", "id": "2" });
+projectData.push({ "value": "服务费", "id": "3" });
+projectData.push({ "value": "违约金", "id": "4" });
+projectData.push({ "value": "滞纳金", "id": "5" });
+projectData.push({ "value": "会员费", "id": "6" });
 $("#project").combobox({
 	editable:false,
 	data:projectData,

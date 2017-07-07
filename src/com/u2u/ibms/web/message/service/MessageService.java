@@ -131,7 +131,7 @@ public class MessageService extends BaseService {
 			
 		} else {
 			List<UserInfo> userInfos = userInfoMapper.getUserInfos(
-					new RowBounds(), null, null, null, null,null);
+					new RowBounds(), null, null, null, null,null,null,null);
 			for (UserInfo userInfo : userInfos) {
 				try {
 					if (message.getType().equals("短信")) {

@@ -16,7 +16,9 @@ public interface UserInfoMapper {
 			@Param("username") String username, @Param("mobile") String mobile,
 			@Param("provinceId") Integer provinceId,
 			@Param("citiId") Integer citiId, 
-			@Param("userType") String userType);
+			@Param("userType") String userType,
+			@Param("regStartDate") String regStartDate,
+			@Param("regEndDate") String regEndDate);
 
 	UserInfo getById(@Param("id") Integer id);
 

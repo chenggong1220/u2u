@@ -29,9 +29,9 @@
 						<input id="endDate" name="endDate" type="text"
 							class="easyui-datebox">
 					</h1></li>
-				<li><font>设备型号：</font>
+				<li><font>合同编号：</font>
 				<h1>
-						<input id="type" name="type" type="text">
+						<input id="contractCode" name="contractCode" type="text">
 					</h1></li>
 			</ul>
 		</div>
@@ -62,14 +62,15 @@
 	<thead>
 		<tr>
 			<th data-options="field:'id',checkbox:true">序列号</th>
-			<th data-options="field:'customer',width:'10%',editor:'text'">客户</th>
-			<th data-options="field:'contact',width:'15%',editor:'text'">联系方式</th>
+			<th data-options="field:'customer',width:'15%',editor:'text'">客户</th>
+			<th data-options="field:'contact',width:'10%',editor:'text'">联系方式</th>
+			<th data-options="field:'contract',width:'12%',editor:'text'">合同编号</th>
 			<th data-options="field:'deviceno',width:'10%',editor:'text'">设备序列号</th>
 			<th data-options="field:'type',width:'10%',editor:'text'">型号</th>
-			<th data-options="field:'devicedate',width:'15%',editor:'text'">日期</th>
+			<th data-options="field:'devicedate',width:'10%',editor:'text'">日期</th>
 			<th data-options="field:'runningtime',width:'10%',editor:'text'">开机时长</th>
-			<th data-options="field:'nochargingtime',width:'13%',editor:'text'">不计费时长</th>
-			<th data-options="field:'chargingtime',width:'13%',editor:'text'">计费时长</th>
+			<th data-options="field:'nochargingtime',width:'10%',editor:'text'">不计费时长</th>
+			<th data-options="field:'chargingtime',width:'10%',editor:'text'">计费时长</th>
 		</tr>
 	</thead>
 </table>

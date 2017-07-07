@@ -67,8 +67,9 @@ public class PayService extends BaseService {
 		List<Pays> pays = paysMapper.getAllWithUser(
 				rb,
 				condition.getUserId(),
-				null,
-				null);
+				getStartDate(condition), 
+				getEndDate(condition)
+			);
 		for (Pays pays2 : pays) {
 			UserInfo tmpUser =	userInfoMapper.getById(pays2.getUserId());
 			Order tmpOrder = orderService.getById(pays2.getOrderId());

@@ -35,7 +35,7 @@ public class Constants {
          public static final String ORDER_10_ASSET_SEND = "发货";// 发货
          public static final String ORDER_11_ASSET_RECEIVE = "到货确认";// 到货确认
 
-         public static final String ORDER_000_ABANDONED = "订单废弃";// 到货确认
+         public static final String ORDER_000_ABANDONED = "项目审批拒绝";// 到货确认
          public static final String ORDER_001_CREDIT_ABANDONED = "信审拒绝";// 到货确认
 
          public static final Integer DINGDING_1_APPLY = 1;// 租赁申请

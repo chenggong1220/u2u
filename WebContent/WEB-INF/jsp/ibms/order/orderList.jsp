@@ -58,6 +58,7 @@
 							<option value="订单处理">订单处理</option>
 							<option value="项目处理">项目处理</option>
 							<option value="项目复核">项目复核</option>
+							<option value="项目审批拒绝">项目审批拒绝</option>
 							<option value="信审">信审</option>
 							<option value="信审复核">信审复核</option>
 							<option value="合同到司确认">合同到司确认</option>

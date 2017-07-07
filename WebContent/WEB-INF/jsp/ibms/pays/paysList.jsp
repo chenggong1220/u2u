@@ -20,7 +20,17 @@
 					<h1>
 						<input id="upaySourceStr" name="paySourceStr" type="text">
 					</h1>
-				</li>				
+				</li>	
+				<li><font>缴费时间(始)：</font>
+					<h1>
+						<input id="startDate" name="startDate" type="text"
+							class="easyui-datebox">
+					</h1></li>
+				<li><font>缴费时间(终)：</font>
+					<h1>
+						<input id="endDate" name="endDate" type="text"
+							class="easyui-datebox">
+					</h1></li>
 			</ul>
 		</div>
 		<div class="ibms_clear"></div>

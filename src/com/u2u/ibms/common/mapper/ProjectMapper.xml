@@ -91,6 +91,24 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			<if test="operator!=null">
 				AND O.OPERATOR LIKE CONCAT('%',#{operator},'%')
 			</if>
+			
+			<if test="customerName!=null">
+				AND O.id in (
+				SELECT t1.`id` AS o_id FROM t_order t1
+				JOIN t_rent_person_Info r
+				ON t1.`rent_person_id` = r.`id`
+				WHERE t1.`rent_person_type`=0
+				AND r.name LIKE CONCAT('%',#{customerName},'%')
+				UNION
+				SELECT t2.`id` AS o_id FROM t_order t2
+				JOIN t_rent_company_info r
+				ON t2.`rent_company_id` = r.`id`
+				WHERE t2.`rent_person_type` = 1
+				AND r.name LIKE CONCAT('%',#{customerName},'%')
+				UNION SELECT DISTINCT -1 FROM t_order
+				)
+			</if>			
+			
 		</where>
 		ORDER BY T_PROJECT.CREATE_DATE DESC
 	</select>

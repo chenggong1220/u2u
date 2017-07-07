@@ -79,7 +79,9 @@ public class IncomeService extends BaseService {
 		}
 		Income income = incomeMapper.getById(getIntegerCondition(incomeId));
 		income.setInvoiceStatus(true);
+		income.setType(incomeTicket.getProject());
 		income.setOperateDate(DateUtil.currentTimestamp());
+		income.setPayAmount(incomeTicket.getRealAmount());
 		incomeMapper.update(income);
 	}
 }

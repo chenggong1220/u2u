@@ -36,6 +36,17 @@
 							<option value="1">企业用户</option>
 						</select>
 					</h1></li>
+					
+				<li><font>注册时间(始)：</font>
+					<h1>
+						<input id="regStartDate" name="startDate" type="text"
+							class="easyui-datebox">
+					</h1></li>
+				<li><font>注册时间(终)：</font>
+					<h1>
+						<input id="regEndDate" name="endDate" type="text"
+							class="easyui-datebox">
+					</h1></li>					
 			</ul>
 			<script type="text/javascript">
 				
@@ -68,8 +79,10 @@
 	<thead>
 		<tr>
 			<th data-options="field:'id',checkbox:true">序列号</th>
-			<th data-options="field:'username',width:'10%',editor:'text'">姓名</th>
-			<th data-options="field:'mobile',width:'20%'">手机号</th>
+			<th data-options="field:'username',width:'10%',editor:'text'">用户名</th>
+			<th data-options="field:'nickname',width:'8%'">昵称</th>
+			<th data-options="field:'mobile',width:'10%'">手机号</th>
+			<th data-options="field:'email',width:'15%'">电子邮箱</th>
 			<th data-options="field:'province',width:'10%'">省</th>
 			<th data-options="field:'city',width:'10%'">市</th>
 			<th

@@ -20,6 +20,7 @@ public interface BilldetailMapper {
 
 	List<Billdetail> getAll(@Param("customer") String customer,
 			@Param("deviceno") String deviceno,
+			@Param("contractCode") String contractCode,
 			@Param("startDate") Timestamp startDate,
 			@Param("endDate") Timestamp endDate, RowBounds rb, 
 			@Param("type") String type);

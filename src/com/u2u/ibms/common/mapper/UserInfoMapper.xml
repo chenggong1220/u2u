@@ -95,6 +95,12 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			<if test="cityId!=null">
 				AND city_id = #{cityId}
 			</if>
+			<if test="regStartDate!=null">
+				AND create_date &gt;= #{regStartDate}
+			</if>
+			<if test="regEndDate!=null">
+				AND create_date &lt;= #{regEndDate}
+			</if>
 		</where>
 		ORDER BY CREATE_DATE DESC
 	</select>

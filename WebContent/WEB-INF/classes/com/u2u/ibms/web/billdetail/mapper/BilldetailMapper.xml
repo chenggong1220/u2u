@@ -45,6 +45,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			<if test="deviceno!=null">
 				AND deviceno like concat('%',#{deviceno},'%')
 			</if>
+			<if test="contractCode!=null">
+				AND contract like concat('%',#{contractCode},'%')
+			</if>
 			<if test="startDate!=null">
 				and devicedate &gt;= #{startDate}
 			</if>

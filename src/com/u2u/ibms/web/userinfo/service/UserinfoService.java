@@ -26,12 +26,14 @@ public class UserinfoService extends BaseService {
 	private LocationMapper locationMapper;
 
 	public List<UserInfo> getAll(RowBounds rb, UserInfoVo request) {
-
+		//System.out.println("Request.toString(): " + request.toString());
 		List<UserInfo> users = userinfoMapper.getUserInfos(rb,
 				getStringCondition(request.getUsername()),
 				getStringCondition(request.getMobile()),
 				request.getProvinceId(), request.getCityId(),
-				getStringCondition(request.getUserType()));
+				getStringCondition(request.getUserType()),
+				request.getRegStartDate(),
+				request.getRegEndDate());
 
 		for (UserInfo user : users) {
 			user.setProvince(locationMapper.getProvinceById(

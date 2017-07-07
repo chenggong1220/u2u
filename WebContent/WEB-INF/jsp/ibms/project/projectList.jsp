@@ -21,6 +21,7 @@
 							<option value="0">未保存</option>
 							<option value="1">待复核</option>
 							<option value="2">复核通过</option>
+							<option value="3">项目审核拒绝</option>
 							<option value="4">信审拒绝</option>
 						</select>
 					</h1></li>
@@ -42,6 +43,14 @@
 				<!-- 					<h1> -->
 				<!-- 						<input id="operator" name="operator" type="text"> -->
 				<!-- 					</h1></li> -->
+				<li><font>客户姓名：</font>
+					<h1>
+						<input id="ustomerName" name="ustomerName" type="text">
+					</h1></li>		
+				<li><font>客户专员：</font>
+					<h1>
+						<input id="managerRealname" name="managerRealname" type="text">
+					</h1></li>
 			</ul>
 		</div>
 		<div class="ibms_clear"></div>

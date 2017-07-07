@@ -58,6 +58,7 @@ public class CreditController extends BaseController {
 			//Add search records rejected by Credit team, SUNZHE, 2017-05-28
 			condition.setResult("4");
 		}
+		//System.out.println("condition.getCustomerName(): " + condition.getCustomerName());
 		List<Project> projects = projectService.getAll(
 				buildRowBounds(baseRequest), condition);
 		Map<String, Object> result = new HashMap<String, Object>();

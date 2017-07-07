@@ -12,7 +12,10 @@ public interface PaysMapper {
 
 	List<Pays> getAll(RowBounds rb,@Param("orderId") Integer orderId,@Param("startDate") Timestamp startDate,@Param("endDate") Timestamp endDate);
 
-	List<Pays> getAllWithUser(RowBounds rb,@Param("userId") Integer userId,@Param("startDate") Timestamp startDate,@Param("endDate") Timestamp endDate);
+	List<Pays> getAllWithUser(RowBounds rb,
+			@Param("userId") Integer userId,
+			@Param("startDate") Timestamp startDate,
+			@Param("endDate") Timestamp endDate);
 	
 	Pays getById(@Param("id") int id);
 

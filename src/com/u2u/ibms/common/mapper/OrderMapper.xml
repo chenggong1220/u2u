@@ -106,10 +106,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 				and deposit_check = #{depositCheck}
 			</if>
 			<if test="startDate!=null">
-				and operate_date &gt;= #{startDate}
+				and create_date &gt;= #{startDate}
 			</if>
 			<if test="endDate!=null">
-				and operate_date &lt;= #{endDate}
+				and create_date &lt;= #{endDate}
 			</if>
 			<if test="status!=null">
 				AND STATUS = #{status}

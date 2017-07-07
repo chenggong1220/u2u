@@ -7,7 +7,15 @@ public class BilldetailCondition extends BaseCondition {
 	private String customer;
 	private String deviceno;
 	private String type;
+	private String contractCode;
 
+	public String getContractCode() {
+		return contractCode;
+	}
+
+	public void setContractCode(String contractCode) {
+		this.contractCode = contractCode;
+	}	
 	
 	public String getCustomer() {
 		return customer;

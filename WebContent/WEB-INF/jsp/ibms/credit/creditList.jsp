@@ -16,6 +16,10 @@
 					<h1>
 						<input id="projectId" name="projectId" type="text">
 					</h1></li>
+				<li><font>客户姓名：</font>
+					<h1>
+						<input id="customerName" name="customerName" type="text">
+					</h1></li>					
 				<li><font>信审状态：</font>
 					<h1>
 						<select id="creditResult" name="creditResult"

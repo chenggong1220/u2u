@@ -113,7 +113,8 @@ public class ProjectService extends BaseService {
 				getStringCondition(condition.getOperatorId()),
 				getStartDate(condition), getEndDate(condition),
 				getStringCondition(condition.getOrderCode()),
-				getStringCondition(condition.getOperator()));
+				getStringCondition(condition.getOperator()),
+				getStringCondition(condition.getCustomerName()));
 		for (final Project project : projects) {
 			this.convertToProject(project);
 		}

@@ -1,6 +1,8 @@
 package com.u2u.ibms.web.pay.condition;
 
-public class PayCondition {
+import com.u2u.framework.base.BaseCondition;
+
+public class PayCondition extends BaseCondition {
 
 	private Integer id;
 	private Integer userId;

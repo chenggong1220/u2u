@@ -11,7 +11,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<result property="orderId" jdbcType="INTEGER" column="order_id" />
 		<result property="billId" jdbcType="INTEGER" column="bill_id" />
 		<result property="customer" jdbcType="VARCHAR" column="customer" />
-		<result property="type" jdbcType="INTEGER" column="type" />
+		<result property="type" jdbcType="VARCHAR" column="type" />
 		<result property="amount" jdbcType="FLOAT" column="amount" />
 		<result property="payAmount" jdbcType="FLOAT" column="pay_amount" />
 		<result property="invoice" jdbcType="TINYINT" column="invoice" />

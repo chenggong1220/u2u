@@ -84,6 +84,7 @@ public class BilldetailService extends BaseService {
 		List<Billdetail> billdetails = billdetailMapper.getAll(
 				getStringCondition(condition.getCustomer()),
 				getStringCondition(condition.getDeviceno()),
+				getStringCondition(condition.getContractCode()),
 				getStartDate(condition), getEndDate(condition), rb,
 				getStringCondition(condition.getType()));
 		return billdetails;

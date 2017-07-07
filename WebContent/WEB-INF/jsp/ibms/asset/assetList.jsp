@@ -125,10 +125,10 @@ $("#assetStatus").combobox({
 		<tr>
 			<th data-options="field:'id',checkbox:true">序列号</th>
 			<th
-				data-options="field:'brand',width:'20%',editor:'text',formatter:function(value,rec){return rec.assetType.brand;}">设备品牌</th>
+				data-options="field:'brand',width:'10%',editor:'text',formatter:function(value,rec){return rec.assetType.brand;}">设备品牌</th>
 			<th
-				data-options="field:'model',width:'20%',editor:'text',formatter:function(value,rec){return rec.assetType.model;}">设备型号</th>
-			<th data-options="field:'code',width:'20%',editor:'text'">设备编号</th>
+				data-options="field:'model',width:'10%',editor:'text',formatter:function(value,rec){return rec.assetType.model;}">设备型号</th>
+			<th data-options="field:'code',width:'10%',editor:'text'">设备编号</th>
 			<th
 				data-options="field:'rent',width:'10%',editor:'text',
 				formatter:function(value,rec){
@@ -144,6 +144,8 @@ $("#assetStatus").combobox({
 			<th data-options="field:'province',width:'20%'">省</th>
 			<th data-options="field:'city',width:'20%'">市</th>
 -->			
+			<th data-options="field:'assetLocation',width:'20%'">所在地</th>
+			<th data-options="field:'shop.name',width:'20%'">分享店</th>
 			<th data-options="field:'createTime',width:'20%'">创建时间</th>
 		</tr>
 	</thead>

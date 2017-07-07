@@ -14,14 +14,10 @@
 					<h1>
 						<input id="contractId" name="contractId" type="text">
 					</h1></li>
-				<li><font>款类型：</font>
+				<li><font>收款类型：</font>
 					<h1>
 						<select id="type" name="type" class="easyui-combobox"
 							data-options="editable:false">
-							<option value="">全部</option>
-							<option value="0">会员费</option>
-							<option value="1">保证金</option>
-							<option value="2">租金</option>
 						</select>
 					</h1></li>
 				<li><font>开票状态：</font>
@@ -78,7 +74,34 @@
 			</th>
 			<th data-options="field:'customer',width:'10%'">客户</th>
 			<th
-				data-options="field:'type',width:'10%',formatter:function(value,rec){if(rec.type==0){return '会员费';}else if(rec.type==1){return '保证金';}else{return '租金';}}">类型</th>
+				data-options="field:'type',width:'10%',formatter:
+					function(value,rec){
+						switch(value){
+							case 0:
+							  return '保证金';
+							  break;
+							case 1:
+							  return '租金';
+							  break;
+							case 2:
+							  return '手续费';
+							  break;
+							case 3:
+							  return '服务费';
+							  break;
+							case 4:
+							  return '违约金';
+							  break;
+							case 5:
+							  return '滞纳金';
+							  break;
+							case 6:
+							  return '会员费';
+							  break;							  
+							default:
+							  return '';
+						}
+					}">类型</th>
 			<th data-options="field:'viewDate',width:'10%'">时间</th>
 			<th data-options="field:'amount',width:'10%'">应收</th>
 			<th data-options="field:'payAmount',width:'10%'">实收</th>
@@ -93,3 +116,21 @@
 	<a href="javascript:void(0)" class="easyui-linkbutton auto-editbutton"
 		data-options="iconCls:'icon-add',plain:true,index:'id',url:'${pageContext.request.contextPath}/web/income/edit'">开票登记</a>
 </div>
+
+<script type="text/javascript">
+var typeData = [];
+typeData.push({ "value": "保证金", "id": "0" });
+typeData.push({ "value": "租金", "id": "1" });
+typeData.push({ "value": "手续费", "id": "2" });
+typeData.push({ "value": "服务费", "id": "3" });
+typeData.push({ "value": "违约金", "id": "4" });
+typeData.push({ "value": "滞纳金", "id": "5" });
+typeData.push({ "value": "会员费", "id": "6" });
+$("#type").combobox({
+	editable:false,
+	data:typeData,
+	valueField:'id',
+	textField:'value'
+});
+
+</script>

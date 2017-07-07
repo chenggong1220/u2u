@@ -10,7 +10,7 @@
 					<h1>
 						<input id="contract" name="contract" type="text">
 					</h1></li>
-				<li><font>账单期数：</font>
+				<li><font>客户名称：</font>
 					<h1>
 						<input id="terms" name="terms" type="text">
 					</h1></li>
@@ -54,7 +54,7 @@
 			<th data-options="field:'id',checkbox:true">序列号</th>
 
 			<th data-options="field:'contractId',width:'10%',formatter:function(value,rec){return '<a target=\'_blank\' href=\'${pageContext.request.contextPath}'+rec.contract.saveLocation +'\'>' + rec.contract.contractId+'</a>' }">合同号</th>
-
+			<th data-options="field:'order.customerName',width:'15%'">客户名称</th>
 			<th data-options="field:'currentTerm',width:'6%'">账单期数</th>
 			<th data-options="field:'terms',width:'6%'">总期数</th>
 			<th data-options="field:'outdateView',width:'10%'">出账日期</th>

@@ -302,7 +302,5 @@ public class UserInfo extends BaseBean {
 	public void setHasDeposited(boolean hasDeposited) {
 		this.hasDeposited = hasDeposited;
 	}
-	
-
-	
+		
 }

@@ -12,8 +12,25 @@ public class UserInfoVo extends BaseRequest {
 	
 	private String userType;
 	
+	private String regStartDate;		//Register Start Date
+	private String regEndDate;			//Register End Date
 	
+	public String getRegStartDate() {
+		return regStartDate;
+	}
 
+	public void SetRegStartDate(String regStartDate) {
+		this.regStartDate = regStartDate;
+	}	
+
+	public String getRegEndDate() {
+		return regEndDate;
+	}
+
+	public void SetRegEndDate(String regEndDate) {
+		this.regEndDate = regEndDate;
+	}	
+	
 	public String getUsername() {
 		return username;
 	}
