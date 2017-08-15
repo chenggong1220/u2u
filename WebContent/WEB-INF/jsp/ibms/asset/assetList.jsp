@@ -20,15 +20,12 @@ $('#brandIdSearch').combobox({
     }
 });
 
-//Start: Load Shop Info, SUNZHE, 2017-06-19
 $('#assetShopSearch').combobox({
 	editable:false,
     url: WEB_APP + '/web/shop/json',
     valueField:'id',
     textField:'name'
 });
-//Start: Load Shop Info, SUNZHE, 2017-06-19
-
 
 var assetStatus = [];
 assetStatus.push({ "value": "已租", "id": '0' });
@@ -112,15 +109,14 @@ $("#assetStatus").combobox({
 				toolbar: '#tb',
 				pagination:true,
 				rownumbers:true,
-				 fitColumns: true,
+				fitColumns: true,
 				singleSelect:true,
-				url: '${pageContext.request.contextPath}/web/asset/assetList',		//changed from 'web/asset/list' for more conditions
+				url: '${pageContext.request.contextPath}/web/asset/assetList',		
 				pageSize:10,
 				pageList: [1,2,5,10],
 				collapsible:true,
 				method: 'post'
 			">
-
 	<thead>
 		<tr>
 			<th data-options="field:'id',checkbox:true">序列号</th>
@@ -132,18 +128,20 @@ $("#assetStatus").combobox({
 			<th
 				data-options="field:'rent',width:'10%',editor:'text',
 				formatter:function(value,rec){
-					if(value == '1'){
+					if(rec.rent == '0'){
 						return '已租';
-					}else if(value == '0'){
+					}else if(rec.rent == '1'){
 						return '空闲';
-					}else if(value == '2'){
+					}else if(rec.rent == '2'){
 						return '检修';
 					}
 				}">状态</th>
+				
 <!-- Removed by SUNZHE, 2017-06-19 	  				
 			<th data-options="field:'province',width:'20%'">省</th>
 			<th data-options="field:'city',width:'20%'">市</th>
 -->			
+
 			<th data-options="field:'assetLocation',width:'20%'">所在地</th>
 			<th data-options="field:'shop.name',width:'20%'">分享店</th>
 			<th data-options="field:'createTime',width:'20%'">创建时间</th>

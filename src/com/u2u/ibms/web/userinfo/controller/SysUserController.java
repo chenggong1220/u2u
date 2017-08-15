@@ -22,7 +22,7 @@ public class SysUserController extends BaseController {
 	@RequestMapping("/operators")
 	@ResponseBody
 	public List<User> operators() {
-		return authorizeService.getAllUsers(null, new RowBounds());
+		return authorizeService.getAllUsers(new RowBounds());
 	}
 
 }

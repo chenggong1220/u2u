@@ -93,23 +93,25 @@ $("#status").combobox({
     data:statusData,
 	valueField:'id',
 	textField:'value',
-	onLoadSuccess:function(){$(this).combobox('setValue', '${bill.status}');}
+	onLoadSuccess:function(){$(this).combobox('setValue', 'true');}
+	//onLoadSuccess:function(){$(this).combobox('setValue', '${bill.status}');}
 });
 
 var verificationData = [];
-verificationData.push({ "value": "保证金", "id": true });
-verificationData.push({ "value": "租金", "id": false });
+verificationData.push({ "value": "保证金", "id": "0" });
+verificationData.push({ "value": "服务费", "id": "1" });
+verificationData.push({ "value": "租金", "id": "2" });
 $("#deposit").combobox({
 	editable:false,
 	data:verificationData,
 	valueField:'id',
 	textField:'value',
-	onLoadSuccess:function(){$(this).combobox('setValue', true);},
+	onLoadSuccess:function(){$(this).combobox('setValue', 0);},
 	onSelect: function (record) {
-		if(record.id==true){
-			$("#rentAmountDiv").hide();	
+		if(record.id==2){
+			$("#rentAmountDiv").show();	
 		}else{
-			$("#rentAmountDiv").show();
+			$("#rentAmountDiv").hide();
 		}
     }
 });

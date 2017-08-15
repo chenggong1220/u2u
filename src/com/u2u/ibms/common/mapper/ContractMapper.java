@@ -25,6 +25,7 @@ public interface ContractMapper {
 			@Param("rentType") String rentType, 
 			@Param("provinceId") String provinceId,
 			@Param("assetProvinceId") String assetProvinceId,
+			@Param("customerName") String customerName,
 			@Param("operatorId") String operatorId);
 	Contract getByOrderId(@Param("orderId") int orderId);
 

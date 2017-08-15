@@ -89,7 +89,7 @@ public class BillService extends BaseService {
 		} else {
 			incomeOpe = 1;
 		}
-		if (bill.isDeposit()) {
+		if (bill.getDeposit() == 0) {
 			income.setType(0);
 			income.setAmount(order.getDeposit());
 			order.setLeftDeposit(Float.valueOf(exist.getAmount()));
@@ -132,7 +132,7 @@ public class BillService extends BaseService {
 		Pays pay = new Pays();
 		pay.setPayId(CommonIdGenerator.generatePayId());
 		pay.setPaySource(1);
-		if (bill.isDeposit()) {
+		if (bill.getDeposit() < 2) {
 			pay.setType(1);
 		} else {
 			pay.setType(2);

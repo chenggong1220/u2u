@@ -70,6 +70,7 @@ public class ContractService extends BaseService {
 				getStringCondition(condition.getRentType()),
 				getStringCondition(condition.getProvinceId()),
 				getStringCondition(condition.getAssetProvinceId()),
+				getStringCondition(condition.getCustomerName()),
 				getStringCondition(condition.getOperatorId()));
 
 		for (final Contract contract : contracts) {
@@ -90,7 +91,7 @@ public class ContractService extends BaseService {
 				getBooleanCondition(condition.getCheckinStatus()),
 				getBooleanCondition(condition.getSignoffStatus()), null, null,
 				getStringCondition(condition.getContractType()), null, null,
-				null, getStringCondition(condition.getProvinceId()),null,null);
+				null, getStringCondition(condition.getProvinceId()),null,null,null);
 		for (int i = 0; i < contracts.size(); i++) {
 			Order order = orderService.getById(contracts.get(i).getOrderId());
 			if (order.isDepositCheck()) {
@@ -122,6 +123,7 @@ public class ContractService extends BaseService {
 		Order order = orderService.getById(contract.getOrderId());
 		if (order.getRentPersonType() == 0) {
 			contract.setOrderName("个人：" + order.getRentPersonInfo().getName());
+			contract.setCustomerName(order.getRentPersonInfo().getName());
 			contract.setOrderProvince(
 					order.getRentPersonInfo().getPersonProvince());
 			contract.setOrderPerson(order.getRentPersonInfo().getName());
@@ -131,6 +133,7 @@ public class ContractService extends BaseService {
 					+ order.getRentPersonInfo().getAddress());
 		} else {
 			contract.setOrderName("企业：" + order.getRentCompanyInfo().getName());
+			contract.setCustomerName(order.getRentCompanyInfo().getName());
 			contract.setOrderProvince(
 					order.getRentCompanyInfo().getCompanyProvince());
 			contract.setOrderPerson(order.getRentCompanyInfo().getLegalName());

@@ -18,6 +18,18 @@ public class ContractCondition extends BaseCondition {
 	private String assetProvinceId;//租赁物所在地省
 	
 	private String operatorId;		//合同查看权限控制，by SUNZHE, 2017-02-12
+	private String customerName;	//合同的客户名称，by SUNZHE, 2017-07-24
+	
+	//Start: Add Customer Name for Query Purpose，by SUNZHE, 2017-07-24
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}
+	//End: Add Customer Name for Query Purpose，by SUNZHE, 2017-07-24
+	
 	
 	//Start: 客户专员查看合同权限控制，by SUNZHE, 2017-02-12
 	public String getOperatorId() {

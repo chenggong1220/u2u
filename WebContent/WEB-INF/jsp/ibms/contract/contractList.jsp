@@ -13,6 +13,10 @@
 					<h1>
 						<input id="contractId" name="contractId" type="text">
 					</h1></li>
+				<li><font>客户名称：</font>
+					<h1>
+						<input id="customerName" name="customerName" type="text">
+					</h1></li>					
 				<li><font>签收状态：</font>
 					<h1>
 						<select id="checkinStatus" name="checkinStatus"

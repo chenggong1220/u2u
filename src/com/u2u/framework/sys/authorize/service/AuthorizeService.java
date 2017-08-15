@@ -117,7 +117,7 @@ public class AuthorizeService extends BaseService {
 		return user;
 	}
 
-	/*
+
 	public List<User> getAllUsers(RowBounds rb) {
 		List<User> users = authorizeMapper.getAllUsers(rb);
 		List<Role> roles = authorizeMapper.getAllRole(new RowBounds());
@@ -137,7 +137,7 @@ public class AuthorizeService extends BaseService {
 
 		return users;
 	}
-	*/
+
 	
 	
 	//Start: Add this function for query with multiple conditions, SUNZHE, 2017-06-20

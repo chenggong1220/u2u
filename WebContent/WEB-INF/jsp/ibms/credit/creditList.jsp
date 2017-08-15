@@ -16,10 +16,14 @@
 					<h1>
 						<input id="projectId" name="projectId" type="text">
 					</h1></li>
-				<li><font>客户姓名：</font>
+				<li><font>客户名称：</font>
 					<h1>
 						<input id="customerName" name="customerName" type="text">
-					</h1></li>					
+					</h1></li>		
+				<li><font>证件号码：</font>
+					<h1>
+						<input id="IDNo" name="IDNo" type="text">
+					</h1></li>									
 				<li><font>信审状态：</font>
 					<h1>
 						<select id="creditResult" name="creditResult"
@@ -44,7 +48,7 @@
 				<li><font>订单编号：</font>
 					<h1>
 						<input id="orderCode" name="orderCode" type="text">
-					</h1></li>
+					</h1></li>			
 				<li><font>客户专员：</font>
 					<h1>
 						<input id="operator" name="operator" type="text">

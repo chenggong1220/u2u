@@ -18,6 +18,7 @@ public interface ProjectMapper {
 			@Param("endDate") Timestamp endDate, 
 			@Param("orderCode") String orderCode, 
 			@Param("operator") String operator,
+			@Param("IDNo") String IDNo,
 			@Param("customerName") String customerName);
 
 	Project getById(@Param("id") int id);

@@ -97,6 +97,13 @@ public class AssetService extends BaseService {
 			}
 		}
 
+//		System.out.println("====condition.getRent(): " + getIntegerCondition(condition.getRent()));
+//		System.out.println("====condition.getProvinceId(): " + getIntegerCondition(condition.getProvinceId()));
+//		System.out.println("====condition.getCityId(): " + getIntegerCondition(condition.getCityId()));
+//		System.out.println("====condition.getAssetCode(): " + getIntegerCondition(condition.getAssetCode()));
+//		System.out.println("====condition.getAssetLocation(): " + getIntegerCondition(condition.getAssetLocation()));
+//		System.out.println("====condition.getAssetShopId(): " + getIntegerCondition(condition.getAssetShopId()));
+		
 		List<Asset> assets = assetMapper.getSearchedAll(
 				CollectionUtils.isNotEmpty(list) ? list : null,
 				getIntegerCondition(condition.getRent()),
@@ -110,6 +117,7 @@ public class AssetService extends BaseService {
 		for (final Asset asset : assets) {
 			this.convert(asset);
 		}
+		
 		return assets;
 	}
 	//End: Add this function for filtering the data with more conditions, SUNZHE, 2017-06-19

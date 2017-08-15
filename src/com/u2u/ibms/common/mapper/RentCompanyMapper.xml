@@ -32,6 +32,11 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<result property="idCardBackImg" jdbcType="VARCHAR" column="ID_Card_Back_Img" />
 		<result property="idCardHandImg" jdbcType="VARCHAR" column="Id_Card_Hand_Img" />
 		<result property="compCode" jdbcType="VARCHAR" column="Comp_Code" />
+		
+		<result property="actualController" jdbcType="VARCHAR" column="Actual_Controller" />
+		<result property="controllerMobile" jdbcType="VARCHAR" column="Actual_Controller_Mobile" />
+		<result property="lastYearTaxProofPath" jdbcType="VARCHAR"
+			column="Last_Year_TaxProof_Path" />		
 	</resultMap>
 
 	<sql id="BASE_RENTCOMPANY_SQL">
@@ -54,6 +59,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		ID_Card_Back_Img,
 		Id_Card_Hand_Img,
 		Comp_Code,
+		Actual_Controller,
+		Actual_Controller_Mobile,
+		Last_Year_TaxProof_Path,
 		<include refid="BASE_BEAN_SQL" />
 	</sql>
 
@@ -102,6 +110,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		#{idCardBackImg},
 		#{idCardHandImg},
 		#{compCode},
+		#{actualController},
+		#{controllerMobile},
+		#{lastYearTaxProofPath},
 		#{createDate},
 		#{operateDate}
 		)
@@ -130,7 +141,9 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		ID_Card_Front_img = #{idCardFrontImg},
 		ID_Card_Back_Img = #{idCardBackImg},
 		Id_Card_Hand_Img = #{idCardHandImg},
-		Comp_Code = #{compCode}
+		Comp_Code = #{compCode},
+		Actual_Controller = #{actualController},
+		Actual_Controller_Mobile = #{controllerMobile} 
 		where
 		id = #{id}
 	</update>

@@ -53,11 +53,19 @@ public class RentSideInfo extends BaseBean {
 	private String personCity;
 	private String leaseType;
 	// 证件正面
-		private String idCardFrontImg;
-		// 证件反面
-		private String idCardBackImg;
-		// 证件手持
-		private String idCardHandImg;
+	private String idCardFrontImg;
+	// 证件反面
+	private String idCardBackImg;
+	// 证件手持
+	private String idCardHandImg;
+	
+	// 实际控制人
+	private String actualController;
+	// 实际控制人电话
+	private String controllerMobile;	
+	// 上年纳税凭证
+	private String lastYearTaxProofPath;	
+	
 	/**
 	 * 返回 bare_field_comment
 	 * 
@@ -522,53 +530,55 @@ public class RentSideInfo extends BaseBean {
 		this.postalAddress = postalAddress;
 	}
 
-
-
-
 	public String getIdCardFrontImg() {
 		return idCardFrontImg;
 	}
 	
-
-
-
-
 	public void setIdCardFrontImg(String idCardFrontImg) {
 		this.idCardFrontImg = idCardFrontImg;
 	}
 	
-
-
-
-
 	public String getIdCardBackImg() {
 		return idCardBackImg;
 	}
 	
-
-
-
-
 	public void setIdCardBackImg(String idCardBackImg) {
 		this.idCardBackImg = idCardBackImg;
 	}
-	
-
-
-
 
 	public String getIdCardHandImg() {
 		return idCardHandImg;
 	}
 	
-
-
-
-
 	public void setIdCardHandImg(String idCardHandImg) {
 		this.idCardHandImg = idCardHandImg;
 	}
+
+	//Start: Added Actual Controller/Tax Proof, Carter Sun, 2017-08-01
+	public String getActualController() {
+		return actualController;
+	}
 	
-
-
+	public void setActualController(String actualController) {
+		this.actualController = actualController;
+	}
+	
+	public String getControllerMobile() {
+		return controllerMobile;
+	}
+	
+	public void setControllerMobile(String controllerMobile) {
+		this.controllerMobile = controllerMobile;
+	}	
+	
+	public String getLastYearTaxProofPath() {
+		return lastYearTaxProofPath;
+	}
+	
+	public void setLastYearTaxProofPath(String lastYearTaxProofPath) {
+		this.lastYearTaxProofPath = lastYearTaxProofPath;
+	}
+	
+	//End: Added Actual Controller, Carter Sun, 2017-08-01
+	
 }

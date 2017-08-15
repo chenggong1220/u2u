@@ -68,7 +68,7 @@ public class ReportService extends BaseService {
 	public List<HasRent> getHasRent(ReportCondition condition, RowBounds rb) {
 		List<Contract> contracts = contractMapper.getAll(rb, null, null, null,
 				null, null, null, getStartDate(condition),
-				getEndDate(condition),null,null,null,null,null,null,null);
+				getEndDate(condition),null,null,null,null,null,null,null,null);
 		Map<AssetType, Integer> map = new HashMap<>();
 		for (Contract contract : contracts) {
 			List<SubOrder> sorders = subOrderMapper.getByOrderId(
@@ -139,7 +139,7 @@ public class ReportService extends BaseService {
 		List<RentDetail> rdetail = new ArrayList<>();
 		List<Contract> contracts = contractMapper.getAll(rb, null, null, null,
 				null, null, null, getStartDate(condition),
-				getEndDate(condition),null,null,null,null,null,null,null);
+				getEndDate(condition),null,null,null,null,null,null,null,null);
 		int id = 1;
 		for (Contract contract : contracts) {
 			RentDetail rentDetail = new RentDetail();

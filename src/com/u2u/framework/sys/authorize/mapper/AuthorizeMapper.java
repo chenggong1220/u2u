@@ -27,7 +27,7 @@ public interface AuthorizeMapper {
 
 	User getUserById(@Param("userId") Integer userId);
 
-	//List<User> getAllUsers(RowBounds rb);
+	List<User> getAllUsers(RowBounds rb);
 	
 	List<User> getAllUsers(@Param("userName") String userName,
 			@Param("userShopId") Integer userShopId,

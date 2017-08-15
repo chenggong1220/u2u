@@ -91,19 +91,20 @@
 				data-options="field:'contractId',width:'10%',formatter:function(value,rec){return '<a target=\'_blank\' href=\'${pageContext.request.contextPath}'+rec.saveLocation +'\'>'
 				+ value+'</a>' }">合同号
 			</th>
-			<th data-options="field:'orderName',width:'10%'">合同类型</th>
+			<th data-options="field:'orderName',width:'20%'">合同类型</th>
 <!-- 			
 			<th data-options="field:'orderProvince',width:'10%'">省</th>
 -->			
 			<th data-options="field:'orderPerson',width:'10%'">收货人</th>
 			<th data-options="field:'orderMobile',width:'10%'">手机号</th>
 			<th
-				data-options="field:'sendStatus',width:'10%',formatter:function(value,rec){if(value==false){return '未发货' ;}else{return '已发货';}}">发货状态</th>
+				data-options="field:'sendStatus',width:'6%',formatter:function(value,rec){if(value==false){return '未发货' ;}else{return '已发货';}}">发货状态</th>
+			<th data-options="field:'sendDateView',width:'10%',formatter:function(value,rec){if(value=='未发货'){return '' ;}else{return value;}}">发货时间</th>				
 			<th
-				data-options="field:'sendCheckinStatus',width:'10%',formatter:function(value,rec){if(value==false){return '未到货' ;}else{return '已到货';}}">到货状态</th>
+				data-options="field:'sendCheckinStatus',width:'6%',formatter:function(value,rec){if(value==false){return '未到货' ;}else{return '已到货';}}">到货状态</th>
 			<th
-				data-options="field:'backStatus',width:'10%',formatter:function(value,rec){if(value==false){return '未归还' ;}else{return '已归还';}}">归还状态</th>
-			<th data-options="field:'status',width:'10%'">状态</th>
+				data-options="field:'backStatus',width:'6%',formatter:function(value,rec){if(value==false){return '未归还' ;}else{return '已归还';}}">归还状态</th>
+			<th data-options="field:'status',width:'6%'">状态</th>
 		</tr>
 	</thead>
 </table>

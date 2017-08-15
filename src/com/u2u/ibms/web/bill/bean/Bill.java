@@ -17,17 +17,17 @@ public class Bill extends BaseBean {
 	private String financialNum;
 	private String bankSerialNumber;//银行流水号
 
-	private boolean deposit;
+	private int deposit;		//为增加资金类型，改Boolean类型为int型，0：保证金；1：服务费; 2：租金；
 	private int contractId;
 	private int billCheckId;
 	
 	private String remark;//备注
 
-	public boolean isDeposit() {
+	public int getDeposit() {
 		return deposit;
 	}
 
-	public void setDeposit(boolean deposit) {
+	public void setDeposit(int deposit) {
 		this.deposit = deposit;
 	}
 

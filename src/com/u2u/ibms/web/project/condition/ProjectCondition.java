@@ -11,15 +11,24 @@ public class ProjectCondition extends BaseCondition {
 	private String orderCode;
 	private String operator;
 	
-	private String ustomerName;
+	private String customerName;
 	private String managerRealname;
+	private String IDNo;
 	
-	public String getCustomerName() {
-		return ustomerName;
+	public String getIDNo() {
+		return IDNo;
 	}
 
-	public void setCustomerName(String ustomerName) {
-		this.ustomerName = ustomerName;
+	public void setIDNo(String IDNo) {
+		this.IDNo = IDNo;
+	}	
+	
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}	
 	
 	public String getManagerRealname() {

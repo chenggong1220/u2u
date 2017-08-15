@@ -92,6 +92,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 				AND O.OPERATOR LIKE CONCAT('%',#{operator},'%')
 			</if>
 			
+			<if test="IDNo!=null">
+				AND O.ID_CARD LIKE CONCAT('%',#{IDNo},'%')
+			</if> 
+						
 			<if test="customerName!=null">
 				AND O.id in (
 				SELECT t1.`id` AS o_id FROM t_order t1

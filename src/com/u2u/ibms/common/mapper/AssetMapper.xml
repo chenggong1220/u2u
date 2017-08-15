@@ -80,8 +80,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		SELECT
 		ID,
 		<include refid="BASE_ASSET_SQL" />
-		FROM
-		T_ASSET
+		FROM 
+		T_ASSET 
 		<where>
 			<if test="assetTypeIds!=null">
 				AND asset_type_id in
@@ -91,13 +91,13 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 				</foreach>
 			</if>
 			<if test="rent!=null">
-				AND rent = #{rent}
+				AND rent = #{rent} 
 			</if>
 			<if test="assetCode!=null">
-				AND code like CONCAT('%',#{assetCode},'%')
+				AND code like CONCAT('%',#{assetCode},'%') 
 			</if>
 			<if test="assetShopId!=null">
-				AND shop_id = #{assetShopId}
+				AND shop_id = #{assetShopId} 
 			</if>
 		</where>
 		ORDER BY CREATE_DATE DESC

@@ -25,7 +25,13 @@
 									<input disabled="disabled" id="mobile" name="mobile"
 										value="${order.rentPersonInfo.mobile }" type="text">
 								</h1></li>
+							<li><font>承租人地址：</font>
+								<h1>
+									<input disabled="disabled" id="address" name="address"
+										type="text" value="${order.rentPersonInfo.address }">
+								</h1></li>								
 						</ul>
+<!-- 						
 						<div class="ibms_clear"></div>
 						<ul>
 							<li><font>承租人省：</font>
@@ -45,6 +51,7 @@
 										type="text" value="${order.rentPersonInfo.address }">
 								</h1></li>
 						</ul>
+-->						
 						<div class="ibms_clear"></div>
 					</div>
 					<div id="companyDiv">

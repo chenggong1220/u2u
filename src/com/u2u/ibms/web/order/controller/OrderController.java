@@ -146,8 +146,8 @@ public class OrderController extends BaseController {
 	@RequestMapping("/update")
 	@ResponseBody
 	public AjaxDone update(Order order) {
-		System.out.println("exist.getCustomerName():");
-		System.out.println(order.getCustomerName());
+		//System.out.println("exist.getCustomerName():");
+		//System.out.println(order.getCustomerName());
 		orderService.update(order);
 		return ajaxDoneSuccess(null);
 	}
@@ -157,9 +157,8 @@ public class OrderController extends BaseController {
 	public AjaxDone modifyorder(Order order, RentCompanyInfo renCompanyInfo,
 			RentPersonInfo rentPersonInfo, String startDatetime,
 			String endDatetime, HttpServletRequest request) {
-		System.out.println("exist.getCustomerName():");
-		System.out.println(order.getCustomerName());
-		//orderService.insert(request, order, renCompanyInfo, rentPersonInfo);
+		
+		orderService.modify(order, renCompanyInfo, rentPersonInfo);
 		return ajaxDoneSuccess(null);
 	}	
 	

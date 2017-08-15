@@ -50,10 +50,22 @@ public class Contract extends BaseBean {
 	private float orderDeposit;
 	private float orderLeftDeposit;
 	private String location;
+	private String customerName;
 
 	private Project project;
 	private Order order;
 
+	//Start: add Customer Name for Query Condition with it, 2017-07-24
+	public String getCustomerName() {
+		return customerName;
+	}
+
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
+	}	
+	//End: add Customer Name for Query Condition with it, 2017-07-24
+	
+	
 	public String getLocation() {
 		return location;
 	}

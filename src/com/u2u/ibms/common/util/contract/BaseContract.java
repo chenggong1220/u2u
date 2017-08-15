@@ -164,7 +164,7 @@ public class BaseContract {
 		cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 		table.addCell(cell);
 
-		cell = getBorderCell(" 甲方或乙方指定地点", false);
+		cell = getBorderCell(" 甲方指定地点", false);
 		cell.setColspan(12);
 		cell.setHorizontalAlignment(Element.ALIGN_LEFT);
 		table.addCell(cell);
@@ -183,7 +183,7 @@ public class BaseContract {
 		// cell =
 		// getBorderCell("租赁物的“起租时间”为该租赁物的提货验收时间(以乙丙双方签字的《租赁物交付确认单》所载时间为准)",
 		// false);
-		cell = getBorderCell("“起租时间”为承租人确认租赁物合格的时间", false);
+		cell = getBorderCell("“起租时间”为乙方确认或被视为确认租赁物合格的时间", false);
 		cell.setColspan(12);
 		cell.setHorizontalAlignment(Element.ALIGN_LEFT);
 		table.addCell(cell);

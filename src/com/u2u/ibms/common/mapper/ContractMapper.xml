@@ -54,8 +54,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<include refid="BASE_CONTRACT_SQL" />
 		FROM
 		T_CONTRACT t1
-		left join t_order t2 on t1.order_id = t2.id left join t_project t3 on
-		t1.project_id = t3.id
+		left join t_order t2 on t1.order_id = t2.id 
+		left join t_project t3 on t1.project_id = t3.id
 		<where>
 			<if test="contractId!=null">
 				AND t1.contract_id like concat('%',#{contractId},'%')
@@ -93,6 +93,22 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 			<if test="operatorId!=null">
 				and t2.operator_id = #{operatorId}
 			</if>
+			<if test="customerName!=null">
+				AND t2.id in (
+				SELECT t4.`id` AS o_id FROM t_order t4
+				JOIN t_rent_person_Info r
+				ON t4.`rent_person_id` = r.`id`
+				WHERE t4.`rent_person_type`=0
+				AND r.name LIKE CONCAT('%',#{customerName},'%')
+				UNION
+				SELECT t5.`id` AS o_id FROM t_order t5
+				JOIN t_rent_company_info r
+				ON t5.`rent_company_id` = r.`id`
+				WHERE t5.`rent_person_type` = 1
+				AND r.name LIKE CONCAT('%',#{customerName},'%')
+				UNION SELECT DISTINCT -1 FROM t_order
+				)
+			</if>				
 			<if test="orderPerson!=null">
 				AND t1.order_id in (
 				SELECT o.`id` AS o_id FROM t_order o

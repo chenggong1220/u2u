@@ -111,6 +111,13 @@ public class MobileOrderService {
 				renCompanyInfo.setAddress(rentSideInfo.getAddress());// 公司地址
 				renCompanyInfo.setCreateDate(DateUtil.currentTimestamp());
 				renCompanyInfo.setOperateDate(DateUtil.currentTimestamp());
+				
+				//Start: Added Actual Controller, Carter Sun, 2017-08-01
+				renCompanyInfo.setActualController(rentSideInfo.getActualController());			//实际控制人
+				renCompanyInfo.setControllerMobile(rentSideInfo.getControllerMobile());			//实际控制人电话
+				renCompanyInfo.setLastYearTaxProofPath(rentSideInfo.getLastYearTaxProofPath());	//纳税凭证 
+				//End: Added Actual Controller, Carter Sun, 2017-08-01				
+				
 				//对企业的省、市信息
 				renCompanyInfo.setCompanyProvinceId(rentSideInfo.getCompanyProvinceId());
 				renCompanyInfo.setCompanyCityId(rentSideInfo.getCompanyCityId());

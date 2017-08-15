@@ -45,21 +45,29 @@ public class RentCompanyInfo extends BaseBean {
 	// 紧急联系人电话
 	private String emergencyContactMobile;
 	// 证件正面
-		private String idCardFrontImg;
-		// 证件反面
-		private String idCardBackImg;
-		// 证件手持
-		private String idCardHandImg;
-		// 证件正面
-		private String c_idCardFrontImg;
-		// 证件反面
-		private String c_idCardBackImg;
-		// 证件手持
-		private String c_idCardHandImg;
+	private String idCardFrontImg;
+	// 证件反面
+	private String idCardBackImg;
+	// 证件手持
+	private String idCardHandImg;
+	// 证件正面
+	private String c_idCardFrontImg;
+	// 证件反面
+	private String c_idCardBackImg;
+	// 证件手持
+	private String c_idCardHandImg;
 		
 	//企业代码
 	private String compCode;
 	
+	//Start: Added Actual Controller, Carter Sun, 2017-08-01
+	//企业实际控制人
+	private String actualController;
+	//企业实际控制人电话
+	private String controllerMobile;
+	//上年纳税凭证
+	private String lastYearTaxProofPath;	
+	//End: Added Actual Controller, Carter Sun, 2017-08-01	
 	
 	public String getCompanyProvince() {
 		return companyProvince;
@@ -503,4 +511,55 @@ public class RentCompanyInfo extends BaseBean {
 		this.compCode = compCode;
 	}
 	
+	
+	/**
+	 * 返回 公司实际控制人
+	 * @return actualController 
+	*/
+	public String getActualController() {
+		return actualController;
+	}
+	
+
+	/**
+	 * 设置公司实际控制人
+	 * @param actualController      
+	 */
+	public void setActualController(String actualController) {
+		this.actualController = actualController;
+	}	
+	
+	/**
+	 * 返回 公司实际控制人电话
+	 * @return actualController 
+	*/
+	public String getControllerMobile() {
+		return controllerMobile;
+	}
+	
+
+	/**
+	 * 设置公司实际控制人电话
+	 * @param actualController      
+	 */
+	public void setControllerMobile(String controllerMobile) {
+		this.controllerMobile = controllerMobile;
+	}
+	
+	/**
+	 * 返回 上年纳税凭证路径
+	 * @return lastYearTaxProofPath 
+	*/
+	public String getLastYearTaxProofPath() {
+		return lastYearTaxProofPath;
+	}
+	
+
+	/**
+	 * 设置上年纳税凭证路径
+	 * @param lastYearTaxProofPath      
+	 */
+	public void setLastYearTaxProofPath(String lastYearTaxProofPath) {
+		this.lastYearTaxProofPath = lastYearTaxProofPath;
+	}	
 }

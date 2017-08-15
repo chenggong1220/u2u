@@ -149,8 +149,20 @@
 										value="${order.rentCompanyInfo.postcode}" type="text">
 								</h1></li>
 						</ul>
-
-
+						
+						<div class="ibms_clear"></div>
+						<ul>
+							<li><font>实际控制人：</font>
+								<h1>
+									<input disabled="disabled" name="legalName"
+										value="${order.rentCompanyInfo.actualController}" type="text">
+								</h1></li>
+							<li><font>控制人电话：</font>
+								<h1>
+									<input disabled="disabled" name="legalMobile"
+										value="${order.rentCompanyInfo.controllerMobile}" type="text">
+								</h1></li>
+						</ul>
 
 						<div class="ibms_clear"></div>
 						<div class="ibms_form_default_textarea">
@@ -285,6 +297,17 @@
 							</b>
 						</h1>
 						<!-- End: Added pics for Comp, by SUNZHE, 2017-01-17	---->
+						
+						<!-- Start: Added Tax Proof Pic for Comp, by SUNZHE, 2017-08-02	---->
+						<font>上年纳税凭证：</font>
+						<h1 style="width: 90%;">
+							<b> <a class="POPUP_A" href="javascript:void(0);"><img
+									width="300" height="200"
+									src="${pageContext.request.contextPath}${order.rentCompanyInfo.lastYearTaxProofPath }"
+									name="lastYearTaxProofPath" /></a>
+							</b>
+						</h1>
+						<!-- End: Added Tax Proof Pic for Comp, by SUNZHE, 2017-08-02 ---->						
 					</div>
 				</div>
 			</div>

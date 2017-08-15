@@ -4,6 +4,7 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.List;
 
@@ -394,7 +395,7 @@ public class OrderService extends BaseService {
 
 	public void update(Order order) {
 		Order exist = orderMapper.getById(order.getId());
-		System.out.println("exist.getCustomerName(): " + exist.getCustomerName());
+		//System.out.println("exist.getCustomerName(): " + exist.getCustomerName());
 		exist.setOperateDate(DateUtil.currentTimestamp());
 		orderMapper.update(exist);
 	}
@@ -521,4 +522,78 @@ public class OrderService extends BaseService {
 		return orderMapper.getCustomerNames(rowBounds);
 	}
 
+	
+	public void modify(Order order, RentCompanyInfo rentCompanyInfo, RentPersonInfo rentPersonInfo) {
+		//HttpServletRequest request
+		Order exist = orderMapper.getById(order.getId());
+		
+		if(exist == null){
+			return;
+		}else{
+			exist = convertOrder(exist);
+		}
+		
+		RentPersonInfo existRentPersonInfo = exist.getRentPersonInfo();
+		RentCompanyInfo existRentCompanyInfo = exist.getRentCompanyInfo();
+	
+			if (exist.getRentPersonType() == 0) {
+				existRentPersonInfo
+						.setName(this.getStartComma(rentPersonInfo.getName()));
+				existRentPersonInfo.setAddress(this.getStartComma(rentPersonInfo
+						.getAddress()));
+				existRentPersonInfo.setPostcode(this.getStartComma(rentPersonInfo
+						.getPostcode()));
+				existRentPersonInfo.setOperateDate(DateUtil.currentTimestamp());
+				
+				existRentPersonInfo.setEmail(rentPersonInfo.getEmail());
+				existRentPersonInfo.setName(rentPersonInfo.getName());
+				existRentPersonInfo.setPostcode(rentPersonInfo.getPostcode());
+				
+				existRentPersonInfo.setEmergencyContact(rentPersonInfo.getEmergencyContact());
+				existRentPersonInfo.setEmergencyContactMobile(rentPersonInfo.getEmergencyContactMobile());
+				existRentPersonInfo.setRelation(rentPersonInfo.getRelation());
+				
+				rentPersonMapper.update(existRentPersonInfo);
+				//order.setRentPersonId(rentPersonInfo.getId());
+			} else {
+				existRentCompanyInfo.setName(rentCompanyInfo.getName());
+				existRentCompanyInfo.setAddress(rentCompanyInfo.getAddress());
+				existRentCompanyInfo.setPostcode(rentCompanyInfo.getPostcode());
+				//rentCompanyInfo.setCreateDate(DateUtil.currentTimestamp());
+				existRentCompanyInfo.setOperateDate(DateUtil.currentTimestamp());				
+				
+				existRentCompanyInfo.setActualController(rentCompanyInfo.getActualController());
+				existRentCompanyInfo.setControllerMobile(rentCompanyInfo.getControllerMobile());			
+				
+				existRentCompanyInfo.setEmergencyContact(rentCompanyInfo.getEmergencyContact());
+				existRentCompanyInfo.setEmergencyContactMobile(rentCompanyInfo.getEmergencyContactMobile());
+				existRentCompanyInfo.setRelation(rentCompanyInfo.getRelation());
+				
+				existRentCompanyInfo.setLegalName(rentCompanyInfo.getLegalName());
+				existRentCompanyInfo.setLegalMobile(rentCompanyInfo.getLegalMobile());
+				existRentCompanyInfo.setLegalEmail(rentCompanyInfo.getLegalEmail());
+				
+				rentCompanyMapper.update(existRentCompanyInfo);
+				//order.setRentCompanyId(rentCompanyInfo.getId());
+			}
+
+			exist.setStartDate(DateUtil.string2Timestamp(order.getStartDatetime(),
+					DateUtil.PATTERN_DATE));
+			Calendar calendar = Calendar.getInstance();
+
+			calendar.setTime(DateUtil.string2Date(order.getStartDatetime(), DateUtil.PATTERN_DATE));					//setTimeInMillis(order.getStartDate().getTime()); 
+			calendar.add(Calendar.MONTH, order.getRentDate());
+			String endDate = DateUtil.date2String(calendar.getTime(),
+					DateUtil.PATTERN_DATE);
+			exist.setEndDate(DateUtil.string2Timestamp(endDate,
+					DateUtil.PATTERN_DATE));
+			//order.setCreateDate(DateUtil.currentTimestamp());
+			exist.setOperateDate(DateUtil.currentTimestamp());	
+			exist.setRemark(order.getRemark());
+			exist.setDetailLocation(order.getDetailLocation());
+			
+		//System.out.println("exist.getCustomerName(): " + exist.getCustomerName());
+		
+		orderMapper.update(exist);
+	}
 }

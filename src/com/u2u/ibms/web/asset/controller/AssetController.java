@@ -58,6 +58,7 @@ public class AssetController extends BaseController {
 			AssetCondition condition) {
 		List<Asset> assets = assetService.getSearchedAll(condition,
 				buildRowBounds(baseRequest));
+		
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("total", assetService.getSearchedAll(condition, buildRowBounds())
 				.size());

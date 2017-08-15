@@ -65,7 +65,6 @@ public class HeaderFooter extends PdfPageEventHelper {
 					+ contractVo.getContractId().replace("_", "") + "-OL",
 					subBoldFontChinese));		
 			
-			
 			PdfPCell cell = new PdfPCell(Image.getInstance(total));
 			cell.setBorder(Rectangle.BOTTOM);
 			table.addCell(cell);
