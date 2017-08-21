@@ -453,7 +453,8 @@ public class BaseContract {
 		BaseFont bfChinese = BaseFont.createFont(UserContract.FONT_NAME,
 				FONT_ENCODE, FONT_EMBEDED);
 		Font subBoldFontChinese = null;
-		subBoldFontChinese = new Font(bfChinese, 9, Font.BOLD);
+		//subBoldFontChinese = new Font(bfChinese, 9, Font.BOLD);
+		subBoldFontChinese = new Font(bfChinese, 9, Font.NORMAL);		
 		return new Paragraph(
 				"\n特别提示：《设备租赁合同一般条款》中需要引起特别注意的事项，均以加粗下划线形式作出标记。合同各方确认已详细阅读并完全理解包括《租赁要素表》、一般条款及相关附件在内的本合同全部条款和附件，并自愿遵守合同条款的约定。",
 				subBoldFontChinese);

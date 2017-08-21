@@ -106,7 +106,7 @@ $("#deposit").combobox({
 	data:verificationData,
 	valueField:'id',
 	textField:'value',
-	onLoadSuccess:function(){$(this).combobox('setValue', 0);},
+	onLoadSuccess:function(){$(this).combobox('setValue', '${bill.deposit}');},
 	onSelect: function (record) {
 		if(record.id==2){
 			$("#rentAmountDiv").show();	
@@ -114,6 +114,7 @@ $("#deposit").combobox({
 			$("#rentAmountDiv").hide();
 		}
     }
+
 });
 
 $("#contractId").combobox({

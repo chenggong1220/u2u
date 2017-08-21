@@ -27,6 +27,7 @@ public interface ContractMapper {
 			@Param("assetProvinceId") String assetProvinceId,
 			@Param("customerName") String customerName,
 			@Param("operatorId") String operatorId);
+	
 	Contract getByOrderId(@Param("orderId") int orderId);
 
 	Contract getById(@Param("id") int id);

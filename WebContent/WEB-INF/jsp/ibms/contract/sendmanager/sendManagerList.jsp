@@ -79,7 +79,7 @@
 				singleSelect:true,
 				url: '${pageContext.request.contextPath}/web/send/manager/list',
 				pageSize:10,
-				pageList: [1,2,5,10],
+				pageList: [1,3,5,10],
 				collapsible:true,
 				method: 'post'
 			">

@@ -72,12 +72,26 @@
 			<th data-options="field:'id',checkbox:true">序列号</th>
 			<th data-options="field:'accountNum',width:'20%',editor:'text'">客户账号</th>
 			<th data-options="field:'accountName',width:'20%',editor:'text'">客户户名</th>
-			<th data-options="field:'dealDate',width:'20%',editor:'text'">交易日期</th>
-			<th data-options="field:'amount',width:'15%',editor:'text'">收到金额</th>
+			<th data-options="field:'dealDate',width:'15%',editor:'text'">交易日期</th>
+			<th data-options="field:'amount',width:'10%',editor:'text'">收到金额</th>
 			<th
-				data-options="field:'billingStatus',width:'12%',editor:'text',formatter:function(value,rec){if(rec.billingStatus==true){return '已开票';}else{return '未开票';}}">开票状态</th>
+				data-options="field:'billingStatus',width:'8%',editor:'text',formatter:function(value,rec){if(rec.billingStatus==true){return '已开票';}else{return '未开票';}}">开票状态</th>
+			<th data-options="field:'deposit',width:'10%',editor:'text',formatter:
+				function(value,rec){
+					if(rec.status==true){
+						if(value==0){
+							return '保证金';
+						}else if(value == 1){
+							return '服务费';
+						}else{
+							return '租金';
+						}
+					}
+				}				
+				
+			">核销项目</th>
 			<th
-				data-options="field:'status',width:'10%',editor:'text',formatter:function(value,rec){if(rec.status==true){return '已核销';}else{return '未核销';}}">状态</th>
+				data-options="field:'status',width:'8%',editor:'text',formatter:function(value,rec){if(rec.status==true){return '已核销';}else{return '未核销';}}">状态</th>
 		</tr>
 	</thead>
 </table>

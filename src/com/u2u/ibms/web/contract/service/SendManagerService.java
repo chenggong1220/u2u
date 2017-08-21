@@ -47,6 +47,9 @@ public class SendManagerService extends BaseService {
 	private SubOrderMapper subOrderMapper;
 
 	public void send(String contractId, Integer[] ids, String selectDate) {
+		
+		//System.out.println("contractId: " + contractId + "; selectDate: " + selectDate);
+		
 		Contract exist = contractMapper
 				.getById(getIntegerCondition(contractId));
 		exist.setSendStatus(true);
@@ -54,7 +57,7 @@ public class SendManagerService extends BaseService {
 				DateUtil.PATTERN_DATE));
 		exist.setOperateDate(DateUtil.currentTimestamp());
 		contractMapper.update(exist);
-
+		
 		for (Integer id : ids) {
 			Asset asset = assetMapper.getById(id);
 			asset.setRent(0);
@@ -64,6 +67,7 @@ public class SendManagerService extends BaseService {
 			AssetManagerRentAsset rentAsset = assetManagerRentAssetMapper
 					.getByOrderIdAndAssetId(exist.getOrderId(), id);
 
+			//System.out.println("Rent Status: " + asset.getRent());
 			if (rentAsset == null) {
 				rentAsset = new AssetManagerRentAsset();
 				rentAsset.setOrderId(exist.getOrderId());
@@ -111,7 +115,7 @@ public class SendManagerService extends BaseService {
 
 		for (Entry<Integer, Integer> entry : typeMaps.entrySet()) {
 			if (entry.getValue() < 0) {
-				throw new RuntimeException("发现错误发货，请重新核对发货数量！");
+				throw new RuntimeException("发货错误，请确认是否已经发货并核对发货数量！");
 			}
 		}
 

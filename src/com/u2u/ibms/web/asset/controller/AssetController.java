@@ -63,6 +63,7 @@ public class AssetController extends BaseController {
 		result.put("total", assetService.getSearchedAll(condition, buildRowBounds())
 				.size());
 		result.put("rows", assets);
+		//System.out.println("====condition.getRent(): " + condition.getRent() + "--- asset size: " + assets.size());
 		return result;
 	}	
 	//End: Add more query conditions, SUNZHE, 2017-06-19 	

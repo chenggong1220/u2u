@@ -21,6 +21,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<result property="status" jdbcType="TINYINT" column="status" />
 		<result property="contractId" jdbcType="TINYINT" column="contract_id" />
 		<result property="billCheckId" jdbcType="TINYINT" column="bill_check_id" />
+		<result property="deposit" jdbcType="TINYINT" column="deposit" />
 		<result property="financialNum" jdbcType="VARCHAR" column="financial_num" />
 		<result property="bankSerialNumber" jdbcType="VARCHAR" column="bank_Serial_Number" />
 		<result property="remark" jdbcType="VARCHAR" column="remark" />
@@ -36,6 +37,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		billing_date,
 		billing_status,
 		status,
+		deposit,
 		financial_num,
 		bank_Serial_Number,
 		remark,
@@ -143,6 +145,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		financial_num = #{financialNum},
 		contract_id = #{contractId},
 		bill_check_id = #{billCheckId},
+		deposit = #{deposit},
 		remark = #{remark},
 		create_date = #{createDate},
 		operate_date = #{operateDate}

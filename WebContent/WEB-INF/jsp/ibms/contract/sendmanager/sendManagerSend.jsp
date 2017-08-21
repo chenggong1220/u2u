@@ -47,27 +47,31 @@ $("#assetStatus").combobox({
 
 function assetSendSave(){
 	//var contraceCode = $("#contractCode").val();
-	var contractId = $("#contractId").val();
+	var contractID = $("#contractID").val();
 	var selectDT = $("#selectDate").val();
 	
 	var assetIDs = [];
-	var rows = $('#querygrid').datagrid('getSelections');
+	var rows = $('#sendAssetList').datagrid('getSelections');
 	//alert("Selected Rows: " + rows.length);	
 	for(var i=0; i<rows.length; i++){
 		assetIDs.push(rows[i].id);
 	}
-	//alert(assetIDs.length);	
+
+	if(assetIDs.length ==0){
+		$.messager.alert('提示消息', '请选择要发货的租赁物！', 'info');
+		return;
+	}
 	
 	$.ajax({
 		url : '${pageContext.request.contextPath}/web/send/manager/send/save',
 		type : 'post',
 		dataType : 'json',
-		data : {"ids":assetIDs,"contractId":contractId,"selectDate":selectDT},
+		traditional:true,
+		data : {"ids":assetIDs,"contractId":contractID,"selectDate":selectDT},
 		success : function(data){
-			alert("Successed!");
+			$.messager.alert('提示消息', data.message, 'info');
 		}
 	});
-
 }
 
 function assetQuery(){
@@ -82,6 +86,7 @@ function assetQuery(){
 	if(!$("form").form('validate')){
 		return;
 	}
+	
 	$("#sendAssetList").datagrid('load', param); 
 };
 
@@ -90,8 +95,7 @@ function assetQuery(){
 <form id="assetSendForm">
 	<div class="easyui-panel ibms_form_panel">
 		<div class="ibms_form_default" width="98%">
-			<input type="hidden" id="contractId" name="contractId"
-				value="${contract.id }">
+			<input hidden type="text" id="contractID" name="contractID" value="${contract.id }">
 			<ul>
 				<li><font>合同号：</font>
 				<h1>
@@ -100,14 +104,16 @@ function assetQuery(){
 					</h1></li>
 				<li><font>发货时间：</font>
 				<h1>
-						<input name="selectDate" type="text"
+						<input name="selectDate" id="selectDate" type="text"
 							value="${contract.sendDateView }" class="easyui-datebox"
 							data-options="required:true">
 					</h1></li>	
 					
 				<li>							
 					<div class="ibms_form_btn">
+<!-- 					
 						<a href="#" class="query_list_button auto-tablesavebutton" data-options="iconCls:'icon-save',plain:true,url:'${pageContext.request.contextPath}/web/send/manager/send/save',autoclose:true">保存</a>
+-->						
 					</div>
 				</li>
 			</ul>
@@ -158,6 +164,7 @@ function assetQuery(){
 		<div class="ibms_form_btn">
 			<a href="#" class="query_list_button" id="assetQueryBtn" onclick="assetQuery()">查 询</a> 			
 			<a href="#" class="auto-resetbutton query_list_button">重 置</a>	
+			<a href="#" class="query_list_button auto-tablesavebutton" onclick="assetSendSave()" data-options="iconCls:'icon-save',plain:true,autoclose:true">保存</a>
 		</div>		
 	</div>		
 		
@@ -165,13 +172,13 @@ function assetQuery(){
 	<table id="sendAssetList" class="easyui-datagrid" title="租赁物列表"
 		data-options="
 					iconCls: 'icon-edit',
-					singleSelect: true,
+					singleSelect: false,
 					toolbar: '#tb_sendManager',
 					pagination:true,
 					rownumbers:true,
 					fitColumns: true,
-					singleSelect:true,
-					url: '${pageContext.request.contextPath}/web/asset/assetList?rent=1',
+					queryParams:{rent:1},
+					url: '${pageContext.request.contextPath}/web/asset/assetList',
 					pageSize:5,
 					pageList: [3,5,10],
 					collapsible:true,
@@ -206,4 +213,9 @@ function assetQuery(){
 	
 	<div class="ibms_clear"></div>		
 
+	<div id="tb_sendManager" style="height: auto">
+<!-- 	
+			<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true,autoclose:true">保存</a>
+-->
+	</div>
 </form>

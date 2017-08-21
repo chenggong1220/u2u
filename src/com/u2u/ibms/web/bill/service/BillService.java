@@ -68,11 +68,12 @@ public class BillService extends BaseService {
 		}
 		
 		Bill exist = billMapper.getById(bill.getId());
-		System.out.println("bill.getBillCheckId(): " + bill.getBillCheckId() + "; bill.getContractId(): " + bill.getContractId());
 		exist.setBillingStatus(bill.isBillingStatus());
 		exist.setStatus(true);
 		exist.setContractId(bill.getContractId());
 		exist.setBillCheckId(bill.getBillCheckId());
+		exist.setDeposit(bill.getDeposit());
+		System.out.println("getDeposit(): " + bill.getDeposit());
 		exist.setOperateDate(DateUtil.currentTimestamp());
 		billMapper.update(exist);
 
@@ -89,7 +90,7 @@ public class BillService extends BaseService {
 		} else {
 			incomeOpe = 1;
 		}
-		if (bill.getDeposit() == 0) {
+		if (bill.getDeposit() < 2) {
 			income.setType(0);
 			income.setAmount(order.getDeposit());
 			order.setLeftDeposit(Float.valueOf(exist.getAmount()));
