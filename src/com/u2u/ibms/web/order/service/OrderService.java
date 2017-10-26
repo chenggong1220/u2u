@@ -269,8 +269,13 @@ public class OrderService extends BaseService {
 	}
 
 	private String getStartComma(String src) {
+		//System.out.println("src: " + src);
 		if (StringUtils.isNotEmpty(src)) {
-			return src.substring(0, src.indexOf(","));
+			if(src.indexOf(",")>0){
+				return src.substring(0, src.indexOf(","));
+			}else{
+				return src;
+			}
 		} else {
 			return null;
 		}
@@ -545,6 +550,7 @@ public class OrderService extends BaseService {
 						.getPostcode()));
 				existRentPersonInfo.setOperateDate(DateUtil.currentTimestamp());
 				
+				existRentPersonInfo.setMobile(rentPersonInfo.getMobile());
 				existRentPersonInfo.setEmail(rentPersonInfo.getEmail());
 				existRentPersonInfo.setName(rentPersonInfo.getName());
 				existRentPersonInfo.setPostcode(rentPersonInfo.getPostcode());
@@ -559,6 +565,7 @@ public class OrderService extends BaseService {
 				existRentCompanyInfo.setName(rentCompanyInfo.getName());
 				existRentCompanyInfo.setAddress(rentCompanyInfo.getAddress());
 				existRentCompanyInfo.setPostcode(rentCompanyInfo.getPostcode());
+				existRentCompanyInfo.setPostalAddress(rentCompanyInfo.getPostalAddress());
 				//rentCompanyInfo.setCreateDate(DateUtil.currentTimestamp());
 				existRentCompanyInfo.setOperateDate(DateUtil.currentTimestamp());				
 				
@@ -589,6 +596,7 @@ public class OrderService extends BaseService {
 					DateUtil.PATTERN_DATE));
 			//order.setCreateDate(DateUtil.currentTimestamp());
 			exist.setOperateDate(DateUtil.currentTimestamp());	
+			exist.setRentDate(order.getRentDate());
 			exist.setRemark(order.getRemark());
 			exist.setDetailLocation(order.getDetailLocation());
 			

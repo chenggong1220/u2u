@@ -13,8 +13,14 @@ public class Income extends BaseBean {
 	private float payAmount;
 	private boolean invoice;
 	private boolean invoiceStatus;
+	
+	private float unPayAmount;
+	
+	private float receivedAmount;
+	private float realReceivedAmount;	
 
 	private Contract contract;
+	private IncomeTicket incomeTicket;
 
 	public Contract getContract() {
 		return contract;
@@ -23,6 +29,14 @@ public class Income extends BaseBean {
 	public void setContract(Contract contract) {
 		this.contract = contract;
 	}
+	
+	public IncomeTicket getIncomeTicket() {
+		return incomeTicket;
+	}
+
+	public void setIncomeTicket(IncomeTicket incomeTicket) {
+		this.incomeTicket = incomeTicket;
+	}	
 
 	public int getBillId() {
 		return billId;
@@ -96,4 +110,28 @@ public class Income extends BaseBean {
 		this.invoiceStatus = invoiceStatus;
 	}
 
+	
+	public void setReceivedAmount(float receivedAmount) {
+		this.receivedAmount = receivedAmount;
+	}
+
+	public float getReceivedAmount() {
+		return receivedAmount;
+	}
+		
+	public void setRealReceivedAmount(float realReceivedAmount) {
+		this.realReceivedAmount = realReceivedAmount;
+	}
+
+	public float getRealReceivedAmount() {
+		return realReceivedAmount;
+	}	
+	
+	public void setUnPayAmount(){
+		this.unPayAmount = amount - payAmount;
+	}
+	
+	public float getUnPayAmount(){
+		return this.unPayAmount;
+	}	
 }

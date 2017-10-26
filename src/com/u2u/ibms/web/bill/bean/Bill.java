@@ -19,6 +19,7 @@ public class Bill extends BaseBean {
 
 	private int deposit;		//为增加资金类型，改Boolean类型为int型，0：保证金；1：服务费; 2：租金；
 	private int contractId;
+	private String contractNo;
 	private int billCheckId;
 	
 	private String remark;//备注
@@ -39,6 +40,14 @@ public class Bill extends BaseBean {
 		this.contractId = contractId;
 	}
 
+	public String getContractNo() {
+		return contractNo;
+	}
+
+	public void setContractNo(String contractNo) {
+		this.contractNo = contractNo;
+	}	
+	
 	public int getBillCheckId() {
 		return billCheckId;
 	}

@@ -20,6 +20,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<result property="billingStatus" jdbcType="TINYINT" column="billing_status" />
 		<result property="status" jdbcType="TINYINT" column="status" />
 		<result property="contractId" jdbcType="TINYINT" column="contract_id" />
+		<result property="contractNo" jdbcType="VARCHAR" column="contract_no" />
 		<result property="billCheckId" jdbcType="TINYINT" column="bill_check_id" />
 		<result property="deposit" jdbcType="TINYINT" column="deposit" />
 		<result property="financialNum" jdbcType="VARCHAR" column="financial_num" />
@@ -37,6 +38,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		billing_date,
 		billing_status,
 		status,
+		contract_id,
 		deposit,
 		financial_num,
 		bank_Serial_Number,
@@ -83,6 +85,80 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		ORDER BY T_BILL.DEAL_DATE DESC
 	</select>
 
+	
+	<!-- Start: Added for billing details report, SUNZHE, 2017-10-25 -->
+	<select id="getContractBill" resultMap="bill">
+		SELECT
+		B.ID,
+		B.account_num,
+		B.account_name,
+		B.cus_name,
+		B.cus_num,
+		left(B.deal_date,10) as deal_date,
+		B.amount,
+		B.billing_date,
+		B.billing_status,
+		B.status,
+		B.contract_id,
+		B.deposit,
+		B.financial_num,
+		B.bank_Serial_Number,
+		B.remark,		
+		B.CREATE_DATE,
+		B.OPERATE_DATE,
+		C.contract_id as contract_no 
+		FROM
+		T_CONTRACT C LEFT JOIN T_BILL B ON
+		C.id = B.contract_id 
+		<where>
+			<if test="company!=null">
+				and LENGTH(cus_name) &gt;= 15
+			</if>	
+			<if test="personal!=null">
+				and LENGTH(cus_name) &lt;= 12
+			</if> 		    
+			<if test="billingMonth!=null">
+				AND LEFT(B.deal_date,7) = #{billingMonth}
+			</if>			    
+			<if test="billType!=null">
+				AND B.deposit = #{billType}
+			</if>		    
+			<if test="contractNo!=null">
+				AND C.contract_id like concat('%',#{contractNo},'%')
+			</if>		    
+			<if test="accountNum!=null">
+				AND B.account_num like concat('%',#{accountNum},'%')
+			</if>
+			<if test="accountName!=null">
+				AND B.account_name like concat('%',#{accountName},'%')
+			</if>
+			<if test="cusName!=null">
+				AND B.cus_name like concat('%',#{cusName},'%')
+			</if>
+			<if test="cusNum!=null">
+				AND B.cus_num like concat('%',#{cusNum},'%')
+			</if>
+			<if test="status!=null">
+				AND status = #{status}
+			</if>
+			<if test="billingStatus!=null">
+				AND B.billing_status = #{billingStatus}
+			</if>
+			<if test="bankSerialNumber!=null">
+				AND B.bank_Serial_Number like
+				concat('%',#{bankSerialNumber},'%')
+			</if>
+			<if test="startDate!=null">
+				and B.deal_date &gt;= #{startDate}
+			</if>
+			<if test="endDate!=null">
+				and B.deal_date &lt;= #{endDate}
+			</if>
+		</where>
+		ORDER BY B.DEAL_DATE DESC
+	</select>	
+	<!-- End: Added for billing details report, SUNZHE, 2017-10-25 -->
+	
 	<!-- Start: Get one bill record, by SUNZHE, 2017-01-19 -->
 	<select id="getOne" resultMap="bill">
 		SELECT
@@ -122,6 +198,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		#{billingDate},
 		#{billingStatus},
 		#{status},
+		#{deposit},
 		#{financialNum},
 		#{bankSerialNumber},
 		#{remark},

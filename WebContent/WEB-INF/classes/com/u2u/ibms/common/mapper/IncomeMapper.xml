@@ -14,8 +14,10 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<result property="type" jdbcType="VARCHAR" column="type" />
 		<result property="amount" jdbcType="FLOAT" column="amount" />
 		<result property="payAmount" jdbcType="FLOAT" column="pay_amount" />
+		<result property="receivedAmount" jdbcType="FLOAT" column="Received_Amount" />
 		<result property="invoice" jdbcType="TINYINT" column="invoice" />
 		<result property="invoiceStatus" jdbcType="TINYINT" column="invoice_status" />
+		<result property="remark" jdbcType="VARCHAR" column="Remark" />
 	</resultMap>
 
 	<sql id="BASE_INCOME_SQL">
@@ -25,6 +27,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		t1.type,
 		t1.amount,
 		t1.pay_amount,
+		t1.Received_Amount,
 		t1.invoice,
 		t1.invoice_status,
 		t1.CREATE_DATE,
@@ -89,6 +92,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		type,
 		amount,
 		pay_amount,
+		Received_Amount,
 		invoice,
 		invoice_status,
 		CREATE_DATE,
@@ -102,6 +106,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		#{type},
 		#{amount},
 		#{payAmount},
+		#{receivedAmount},
 		#{invoice},
 		#{invoiceStatus},
 		#{createDate},
@@ -118,6 +123,7 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		type = #{type},
 		amount = #{amount},
 		pay_amount = #{payAmount},
+		Received_Amount = #{receivedAmount},
 		invoice = #{invoice},
 		invoice_status = #{invoiceStatus},
 		create_date = #{createDate},

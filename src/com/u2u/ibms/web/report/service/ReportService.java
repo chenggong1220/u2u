@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.u2u.framework.base.BaseRequest;
 import com.u2u.framework.base.BaseService;
 import com.u2u.framework.sys.authorize.beans.User;
 import com.u2u.framework.sys.authorize.mapper.AuthorizeMapper;
@@ -34,10 +35,15 @@ import com.u2u.ibms.web.order.service.OrderService;
 import com.u2u.ibms.web.report.bean.HasPay;
 import com.u2u.ibms.web.report.bean.HasRent;
 import com.u2u.ibms.web.report.bean.RentDetail;
+import com.u2u.ibms.web.report.condition.BillingReportCondition;
 import com.u2u.ibms.web.report.condition.ReportCondition;
 import com.u2u.ibms.web.shop.mapper.ShopMapper;
 import com.u2u.ibms.web.asset.condition.AssetCondition;
 import com.u2u.ibms.web.asset.service.AssetService;
+import com.u2u.ibms.web.bill.bean.Bill;
+import com.u2u.ibms.web.bill.condition.BillCondition;
+import com.u2u.ibms.web.bill.service.BillService;
+import com.u2u.ibms.web.contract.service.ContractService;
 
 @Service
 @Transactional
@@ -212,5 +218,19 @@ public class ReportService extends BaseService {
 		result.put("rows", assets);		
 		
 		return result;
-	}	
+	}
+	
+	
+	//Start: Added by Sunzhe, 2017-10-18, for billing report, removed on 2017-10-14	
+	@Autowired
+	private BillService billService;	
+	public Map<String, Object> getBillingDetails(BillingReportCondition condition,RowBounds rb, RowBounds totalRB) {
+		List<Bill> bills = billService.getContractBill(condition,rb);			
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("total", billService.getContractBill(condition, totalRB)
+				.size());
+		result.put("rows", bills);	
+		return result;			
+	}
+	//End: Added by Sunzhe, 2017-10-18, for billing report, removed on 2017-10-14	
 }

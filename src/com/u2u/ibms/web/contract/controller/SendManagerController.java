@@ -75,7 +75,7 @@ public class SendManagerController extends BaseController {
 	public AjaxDone sendSave(@RequestParam("ids") Integer[] ids,
 			@RequestParam("contractId") String contractId,
 			@RequestParam("selectDate") String selectDate) {
-		//System.out.println("====ids.length: " + ids.length);
+		//System.out.println("selectDate: " + selectDate);
 		sendManagerService.send(contractId, ids, selectDate);
 		return ajaxDoneSuccess(null);
 	}

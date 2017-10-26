@@ -103,12 +103,13 @@
 						}
 					}">类型</th>
 			<th data-options="field:'viewDate',width:'10%'">时间</th>
-			<th data-options="field:'amount',width:'10%'">应收</th>
-			<th data-options="field:'payAmount',width:'10%'">实收</th>
-			<th
-				data-options="field:'invoice',width:'10%',formatter:function(value,rec){if(rec.invoice==true){return '是';}else{return '否';}}">申请开票</th>
-			<th
-				data-options="field:'invoiceStatus',width:'10%',formatter:function(value,rec){if(rec.invoiceStatus==true){return '已开';}else{return '未开';}}">开票状态</th>
+			<th data-options="field:'invoice',width:'10%',formatter:function(value,rec){if(rec.invoice==true){return '是';}else{return '否';}}">申请开票</th>
+			<th data-options="field:'invoiceStatus',width:'10%',formatter:function(value,rec){if(rec.invoiceStatus==true){return '已开';}else{return '未开';}}">开票状态</th>
+			<th data-options="field:'amount',width:'10%'">应开</th>
+			<th data-options="field:'payAmount',width:'10%'">实开</th>	
+			<th data-options="field:'unPayAmount',width:'10%'">未开</th>				
+			<th data-options="field:'receivedAmount',width:'10%'">应收</th>
+			<th data-options="field:'realReceivedAmount',width:'10%'">实收</th>						
 		</tr>
 	</thead>
 </table>

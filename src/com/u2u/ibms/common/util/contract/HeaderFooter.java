@@ -61,8 +61,8 @@ public class HeaderFooter extends PdfPageEventHelper {
 			table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
 			table.getDefaultCell().setVerticalAlignment(Element.ALIGN_BOTTOM);
 			//Font subBoldFontChinese = new Font(bfChinese, fontSize);
-			table.addCell(new Paragraph("合同编号："
-					+ contractVo.getContractId().replace("_", "") + "—OL",
+			table.addCell(new Paragraph("合同编号：" +
+					contractVo.getContractId().replace("_", "") + "—OL",
 					subBoldFontChinese));		
 			
 			PdfPCell cell = new PdfPCell(Image.getInstance(total));

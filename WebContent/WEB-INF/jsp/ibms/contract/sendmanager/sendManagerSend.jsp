@@ -48,7 +48,8 @@ $("#assetStatus").combobox({
 function assetSendSave(){
 	//var contraceCode = $("#contractCode").val();
 	var contractID = $("#contractID").val();
-	var selectDT = $("#selectDate").val();
+	//var selectDT = $("#selectDate").val();		错误的方法，无法得到争取的时间值
+	var selectDT = $('#selectDate').datebox('getValue');
 	
 	var assetIDs = [];
 	var rows = $('#sendAssetList').datagrid('getSelections');

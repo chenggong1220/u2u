@@ -1,7 +1,9 @@
 package com.u2u.ibms.web.bill.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +29,7 @@ import com.u2u.ibms.web.bill.bean.Bill;
 import com.u2u.ibms.web.bill.condition.BillCondition;
 import com.u2u.ibms.web.bill.mapper.BillMapper;
 import com.u2u.ibms.web.order.service.OrderService;
+import com.u2u.ibms.web.report.condition.BillingReportCondition;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRES_NEW)
@@ -164,6 +167,29 @@ public class BillService extends BaseService {
 				getStringCondition(condition.getCusNum()),
 				getStartDate(condition), getEndDate(condition));
 	}
+	
+	public List<Bill> getContractBill(BillingReportCondition condition, RowBounds rb) {
+		String company = null;
+		String personal = null;
+		if("0".equals(condition.getCustType())){
+			company = "0";
+		}else if("1".equals(condition.getCustType())){
+			personal = "1";
+		}
+		return billMapper.getContractBill(
+				company, personal,
+				getStringCondition(condition.getBillingMonth()),
+				getStringCondition(condition.getBillType()),
+				getStringCondition(condition.getContractNo()),
+				getStringCondition(condition.getBankSerialNumber()),
+				getStringCondition(condition.getAccountNum()),
+				getStringCondition(condition.getAccountName()),
+				getStringCondition(condition.getCusName()),
+				getBooleanCondition(condition.getStatusId()),
+				getBooleanCondition(condition.getBillingStatusId()), rb,
+				getStringCondition(condition.getCusNum()),
+				getStartDate(condition), getEndDate(condition));			
+	}	
 	
 	public Bill getOne(String BankSerialNumber) {
 		return billMapper.getOne(BankSerialNumber);

@@ -17,7 +17,24 @@ public class BillCondition extends BaseCondition {
 	private String statusId;
 	private String billingStatusId;
 	private String cusNum;//lianxidianhua
+	private String contractNo;
+	private String billType;
+
+	public String getBillType() {
+		return billType;
+	}
+
+	public void setBillType(String billType) {
+		this.billType = billType;
+	}	
 	
+	public String getContractNo() {
+		return contractNo;
+	}
+
+	public void setContractNo(String contractNo) {
+		this.contractNo = contractNo;
+	}	
 
 	public String getCusName() {
 		return cusName;

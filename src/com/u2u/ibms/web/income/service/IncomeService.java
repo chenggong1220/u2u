@@ -47,7 +47,16 @@ public class IncomeService extends BaseService {
 
 	private Income convertToIncome(final Income income) {
 		Contract contract = contractMapper.getByOrderId(income.getOrderId());
+		income.setUnPayAmount();
+		//System.out.println("UnPayAmount: " + income.getUnPayAmount() + "; PayAmount: " + income.getAmount() + "; Amount: " + income.getAmount());
 		income.setContract(contract);
+		IncomeTicket tmpIncomeTicket = getByIncomeId(income.getId());
+		income.setIncomeTicket(tmpIncomeTicket);
+		try{
+			income.setRealReceivedAmount(tmpIncomeTicket.getRealReceivedAmount());
+		}catch(Exception e){
+			income.setRealReceivedAmount(0);
+		}
 		return income;
 	}
 
@@ -75,13 +84,20 @@ public class IncomeService extends BaseService {
 			exist.setAmount(incomeTicket.getAmount());
 			exist.setRealAmount(incomeTicket.getRealAmount());
 			exist.setOperateDate(DateUtil.currentTimestamp());
+			
+			exist.setRealReceivedAmount(incomeTicket.getRealReceivedAmount());
+			exist.setRemark(incomeTicket.getRemark());
 			incomeTicketMapper.update(exist);
 		}
+		
 		Income income = incomeMapper.getById(getIntegerCondition(incomeId));
 		income.setInvoiceStatus(true);
 		income.setType(incomeTicket.getProject());
 		income.setOperateDate(DateUtil.currentTimestamp());
 		income.setPayAmount(incomeTicket.getRealAmount());
+		
+		income.setReceivedAmount(incomeTicket.getReceivedAmount());
+		
 		incomeMapper.update(income);
 	}
 }

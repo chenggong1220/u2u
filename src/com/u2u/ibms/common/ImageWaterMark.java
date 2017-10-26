@@ -166,7 +166,7 @@ public class ImageWaterMark {
         //对字节数组Base64编码  
 
         BASE64Encoder encoder = new BASE64Encoder();  
-        System.out.println(encoder.encode(data));        
+        //System.out.println(encoder.encode(data));        
         return encoder.encode(data);//返回Base64编码过的字节数组字符串 
     }	
     

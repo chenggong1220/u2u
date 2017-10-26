@@ -16,8 +16,12 @@ public class IncomeTicket extends BaseBean {
 	private int project;
 	private String type;
 	private String ticketId;
-	private Float amount;
-	private Float realAmount;
+	private float amount;
+	private float realAmount;
+			
+	private float realReceivedAmount;
+	private float receivedAmount;	
+	private String remark;
 
 	public String getOpenDateView() {
 		if (openDate == null) {
@@ -87,20 +91,44 @@ public class IncomeTicket extends BaseBean {
 		this.ticketId = ticketId;
 	}
 
-	public Float getAmount() {
+	public float getAmount() {
 		return amount;
 	}
 
-	public void setAmount(Float amount) {
+	public void setAmount(float amount) {
 		this.amount = amount;
 	}
 
-	public Float getRealAmount() {
+	public float getRealAmount() {
 		return realAmount;
 	}
 
-	public void setRealAmount(Float realAmount) {
+	public void setRealAmount(float realAmount) {
 		this.realAmount = realAmount;
 	}
 
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
+
+	public String getRemark() {
+		return remark;
+	}
+	
+	public void setReceivedAmount(float receivedAmount) {
+		this.receivedAmount = receivedAmount;
+	}
+
+	public float getReceivedAmount() {
+		return receivedAmount;
+	}	
+	
+	public void setRealReceivedAmount(float realReceivedAmount) {
+		this.realReceivedAmount = realReceivedAmount;
+	}
+
+	public float getRealReceivedAmount() {
+		return realReceivedAmount;
+	}
+	
 }

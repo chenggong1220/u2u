@@ -16,6 +16,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		<result property="ticketId" jdbcType="VARCHAR" column="ticket_id" />
 		<result property="amount" jdbcType="FLOAT" column="amount" />
 		<result property="realAmount" jdbcType="FLOAT" column="real_amount" />
+		<result property="realReceivedAmount" jdbcType="FLOAT" column="Real_Received_Amount" />
+		<result property="remark" jdbcType="VARCHAR" column="Remark" />
 	</resultMap>
 
 	<sql id="BASE_INCOME_TICKET_SQL">
@@ -27,6 +29,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		ticket_id,
 		amount,
 		real_amount,
+		Real_Received_Amount,
+		Remark,
 		<include refid="BASE_BEAN_SQL" />
 	</sql>
 
@@ -79,6 +83,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		#{ticketId},
 		#{amount},
 		#{realAmount},
+		#{realReceivedAmount},
+		#{remark},
 		#{createDate},
 		#{operateDate}
 		)
@@ -95,6 +101,8 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		ticket_id = #{ticketId},
 		amount = #{amount},
 		real_amount = #{realAmount},
+		Real_Received_Amount = #{realReceivedAmount},
+		Remark = #{remark},
 		create_date = #{createDate},
 		operate_date = #{operateDate}
 		where

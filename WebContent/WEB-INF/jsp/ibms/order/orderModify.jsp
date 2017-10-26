@@ -317,7 +317,7 @@ $('#assetType').combobox({
 	<div class="ibms_form_btn">
 		<a href="#" class="query_list_button auto-savebutton" id="modifyorderbutton">保存</a>
 		<a href="#" class="query_list_button auto-resetbutton">重 置</a>
-		<a href="#" class="query_list_button auto-savebutton" id="realSave" type="hidden">保存</a>
+		<a href="#" class="query_list_button auto-savebutton" id="realSave" style="visibility:hidden">保存</a>
 	</div>
 </form>
 

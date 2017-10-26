@@ -27,6 +27,21 @@ public interface BillMapper {
 			@Param("startDate") Timestamp startDate,
 			@Param("endDate") Timestamp endDate);
 	
+	List<Bill> getContractBill(
+			@Param("company") String company,
+			@Param("personal") String personal,
+			@Param("billingMonth") String billingMonth,
+			@Param("billType") String billType,
+			@Param("contractNo") String contractNo,
+			@Param("bankSerialNumber") String bankSerialNumber,
+			@Param("accountNum") String accountNum,
+			@Param("accountName") String accountName,
+			@Param("cusName") String cusName, @Param("status") Boolean status,
+			@Param("billingStatus") Boolean billingStatus, RowBounds rb,
+			@Param("cusNum") String cusNum,
+			@Param("startDate") Timestamp startDate,
+			@Param("endDate") Timestamp endDate);	
+	
 	//Get one bill record, by SUNZHE, 2017-01-19
 	Bill getOne(@Param("bankSerialNumber") String bankSerialNumber);
 	

@@ -41,8 +41,24 @@
 						<input name="realAmount" type="text"
 							value="${incomeTicket.realAmount==null?income.payAmount:incomeTicket.realAmount }">
 					</h1></li>
-			</ul>
+					
+				<li><font>应收金额：</font>
+				<h1>
+						<input name="receivedAmount" type="text" value="${income.receivedAmount }">
+					</h1></li>
+				<li><font>实收金额：</font>
+				<h1>
+						<input name="realReceivedAmount" type="text"
+							value="${incomeTicket.realReceivedAmount==null?income.receivedAmount:incomeTicket.realReceivedAmount }">
+					</h1></li>					
+			</ul>		
 			<div class="ibms_clear"></div>
+			<div class="ibms_form_default_textarea">
+				<font>备注：</font>
+				<h1>
+					<textarea id="remark" name="remark" class="easyui-validatebox">${incomeTicket.remark }</textarea>
+				</h1>
+			</div>				
 		</div>
 
 	</div>

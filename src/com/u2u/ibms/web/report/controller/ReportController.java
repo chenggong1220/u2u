@@ -14,9 +14,13 @@ import com.u2u.framework.base.BaseRequest;
 import com.u2u.ibms.common.beans.Asset;
 import com.u2u.ibms.web.asset.condition.AssetCondition;
 import com.u2u.ibms.web.asset.service.AssetService;
+import com.u2u.ibms.web.bill.bean.Bill;
+import com.u2u.ibms.web.bill.condition.BillCondition;
+import com.u2u.ibms.web.bill.service.BillService;
 import com.u2u.ibms.web.report.bean.HasPay;
 import com.u2u.ibms.web.report.bean.HasRent;
 import com.u2u.ibms.web.report.bean.RentDetail;
+import com.u2u.ibms.web.report.condition.BillingReportCondition;
 import com.u2u.ibms.web.report.condition.ReportCondition;
 import com.u2u.ibms.web.report.service.ReportService;
 
@@ -64,4 +68,46 @@ public class ReportController extends BaseController {
 		return assetDetails;
 	}
 	//End: 租赁物明细报表, SUNZHE, 2017-02-15
+
+
+	//Start: 账单报表, SUNZHE, 2017-10-18
+	@RequestMapping("/billingList")
+	public String billingList() {
+		return "/ibms/report/billingList";
+	}
+	
+	@Autowired
+	private BillService billService;
+	
+	@RequestMapping("/billingDetails")
+	@ResponseBody
+	public Map<String, Object> billingDetails(BaseRequest baseRequest,
+			BillingReportCondition condition) {
+
+//		List<Bill> bills = billService.getAll(condition,buildRowBounds(baseRequest));
+//		Map<String, Object> result = new HashMap<String, Object>();
+//		result.put("total", billService.getAll(condition, buildRowBounds())
+//				.size());
+//		result.put("rows", bills);	
+//		return result;
+	
+/*		
+		Map<String, Object> billingDetails = reportService.getBillingDetails(condition,
+				buildRowBounds(baseRequest), buildRowBounds());	
+		return billingDetails;
+*/		
+
+		//System.out.println("condition.getCustType(): " + condition.getCustType());
+		List<Bill> bills = billService.getContractBill(condition,buildRowBounds(baseRequest));			
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("total", billService.getContractBill(condition, buildRowBounds())
+				.size());
+		result.put("rows", bills);	
+		return result;			
+		
+		
+	}
+	//End: 账单报表, SUNZHE, 2017-10-18	
+
+	
 }
