@@ -232,23 +232,29 @@
 						</ul>
 						<div class="ibms_clear"></div>
 						<ul>
-							<li><font>身份证正面：</font>
-								<h1>
+							<li><font>身份证正面1：</font>
+								<h1 style="height: 100px;">
 									<b> <input type="file" name="idCardFrontImgSelected"
 										id="idCardFrontImgSelected"
 										accept="image/gif, image/jpeg, image/bmp, image/png" /> <input
 										type="hidden" name="idCardFrontImg" id="idCardFrontImg"
 										value="" />
-									</b> <b> <input id="upload" type="button"
-										class="query_list_button" value="上传"
+									
+									<input id="upload" type="button"
+										 value="上传"
 										onclick="javascript:uploadFiles_framework('idCardFrontImgSelected','idCardFrontImg','idCardFrontImgPreview');">
 									</b>
 								</h1></li>
 						</ul>
+						<ul >
+							 <h1>1ddd</h1><font>身份证正面2：</font>
+							 <div style="height: 20px;"></div>
+						</ul>
+						<br/>
 						<div class="ibms_clear"></div>
 						<div class="ibms_form_default_textarea">
 							<font>身份证正面预览：</font>
-							<h1 style="width: 90%;">
+							<h1 style="width: 90%;height: 150px;">
 								<b> <img width="300" height="200" src=""
 									id="idCardFrontImgPreview" name="idCardFrontImgPreview" />
 								</b>

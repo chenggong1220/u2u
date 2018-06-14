@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>优尼斯U2U融资租赁系统</title>
+<title>共享力</title>
 <link rel="stylesheet" type="text/css"
 	href="<c:url value='/styles/css/easyui/default/easyui.css'/>">
 <link rel="stylesheet" type="text/css"
@@ -35,6 +35,9 @@
 	<div id="mask" class="login">
 		<form action="" id="formid">
 			<ul class="container">
+				<li>
+					<img src="<c:url value='/styles/images/sign.png'/>" alt="Smiley face" style="" width="91px" height="69px">
+				</li>
 				<li><span class="user"></span> <input type="text"
 					class="vali_username input" name="j_username" /></li>
 				<li><span class="password"></span> <input type="password"
@@ -43,7 +46,7 @@
 				<span class="loginmsg"></span>
 			</ul>
 		</form>
-		<span class="copyright">Copyright (C) 2015-2016 优尼斯U2U融资租赁系统</span>
+		<span class="copyright">Copyright (C) 2015-2018 共享力</span>
 	</div>
 </body>
 </html>

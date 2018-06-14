@@ -25,8 +25,8 @@ $(function() {
 	var height = $(window).height();
 	var width = $(window).width();
 
-	$(".login").width(width);
-	$(".login").height(height);
+	$(".login").width(width-10);
+	$(".login").height(height-5);
 
 	$(window).resize(
 			function() {

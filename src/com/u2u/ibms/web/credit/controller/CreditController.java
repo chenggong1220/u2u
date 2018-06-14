@@ -78,6 +78,8 @@ public class CreditController extends BaseController {
 				projectService.getProjectHandleByProjectId(project.getId()));
 		Order order = orderService.getById(project.getOrderId());
 		mav.addObject("order", orderService.getById(project.getOrderId()));
+		mav.addObject("credit",
+				projectService.getCreditVerifyByProjectId(project.getId()));		
 		mav.addObject("orderStatistics",
 				orderService.getOrderStatistics(project.getOrderId()));
 		mav.addObject("projectPictures",

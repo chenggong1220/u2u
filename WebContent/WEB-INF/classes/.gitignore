@@ -1,1 +1,6 @@
+/app-config.xml
 /com/
+/conf/
+/license.lic
+/log4j.properties
+/secrit/

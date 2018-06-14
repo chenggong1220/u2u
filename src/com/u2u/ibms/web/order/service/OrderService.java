@@ -598,6 +598,9 @@ public class OrderService extends BaseService {
 			exist.setOperateDate(DateUtil.currentTimestamp());	
 			exist.setRentDate(order.getRentDate());
 			exist.setRemark(order.getRemark());
+			
+			System.out.println("order.getRentType(): " + order.getRentType());
+			exist.setRentType(order.getRentType());
 			exist.setDetailLocation(order.getDetailLocation());
 			
 		//System.out.println("exist.getCustomerName(): " + exist.getCustomerName());

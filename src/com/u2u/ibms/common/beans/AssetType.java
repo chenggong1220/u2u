@@ -47,6 +47,13 @@ public class AssetType extends BaseBean {
 	
 	// 保险金 add by dean
 	private float insuranceAmount;
+	
+	//滚子外径
+	//滚子长度
+	//磨削精度
+	//砂轮尺寸
+	//调整轮尺寸(外径X宽度X内径)
+	//调整轮倾斜角度
 
 	public int getBrandId() {
 		return brandId;

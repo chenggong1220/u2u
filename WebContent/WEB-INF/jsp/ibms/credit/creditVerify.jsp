@@ -604,7 +604,7 @@
 									value="身份证号码，年龄已核实无误。" /></td>
 								<td><select name="creditRequired1">
 										<option value="1">无异常</option>
-										<option value="2">异常</option>
+										<option value="2" ${credit.creditRequired1Name=="异常"?"Selected":""}>异常</option>
 										<!--  Hided by SUNZHE, 2017-01-12
 											<option value="3">通过</option>
 											<option value="4">不通过</option>
@@ -616,8 +616,8 @@
 								<td><input type="text" name="required2Content"
 									value="设备型号，沈机业务经理信息不清台数，押金，放置地信息已确认无误。" /></td>
 								<td><select name="creditRequired2">
-										<option value="1">无异常</option>
-										<option value="2">异常</option>
+										<option value="1" >无异常</option>
+										<option value="2" ${credit.creditRequired2Name=="异常"?"Selected":""}> 异常</option>
 										<!--  Hided by SUNZHE, 2017-01-12
 											<option value="3">通过</option>
 											<option value="4">不通过</option>
@@ -626,10 +626,10 @@
 							</tr>
 							<tr>
 								<td>其他信息</td>
-								<td><input type="text" name="required3Content" value="" /></td>
+								<td><input type="text" name="required3Content" value=${credit.required3Content=="无"?"无":credit.required3Content}   /></td>
 								<td><select name="creditRequired3">
 										<option value="1">无异常</option>
-										<option value="2">异常</option>
+										<option value="2" ${credit.creditRequired3Name=="异常"?"Selected":""}>异常</option>
 										<!--  Hided by SUNZHE, 2017-01-12
 											<option value="3">通过</option>
 											<option value="4">不通过</option>
@@ -639,7 +639,7 @@
 							<tr>
 								<td>项目风险提示</td>
 								<td colspan="2"><input type="text" name="required4Content"
-									value="无" /></td>
+									value="${credit.required4Content}" /></td>
 							</tr>
 							<tr>
 								<td>客户还款情况</td>

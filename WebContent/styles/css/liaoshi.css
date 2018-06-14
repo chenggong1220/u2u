@@ -6,7 +6,7 @@ body, h1, h2, h3, p, quote, small, form, input, ul, li, ol, label {
 }
 
 body {
-	background: #69a890;
+	background: #FFCC77;
 }
 
 body, html {
@@ -141,11 +141,11 @@ a:visited {
 }
 
 .main-nav li a:hover {
-	background-color: #085f55;
+	background-color: #D9B300;
 }
 
 .main-nav li.active a {
-	background-color: #085f55;
+	background-color: #D9B300;
 }
 
 .main-nav li a.monitor:before {
@@ -260,7 +260,7 @@ a:visited {
 }
 
 .side-menu>li.expanded a.tit {
-	color: #085f55;
+	color: #FF9900;
 }
 
 .side-menu>li.expanded {
@@ -284,12 +284,12 @@ a:visited {
 }
 
 .side-menu .side-sub li a:hover {
-	color: #085f55;
+	color: #FF9900;
 	background: url(../images/side-sub-bg.png) no-repeat 0 0;
 }
 
 .side-menu .side-sub li a.active {
-	color: #085f55;
+	color: #FF9900;
 	background: url(../images/side-sub-bg.png) no-repeat 0 0;
 }
 
@@ -297,7 +297,7 @@ a:visited {
 	display: block;
 	width: 9px;
 	height: 51px;
-	background: url(../images/lou-arrowleft.png) no-repeat 50% 50% #1d8e7d;
+	background: url(../images/lou-arrowleft.png) no-repeat 50% 50% #CC9933;
 	border-radius: 0 5px 5px 0;
 	position: absolute;
 	right: -9px;
@@ -306,11 +306,11 @@ a:visited {
 }
 
 .sidebar-btn:hover, .sidebar-btn.closed:hover {
-	background-color: #085f55;
+	background-color: #FF9900;
 }
 
 .sidebar-btn.closed {
-	background: url(../images/lou-arrowright.png) no-repeat 50% 50% #1d8e7d;
+	background: url(../images/lou-arrowright.png) no-repeat 50% 50% #CC9933;
 }
 /* side bar accordion effect ends */
 
@@ -578,7 +578,7 @@ input:-ms-input-placeholder {
 	padding: 5px;
 	background: #e8e4be;
 	font-size: 12px;
-	color: #085f55;
+	color: #FF9900;
 }
 
 .ibms_alarm_table td {
@@ -622,7 +622,7 @@ input:-ms-input-placeholder {
 
 /* tree tab styles */
 .tree-class {
-	border-bottom: 1px solid #085f55;
+	border-bottom: 1px solid #FF9900;
 	margin: 4px 0;
 }
 
@@ -642,14 +642,14 @@ input:-ms-input-placeholder {
 
 .tree-class li.tree-class-select {
 	font-weight: bold;
-	border: 1px solid #085f55;
+	border: 1px solid #FF9900;
 	border-bottom: 1px solid #e8e4be;
 	border-radius: 5px 5px 0 0;
 	-webkit-border-radius: 5px 5px 0 0;
 	-moz-border-radius: 5px 5px 0 0;
 	text-overflow: clip;
 	width: auto;
-	color: #085f55;
+	color: #FF9900;
 	text-shadow: 0px 1px 0px #fff;
 }
 

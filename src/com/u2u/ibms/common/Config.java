@@ -8,5 +8,5 @@ public class Config {
 	//Development
 	//public final static String webUrl = "http://114.215.223.114:8089/U2U";
 	//Local
-	public final static String webUrl = "http://localhost:8089/U2U";
+	public final static String webUrl = "http://localhost/U2U";
 }

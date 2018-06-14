@@ -52,7 +52,8 @@ public class BaseContract {
 	protected void addFirstTeablJiafang(final PdfPTable table,
 			ContractFileVo contractFile) throws Exception {
 		table.addCell(getCell("甲方(出租人)：优尼斯融资租赁(上海)有限公司"));
-		table.addCell(getCell("地址：上海市普陀区大渡河路388弄5号楼 国盛中心23层"));
+		//table.addCell(getCell("地址：上海市普陀区大渡河路388弄5号楼 国盛中心23层"));	//Deleted by SUNZHE, 2017-11-22
+		table.addCell(getCell("地址：中国（上海）自由贸易试验区杨高北路2001号1幢4部位三层333室"));	//Added by SUNZHE, 2017-11-22
 		table.addCell(getCell("法定代表人：董彦宏"));
 		table.addCell(getCell("邮编：200062"));
 		table.addCell(getCell("电话：021-61005690"));

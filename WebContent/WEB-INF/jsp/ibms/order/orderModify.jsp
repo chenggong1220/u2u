@@ -84,8 +84,8 @@ $('#assetType').combobox({
 						<h1>
 								<select id="rentType" name="rentType" class="easyui-combobox"
 									data-options="required:true">
-									<option value="0">分时租赁</option>
-									<option value="1">分月租赁</option>
+									<option value="0">分时租赁 </option>
+									<option value="1" ${order.rentType=="1"?"Selected":""}>分月租赁</option>
 								</select>
 							</h1></li>
 					</ul>

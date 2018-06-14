@@ -44,10 +44,10 @@ public class AppContextInitListener implements ServletContextListener, HttpSessi
     {
         final ServletContext context = event.getServletContext();
         final String configFile = context.getInitParameter(ETC_FILE);
-        
+        final String configFileRealPath = this.getClass().getClassLoader().getResource("/").getPath()+configFile;
         try
         {
-            AppConfiguration.init(context.getRealPath(configFile));
+            AppConfiguration.init(configFileRealPath);
         }
         catch (final Exception e)
         {
