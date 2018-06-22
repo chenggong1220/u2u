@@ -86,7 +86,7 @@ public class MobileAuthorService {
 		int random = (int) (Math.random() * 9000 + 1000);
 		Constants.setUserSms(telphone, String.valueOf(random)); // 将动态短信吗放入内存，等待手机绑定
 		Map<String, String> maps = new HashMap<String, String>();
-		maps.put("AppName", "优尼斯租赁");
+		maps.put("AppName", "鹫翎企业管理");
 		maps.put("VerifyCode", random + "");
 		AlidayuSmsMessage message = new AlidayuSmsMessage();
 		message.setSignName("zhuce");
