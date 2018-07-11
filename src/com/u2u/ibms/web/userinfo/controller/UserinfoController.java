@@ -38,10 +38,10 @@ public class UserinfoController extends BaseController {
 	@RequestMapping("/list")
 	@ResponseBody
 	public Map<String, Object> list(UserInfoVo request, BaseCondition condition) {
-		if(condition.getStartDate() != null){
+		if(condition.getStartDate() != null &&!"".equals(condition.getStartDate())){
 			request.SetRegStartDate(condition.getStartDate() + " 00:00:00");
 		}
-		if(condition.getEndDate() != null){
+		if(condition.getEndDate() != null && !"".equals(condition.getEndDate())){
 			request.SetRegEndDate(condition.getEndDate() + " 23:59:59");
 		}
 		List<UserInfo> users = userinfoService.getAll(buildRowBounds(request),

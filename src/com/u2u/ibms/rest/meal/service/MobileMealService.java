@@ -42,7 +42,7 @@ public class MobileMealService {
 			response.setMealType(mealInfo.getRentType() + "");
 			response.setRentType(mealInfo.getRentType() + "");
 			response.setMiniUserdTime(mealInfo.getMinimumUseTime() + "");
-			response.setRate(mealInfo.getAmountRule());
+			response.setRate(""+mealInfo.getAmount());
 			list.add(response);
 		}
 		return list;
@@ -57,7 +57,7 @@ public class MobileMealService {
 			response.setMealName(mealInfo.getName());
 			response.setMealType(mealInfo.getType() + "");
 			response.setMiniUserdTime(mealInfo.getMinimumUseTime() + "");
-			response.setRate(mealInfo.getAmountRule());
+			response.setRate(""+mealInfo.getAmount());
 		}
 		return response;
 	}
